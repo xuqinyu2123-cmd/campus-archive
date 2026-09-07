@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
 <meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
-<meta name="campus-archive-build" content="6.2-hotfix">
+<meta name="campus-archive-build" content="6.6-story-mode">
 <meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
 <meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
-<title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.1</title>
+<title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.6</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -620,7 +620,7 @@ body{font-family:var(--px-font)!important;letter-spacing:.015em;background-image
 @media(max-width:620px){.gameHUDTop{gap:7px}.gameBrand small{display:none}.gameChapter strong{font-size:15px}.gameQuestionPane{padding:14px 13px;min-height:0}.gameScenePane{height:300px}.gameQuestion{font-size:24px!important}.gameAnswers{grid-template-columns:1fr!important}.gameAnswers .answer{min-height:70px!important}.gameHintLine{display:none}.gameHUDBottom{grid-template-columns:1fr}.gameCharacterCover{height:520px!important}.gameMetaLine{grid-template-columns:1fr}.gameMetaLine span+span{border-left:0;border-top:2px solid rgba(17,20,24,.12)}.resultGameTabs button{grid-template-columns:30px 1fr;padding:10px}.resultGameTabs button small{display:none}.gameTwin{grid-template-columns:1fr}.gameTwin .twinArt{height:320px!important}.survivalGrid{grid-template-columns:1fr!important}}
 
 
-/* V6.4 quiz scene refinement */
+/* V6.6 quiz scene refinement */
 .gameQuestionGrid{grid-template-columns:274px minmax(0,1fr)!important;gap:12px!important;align-items:stretch!important}
 .gameScenePane{grid-template-rows:40px minmax(0,1fr) 78px!important;background:linear-gradient(180deg,#0b0e12,#0f1319)!important;border-color:#39424e!important;position:relative!important;overflow:hidden!important}
 .gameScenePane:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(255,255,255,.02)),repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0 1px,transparent 1px 14px),repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 14px);opacity:.55}
@@ -656,6 +656,118 @@ body{font-family:var(--px-font)!important;letter-spacing:.015em;background-image
 @media(max-height:800px) and (min-width:981px){.gameQuestionGrid{grid-template-columns:254px minmax(0,1fr)!important}.gameScenePane{grid-template-rows:38px minmax(0,1fr) 74px!important}.gameSceneArt{padding:8px!important}.sceneOverlayBottom p{font-size:6px!important}.sceneOverlayBottom strong{font-size:12px!important}}
 @media(max-width:980px){.gameQuestionGrid{grid-template-columns:1fr!important}.gameScenePane{grid-template-rows:38px 220px 72px!important}.gameSceneArt{padding:8px!important}.sceneAccentPills span,.sceneCaptionLine span{font-size:6px!important}.sceneOverlayTop b{font-size:11px!important}.sceneOverlayBottom strong{font-size:12px!important}}
 @media(max-width:760px){.gameScenePane{grid-template-rows:36px 190px 68px!important}.sceneOverlayBottom{padding:8px 9px!important}.sceneOverlayBottom p{font-size:6px!important}.gameHintLine{max-width:100%!important}}
+
+
+/* V6.6 MOBILE-FIRST HARDENING */
+html,body{max-width:100%;overflow-x:hidden}
+body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
+button,a,input{touch-action:manipulation}
+img{max-width:100%}
+@media(max-width:980px){
+  :root{--mobile-pad:14px}
+  .wrap{width:100%!important;padding:0!important}
+  .topbar{height:44px!important;padding:0 max(12px,env(safe-area-inset-left))!important;background:#0b0e12!important;border-bottom:2px solid rgba(255,255,255,.08)!important;position:sticky;top:0;z-index:80}
+  .brand{font-size:11px!important}.topmeta{display:none!important}
+  .hero{display:flex!important;flex-direction:column!important;border-left:0!important;border-right:0!important;box-shadow:none!important}
+  .heroCopy{order:1!important;padding:24px 16px 18px!important;min-height:0!important}
+  .heroVisual{order:2!important;min-height:0!important;padding:14px 14px 20px!important;background:#0d1116!important}
+  .hero h1{font-size:clamp(34px,10vw,48px)!important;line-height:1.05!important;margin:10px 0 14px!important}
+  .heroDesc{font-size:13px!important;line-height:1.75!important;max-width:none!important}
+  .heroQuote{font-size:11px!important;line-height:1.65!important;margin:15px 0!important}
+  .heroActions{display:grid!important;grid-template-columns:1fr!important;gap:10px!important}
+  .heroActions .btn{width:100%!important;min-height:48px!important;justify-content:center!important}
+  .heroStats{grid-template-columns:repeat(3,1fr)!important;gap:6px!important}.heroStat{padding:10px 8px!important}.heroStat strong{font-size:16px!important}.heroStat span{font-size:7px!important}
+  .heroProof{grid-template-columns:1fr!important}.commercialBar{margin:10px 0 0!important}
+  .pixelCoverShell{width:min(560px,100%)!important;height:auto!important;aspect-ratio:1.04!important;min-height:0!important}.pixelCoverGrid{height:100%!important}
+
+  .gameQuiz{height:auto!important;min-height:calc(100dvh - 44px)!important;overflow:visible!important;background:#0b0e12!important}
+  .gameQuizShell{height:auto!important;display:grid!important;grid-template-rows:auto auto auto!important;gap:8px!important;padding:8px 8px max(8px,env(safe-area-inset-bottom))!important}
+  .gameHUDTop{position:sticky!important;top:44px!important;z-index:60!important;grid-template-columns:1fr auto!important;gap:6px!important;padding:8px 9px!important;box-shadow:0 5px 0 rgba(0,0,0,.22)!important;background:rgba(7,9,12,.97)!important}
+  .gameBrand{display:none!important}.gameChapter{grid-column:1!important;order:0!important;min-width:0!important}.gameChapter strong{font-size:14px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.gameChapter span{font-size:7px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .gameProgressBlock{grid-column:1/-1!important;order:2!important;min-width:0!important}.gameProgressMeta{margin-bottom:5px!important}.gameProgressTrack{height:8px!important}.gameChapterRail{gap:4px!important}.gameChapterRail span{height:5px!important}
+  .gameExit{grid-column:2!important;grid-row:1!important;width:52px!important;height:34px!important;font-size:7px!important}
+  .gameQuestionGrid{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;min-height:0!important}
+  .gameScenePane{height:auto!important;grid-template-rows:36px auto 58px!important;min-height:0!important;box-shadow:4px 4px 0 rgba(0,0,0,.22)!important}
+  .gameSceneHeader{padding:7px 9px!important;font-size:7px!important}
+  .gameSceneArt{height:auto!important;aspect-ratio:16/9!important;padding:7px!important;min-height:0!important}
+  .sceneFrame{height:100%!important;grid-template-rows:auto minmax(0,1fr)!important;gap:5px!important}
+  .sceneBackdrop{inset:10px!important}.sceneAccentPills{gap:4px!important}.sceneAccentPills span{font-size:5.5px!important;padding:3px 5px!important}.sceneCaptionLine{display:none!important}
+  .sceneCard{min-height:0!important}.sceneCard img.personArt{object-position:var(--scene-pos,50% 45%)!important;transform:scale(1.02)!important}
+  .sceneOverlayTop{left:7px!important;top:7px!important;gap:3px!important}.sceneOverlayTop small{font-size:5.5px!important;padding:3px 5px!important}.sceneOverlayTop b{font-size:10px!important;padding:5px 6px!important;max-width:88%!important}
+  .sceneStamp{right:7px!important;bottom:7px!important;font-size:6px!important;padding:4px 5px!important}
+  .sceneOverlayBottom{left:7px!important;right:7px!important;bottom:7px!important;padding:6px 7px!important;background:rgba(5,7,10,.83)!important}.sceneOverlayBottom strong{font-size:10px!important}.sceneOverlayBottom p{display:none!important}
+  .gameSceneFooter{grid-template-columns:1fr 1fr!important;padding:7px 9px!important;min-height:58px!important}.gameSceneFooter small{font-size:5.5px!important}.gameSceneFooter b{font-size:9px!important;line-height:1.3!important;margin-top:3px!important}
+  .gameQuestionPane{padding:14px 12px 12px!important;min-height:0!important;box-shadow:4px 4px 0 rgba(0,0,0,.14)!important}
+  .gameQuestionHeader{display:flex!important;align-items:flex-start!important;gap:8px!important;padding-bottom:7px!important}.gameQuestionHeader>div:first-child{min-width:0!important;flex:1!important}.gameQuestionHeader small{font-size:6px!important}.gameMeta{gap:5px!important;margin-top:6px!important}.gameMeta span{font-size:6px!important;padding:5px 6px!important}.gameCounter{min-width:62px!important;padding:6px!important}.gameCounter small{font-size:5px!important}.gameCounter b{font-size:13px!important}
+  .gameQuestion{font-size:clamp(22px,6.2vw,30px)!important;line-height:1.15!important;margin:12px 0 8px!important;overflow-wrap:anywhere!important}
+  .gameHint{font-size:10px!important;line-height:1.5!important;margin:0 0 10px!important}
+  .gameAnswers{grid-template-columns:1fr!important;gap:8px!important}.gameAnswers .answer{min-height:60px!important;padding:10px 11px!important;grid-template-columns:32px 1fr!important;gap:10px!important}.answer .letter{width:30px!important;height:30px!important;font-size:9px!important}.answerText{font-size:12px!important;line-height:1.4!important}.answerBadge{font-size:6px!important;margin-top:5px!important}
+  .gameHUDBottom{position:sticky!important;bottom:0!important;z-index:55!important;margin-top:0!important;grid-template-columns:1fr auto!important;gap:8px!important;padding:7px 8px max(7px,env(safe-area-inset-bottom))!important;background:rgba(7,9,12,.97)!important;box-shadow:0 -4px 0 rgba(0,0,0,.18)!important}.gameHintLine{display:block!important;max-width:none!important;font-size:7px!important;line-height:1.45!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.gameHintLine i,.gameHintLine>i{display:none!important}.pixelKey{font-size:6px!important;padding:3px 4px!important}.gameBottomStats{display:none!important}.gamePrev{height:36px!important;min-width:64px!important}
+
+  .gameResultHero{height:auto!important;display:grid!important;grid-template-columns:1fr!important;box-shadow:none!important;border-left:0!important;border-right:0!important}
+  .gameCharacterCover{height:auto!important;min-height:0!important;padding:10px!important}.gameCharacterCover #coverArt{position:relative!important;inset:auto!important;width:100%!important;height:auto!important;aspect-ratio:4/5!important;max-height:76svh!important}.gameCharacterCover #coverArt img.personArt{object-fit:cover!important}
+  .coverCode{font-size:44px!important}.coverIdentity strong{font-size:28px!important}.coverIdentity span{font-size:8px!important}.personaStamp{font-size:38px!important;top:64px!important}.resultSignature{top:58px!important;font-size:7px!important;padding:6px!important}
+  .gameDossier{padding:16px 14px 18px!important;overflow:visible!important}.resultTitle{font-size:clamp(32px,10vw,44px)!important}.resultEnglish{font-size:8px!important}.resultTagline{font-size:13px!important}.quoteBlock{font-size:12px!important;padding:12px!important}
+  .gameAttrGrid,.attrGrid{grid-template-columns:1fr 1fr!important;gap:7px!important}.attr{min-height:68px!important;padding:9px!important}.attr span{font-size:7px!important}.attr strong{font-size:14px!important}.confidencePanel{grid-template-columns:1fr!important}.confidencePanel>div{border-right:0!important;border-bottom:1px solid rgba(18,19,21,.1)!important}.confidencePanel>div:last-child{border-bottom:0!important}
+  .resultAura,.personaBadges{gap:6px!important}.resultAura span,.personaBadges span{font-size:7px!important;padding:6px 8px!important}
+  .dossierActions{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}.dossierActions .btn{width:100%!important;min-height:46px!important}
+  .resultGameTabs{position:sticky!important;top:44px!important;z-index:50!important;display:grid!important;grid-template-columns:repeat(3,minmax(112px,1fr))!important;overflow-x:auto!important;scrollbar-width:none!important;background:#0b0e12!important;border-top:2px solid rgba(255,255,255,.08)!important;border-bottom:2px solid rgba(255,255,255,.08)!important}.resultGameTabs::-webkit-scrollbar{display:none}.resultGameTabs button{min-width:112px!important;padding:10px 8px!important;font-size:8px!important}.resultGameTabs button small{display:none!important}
+  .resultGamePanel{padding:10px!important}.archiveGrid,.relationGrid,.deepGrid{grid-template-columns:1fr!important;gap:10px!important}.paperCard,.darkCard,.viralCard{padding:14px!important}.sectionHead h3{font-size:15px!important}.analysisText,.manifestoCard p,.dailyLine p,.compatBox p,.twinCopy p{font-size:12px!important;line-height:1.7!important}
+  .gameTwin{grid-template-columns:1fr!important}.gameTwin .twinArt{height:auto!important;aspect-ratio:16/10!important}.survivalGrid{grid-template-columns:1fr!important}.viralCard{grid-template-columns:1fr!important}.viralButtons{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}.viralButtons button{min-height:46px!important;width:100%!important}
+  .galleryGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}.galleryItem{padding:8px!important}.galleryThumb{height:auto!important;aspect-ratio:1!important}.galleryBody strong{font-size:12px!important}.galleryBody p{font-size:9px!important}.modalInner{padding:14px!important}
+  .accessModal{padding:0!important}.accessBox{width:100%!important;min-height:100dvh!important;border-radius:0!important;padding:22px 16px max(20px,env(safe-area-inset-bottom))!important}.licenseInput{font-size:16px!important;min-height:48px!important}.accessActions{display:grid!important;grid-template-columns:1fr!important}.accessActions button{min-height:46px!important}
+}
+@media(max-width:390px){
+  .gameSceneArt{aspect-ratio:15/9!important}.gameQuestion{font-size:21px!important}.answerText{font-size:11px!important}.gameAttrGrid,.attrGrid{grid-template-columns:1fr!important}.heroStats{grid-template-columns:1fr 1fr 1fr!important}.resultGameTabs{grid-template-columns:repeat(3,108px)!important}.resultGameTabs button{min-width:108px!important}
+}
+
+
+/* V6.6 mobile viewport fit refinement */
+@media(max-width:620px){
+  .gameScenePane{grid-template-rows:32px 145px 48px!important;height:225px!important}
+  .gameSceneHeader{padding:6px 8px!important}
+  .gameSceneArt{height:145px!important;aspect-ratio:auto!important;padding:6px!important}
+  .gameSceneFooter{min-height:48px!important;padding:6px 8px!important}.gameSceneFooter small{font-size:5px!important}.gameSceneFooter b{font-size:8px!important;margin-top:2px!important}
+  .sceneAccentPills span{font-size:5px!important;padding:2px 4px!important}.sceneOverlayTop small{font-size:5px!important}.sceneOverlayTop b{font-size:9px!important}.sceneOverlayBottom strong{font-size:9px!important}
+  .gameQuestionPane{padding:12px 11px 10px!important}.gameQuestion{font-size:21px!important;margin:10px 0 6px!important}.gameHint{font-size:9px!important;margin-bottom:8px!important}
+  .gameAnswers{gap:6px!important}.gameAnswers .answer{min-height:54px!important;padding:8px 9px!important}.answer .letter{width:28px!important;height:28px!important}.answerText{font-size:11px!important;line-height:1.32!important}.answerBadge{font-size:5.5px!important;margin-top:4px!important}
+  .gameMeta span{padding:4px 5px!important;font-size:5.5px!important}.gameCounter{min-width:56px!important}.gameCounter b{font-size:12px!important}
+}
+
+
+/* V6.6 CAMPUS STORY MODE */
+html,body{max-width:100%;overflow-x:hidden}
+.gameQuestionGrid{grid-template-columns:318px minmax(0,1fr)!important;gap:12px!important}
+.gameScenePane{grid-template-rows:38px minmax(0,1fr) 62px!important;background:#080b0f!important;border-color:#303945!important}
+.gameSceneArt{padding:0!important;background:#080b0f!important;overflow:hidden!important}
+.storySceneFrame{position:absolute;inset:0;overflow:hidden;background:#080b0f}
+.storySceneImage{width:100%;height:100%;object-fit:cover;display:block;image-rendering:pixelated;image-rendering:crisp-edges}
+.storySceneFrame:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.08),transparent 45%,rgba(0,0,0,.34)),repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px)}
+.storySceneHUD{position:absolute;left:8px;right:8px;bottom:8px;z-index:2;display:flex;gap:5px;flex-wrap:wrap}
+.storySceneHUD span{padding:5px 6px;background:rgba(7,9,12,.86);border:1px solid rgba(255,255,255,.14);color:#eef2ec;font:400 7px/1 var(--px-mono)}
+.gameQuestionPane{background:linear-gradient(180deg,color-mix(in srgb,var(--chapter-paper) 97%,white),var(--chapter-paper))!important}
+.gameQuestionPane:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.24;background-size:18px 18px;background-image:linear-gradient(rgba(0,0,0,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.035) 1px,transparent 1px)}
+.gameQuestionHeader,.gameQuestion,.gameHint,.gameAnswers{position:relative;z-index:2}
+.gameQuestion{font-size:clamp(27px,2.55vw,40px)!important;line-height:1.12!important}
+.gameAnswers .answerText{font-size:12px!important;line-height:1.4!important}
+.gameSceneFooter b{font-size:10px!important;line-height:1.45!important;white-space:normal!important}
+.gameQuiz[data-chapter="01"] .gameQuizShell{background:radial-gradient(680px 420px at 0 30%,rgba(185,255,61,.08),transparent 64%),#111713!important}
+.gameQuiz[data-chapter="02"] .gameQuizShell{background:radial-gradient(680px 420px at 0 30%,rgba(255,102,142,.09),transparent 64%),#160f16!important}
+.gameQuiz[data-chapter="03"] .gameQuizShell{background:radial-gradient(680px 420px at 0 30%,rgba(255,181,74,.09),transparent 64%),#17130c!important}
+.gameQuiz[data-chapter="04"] .gameQuizShell{background:radial-gradient(680px 420px at 0 30%,rgba(138,140,255,.10),transparent 64%),#11101b!important}
+.gameResultTitleRow{margin-top:2px!important}.gameDossier .gameAttrGrid,.gameDossier .gameMetaLine,.gameDossier .gameQuickDims{display:none!important}
+.gameDossier{display:flex!important;flex-direction:column!important;justify-content:center!important;gap:9px!important}
+.gameDossier .resultTagline{font-size:14px!important;line-height:1.65!important;max-width:760px}
+.gameDossier .gameQuote{margin:2px 0!important}
+.gameDossier .gameAura{margin-top:2px!important}
+.archiveMetaCard .gameAttrGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin-top:8px!important}
+.archiveMetaCard .gameMetaLine{display:grid!important;grid-template-columns:repeat(3,1fr)!important;margin-top:8px!important}
+.relationCharacterCard{display:grid!important;grid-template-columns:108px 1fr!important;column-gap:12px!important;align-items:start!important}
+.relationCharacterCard .gamePanelHead{grid-column:1/-1!important}.relationAvatar{grid-row:2/5;width:108px;aspect-ratio:1/1;overflow:hidden;border:2px solid rgba(255,255,255,.14);background:#0b0e13}.relationAvatar img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated}.relationCharacterCard .relationName{align-self:end!important;margin-top:8px!important}.relationCharacterCard p{margin-top:6px!important}
+.deepGrid .gamePanelCard{background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 16px),#11151a!important;border-color:#353d46!important}.deepGrid .gamePanelHead{border-bottom:1px dashed rgba(255,255,255,.18)!important;padding-bottom:8px!important}
+@media(max-height:800px) and (min-width:981px){.gameQuestionGrid{grid-template-columns:292px minmax(0,1fr)!important}.gameQuestion{font-size:clamp(24px,2.25vw,34px)!important}.gameAnswers .answer{min-height:56px!important}}
+@media(max-width:980px){.gameHUDTop{position:sticky!important;top:0!important;z-index:30!important;background:rgba(10,12,15,.96)!important;backdrop-filter:blur(8px)}.gameQuestionGrid{grid-template-columns:1fr!important;gap:8px!important}.gameScenePane{height:auto!important;grid-template-rows:34px auto 0!important;border-bottom:0!important}.gameSceneArt{position:relative!important;height:auto!important;aspect-ratio:16/7!important}.gameSceneFooter{display:none!important}.storySceneFrame{position:absolute!important}.gameQuestionPane{min-height:0!important;padding:13px 14px 12px!important}.gameQuestion{font-size:24px!important;margin:8px 0 7px!important}.gameHint{font-size:10px!important;margin-bottom:9px!important}.gameAnswers{grid-template-columns:1fr!important;gap:7px!important}.gameAnswers .answer{min-height:58px!important;padding:9px 10px!important}.gameAnswers .answerText{font-size:12px!important}.gameHUDBottom{position:sticky!important;bottom:0!important;z-index:28!important;background:rgba(8,10,13,.97)!important;padding-bottom:max(8px,env(safe-area-inset-bottom))!important}.gameHintLine{font-size:7px!important;white-space:normal!important}.gameBottomStats{display:none!important}.gameCharacterCover{height:auto!important;min-height:0!important}.gameDossier{padding:16px!important;gap:8px!important}.resultTitle{font-size:34px!important}.gameDossier .resultTagline{font-size:12px!important}.gameResultHero{grid-template-columns:1fr!important}.coverArt{aspect-ratio:4/5!important;min-height:0!important}.resultGameTabs{position:sticky!important;top:0!important}.archiveMetaCard .gameMetaLine{grid-template-columns:1fr!important}.relationCharacterCard{grid-template-columns:92px 1fr!important}.relationAvatar{width:92px!important}}
+@media(max-width:620px){.gameQuizShell{padding:5px!important}.gameHUDTop{padding:7px!important;gap:6px!important}.gameBrand small{display:none!important}.gameChapter span{font-size:8px!important}.gameScenePane{grid-template-rows:32px auto 0!important}.gameSceneArt{aspect-ratio:16/7.2!important}.gameSceneHeader{padding:7px 8px!important;font-size:7px!important}.storySceneHUD{left:6px;right:6px;bottom:6px}.storySceneHUD span{font-size:6px!important;padding:4px 5px!important}.gameQuestionPane{padding:11px 12px 10px!important}.gameQuestionHeader{padding-bottom:6px!important}.gameMeta span:nth-child(n+2){display:none!important}.gameQuestion{font-size:21px!important;line-height:1.18!important;margin:7px 0 6px!important}.gameHint{display:none!important}.gameAnswers .answer{min-height:54px!important}.gameAnswers .answerText{font-size:11px!important}.gameAnswers .answerBadge{font-size:6px!important}.gameHUDBottom{min-height:44px!important}.gameHintLine{max-width:72%!important}.gamePrev{min-width:72px!important}.gameDossier .dossierKicker{font-size:7px!important}.gameResultTitleRow{align-items:flex-end!important}.gameMatchBox{min-width:76px!important}.gameDossierActions{grid-template-columns:1fr 1fr!important}.gameDossierActions .btn:first-child{grid-column:1/-1!important}.archiveMetaCard .gameAttrGrid{grid-template-columns:1fr 1fr!important}.relationCharacterCard{grid-template-columns:78px 1fr!important}.relationAvatar{width:78px!important}.deepGrid .gamePanelCard{padding:12px!important}}
 
 </style>
 </head>
@@ -736,7 +848,7 @@ body{font-family:var(--px-font)!important;letter-spacing:.015em;background-image
           <aside class="gameScenePane">
             <div class="gameSceneHeader"><span id="gameSceneNo">SCENE 01</span><b id="gameSceneTag">COURSEWORK</b></div>
             <div id="gameSceneArt" class="gameSceneArt"></div>
-            <div class="gameSceneFooter"><div><small>SCENE MOOD</small><b id="hudProfile">WAITING...</b></div><div><small>MAPPING AXIS</small><b id="hudAxis">—</b></div></div>
+            <div class="gameSceneFooter"><div><small>SCENE INFO</small><b id="hudProfile">CAMPUS MOMENT</b></div><div><small>OBSERVE</small><b id="hudAxis">—</b></div></div>
           </aside>
 
           <section id="questionStage" class="gameQuestionPane">
@@ -749,7 +861,7 @@ body{font-family:var(--px-font)!important;letter-spacing:.015em;background-image
 
         <footer class="gameHUDBottom">
           <div class="gameHintLine"><span class="pixelKey">A–D</span> 选择最像你的现实反应 <i>·</i> 选择后自动进入下一题</div>
-          <div class="gameBottomStats"><span>PROFILE <b id="bottomProfile">WAITING</b></span><span>AXIS <b id="bottomAxis">—</b></span></div>
+          <div class="gameBottomStats"><span>CHAPTER <b id="bottomProfile">01</b></span><span>AXIS <b id="bottomAxis">—</b></span></div>
           <div class="navBtns"><button id="prevBtn" class="navBtn gamePrev" onclick="prevQuestion()">← PREV</button></div>
         </footer>
       </div>
@@ -767,15 +879,12 @@ body{font-family:var(--px-font)!important;letter-spacing:.015em;background-image
           <div class="gameResultTitleRow"><div><h2 id="resultTitle" class="resultTitle">DDL 战神</h2><div id="resultEnglish" class="resultEnglish">DEADLINE AWAKENING TYPE</div></div><div class="gameMatchBox"><small>MATCH</small><b id="gameMatchValue">92.4%</b></div></div>
           <p id="resultTagline" class="resultTagline"></p>
           <div id="quoteBlock" class="quoteBlock gameQuote"></div>
-          <div class="attrGrid gameAttrGrid">
-            <div class="attr"><span>MAP</span><strong id="attrPlace"></strong></div>
+          
             <div class="attr"><span>DANGER TIME</span><strong id="attrTime"></strong></div>
             <div class="attr"><span>SKILL</span><strong id="attrSkill"></strong></div>
             <div class="attr"><span>CLASS</span><strong id="attrClass"></strong></div>
           </div>
           <div id="resultAura" class="resultAura gameAura"></div>
-          <div id="resultQuickDims" class="resultQuickDims gameQuickDims"></div>
-          <div class="gameMetaLine"><span>VARIANT <b id="resultVariant">—</b></span><span>STABILITY <b id="resultStability">—</b></span><span>FILE ID <b id="resultFileId">—</b></span></div>
           <div class="dossierActions gameDossierActions"><button class="btn primary" onclick="shareResult()"><span class="dot"></span>分享结果</button><button class="btn secondary" onclick="makePoster()">生成海报</button><button class="btn secondary" onclick="restart()">重新测试</button></div><div class="gameSavePrompt"><small>SAVE COMPLETE</small><strong>人格档案已建立</strong><span>↓ 使用下方菜单查看 STATUS / PARTY / LOG</span></div>
         </div>
       </div>
@@ -789,15 +898,16 @@ body{font-family:var(--px-font)!important;letter-spacing:.015em;background-image
       <div class="resultGamePanels">
         <section id="resultTabArchive" class="resultGamePanel active">
           <div class="gamePanelGrid archiveGrid">
-            <div class="gamePanelCard statusCard"><div class="gamePanelHead"><span>STATUS / 6D</span><b>六维校园属性</b></div><div id="dimList" class="dimList rpgDimList"></div></div>
+            <div class="gamePanelCard statusCard"><div class="gamePanelHead"><span>STATUS / 6D</span><b>六维校园属性</b></div><div id="dimList" class="dimList rpgDimList"></div></div><div class="gamePanelCard archiveMetaCard"><div class="gamePanelHead"><span>ARCHIVE META</span><b>校园档案参数</b></div><div class="attrGrid gameAttrGrid">
+            <div class="attr"><span>MAP</span><strong id="attrPlace"></strong></div><div class="gameMetaLine"><span>VARIANT <b id="resultVariant">—</b></span><span>STABILITY <b id="resultStability">—</b></span><span>FILE ID <b id="resultFileId">—</b></span></div></div>
             <div class="gamePanelCard analysisCard"><div class="gamePanelHead"><span>SYSTEM LOG</span><b>系统判定</b></div><p id="analysisText" class="analysisText"></p><div id="bulletList" class="bulletList gameBulletList"></div></div>
           </div>
         </section>
 
         <section id="resultTabRelations" class="resultGamePanel">
           <div class="gamePanelGrid relationGrid">
-            <div class="gamePanelCard partyCard"><div class="gamePanelHead"><span>BEST PARTY</span><b>最佳校园搭子</b></div><strong id="bestMate" class="relationName"></strong><p id="bestMateText"></p></div>
-            <div class="gamePanelCard enemyCard"><div class="gamePanelHead"><span>FRICTION</span><b>最容易互相折磨</b></div><strong id="friction" class="relationName"></strong><p id="frictionText"></p></div>
+            <div class="gamePanelCard partyCard relationCharacterCard"><div class="gamePanelHead"><span>BEST PARTY</span><b>最佳校园搭子</b></div><div id="bestMateArt" class="relationAvatar"></div><strong id="bestMate" class="relationName"></strong><p id="bestMateText"></p></div>
+            <div class="gamePanelCard enemyCard relationCharacterCard"><div class="gamePanelHead"><span>FRICTION</span><b>最容易互相折磨</b></div><div id="frictionArt" class="relationAvatar"></div><strong id="friction" class="relationName"></strong><p id="frictionText"></p></div>
             <div class="gamePanelCard twinGameCard"><div class="gamePanelHead"><span>SECONDARY</span><b>你的第二人格</b></div><div class="gameTwin"><div id="twinArt" class="twinArt"></div><div><strong id="twinName">—</strong><em id="twinSim">—</em><b id="twinEn">—</b><p id="twinText">—</p></div></div></div>
             <div class="gamePanelCard altGameCard"><div class="gamePanelHead"><span>NEAREST</span><b>相近人格</b></div><div id="altList" class="altList"></div><button class="galleryBtn" onclick="openGallery()">打开 16 种人格图鉴</button></div>
           </div>
@@ -811,7 +921,7 @@ body{font-family:var(--px-font)!important;letter-spacing:.015em;background-image
           </div>
         </section>
       </div>
-      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.3 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
+      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.6 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
@@ -829,44 +939,12 @@ const PERSONA_IMAGES={"U01":"data:image/webp;base64,UklGRmbMAQBXRUJQVlA4IFrMAQAQ
 
 
 
-const QUIZ_SCENE_PRESETS={
-  'COURSEWORK':{code:'U01',label:'TASK CLOCK',mood:'任务压迫感 / 启动速度',title:'课程任务 · 开始还是再拖一下',note:'这一题会暴露你面对明确任务时，是立刻起步、先排程，还是等压力真正落下来。',stamp:'TASK'},
-  'SLEEP MODE':{code:'U08',label:'WAKE LOOP',mood:'作息选择 / 体感负担',title:'作息警报 · 身体和计划谁先让步',note:'看你如何处理困倦、早课与日程安排的冲突。',stamp:'SLEEP'},
-  'WEEKEND':{code:'U14',label:'OPEN MAP',mood:'自由支配 / 探索欲',title:'周末地图 · 往外探索还是留在舒适区',note:'休息日最能看出你更偏向探索、独处还是稳定复原。',stamp:'MAP'},
-  'EXAM':{code:'U07',label:'OVERCLOCK',mood:'压力转化 / 短线爆发',title:'考试窗口 · 你的冲刺模式会不会启动',note:'当考试逼近时，你会选择提前布置还是临近时瞬间超频。',stamp:'EXAM'},
-  'LUNCH':{code:'U09',label:'MIDDAY BREAK',mood:'社交能量 / 独处偏好',title:'午饭时刻 · 一个人也能很自在吗',note:'吃饭方式经常会暴露你的社交电量与恢复需求。',stamp:'LUNCH'},
-  'PROJECT':{code:'U15',label:'TEAM FLOW',mood:'协作节奏 / 组织控制',title:'项目现场 · 你会推进结构还是跟随感觉',note:'开放式任务会迅速显露你的组织、创造与协作习惯。',stamp:'TEAM'},
-  'MEETING':{code:'U05',label:'SOCIAL PING',mood:'临时安排 / 人际承压',title:'临时集合 · 你对群体节奏的耐受度',note:'临时变动最能测出你的社交反应与秩序需求。',stamp:'MEET'},
-  'GROUP WORK':{code:'U15',label:'GROUP GRID',mood:'分工推进 / 默认队长',title:'小组协作 · 你会不会自然站到前排',note:'合作题常常最先暴露谁在承担推进成本。',stamp:'GROUP'},
-  'INVITATION':{code:'U05',label:'EVENT CALL',mood:'关系连接 / 参与门槛',title:'收到邀约 · 你对热闹的接受阈值',note:'这题看你对社交邀请的直觉态度。',stamp:'CALL'},
-  'MESSAGE':{code:'U16',label:'TEXT WEATHER',mood:'语气解读 / 情绪感知',title:'聊天信号 · 你会不会读出隐藏气压',note:'消息往来最容易反映你对气氛变化的捕捉能力。',stamp:'TEXT'},
-  'DESK STATUS':{code:'U03',label:'DESK SAVE',mood:'整理习惯 / 专注秩序',title:'桌面状态 · 你如何和杂乱或秩序相处',note:'环境管理方式会折射你的秩序感与工作风格。',stamp:'DESK'},
-  'FREE TIME':{code:'U14',label:'SIDE QUEST',mood:'兴趣走向 / 自主支线',title:'空白时间 · 你更想放空、尝试还是积累',note:'真正自由时，你的能量会流向哪里。',stamp:'FREE'},
-  'ELECTIVE':{code:'U11',label:'BUILD LOADOUT',mood:'取舍策略 / 平衡思维',title:'选课界面 · 你会怎么构建自己的学期配置',note:'这题观察你如何在好奇、现实和效率之间取舍。',stamp:'ELECT'},
-  'NOT IN EXAM':{code:'U12',label:'TRUE INTEREST',mood:'功利目标 / 深度好奇',title:'不考也看 · 你会不会继续钻进去',note:'能不能为不直接得分的内容投入，特别能区分兴趣深度。',stamp:'FOCUS'},
-  'DAILY STATE':{code:'U06',label:'DAILY LOOP',mood:'日常节奏 / 稳定运行',title:'日常启动 · 你的一天像不像固定流程',note:'稳定路线与默认生活节奏通常就藏在这种题里。',stamp:'LOOP'},
-  'MIDNIGHT':{code:'U01',label:'03:17 MODE',mood:'夜间状态 / 压力驱动',title:'深夜时段 · 你的专注会在什么时候上线',note:'夜晚容易让真实效率结构暴露出来。',stamp:'AM03'},
-  '24 HOURS':{code:'U11',label:'FULL DAY',mood:'时间调度 / 综合平衡',title:'24 小时 · 你的生活系统如何排兵布阵',note:'当一天被完整摊开时，会看到你真正的优先级。',stamp:'24H'},
-  'NEW PEOPLE':{code:'U05',label:'FIRST CONTACT',mood:'陌生环境 / 破冰速度',title:'新关系场景 · 你靠直觉还是先观察',note:'面对陌生人时，你是迅速连接还是先安静评估。',stamp:'NEW'},
-  'IDEAL CAMPUS':{code:'U14',label:'WORLD BUILD',mood:'理想图景 / 价值偏好',title:'理想校园 · 你更向往怎样的生活地图',note:'这题更偏底层偏好，会暴露你真正向往的校园氛围。',stamp:'IDEAL'},
-  'RED LINE':{code:'U16',label:'BOUNDARY CHECK',mood:'边界感 / 价值底线',title:'底线测试 · 什么会真正让你不舒服',note:'比起喜好，这里测的是你真正不能接受的部分。',stamp:'RULE'},
-  'RESTART':{code:'U11',label:'NEW RUN',mood:'复盘意识 / 再来一次',title:'如果重开 · 你会调整哪条主线',note:'重新开始的想法，能直接映出你最看重的收获与遗憾。',stamp:'RESET'},
-  'DINNER':{code:'U13',label:'ROUTINE NIGHT',mood:'晚间选择 / 生活回路',title:'晚饭之后 · 你会回主线还是开支线',note:'一天快结束时的选择，最像你的默认生活程序。',stamp:'DINNER'},
-  'DORM':{code:'U04',label:'SAFE ZONE',mood:'舒适区 / 能量储备',title:'宿舍现场 · 你更依赖舒适还是流动',note:'宿舍是最能体现能量管理和边界偏好的地方。',stamp:'DORM'},
-  'GRADES':{code:'U02',label:'GRADE CHIP',mood:'成绩敏感 / 目标控制',title:'分数界面 · 你对结果波动有多敏感',note:'成绩相关题会强烈暴露你的目标驱动与控制欲。',stamp:'A+'}
-};
-function getQuizScenePreset(item,index){
-  const preset=QUIZ_SCENE_PRESETS[item.tag]||{code:'U11',label:'PIXEL SCENE',mood:'校园状态 / 行为映射',title:'像素场景 · 校园行为扫描',note:'这道题会把你的现实反应映射到校园人格模型。',stamp:'SCAN'};
-  return preset;
-}
+const QUESTION_SCENE_META={"1":{"tag":"COURSEWORK","time":"21:40","loc":"宿舍书桌","title":"课程任务"},"2":{"tag":"SLEEP MODE","time":"07:05","loc":"清晨寝室","title":"起床警报"},"3":{"tag":"WEEKEND","time":"14:20","loc":"校园草坪","title":"周末空档"},"4":{"tag":"EXAM","time":"23:18","loc":"自习室","title":"考试倒计时"},"5":{"tag":"LUNCH","time":"12:10","loc":"食堂","title":"午饭时刻"},"6":{"tag":"PROJECT","time":"17:30","loc":"项目教室","title":"课程项目"},"7":{"tag":"MEETING","time":"18:45","loc":"活动室","title":"临时集合"},"8":{"tag":"GROUP WORK","time":"20:05","loc":"小组讨论室","title":"团队协作"},"9":{"tag":"INVITATION","time":"19:24","loc":"社团广场","title":"活动邀约"},"10":{"tag":"MESSAGE","time":"22:16","loc":"宿舍窗边","title":"聊天信号"},"11":{"tag":"DESK STATUS","time":"16:02","loc":"个人书桌","title":"桌面状态"},"12":{"tag":"FREE TIME","time":"15:40","loc":"树荫长椅","title":"自由时间"},"13":{"tag":"ELECTIVE","time":"10:25","loc":"选课系统","title":"选修选择"},"14":{"tag":"NOT IN EXAM","time":"20:44","loc":"图书馆","title":"不考也看"},"15":{"tag":"DAILY STATE","time":"11:50","loc":"教学楼走廊","title":"日常循环"},"16":{"tag":"MIDNIGHT","time":"01:36","loc":"深夜宿舍","title":"午夜模式"},"17":{"tag":"24 HOURS","time":"00:00","loc":"一天时间轴","title":"24小时"},"18":{"tag":"NEW PEOPLE","time":"18:10","loc":"社团招新","title":"第一次见面"},"19":{"tag":"IDEAL CAMPUS","time":"18:32","loc":"校园主路","title":"理想校园"},"20":{"tag":"RED LINE","time":"21:12","loc":"宿舍门口","title":"边界测试"},"21":{"tag":"RESTART","time":"06:42","loc":"校园正门","title":"重新开始"},"22":{"tag":"DINNER","time":"18:55","loc":"食堂晚餐","title":"晚饭之后"},"23":{"tag":"DORM","time":"22:40","loc":"寝室","title":"宿舍现场"},"24":{"tag":"GRADES","time":"13:05","loc":"成绩查询页","title":"分数公布"}};
+const QUESTION_SCENE_IMAGES={"1":"assets/scenes/Q01.webp","2":"assets/scenes/Q02.webp","3":"assets/scenes/Q03.webp","4":"assets/scenes/Q04.webp","5":"assets/scenes/Q05.webp","6":"assets/scenes/Q06.webp","7":"assets/scenes/Q07.webp","8":"assets/scenes/Q08.webp","9":"assets/scenes/Q09.webp","10":"assets/scenes/Q10.webp","11":"assets/scenes/Q11.webp","12":"assets/scenes/Q12.webp","13":"assets/scenes/Q13.webp","14":"assets/scenes/Q14.webp","15":"assets/scenes/Q15.webp","16":"assets/scenes/Q16.webp","17":"assets/scenes/Q17.webp","18":"assets/scenes/Q18.webp","19":"assets/scenes/Q19.webp","20":"assets/scenes/Q20.webp","21":"assets/scenes/Q21.webp","22":"assets/scenes/Q22.webp","23":"assets/scenes/Q23.webp","24":"assets/scenes/Q24.webp"};
+const QUESTION_SCENE_EMBED={};
 
-function quizPreviewPixelArt(item,index){
- try{
-  const picks=['U08','U01','U03','U07','U09','U05','U10','U14','U12','U15','U16','U04','U11','U06','U13','U02'];
-  const code=picks[index%picks.length],a=ARCHETYPES.find(x=>x.code===code)||ARCHETYPES[0];
-  return `<div class="quizPreviewPixel"><div style="min-height:0;overflow:hidden">${personaImage(a,true)}</div><div class="pixelInfo"><small>PIXEL SCENE / ${String(index+1).padStart(2,'0')}</small><b>${tagLabel(item.tag)}</b></div></div>`;
- }catch(e){console.error('quizPreviewPixelArt',e);return '<div class="visualFallback">PIXEL SCENE<br>VISUAL OFFLINE</div>';}
-}
+
+function quizPreviewPixelArt(item,index){const n=index+1,src=QUESTION_SCENE_EMBED[n]||QUESTION_SCENE_IMAGES[n];return `<img src="${src}" alt="SCENE ${String(n).padStart(2,'0')}" decoding="async">`;}
 function renderHeroPreview(){
  try{
   const slots=[['heroCoverMain','U11'],['heroCoverA','U01'],['heroCoverB','U10'],['heroCoverC','U16']];
@@ -881,19 +959,17 @@ function currentProfileLabel(){
  return ranked[0]?.name||'分析中';
 }
 function renderMainScene(item,index){
- const preset=getQuizScenePreset(item,index);
- const a=ARCHETYPES.find(x=>x.code===preset.code)||ARCHETYPES[0];
+ const n=index+1,meta=QUESTION_SCENE_META[n]||{tag:item.tag,time:'LIVE',loc:'校园场景',title:tagLabel(item.tag)};
  const focusKeys=focusDimsForQuestion(item),focus=focusKeys.map(k=>DIM_NAMES[k]),focusShort=focusKeys.map(k=>DIM_SHORT[k]);
- const art=document.getElementById('gameSceneArt');
- const pos=PERSONA_CROPS[a.code]||'50% 46%';
- if(art)art.innerHTML=`<div class="sceneFrame"><div class="sceneBackdrop"></div><div class="sceneAccentPills"><span>${preset.label}</span><span>${currentChapter(index).title}</span><span>${focusShort.join(' / ')}</span></div><div class="sceneCard" style="--scene-pos:${pos}">${personaImage(a,true)}<div class="sceneOverlayTop"><small>${preset.stamp} / ${String(index+1).padStart(2,'0')}</small><b>${preset.title}</b></div><div class="sceneStamp">${a.code}</div><div class="sceneOverlayBottom"><strong>${a.name}</strong><p>${preset.note}</p></div></div><div class="sceneCaptionLine"><span>${(PERSONA_SCENE_META[a.code]||[])[0]||'LIVE'}</span><span>${(PERSONA_SCENE_META[a.code]||[])[1]||'CAMPUS'}</span><span>${(PERSONA_SCENE_META[a.code]||[])[2]||'ARCHIVE'}</span></div></div>`;
- const sn=document.getElementById('gameSceneNo');if(sn)sn.textContent='SCENE '+String(index+1).padStart(2,'0');
- const st=document.getElementById('gameSceneTag');if(st)st.textContent=preset.label;
- const profile=currentProfileLabel(),axis=focus.join(' / '),status=`${answers.filter(v=>v!==null).length} / ${QUESTIONS.length}`;
- const hp=document.getElementById('hudProfile');if(hp)hp.textContent=preset.mood;
- const ha=document.getElementById('hudAxis');if(ha)ha.textContent=axis;
+ const art=document.getElementById('gameSceneArt'),src=(QUESTION_SCENE_EMBED[n]||QUESTION_SCENE_IMAGES[n]);
+ if(art)art.innerHTML=`<div class="storySceneFrame"><img class="storySceneImage" src="${src}" alt="校园情境像素场景 ${n}" decoding="async"><div class="storySceneHUD"><span>${meta.time}</span><span>${meta.loc}</span><span>SCENE ${String(n).padStart(2,'0')}</span></div></div>`;
+ const sn=document.getElementById('gameSceneNo');if(sn)sn.textContent='SCENE '+String(n).padStart(2,'0');
+ const st=document.getElementById('gameSceneTag');if(st)st.textContent=meta.tag;
+ const status=`${answers.filter(v=>v!==null).length} / ${QUESTIONS.length}`;
+ const hp=document.getElementById('hudProfile');if(hp)hp.textContent=meta.time+' · '+meta.loc;
+ const ha=document.getElementById('hudAxis');if(ha)ha.textContent=focus.join(' / ');
  const hs=document.getElementById('hudStatus');if(hs)hs.textContent=status;
- const bp=document.getElementById('bottomProfile');if(bp)bp.textContent=profile;
+ const bp=document.getElementById('bottomProfile');if(bp)bp.textContent=currentChapter(index).no;
  const ba=document.getElementById('bottomAxis');if(ba)ba.textContent=focusShort.join('/');
 }
 function renderResultQuickDims(user){const box=document.getElementById('resultQuickDims');if(!box)return;box.innerHTML=DIM_KEYS.map((k,i)=>`<div class="quickDim"><span>${DIM_SHORT[k]}</span><i style="--v:${user[i]}%"></i><b>${user[i]}</b></div>`).join('');}
@@ -906,7 +982,7 @@ const QUIZ_CHAPTERS=[
  {from:18,to:23,no:'04',title:'底层选择',sub:'边界、底线与重新开始',accent:'#8a8cff',dark:'#0e0d19',mid:'#18172a',paper:'#e5e3f0'}
 ];
 function currentChapter(index=current){return QUIZ_CHAPTERS.find(c=>index>=c.from&&index<=c.to)||QUIZ_CHAPTERS[0];}
-function renderChapter(index=current){const c=currentChapter(index),ci=QUIZ_CHAPTERS.indexOf(c);const rail=document.getElementById('chapterRail');if(rail)rail.innerHTML=QUIZ_CHAPTERS.map((x,i)=>`<span class="${i<ci?'done':i===ci?'active':''}"></span>`).join('');const no=document.getElementById('chapterNo'),title=document.getElementById('chapterTitle'),sub=document.getElementById('chapterSub');if(no)no.textContent='CHAPTER '+c.no;if(title)title.textContent=c.title;if(sub)sub.textContent=c.sub;const quiz=document.getElementById('quiz');if(quiz){quiz.style.setProperty('--chapter-accent',c.accent);quiz.style.setProperty('--chapter-dark',c.dark);quiz.style.setProperty('--chapter-mid',c.mid);quiz.style.setProperty('--chapter-paper',c.paper);quiz.style.setProperty('--chapter-grid',c.accent+'18');}}
+function renderChapter(index=current){const c=currentChapter(index),ci=QUIZ_CHAPTERS.indexOf(c);const rail=document.getElementById('chapterRail');if(rail)rail.innerHTML=QUIZ_CHAPTERS.map((x,i)=>`<span class="${i<ci?'done':i===ci?'active':''}"></span>`).join('');const no=document.getElementById('chapterNo'),title=document.getElementById('chapterTitle'),sub=document.getElementById('chapterSub');if(no)no.textContent='CHAPTER '+c.no;if(title)title.textContent=c.title;if(sub)sub.textContent=c.sub;const quiz=document.getElementById('quiz');if(quiz){quiz.dataset.chapter=c.no;quiz.style.setProperty('--chapter-accent',c.accent);quiz.style.setProperty('--chapter-dark',c.dark);quiz.style.setProperty('--chapter-mid',c.mid);quiz.style.setProperty('--chapter-paper',c.paper);quiz.style.setProperty('--chapter-grid',c.accent+'18');}}
 function flashChapterIfNeeded(index){if(![0,6,12,18].includes(index))return;const c=currentChapter(index),box=document.getElementById('chapterFlash');if(!box)return;box.innerHTML=`<div><small>CHAPTER ${c.no}</small><strong>${c.title}</strong><p>${c.sub}</p></div>`;box.classList.add('show');setTimeout(()=>box.classList.remove('show'),520);}
 
 const PERSONA_STAMPS={U01:'03:17',U02:'A+',U03:'SILENT',U04:'ZZZ',U05:'ONLINE',U06:'ROUTE',U07:'24H',U08:'08:00',U09:'CHILL',U10:'???',U11:'MAX',U12:'LAB',U13:'LOOP',U14:'GO',U15:'LEAD',U16:'RAIN'};
@@ -1128,7 +1204,7 @@ function startQuiz(){
  const quiz=document.getElementById('quiz');quiz.classList.add('active');quiz.setAttribute('aria-hidden','false');renderQuestion();window.scrollTo({top:0,behavior:'smooth'});
 }
 function exitQuiz(){resetPersonaTheme();clearTimeout(transitionTimer);document.getElementById('quiz').classList.remove('active');document.getElementById('quiz').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
-function prevQuestion(){clearTimeout(transitionTimer);if(current<=0)return;current--;saveProgress();renderQuestion();scrollQuizTop();}
+function prevQuestion(){clearTimeout(transitionTimer);if(current<=0)return;current--;saveProgress();renderQuestion();if(innerWidth<=980)mobileFocusQuestion();else scrollQuizTop();}
 function scrollQuizTop(){if(innerWidth<700)window.scrollTo({top:0,behavior:'smooth'});}
 function renderQuestion(){
  const item=QUESTIONS[current];if(!item){showToast('题目数据异常');return;}
@@ -1142,9 +1218,12 @@ function renderQuestion(){
  try{setQuizAtmosphere(current,item);}catch(e){}try{renderMainScene(item,current);}catch(e){}try{const stage=document.getElementById('questionStage');if(stage){stage.classList.remove('quizFlash');void stage.offsetWidth;stage.classList.add('quizFlash');}}catch(e){}
 }
 function setQuizAtmosphere(i,item){const hues=[72,205,18,42,285,155];const scene=document.querySelector('.quizScene');const focus=focusDimsForQuestion(item||QUESTIONS[i]);const map={study:210,social:18,deadline:72,order:260,explore:168,sensitivity:330};const h1=map[focus[0]]||hues[i%hues.length], h2=map[focus[1]]||hues[(i+2)%hues.length];if(scene)scene.style.background=`radial-gradient(520px 320px at ${20+(i*17)%70}% ${20+(i*23)%60}%,hsla(${h1},76%,56%,.12),transparent 60%),radial-gradient(340px 200px at ${60+(i*7)%25}% ${22+(i*11)%52}%,hsla(${h2},76%,60%,.12),transparent 60%),#14161a`; }
+
+function mobileFocusQuestion(){if(innerWidth<=980){const pane=document.getElementById('questionStage');if(pane){requestAnimationFrame(()=>{const y=pane.getBoundingClientRect().top+window.scrollY-104;window.scrollTo({top:Math.max(0,y),behavior:'smooth'});});}}}
+
 function chooseAnswer(i){
  clearTimeout(transitionTimer);answers[current]=i;saveProgress();if(navigator.vibrate)navigator.vibrate(8);document.querySelectorAll('.answer').forEach((el,idx)=>{el.classList.toggle('selected',idx===i);el.disabled=true;});
- transitionTimer=setTimeout(()=>{if(current<QUESTIONS.length-1){current++;requestAnimationFrame(()=>{renderQuestion();scrollQuizTop();});}else{requestAnimationFrame(finishQuiz);}},210);
+ transitionTimer=setTimeout(()=>{if(current<QUESTIONS.length-1){current++;requestAnimationFrame(()=>{renderQuestion();if(innerWidth<=980)mobileFocusQuestion();else scrollQuizTop();});}else{requestAnimationFrame(finishQuiz);}},210);
 }
 function buildVector(){
  const raw=Array(6).fill(0), theoreticalMin=Array(6).fill(0), theoreticalMax=Array(6).fill(0);
@@ -1185,7 +1264,7 @@ function renderResult(state){
  document.getElementById('resultTitle').textContent=best.name;document.getElementById('resultEnglish').textContent=best.en;document.getElementById('resultTagline').textContent=best.tag;document.getElementById('quoteBlock').innerHTML='<b>档案摘录：</b> '+best.quote;
  document.getElementById('attrPlace').textContent=best.place;document.getElementById('attrTime').textContent=best.time;document.getElementById('attrSkill').textContent=best.skill;document.getElementById('attrClass').textContent=best.level+' · '+best.code;
  document.getElementById('resultVariant').textContent=buildVariant(user);document.getElementById('resultStability').textContent=(state.stability||60)+'% · '+stabilityLabel(state.stability||60);document.getElementById('resultFileId').textContent=state.signature||makeSignature(user,best.code);
- document.getElementById('resultAura').innerHTML=dynamic.aura.map(x=>`<span>${x}</span>`).join('');
+ document.getElementById('resultAura').innerHTML=dynamic.aura.slice(0,3).map(x=>`<span>${x}</span>`).join('');
  renderResultQuickDims(user);
  const gm=document.getElementById('gameMatchValue');if(gm)gm.textContent=best.sim.toFixed(1)+'%';
  document.getElementById('personaBadges').innerHTML=dynamic.badges.map(x=>`<span>${x}</span>`).join('');
@@ -1199,7 +1278,7 @@ function renderResult(state){
 
  document.getElementById('analysisText').textContent=best.analysis+' '+buildPersonalSentence(user);
  document.getElementById('bulletList').innerHTML=best.strengths.map((x,i)=>`<div class="bullet"><i>0${i+1}</i><span>${x}</span></div>`).join('')+`<div class="bullet"><i>!</i><span>${best.risk}</span></div>`;
- document.getElementById('bestMate').textContent=best.mate;document.getElementById('bestMateText').textContent=best.mateText;document.getElementById('friction').textContent=best.friction;document.getElementById('frictionText').textContent=best.frictionText;
+ document.getElementById('bestMate').textContent=best.mate;document.getElementById('bestMateText').textContent=best.mateText;document.getElementById('friction').textContent=best.friction;document.getElementById('frictionText').textContent=best.frictionText;const mateA=ARCHETYPES.find(x=>x.name===best.mate),fricA=ARCHETYPES.find(x=>x.name===best.friction);const bma=document.getElementById('bestMateArt'),fra=document.getElementById('frictionArt');if(bma)bma.innerHTML=mateA?personaImage(mateA,true):'';if(fra)fra.innerHTML=fricA?personaImage(fricA,true):'';
  document.getElementById('coverArt').querySelectorAll('svg.personArt,img.personArt').forEach(x=>x.remove());document.getElementById('coverArt').insertAdjacentHTML('afterbegin',personaImage(best,false));const sm=PERSONA_SCENE_META[best.code]||[];document.getElementById('personaSceneCaption').innerHTML=sm.map(x=>`<span>${x}</span>`).join('');
  renderDims(user);renderAlts(ranked.slice(1,4));showResultTab('archive');const vc=document.getElementById('viralCode');if(vc)vc.textContent='CHALLENGE / '+(state.signature||makeSignature(user,best.code));const ml=document.getElementById('matchupLine');if(ml){if(challengeSourceCode){const src=ARCHETYPES.find(a=>a.code===challengeSourceCode);ml.style.display='block';ml.textContent='好友结果：'+(src?src.name:challengeSourceCode)+'  →  你的结果：'+best.name+(challengeSourceCode===best.code?' · 同类识别成功':' · 你们不是同一个物种');}else ml.style.display='none';}window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -1243,7 +1322,7 @@ async function makePoster(){
  const grad=ctx.createRadialGradient(880,110,10,880,110,560);grad.addColorStop(0,palette.glow);grad.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,1080,720);
  // top brand
  ctx.fillStyle=accent;roundRect(ctx,58,48,282,50,25,true);ctx.fillStyle='#121315';ctx.font='900 24px sans-serif';ctx.fillText('CAMPUS//ARCHIVE',80,82);
- ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V6.3',58,132);
+ ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V6.6',58,132);
  // full-bleed visual
  ctx.save();roundRectPath(ctx,58,166,964,660,32);ctx.clip();
  try{const img=await rasterImage(PERSONA_IMAGES[best.code]);const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height,bw=964,bh=660,scale=Math.max(bw/iw,bh/ih),sw=bw/scale,sh=bh/scale,sx=(iw-sw)/2,sy=(ih-sh)/2;ctx.imageSmoothingEnabled=false;ctx.drawImage(img,sx,sy,sw,sh,58,166,bw,bh);}catch(e){ctx.fillStyle='#181b20';ctx.fillRect(58,166,964,660)}
@@ -1263,7 +1342,7 @@ async function makePoster(){
  ctx.fillStyle='#f6f2e9';roundRect(ctx,58,1210,964,166,30,true);ctx.fillStyle='#17181a';ctx.font='950 36px sans-serif';ctx.fillText('你是什么大学牲？',90,1265);ctx.fillStyle='#6c675f';ctx.font='650 18px sans-serif';ctx.fillText('把这张图丢给朋友，让 TA 也测一次。',90,1302);
  ctx.fillStyle=palette.deep;roundRect(ctx,90,1320,510,38,19,true);ctx.fillStyle=accent;ctx.font='900 15px monospace';ctx.fillText('CHALLENGE / '+code,108,1346);
  ctx.fillStyle='#8d877f';ctx.font='700 14px monospace';ctx.fillText('24 SCENARIOS · 16 ARCHETYPES · 6D MODEL',650,1346);
- c.toBlob(async blob=>{if(!blob)return;const file=new File([blob],`campus-${best.code}-v6_1.png`,{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'大学牲人格鉴定 · '+best.name,text:challengeText()});return;}}catch(e){}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`大学牲人格_${best.code}_${best.name}_V6.1.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);showToast('V6 分享海报已生成');},'image/png');
+ c.toBlob(async blob=>{if(!blob)return;const file=new File([blob],`campus-${best.code}-v6_6.png`,{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'大学牲人格鉴定 · '+best.name,text:challengeText()});return;}}catch(e){}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`大学牲人格_${best.code}_${best.name}_V6.6.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);showToast('V6.6 分享海报已生成');},'image/png');
 }
 function roundRectPath(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath();}
 function roundRect(ctx,x,y,w,h,r,fill=false,stroke=false,strokeColor=null){roundRectPath(ctx,x,y,w,h,r);if(fill)ctx.fill();if(stroke){if(strokeColor)ctx.strokeStyle=strokeColor;ctx.stroke();}}

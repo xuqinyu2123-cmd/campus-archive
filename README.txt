@@ -1,6 +1,7 @@
-CAMPUS//ARCHIVE V6.3 PIXEL GAME UI
-- 一屏式游戏答题 HUD
-- 四章节独立色板
-- 结果页改为 RPG 档案 + 3 页签
-- 雷达图改为 6 条 RPG 属性条
-- Challenge 改为 Quest Board
+CAMPUS//ARCHIVE V6.6 STORY MODE
+- 手机端优先
+- 24 张独立无人格剧透的答题像素场景
+- 结果首屏减法
+- PARTY 关系头像卡
+- LOG 游戏化
+- GitHub Pages 部署包根目录直接覆盖即可
