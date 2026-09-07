@@ -9,13 +9,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
 <meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
-<meta name="campus-archive-build" content="5.4.0-story-share">
+<meta name="campus-archive-build" content="6.0.0-pixel-final">
 <meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
 <meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
-<title>大学牲人格鉴定 · CAMPUS//ARCHIVE V5.4</title>
+<title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/fusion-pixel-12px-proportional-sc@5.3.0/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/fusion-pixel-12px-monospaced-sc@5.3.0/index.css">
 <style>
 :root{
   --ink:#121315;
@@ -411,6 +413,104 @@ body{
 .posterHint strong{color:var(--persona-accent)}
 @media(max-width:760px){.chapterStrip{grid-template-columns:1fr;gap:7px}.chapterStrip p{font-size:10px}.resultSignature{top:66px;right:12px;font-size:9px;padding:8px}.personaStamp{left:15px;top:78px;font-size:48px}}
 
+
+/* V5.5 FULL PIXEL UI */
+:root{--radius:8px;--shadow:10px 10px 0 rgba(0,0,0,.18);--ink:#101217;--paper:#f2ede0;--paper2:#e6dfd0;--panel:#121418;--panel2:#1a1d22;--line:rgba(16,18,23,.22)}
+html{background:#0c0d11}
+body{background:radial-gradient(700px 420px at 8% 10%,rgba(201,255,61,.08),transparent 58%),radial-gradient(780px 420px at 100% 68%,rgba(117,185,255,.08),transparent 58%),#0c0d11!important;color:var(--ink);font-family:"Silkscreen","Noto Sans Mono CJK SC","Noto Sans CJK SC","Microsoft YaHei",monospace;-webkit-font-smoothing:none;text-rendering:optimizeSpeed}
+button,input,select,textarea{font-family:inherit;-webkit-font-smoothing:none}
+.brand,.topmeta,.eyebrow,.splashBrand,.splashSub,.splashHint,.idHead,.idLabel,.heroSticker,.heroPixelNote,.idPreviewItem span,.quizNum,.quizTag,.questionKicker,.qMetaChip,.micro,.navBtn,.dossierKicker,.resultEnglish,.sectionHead span,.coverHead,.coverBadge,.coverCode,.resultSignature,.personaStamp,.viralKicker,.viralCode,.coverFoot,.resultFooter,.footerDev,.personaSceneCaption,.galleryBtn,.btn{font-family:"Press Start 2P","Silkscreen","Noto Sans Mono CJK SC","Noto Sans CJK SC","Microsoft YaHei",monospace!important;letter-spacing:0!important}
+.hero h1,.idName strong,.question,.resultTitle,.coverIdentity strong,.sectionHead h3,.manifestoTitle,.viralCopy h3,.twinCopy b,.attr strong,.compatBox strong,.resultAura span,.personaBadges span{font-family:"Silkscreen","Noto Sans Mono CJK SC","Noto Sans CJK SC","Microsoft YaHei",monospace!important;letter-spacing:0!important}
+.wrap{width:min(1280px,calc(100% - 16px));padding:10px 0 28px}
+.topbar{height:48px;padding:0 2px}.brand{font-size:15px}.topmeta{font-size:9px}
+.hero,.quiz,.resultHero,.paperCard,.darkCard,.viralCard,.commercialBar,.entitlementCard,.accessBox,.galleryModalBox,.galleryItem,.proofBox,.heroStat,.quizPanel,.quizPanelChapter,.quizPanelCard,.quizPanelStats,.questionSignal,.chapterStrip,.answer,.attr,.manifestoCard,.dailyLine,.compatBox,.confidencePanel,.twinCard,.viralSide,.viralCopy,.accessOption,.idCard{border-radius:8px!important}
+.hero,.quiz,.resultHero,.paperCard,.darkCard,.viralCard,.accessBox,.galleryModalBox{border:3px solid #1a1d22;box-shadow:10px 10px 0 rgba(0,0,0,.18)!important}
+.heroCopy{padding:38px 34px 34px}.hero h1{font-size:clamp(34px,4.2vw,62px);line-height:1.04}.heroDesc{font-size:14px;line-height:1.75}.heroQuote{font-size:12px;line-height:1.75;border-left-width:6px}
+.btn,.navBtn,.galleryBtn{border-radius:6px!important;border:2px solid #16181c;padding:12px 16px;box-shadow:4px 4px 0 rgba(0,0,0,.12)}
+.btn.primary{background:#111317!important;color:#f7f2e9}.btn.secondary,.navBtn,.galleryBtn{background:#f5f0e4;color:#16181c}
+.btn:hover,.navBtn:hover,.galleryBtn:hover,.answer:hover{transform:translate(-1px,-1px)!important;box-shadow:6px 6px 0 rgba(0,0,0,.14)!important}
+.heroVisual{min-height:620px;padding:28px 24px}
+.idCard{transform:none!important;border:3px solid #20242a;box-shadow:10px 10px 0 rgba(0,0,0,.22)!important;background:#ece7da}
+.idPhoto,.idPreviewThumb,.splashPreviewThumb,.galleryThumb,.coverArt,.twinArt,.previewPixelFrame{border-radius:0!important;overflow:hidden;border:2px solid #17191c!important;background:#0e1014;position:relative}
+.idPhoto img,.idPreviewThumb img,.splashPreviewThumb img,.galleryThumb img,.coverArt img.personArt,.twinArt img.personArt,.previewPixelFrame img{image-rendering:pixelated;image-rendering:crisp-edges}
+.idPhoto{height:58%}.pixelHeroCaption{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(10,11,13,.82);border:2px solid rgba(255,255,255,.12);padding:8px 10px;color:#f1ede5;font:700 10px/1.6 "Press Start 2P","Silkscreen",monospace;z-index:2}.pixelHeroCaption b{display:block;margin-bottom:4px;color:var(--persona-accent)}
+.quiz{min-height:calc(100dvh - 50px)}.quizInner{padding:14px}.quizLayout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:14px;min-height:0}.quizPanel{padding:12px;background:#121418;color:#f4f0e6;display:grid;grid-template-rows:auto auto 150px auto auto auto auto;gap:10px;border:3px solid #242a31;align-self:stretch}.quizPanelTop,.quizPanelChapter,.quizPanelCard,.quizPanelStats{background:#0d1014;border:2px solid rgba(255,255,255,.11);padding:10px 12px}.quizPanelTop{display:flex;align-items:center;justify-content:space-between}.questionSignal{padding:8px 11px;border:2px solid rgba(255,255,255,.12);background:#131822}.quizPanelChapter{min-height:auto}.quizPreviewArt{min-height:150px;background:#0d1014;border:2px solid rgba(255,255,255,.11);display:flex;align-items:stretch;justify-content:stretch;padding:0}
+.previewPixelWrap{position:relative;display:grid;grid-template-rows:1fr auto;width:100%;height:100%}.previewPixelFrame{min-height:0;border:0!important}.previewPixelFrame img{width:100%;height:100%;object-fit:cover;display:block}.previewPixelOverlay{background:#101317;border-top:2px solid rgba(255,255,255,.08);padding:8px 10px;color:#f1ede5}.previewPixelOverlay small{display:block;color:var(--persona-accent);font:700 8px/1.45 "Press Start 2P",monospace}.previewPixelOverlay b{display:block;margin-top:5px;font-size:13px;line-height:1.3}.previewPixelOverlay span{display:block;margin-top:5px;color:#a9afb6;font-size:10px;line-height:1.5}
+.quizMain{display:grid;grid-template-rows:auto auto auto 1fr auto;min-height:0;padding:8px 4px 0}.quizTop{gap:12px}.progressTrack{height:8px;border:2px solid #16181c;background:#dad4c6}.progressBar{background:var(--persona-accent,var(--acid))!important}.chapterRail{margin:10px 0 8px}.chapterRail span{height:8px;border-radius:0!important}.chapterStrip{padding:9px 12px;border:2px solid #17191c;background:#f7f2e8}.chapterStrip strong{font-size:20px}
+.questionStage{width:100%;margin:0;padding:8px 0 6px}.questionMeta{gap:8px;flex-wrap:wrap}.qMetaChip{padding:8px 10px;border:2px solid #17191c;background:#ece6d8;border-radius:5px!important;font-size:9px}.question{font-size:clamp(28px,3vw,42px)!important;line-height:1.16;max-width:none;margin:12px 0 14px}.questionHint{font-size:12px;line-height:1.55;margin:0 0 12px;color:#635f58}.answers{grid-template-columns:1fr 1fr;gap:10px}.answer{min-height:72px;padding:12px 14px;background:#fbf7ef;border:2px solid #17191c;box-shadow:4px 4px 0 rgba(0,0,0,.1)}.answer.selected{background:#ecffd4;border-color:#6e9622}.answerText{font-size:12px;line-height:1.45}.answerBadge{font-size:9px}.quizBottom{padding-top:10px;border-top:2px dashed rgba(23,25,28,.22)}.micro{font-size:9px;max-width:62%;line-height:1.6}
+.resultHero{grid-template-columns:minmax(360px,470px) minmax(0,1fr);min-height:0;background:linear-gradient(135deg,var(--persona-paper),#ece5d6)!important}.cover{padding:12px}.coverArt{margin:0;min-height:560px;border:2px solid #21252b!important;background:#0d0f12;isolation:isolate}.coverArt img.personArt{width:100%;height:100%;object-fit:cover;object-position:var(--persona-object-position,center);display:block}.coverCode{font-size:74px}.coverIdentity{left:18px;right:18px;bottom:18px}.coverIdentity strong{font-size:34px;line-height:1.12}.coverIdentity span{font-size:10px;line-height:1.5}.coverFoot{padding-top:8px}.coverHead b{font-size:14px}.dossier{padding:18px 18px 20px}.resultTitle{font-size:44px;line-height:1.12}.resultEnglish{font-size:12px;line-height:1.5}.resultTagline,.quoteBlock,.analysisText,.manifestoCard p,.dailyLine p,.compatBox p,.twinCopy p,.socialCaption,.posterHint{font-size:13px;line-height:1.72}.attrGrid{gap:8px}.attr{min-height:72px;padding:10px 11px;border:2px solid rgba(17,19,23,.12)}.attr span,.compatBox small,.sectionHead span{font-size:9px}.attr strong,.compatBox strong{font-size:18px;line-height:1.3}.confidencePanel{border:2px solid rgba(17,19,23,.12);background:rgba(255,255,255,.33)}.paperCard,.darkCard,.viralCard{padding:16px}.sectionHead h3{font-size:16px}.resultBody{gap:12px;margin-top:14px}.twinCard{grid-template-columns:232px 1fr;gap:14px;border:2px solid rgba(17,19,23,.12)}.twinArt{height:200px}.viralCard{grid-template-columns:1.08fr .92fr;gap:14px}
+.heroProof,.heroStats{gap:8px}.heroStat,.proofBox{border:2px solid rgba(17,19,23,.12);background:rgba(255,255,255,.35)}.heroStat strong{font-size:19px}.heroStat span,.proofBox small{font-size:9px}.proofBox strong{font-size:12px}.personaTicker span{border:2px dashed rgba(18,19,21,.18);background:rgba(255,255,255,.28);padding:7px 9px}
+.galleryThumb{height:164px}.galleryBody strong{font-size:16px}.galleryBody p{font-size:12px;line-height:1.55}
+@media(max-width:1180px){.quizLayout{grid-template-columns:250px minmax(0,1fr)}.question{font-size:clamp(26px,2.8vw,38px)}.resultHero{grid-template-columns:420px 1fr}}
+@media(max-width:980px){.hero{grid-template-columns:1fr}.heroVisual{min-height:440px}.resultHero{grid-template-columns:1fr}.coverArt{min-height:460px}.quizLayout{grid-template-columns:1fr}.quizMain{padding:4px 0 0}.quizPanel{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;gap:10px}.quizPanelTop,.quizPanelChapter,.quizPreviewArt,.quizPanelStats{grid-column:1/-1}.quizPreviewArt{min-height:190px}.micro{max-width:100%}}
+@media(max-width:760px){.wrap{width:min(100%,100%);padding:0}.topbar{padding:0 10px}.hero,.quiz,.resultHero,.paperCard,.darkCard,.viralCard,.accessBox,.galleryModalBox{border-radius:0!important;box-shadow:none!important;border-left:0!important;border-right:0!important}.heroCopy{padding:28px 18px 24px}.hero h1{font-size:34px}.heroDesc,.heroQuote{font-size:12px}.heroVisual{min-height:360px;padding:18px}.idCard{max-width:320px}.quizInner{padding:10px}.chapterStrip strong{font-size:18px}.question{font-size:24px!important}.answers{grid-template-columns:1fr}.answerText{font-size:11px}.coverArt{min-height:400px}.coverIdentity strong{font-size:28px}.resultTitle{font-size:34px}.attrGrid{grid-template-columns:1fr 1fr}.twinCard,.viralCard{grid-template-columns:1fr}.twinArt{height:240px}}
+
+
+/* =========================================================
+   V6.0 PIXEL FINAL — true pixel typography + one-screen flow
+   ========================================================= */
+:root{
+ --px-font:"Fusion Pixel 12px Proportional SC","Noto Sans Mono CJK SC","Microsoft YaHei",monospace;
+ --px-mono:"Fusion Pixel 12px Monospaced SC","Noto Sans Mono CJK SC","Microsoft YaHei",monospace;
+ --px-border:#171a20;
+ --px-shadow:6px 6px 0 rgba(0,0,0,.18);
+ --px-shadow-sm:3px 3px 0 rgba(0,0,0,.14);
+}
+html,body,button,input,select,textarea{font-family:var(--px-font)!important}
+body{-webkit-font-smoothing:none!important;text-rendering:geometricPrecision!important}
+.brand,.topmeta,.eyebrow,.splashBrand,.splashSub,.splashHint,.idHead,.idLabel,.heroSticker,.heroPixelNote,.idPreviewItem span,.quizNum,.quizTag,.questionKicker,.qMetaChip,.micro,.navBtn,.dossierKicker,.resultEnglish,.sectionHead span,.coverHead,.coverBadge,.coverCode,.resultSignature,.personaStamp,.viralKicker,.viralCode,.coverFoot,.resultFooter,.footerDev,.personaSceneCaption,.galleryBtn,.btn,.answerBadge,.quizPanel small,.chapterStrip i,.previewPixelOverlay small{font-family:var(--px-mono)!important}
+.hero h1,.question,.resultTitle,.coverIdentity strong,.sectionHead h3,.attr strong,.compatBox strong,.viralCopy h3,.galleryBody strong,.twinCopy b,.manifestoCard b{font-family:var(--px-font)!important;font-weight:400!important}
+
+/* hard pixel grammar */
+.hero,.quiz,.resultHero,.paperCard,.darkCard,.viralCard,.commercialBar,.entitlementCard,.accessBox,.galleryModalBox,.galleryItem,.proofBox,.heroStat,.quizPanel,.quizPanelChapter,.quizPanelCard,.quizPanelStats,.questionSignal,.chapterStrip,.answer,.attr,.manifestoCard,.dailyLine,.compatBox,.confidencePanel,.twinCard,.viralSide,.viralCopy,.accessOption,.idCard,.idPreviewItem{border-radius:0!important}
+.hero,.quiz,.resultHero,.paperCard,.darkCard,.viralCard,.accessBox,.galleryModalBox{border:3px solid var(--px-border)!important;box-shadow:var(--px-shadow)!important}
+.btn,.navBtn,.galleryBtn,.viralButtons button{border-radius:0!important;border:2px solid var(--px-border)!important;box-shadow:var(--px-shadow-sm)!important;transition:none!important}
+.btn:hover,.navBtn:hover,.galleryBtn:hover,.viralButtons button:hover,.answer:hover{transform:translate(-2px,-2px)!important;box-shadow:5px 5px 0 rgba(0,0,0,.16)!important}
+.btn:active,.navBtn:active,.galleryBtn:active,.viralButtons button:active,.answer:active{transform:translate(2px,2px)!important;box-shadow:1px 1px 0 rgba(0,0,0,.18)!important}
+
+/* desktop quiz = one screen, no dead space */
+.quiz{height:calc(100dvh - 58px);min-height:660px;overflow:hidden!important;background:#e9e4d7}
+.quizInner{height:100%;min-height:0!important;padding:10px!important;display:block!important}
+.quizLayout{height:100%;min-height:0!important;display:grid!important;grid-template-columns:252px minmax(0,1fr)!important;gap:10px!important}
+.quizPanel{height:100%;min-height:0;padding:10px!important;grid-template-rows:auto auto 170px auto auto 1fr auto!important;gap:8px!important;overflow:hidden!important;border:3px solid #2b3038!important;background:#0e1116!important}
+.quizPanelTop{padding:8px 9px!important;min-height:0!important}.quizPanelTop small{font-size:8px!important}.questionSignal{padding:7px 8px!important;font-size:9px!important}
+.quizPanelChapter{padding:8px 9px!important}.quizPanelChapter small{font-size:8px!important}.quizPanelChapter b{font-size:15px!important;line-height:1.1}.quizPanelChapter p{font-size:10px!important;line-height:1.4;margin:5px 0 0!important}
+.quizPreviewArt{min-height:0!important;height:170px!important;border:2px solid rgba(255,255,255,.14)!important}
+.previewPixelWrap{height:100%!important;grid-template-rows:1fr auto!important}.previewPixelFrame img{object-fit:cover!important;image-rendering:pixelated!important}.previewPixelOverlay{padding:6px 8px!important}.previewPixelOverlay small{font-size:7px!important}.previewPixelOverlay b{font-size:12px!important;margin-top:3px!important}.previewPixelOverlay span{font-size:9px!important;margin-top:3px!important}
+.quizPanelCard{padding:7px 9px!important;min-height:0!important}.quizPanelCard small{font-size:7px!important;margin-bottom:6px!important}.focusChips{gap:5px!important}.focusChips span{padding:6px 7px!important;font-size:8px!important;border-radius:0!important}.liveProfile{font-size:9px!important;line-height:1.5!important;min-height:0!important}
+.quizMiniDims{gap:5px!important}.quizMiniDims .mRow{grid-template-columns:34px 1fr 28px!important;gap:6px!important;font-size:8px!important}.quizMiniDims .mTrack{height:6px!important;border-radius:0!important}.quizMiniDims .mRow b{font-size:8px!important}.quizMiniDims .mHint{font-size:9px!important;line-height:1.45!important}
+.quizPanelStats{gap:6px!important}.quizPanelStats>div{padding:7px 8px!important;border-radius:0!important}.quizPanelStats span{font-size:7px!important}.quizPanelStats b{font-size:15px!important;margin-top:4px!important}
+.quizMain{height:100%;min-height:0!important;padding:6px 8px 0!important;display:grid!important;grid-template-rows:auto auto auto minmax(0,1fr) auto!important;overflow:hidden!important}
+.quizTop{gap:10px!important}.quizNum{font-size:10px!important}.quizTag{font-size:7px!important}.progressTrack{height:8px!important;border:2px solid #17191c!important}
+.chapterRail{margin:8px 0 7px!important;gap:5px!important}.chapterRail span{height:7px!important;border-radius:0!important}
+.chapterStrip{padding:7px 9px!important;border:2px solid #17191c!important;display:grid!important;grid-template-columns:90px 1fr!important;gap:8px!important}.chapterStrip i{font-size:8px!important}.chapterStrip strong{font-size:15px!important}.chapterStrip p{font-size:9px!important;line-height:1.35!important;margin-top:2px!important}
+.questionStage{width:100%!important;max-width:none!important;margin:0!important;padding:10px 0 6px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;min-height:0!important}
+.questionKicker{font-size:8px!important;margin-bottom:8px!important}.questionMeta{margin:0 0 8px!important;gap:5px!important}.qMetaChip{font-size:7px!important;padding:6px 8px!important}
+.question{font-size:clamp(26px,2.7vw,39px)!important;line-height:1.08!important;margin:4px 0 8px!important;max-width:980px!important}.questionHint{font-size:10px!important;line-height:1.4!important;margin:0 0 9px!important}
+.answers{grid-template-columns:1fr 1fr!important;gap:8px!important}.answer{min-height:64px!important;padding:9px 10px!important;border:2px solid #17191c!important;box-shadow:3px 3px 0 rgba(0,0,0,.11)!important}.answer .letter{width:28px!important;height:28px!important;border:2px solid #17191c!important;border-radius:0!important;font-size:9px!important}.answerText{font-size:10px!important;line-height:1.36!important}.answerBadge{font-size:7px!important;margin-top:5px!important}
+.quizBottom{padding-top:7px!important;border-top:2px dashed rgba(23,25,28,.24)!important}.micro{font-size:7px!important;line-height:1.45!important}.navBtn{padding:8px 10px!important;font-size:8px!important}
+
+/* result hero = one-screen summary; details below */
+.resultHero{min-height:0!important;height:min(820px,calc(100dvh - 58px));grid-template-columns:420px minmax(0,1fr)!important;background:var(--persona-paper)!important;overflow:hidden!important}
+.cover{padding:10px!important;min-height:0!important;display:grid!important;grid-template-rows:auto 1fr auto!important;background:#0e1116!important}.coverHead{padding-bottom:7px!important}.coverHead b{font-size:10px!important}.coverHead span{font-size:8px!important}
+.coverArt{min-height:0!important;height:100%!important;aspect-ratio:auto!important;margin:0!important;border:2px solid #2a2f36!important;background:#080a0d!important}.coverArt img.personArt{object-fit:contain!important;object-position:center!important;image-rendering:pixelated!important;background:#080a0d!important}
+.coverArt:after{background:linear-gradient(180deg,transparent 68%,rgba(4,6,8,.86) 100%)!important}.coverCode{font-size:50px!important;top:18px!important;left:14px!important}.coverBadge{font-size:7px!important;top:14px!important;right:14px!important;padding:6px 7px!important}.resultSignature{font-size:7px!important;top:45px!important;right:14px!important}.personaStamp{font-size:28px!important;opacity:.16!important}.personaSceneCaption{bottom:94px!important;left:14px!important;gap:5px!important}.personaSceneCaption span{font-size:6px!important;padding:5px 6px!important;border-radius:0!important}.coverIdentity{left:14px!important;right:14px!important;bottom:14px!important}.coverIdentity small{font-size:6px!important}.coverIdentity strong{font-size:28px!important;line-height:1.05!important}.coverIdentity span{font-size:8px!important;margin-top:5px!important}.coverFoot{padding-top:7px!important;font-size:6px!important}.coverFoot strong{font-size:13px!important}
+.dossier{padding:14px 16px!important;overflow:auto!important}.dossierKicker{font-size:7px!important}.resultTitle{font-size:38px!important;line-height:1.03!important;margin:10px 0 3px!important}.resultEnglish{font-size:8px!important}.resultLine{margin:10px 0!important}.resultTagline{font-size:12px!important;line-height:1.5!important;margin:8px 0!important}.quoteBlock{font-size:10px!important;line-height:1.5!important;padding:10px 12px!important;margin:9px 0!important}
+.attrGrid{gap:6px!important;margin-top:8px!important}.attr{min-height:58px!important;padding:7px 8px!important}.attr span{font-size:7px!important}.attr strong{font-size:14px!important;line-height:1.15!important;margin-top:5px!important}.confidencePanel{margin-top:8px!important}.confidencePanel>div{padding:8px!important}.confidencePanel span{font-size:7px!important}.confidencePanel b{font-size:10px!important;margin-top:4px!important}.resultAura{gap:5px!important;margin-top:8px!important}.resultAura span{padding:5px 7px!important;font-size:7px!important;border-radius:0!important}
+#manifestoBlock{display:none!important}.dossierActions{gap:6px!important;margin-top:10px!important}.dossierActions .btn{padding:9px 10px!important;font-size:7px!important}
+
+/* cards beneath result */
+.resultBody{gap:10px!important;margin-top:10px!important}.paperCard,.darkCard,.viralCard{padding:14px!important}.sectionHead{margin-bottom:10px!important}.sectionHead h3{font-size:14px!important}.sectionHead span{font-size:7px!important}.analysisText,.manifestoCard p,.dailyLine p,.compatBox p,.twinCopy p,.socialCaption,.posterHint{font-size:10px!important;line-height:1.55!important}.manifestoCard,.dailyLine,.compatBox,.twinCard{border:2px solid rgba(20,22,26,.18)!important}.survivalGrid{gap:8px!important}.survivalGrid>div{border-radius:0!important;padding:10px!important}.survivalGrid small{font-size:7px!important}.survivalGrid strong{font-size:14px!important}.survivalGrid p{font-size:10px!important;line-height:1.5!important}.adviceItem{border-radius:0!important;padding:9px!important}.adviceItem i{border-radius:0!important;width:28px!important;height:28px!important}.adviceItem div b{font-size:11px!important}.adviceItem div p{font-size:10px!important;line-height:1.5!important}
+.galleryThumb{height:auto!important;aspect-ratio:1!important}.galleryThumb img{object-fit:cover!important;image-rendering:pixelated!important}.galleryItem{border:2px solid var(--px-border)!important;box-shadow:3px 3px 0 rgba(0,0,0,.1)!important}
+
+/* stepped transitions */
+.answer,.question,.quizPreviewArt,.coverArt,.resultTitle{animation-timing-function:steps(5,end)!important}@keyframes pxIn{0%{opacity:0;transform:translateY(8px)}50%{opacity:.55}100%{opacity:1;transform:none}}
+.quizFlash{animation:pxIn .16s steps(5,end)!important}.result.active .resultHero{animation:pxIn .2s steps(5,end)!important}
+
+@media(max-height:760px) and (min-width:981px){.quiz{min-height:0!important;height:calc(100dvh - 48px)!important}.quizLayout{grid-template-columns:230px minmax(0,1fr)!important}.quizPanel{grid-template-rows:auto auto 130px auto auto 1fr auto!important}.quizPreviewArt{height:130px!important}.question{font-size:clamp(23px,2.35vw,33px)!important}.answer{min-height:56px!important}.resultHero{height:calc(100dvh - 48px)!important;grid-template-columns:380px minmax(0,1fr)!important}.resultTitle{font-size:33px!important}.coverIdentity strong{font-size:24px!important}}
+@media(max-width:980px){.quiz{height:auto!important;min-height:calc(100dvh - 50px)!important;overflow:visible!important}.quizInner{height:auto!important}.quizLayout{height:auto!important;grid-template-columns:1fr!important}.quizPanel{height:auto!important;overflow:visible!important;grid-template-columns:1fr 1fr!important;grid-template-rows:auto auto auto!important}.quizPanelTop,.quizPanelChapter,.quizPreviewArt,.quizPanelStats{grid-column:1/-1!important}.quizPanelCard{display:none!important}.quizMain{height:auto!important;overflow:visible!important}.questionStage{display:block!important}.resultHero{height:auto!important;grid-template-columns:1fr!important}.coverArt{height:auto!important;aspect-ratio:1/1!important}.dossier{overflow:visible!important}}
+@media(max-width:760px){.question{font-size:23px!important}.answers{grid-template-columns:1fr!important}.answer{min-height:58px!important}.coverArt{aspect-ratio:1/1!important}.resultTitle{font-size:31px!important}.dossierActions{display:grid!important;grid-template-columns:1fr!important}.dossierActions .btn{width:100%!important}.attrGrid{grid-template-columns:1fr 1fr!important}}
+
 </style>
 </head>
 <body>
@@ -606,7 +706,7 @@ body{
           </div>
         </div>
         <div class="viralCard">
-          <div class="viralCopy"><div class="viralKicker">FRIEND CHALLENGE / SHARE LOOP</div><h3>把你的结果丢给朋友，看看你们到底是不是一个物种。</h3><p>分享的是你的测试入口与挑战码，不会暴露你的完整答题记录。朋友完成后，可以直接对比主人格。</p><div id="viralCode" class="viralCode">CHALLENGE / —</div><div class="viralButtons"><button class="primary" onclick="shareChallenge()">分享给朋友</button><button onclick="makePoster()">生成爆款分享海报</button><button onclick="copyXhsCaption()">复制小红书文案</button><button onclick="copyChallenge()">复制挑战文案</button><button onclick="restartFromResult()">再测一次</button></div><div class="socialCaption"><b>V5.4：</b>分享海报会自动跟随主人格主题色，并突出人格名称、金句、第二人格和挑战码。</div></div>
+          <div class="viralCopy"><div class="viralKicker">FRIEND CHALLENGE / SHARE LOOP</div><h3>把你的结果丢给朋友，看看你们到底是不是一个物种。</h3><p>分享的是你的测试入口与挑战码，不会暴露你的完整答题记录。朋友完成后，可以直接对比主人格。</p><div id="viralCode" class="viralCode">CHALLENGE / —</div><div class="viralButtons"><button class="primary" onclick="shareChallenge()">分享给朋友</button><button onclick="makePoster()">生成爆款分享海报</button><button onclick="copyXhsCaption()">复制小红书文案</button><button onclick="copyChallenge()">复制挑战文案</button><button onclick="restartFromResult()">再测一次</button></div><div class="socialCaption"><b>V6：</b>分享海报会自动跟随主人格主题色，并突出人格名称、金句、第二人格和挑战码。</div></div>
           <div class="viralSide"><div><small>HOW IT SPREADS</small><strong>一次测试，产生第二次测试。</strong><div id="matchupLine" class="matchupLine" style="display:none"></div><div class="miniSteps"><div><i>01</i><span>你生成结果与挑战码</span></div><div><i>02</i><span>朋友从分享链接进入</span></div><div><i>03</i><span>双方对比人格与六维差异</span></div></div></div><div class="posterHint">建议优先分享“结果海报 + 挑战链接”，比单独发网址更容易获得点击。</div></div>
         </div>
         <div class="darkCard">
@@ -614,7 +714,7 @@ body{
           <p class="analysisText">这是一个娱乐与自我观察向的校园人格测试，不是临床心理测评。结果由你在 24 个情境中的行为选择，经 6 维向量匹配产生；同一个人处于不同阶段、不同压力下，结果也可能变化。</p>
         </div>
       </div>
-      <div class="resultFooter"><span><b>隐私：</b>答题和匹配逻辑在浏览器本地运行；上次结果只保存在当前设备的浏览器中。</span><span>© 2026 CAMPUS//ARCHIVE · V5.4.0 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
+      <div class="resultFooter"><span><b>隐私：</b>答题和匹配逻辑在浏览器本地运行；上次结果只保存在当前设备的浏览器中。</span><span>© 2026 CAMPUS//ARCHIVE · V6.0.0 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
@@ -691,11 +791,21 @@ function applyPersonaTheme(code){
  const hero=document.getElementById('hero'); if(hero) hero.classList.add('themeGlow');
 }
 function resetPersonaTheme(){applyPersonaTheme('');}
+
 function renderHeroPreview(){
  const picks=['U01','U03','U10','U16'];
  const build=(code)=>{const a=ARCHETYPES.find(x=>x.code===code)||{name:code,en:code};return `<div class="idPreviewItem"><div class="idPreviewThumb">${personaImage(a,true)}</div><b>${a.name}</b><span>${a.code} / ${a.en}</span></div>`;};
  const rail=document.getElementById('heroPreviewRail'); if(rail) rail.innerHTML=picks.map(build).join('');
  const splash=document.getElementById('splashPreviewRail'); if(splash) splash.innerHTML=picks.map(code=>`<div class="splashPreviewThumb">${personaImage(code,true)}</div>`).join('');
+ const heroPhoto=document.querySelector('.idPhoto');
+ if(heroPhoto) heroPhoto.innerHTML=personaImage('U11',true)+`<div class="pixelHeroCaption"><b>PIXEL PREVIEW</b>这一次从首页、答题页到结果页，统一切到像素人格图鉴风格。</div>`;
+}
+function quizPreviewPixelArt(item,index){
+ const picks=['U01','U02','U03','U07','U08','U09','U10','U11','U12','U14','U05','U15','U06','U13','U16','U04'];
+ const code=picks[index%picks.length];
+ const a=ARCHETYPES.find(x=>x.code===code)||ARCHETYPES[0];
+ const focus=focusDimsForQuestion(item).map(k=>DIM_NAMES[k]).join(' · ');
+ return `<div class="previewPixelWrap"><div class="previewPixelFrame">${personaImage(a,true)}</div><div class="previewPixelOverlay"><small>SCENARIO / ${String(index+1).padStart(2,'0')}</small><b>${a.name}</b><span>${focus}</span></div></div>`;
 }
 
 function personaImage(profile,compact=false){const code=typeof profile==='string'?profile:(profile?.code||'U01');const src=PERSONA_IMAGES[code]||PERSONA_IMAGES.U01;return `<img class="personArt" src="${src}" alt="" decoding="async" ${compact?'loading="lazy"':'fetchpriority="high"'}>`;}
@@ -931,7 +1041,7 @@ function renderQuestion(){
  document.getElementById('focusChips').innerHTML=focus.map(k=>`<span>${DIM_NAMES[k]}</span>`).join('');
  document.getElementById('liveProfile').textContent=liveProfileSummary();
  renderQuizMiniDims(partialVector());
- document.getElementById('quizPreviewArt').innerHTML=quizPreviewSVG(item,current);
+ document.getElementById('quizPreviewArt').innerHTML=quizPreviewPixelArt(item,current);
  const box=document.getElementById('answers');box.innerHTML='';
  item.a.forEach((opt,i)=>{const b=document.createElement('button');b.className='answer'+(answers[current]===i?' selected':'');b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span><span class="answerText">${opt[0]}</span><span class="answerBadge">${focus.map(k=>DIM_SHORT[k]).join(' · ')}</span></span>`;b.onclick=()=>chooseAnswer(i);box.appendChild(b);});
 }
@@ -1030,15 +1140,15 @@ async function makePoster(){
  if(!lastState)return;
  const best=ARCHETYPES.find(a=>a.code===lastState.bestCode),user=lastState.user,palette=getPersonaPalette(lastState.bestCode);
  const ranked=stateToRanked(lastState),twin=ranked[1],dynamic=buildDynamicProfile(best,user),code=lastState.signature||makeSignature(user,best.code);
- const c=document.createElement('canvas');c.width=1080;c.height=1440;const ctx=c.getContext('2d');
+ const c=document.createElement('canvas');c.width=1440;c.height=1920;const ctx=c.getContext('2d');ctx.imageSmoothingEnabled=false;ctx.scale(4/3,4/3);
  const accent=palette.accent;ctx.fillStyle=palette.deep;ctx.fillRect(0,0,1080,1440);
  const grad=ctx.createRadialGradient(880,110,10,880,110,560);grad.addColorStop(0,palette.glow);grad.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,1080,720);
  // top brand
  ctx.fillStyle=accent;roundRect(ctx,58,48,282,50,25,true);ctx.fillStyle='#121315';ctx.font='900 24px sans-serif';ctx.fillText('CAMPUS//ARCHIVE',80,82);
- ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V5.4',58,132);
+ ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V6',58,132);
  // full-bleed visual
  ctx.save();roundRectPath(ctx,58,166,964,660,32);ctx.clip();
- try{const img=await rasterImage(PERSONA_IMAGES[best.code]);const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height,bw=964,bh=660,scale=Math.max(bw/iw,bh/ih),sw=bw/scale,sh=bh/scale,sx=(iw-sw)/2,sy=(ih-sh)/2;ctx.drawImage(img,sx,sy,sw,sh,58,166,bw,bh);}catch(e){ctx.fillStyle='#181b20';ctx.fillRect(58,166,964,660)}
+ try{const img=await rasterImage(PERSONA_IMAGES[best.code]);const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height,bw=964,bh=660,scale=Math.max(bw/iw,bh/ih),sw=bw/scale,sh=bh/scale,sx=(iw-sw)/2,sy=(ih-sh)/2;ctx.imageSmoothingEnabled=false;ctx.drawImage(img,sx,sy,sw,sh,58,166,bw,bh);}catch(e){ctx.fillStyle='#181b20';ctx.fillRect(58,166,964,660)}
  const g=ctx.createLinearGradient(0,430,0,826);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.84)');ctx.fillStyle=g;ctx.fillRect(58,166,964,660);ctx.restore();
  // stamp and title
  ctx.fillStyle=accent;ctx.globalAlpha=.28;ctx.font='950 106px monospace';ctx.fillText(PERSONA_STAMPS[best.code]||best.code,86,286);ctx.globalAlpha=1;
@@ -1055,7 +1165,7 @@ async function makePoster(){
  ctx.fillStyle='#f6f2e9';roundRect(ctx,58,1210,964,166,30,true);ctx.fillStyle='#17181a';ctx.font='950 36px sans-serif';ctx.fillText('你是什么大学牲？',90,1265);ctx.fillStyle='#6c675f';ctx.font='650 18px sans-serif';ctx.fillText('把这张图丢给朋友，让 TA 也测一次。',90,1302);
  ctx.fillStyle=palette.deep;roundRect(ctx,90,1320,510,38,19,true);ctx.fillStyle=accent;ctx.font='900 15px monospace';ctx.fillText('CHALLENGE / '+code,108,1346);
  ctx.fillStyle='#8d877f';ctx.font='700 14px monospace';ctx.fillText('24 SCENARIOS · 16 ARCHETYPES · 6D MODEL',650,1346);
- c.toBlob(async blob=>{if(!blob)return;const file=new File([blob],`campus-${best.code}-v5_4.png`,{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'大学牲人格鉴定 · '+best.name,text:challengeText()});return;}}catch(e){}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`大学牲人格_${best.code}_${best.name}_V5.4.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);showToast('V5.4 分享海报已生成');},'image/png');
+ c.toBlob(async blob=>{if(!blob)return;const file=new File([blob],`campus-${best.code}-v6.png`,{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'大学牲人格鉴定 · '+best.name,text:challengeText()});return;}}catch(e){}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`大学牲人格_${best.code}_${best.name}_V6.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);showToast('V6 分享海报已生成');},'image/png');
 }
 function roundRectPath(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath();}
 function roundRect(ctx,x,y,w,h,r,fill=false,stroke=false,strokeColor=null){roundRectPath(ctx,x,y,w,h,r);if(fill)ctx.fill();if(stroke){if(strokeColor)ctx.strokeStyle=strokeColor;ctx.stroke();}}
@@ -1084,7 +1194,14 @@ function sceneSVG(profile,compact=false){
 
 function preloadPersonaAssets(){const all=Object.values(PERSONA_IMAGES),first=all.slice(0,4),rest=all.slice(4);first.forEach(src=>{const i=new Image();i.decoding='async';i.src=src;});const run=()=>{let idx=0;const batch=()=>{for(let n=0;n<3&&idx<rest.length;n++,idx++){const i=new Image();i.decoding='async';i.loading='lazy';i.src=rest[idx];}if(idx<rest.length)setTimeout(batch,120);};batch();};if('requestIdleCallback' in window)requestIdleCallback(run,{timeout:1800});else setTimeout(run,900);}
 
-window.addEventListener('DOMContentLoaded',()=>{resetPersonaTheme();renderHeroPreview();setTimeout(()=>document.getElementById('splash').classList.add('out'),850);updateEntitlementUI();updateResumeUI();preloadPersonaAssets();if(localStorage.getItem('campus_archive_last_v4')||localStorage.getItem('campus_archive_last_v2'))document.getElementById('resumeBtn').classList.remove('hidden');loadChallengeInvite();const shared=loadSharedResult();if(!shared&&'serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGallery();if(document.getElementById('quiz').classList.contains('active')&&e.key==='ArrowLeft')prevQuestion();});});
+
+function applyPixelViewportTuning(){
+ const root=document.documentElement;
+ root.style.setProperty('--viewport-h',window.innerHeight+'px');
+}
+window.addEventListener('resize',()=>requestAnimationFrame(applyPixelViewportTuning));
+
+window.addEventListener('DOMContentLoaded',()=>{applyPixelViewportTuning();resetPersonaTheme();renderHeroPreview();setTimeout(()=>document.getElementById('splash').classList.add('out'),850);updateEntitlementUI();updateResumeUI();preloadPersonaAssets();if(localStorage.getItem('campus_archive_last_v4')||localStorage.getItem('campus_archive_last_v2'))document.getElementById('resumeBtn').classList.remove('hidden');loadChallengeInvite();const shared=loadSharedResult();if(!shared&&'serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGallery();if(document.getElementById('quiz').classList.contains('active')&&e.key==='ArrowLeft')prevQuestion();});});
 </script>
 </body>
 </html>
