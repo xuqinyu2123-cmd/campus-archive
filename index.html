@@ -594,6 +594,31 @@ body{font-family:var(--px-font)!important;letter-spacing:.015em;background-image
 @media(max-width:980px){.resultHero>.cover{min-height:620px!important;height:620px!important}.resultHero>.cover>#coverArt{inset:8px!important}}
 @media(max-width:620px){.resultHero>.cover{min-height:520px!important;height:520px!important}}
 
+
+/* ===== V6.3 PIXEL GAME UI ===== */
+:root{--chapter-accent:#b9ff3d;--chapter-dark:#0d1410;--chapter-mid:#17231a;--chapter-paper:#e7ebd8;--chapter-grid:rgba(185,255,61,.09)}
+.gameQuiz{height:calc(100dvh - 48px)!important;min-height:0!important;overflow:hidden!important;border:3px solid #262b31!important;background:var(--chapter-dark)!important;position:relative}
+.gameQuiz .quizScene{position:absolute!important;inset:0!important;background:radial-gradient(circle at 12% 18%,color-mix(in srgb,var(--chapter-accent) 18%,transparent),transparent 32%),linear-gradient(135deg,var(--chapter-dark),#0b0d11)!important;opacity:1!important}
+.gameQuiz .quizGrid{position:absolute;inset:0;background-image:linear-gradient(var(--chapter-grid) 1px,transparent 1px),linear-gradient(90deg,var(--chapter-grid) 1px,transparent 1px);background-size:24px 24px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 96%)}
+.gameQuizShell{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:60px minmax(0,1fr) 58px;gap:8px;padding:10px;color:#f2efe7}
+.gameHUDTop,.gameHUDBottom{border:2px solid rgba(255,255,255,.12);background:rgba(7,9,12,.88);box-shadow:6px 6px 0 rgba(0,0,0,.28);display:grid;align-items:center}
+.gameHUDTop{grid-template-columns:190px minmax(210px,1fr) minmax(300px,.9fr) 66px;gap:14px;padding:8px 12px}
+.gameBrand small,.gameChapter span,.gameProgressMeta span,.gameCounter small,.gameSceneFooter small,.gamePanelHead span,.gameMetaLine span{display:block;font:700 8px/1.4 "Press Start 2P",monospace;color:#858d94}.gameBrand b{display:block;margin-top:6px;font:700 10px/1.25 "Press Start 2P",monospace;color:var(--chapter-accent)}
+.gameChapter strong{display:block;font-size:17px;color:#f7f2e8}.gameChapter span{margin-top:4px;color:#90979f}.gameProgressBlock{display:grid;grid-template-rows:auto 9px 5px;gap:5px}.gameProgressMeta{display:flex;justify-content:space-between;align-items:center}.gameProgressMeta b{font:700 10px/1 "Press Start 2P",monospace}.gameProgressTrack{height:9px;border:2px solid rgba(255,255,255,.18);background:#090b0e}.gameProgressTrack i{display:block;height:100%;width:0;background:var(--chapter-accent);transition:width .18s steps(6,end)}.gameChapterRail{display:grid!important;grid-template-columns:repeat(4,1fr);gap:5px;margin:0!important}.gameChapterRail span{height:4px!important;background:#2b3137!important;border:0!important}.gameChapterRail span.done,.gameChapterRail span.active{background:var(--chapter-accent)!important}.gameExit{height:38px;border:2px solid rgba(255,255,255,.16);background:#101318;color:#c8cdd2;font:700 9px/1 "Press Start 2P",monospace;cursor:pointer}.gameExit:hover{border-color:var(--chapter-accent);color:var(--chapter-accent)}
+.gameQuestionGrid{display:grid;grid-template-columns:minmax(300px,.72fr) minmax(0,1.28fr);gap:10px;min-height:0}.gameScenePane,.gameQuestionPane{min-height:0;border:2px solid rgba(255,255,255,.12);background:rgba(9,11,14,.92);box-shadow:6px 6px 0 rgba(0,0,0,.26);overflow:hidden}.gameScenePane{display:grid;grid-template-rows:44px minmax(0,1fr) 72px}.gameSceneHeader{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-bottom:2px solid rgba(255,255,255,.10);font:700 9px/1 "Press Start 2P",monospace}.gameSceneHeader span{color:var(--chapter-accent)}.gameSceneHeader b{color:#a8afb6}.gameSceneArt{position:relative;min-height:0;background:#090b0e;overflow:hidden}.gameSceneArt img.personArt{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;image-rendering:pixelated;filter:saturate(.94) contrast(1.04)}.gameSceneArt:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 58%,rgba(0,0,0,.34)),repeating-linear-gradient(0deg,rgba(255,255,255,.02) 0 1px,transparent 1px 4px)}.gameSceneFooter{display:grid;grid-template-columns:1fr 1fr;gap:8px;border-top:2px solid rgba(255,255,255,.1);padding:8px 10px}.gameSceneFooter>div{min-width:0}.gameSceneFooter b{display:block;margin-top:5px;color:#f4f0e8;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gameQuestionPane{padding:18px 20px 16px;background:linear-gradient(180deg,color-mix(in srgb,var(--chapter-paper) 94%,white),var(--chapter-paper));color:#12151a;display:flex;flex-direction:column}.gameQuestionHeader{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.gameQuestionHeader small{font:700 8px/1.5 "Press Start 2P",monospace;color:#626862}.gameMeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.gameMeta span{padding:6px 8px;border:2px solid #1b2024;background:rgba(255,255,255,.34);font-size:10px}.gameCounter{border-left:3px solid var(--chapter-accent);padding-left:12px;text-align:right}.gameCounter b{display:block;margin-top:6px;font:700 15px/1 "Press Start 2P",monospace}.gameQuestion{font-size:clamp(28px,3vw,43px)!important;line-height:1.16!important;margin:18px 0 10px!important;letter-spacing:-.035em!important;max-width:900px}.gameHint{font-size:12px!important;line-height:1.55!important;margin:0 0 14px!important;color:#5f655e!important}.gameAnswers{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;margin-top:18px}.gameAnswers .answer{min-height:86px!important;padding:12px 13px!important;border:3px solid #1a1d21!important;background:#faf6ea!important;box-shadow:5px 5px 0 rgba(16,18,21,.15)!important;transition:transform .08s steps(2,end),background .08s steps(2,end)}.gameAnswers .answer:hover{transform:translate(-2px,-2px)!important;box-shadow:7px 7px 0 rgba(16,18,21,.17)!important}.gameAnswers .answer.selected{background:color-mix(in srgb,var(--chapter-accent) 25%,#fff)!important;border-color:#171a1d!important;animation:answerLock .18s steps(4,end)}.gameAnswers .letter{width:34px;height:34px;border:2px solid #1a1d21!important;border-radius:0!important;display:grid;place-items:center;font:700 10px/1 "Press Start 2P",monospace}.gameAnswers .answerText{font-size:13px!important;line-height:1.42!important}.gameAnswers .answerBadge{font-size:9px!important;color:#6a7069!important;margin-top:6px!important}@keyframes answerLock{0%{filter:brightness(1)}45%{filter:brightness(1.3)}100%{filter:brightness(1)}}
+.gameHUDBottom{grid-template-columns:1.15fr 1fr auto;gap:14px;padding:8px 12px}.gameHintLine{font-size:10px;color:#9ea5ab}.pixelKey{display:inline-block;border:2px solid #3d454c;padding:4px 6px;color:var(--chapter-accent);font:700 8px/1 "Press Start 2P",monospace}.gameBottomStats{display:flex;gap:18px;justify-content:center;color:#7f878e;font:700 8px/1.4 "Press Start 2P",monospace}.gameBottomStats b{color:#e8ecee;margin-left:5px}.gamePrev{height:36px!important;padding:0 12px!important;background:#101318!important;color:#dce1e4!important;border-color:#3a4148!important}.gamePrev:disabled{opacity:.25}
+.chapterFlash{z-index:20!important}.chapterFlash>div{border-radius:0!important;border:3px solid var(--chapter-accent)!important;background:#090b0e!important;box-shadow:10px 10px 0 rgba(0,0,0,.32)!important}.chapterFlash strong{color:var(--chapter-accent)!important}
+
+/* result: game character screen + 3 tab pages */
+.gameResult{padding-bottom:12px}.gameResultHero{height:min(690px,calc(100dvh - 70px))!important;grid-template-columns:minmax(430px,500px) minmax(0,1fr)!important;border:3px solid #272c32!important;box-shadow:10px 10px 0 rgba(0,0,0,.22)!important}.gameCharacterCover{background:#07090d!important}.gameDossier{padding:20px 22px!important;background:linear-gradient(135deg,var(--persona-paper),color-mix(in srgb,var(--persona-paper) 88%,white))!important;overflow:auto!important}.gameResultTitleRow{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.gameMatchBox{min-width:106px;border:3px solid #181c20;background:#101318;padding:10px;color:#fff;text-align:center;box-shadow:5px 5px 0 rgba(0,0,0,.12)}.gameMatchBox small{font:700 8px/1 "Press Start 2P",monospace;color:#879098}.gameMatchBox b{display:block;margin-top:8px;color:var(--persona-accent);font:700 16px/1 "Press Start 2P",monospace}.gameQuote{border-radius:0!important;border-left:5px solid var(--persona-accent)!important;background:#111419!important;color:#f1ede5!important}.gameAttrGrid{grid-template-columns:1fr 1fr!important}.gameAura{margin:10px 0!important}.gameQuickDims{margin:8px 0!important;grid-template-columns:repeat(3,1fr)!important;gap:6px!important}.gameMetaLine{display:grid;grid-template-columns:1fr 1fr 1.35fr;border:2px solid rgba(17,20,24,.15);margin-top:9px}.gameMetaLine span{padding:9px 10px;min-width:0}.gameMetaLine span+span{border-left:2px solid rgba(17,20,24,.12)}.gameMetaLine b{display:block;margin-top:5px;color:#15181c;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gameDossierActions{margin-top:12px!important}.gameSavePrompt{margin-top:18px;padding:14px 16px;border:3px dashed rgba(20,23,27,.18);background:repeating-linear-gradient(90deg,rgba(20,23,27,.025) 0 16px,transparent 16px 20px)}.gameSavePrompt small{display:block;font:700 8px/1 "Press Start 2P",monospace;color:#7a8086}.gameSavePrompt strong{display:block;margin-top:8px;font-size:18px}.gameSavePrompt span{display:block;margin-top:6px;color:#646a6f;font:700 8px/1.5 "Press Start 2P",monospace}
+.resultGameTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.resultGameTabs button{display:grid;grid-template-columns:40px 1fr auto;align-items:center;text-align:left;gap:10px;padding:12px 14px;border:3px solid #262b31;background:#111419;color:#eef1ef;box-shadow:6px 6px 0 rgba(0,0,0,.18);cursor:pointer}.resultGameTabs button i{font:700 11px/1 "Press Start 2P",monospace;color:#707981;font-style:normal}.resultGameTabs button span{font-size:15px;font-weight:900}.resultGameTabs button small{font:700 8px/1 "Press Start 2P",monospace;color:#737c84}.resultGameTabs button.active{border-color:var(--persona-accent);background:color-mix(in srgb,var(--persona-accent) 12%,#111419)}.resultGameTabs button.active i,.resultGameTabs button.active small{color:var(--persona-accent)}
+.resultGamePanels{margin-top:8px}.resultGamePanel{display:none}.resultGamePanel.active{display:block;animation:tabIn .14s steps(4,end)}@keyframes tabIn{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}.gamePanelGrid{display:grid;gap:10px}.archiveGrid{grid-template-columns:.84fr 1.16fr}.relationGrid{grid-template-columns:1fr 1fr}.deepGrid{grid-template-columns:1.2fr .8fr}.gamePanelCard{border:3px solid #262b31;background:#ece7dc;box-shadow:7px 7px 0 rgba(0,0,0,.16);padding:16px;min-width:0}.gamePanelHead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:10px;margin-bottom:12px;border-bottom:3px solid #1d2126}.gamePanelHead b{font-size:17px}.gamePanelHead span{color:#70777c!important}.statusCard{background:#0f1216;color:#eef0eb}.statusCard .gamePanelHead{border-color:#30363d}.statusCard .gamePanelHead span{color:var(--persona-accent)!important}.rpgDimList{display:grid;gap:11px}.rpgDimList .dimRow{display:grid;grid-template-columns:74px 1fr 38px;align-items:center;gap:10px}.rpgDimList .dimRow label{color:#d9deda;font-size:12px}.rpgDimList .dimTrack{height:14px;border:2px solid #394149;background:#07090c;position:relative}.rpgDimList .dimFill{height:100%;background:repeating-linear-gradient(90deg,var(--persona-accent) 0 12px,transparent 12px 15px)!important}.rpgDimList .dimRow b{font:700 10px/1 "Press Start 2P",monospace;color:var(--persona-accent)}.analysisCard{background:var(--persona-paper)}.gameBulletList .bullet{border-radius:0!important;border:2px solid rgba(19,22,25,.12)!important}.relationName{display:block;font-size:30px;margin:14px 0 8px}.partyCard{background:color-mix(in srgb,var(--persona-accent) 13%,#ece7dc)}.enemyCard{background:#e9ddd7}.twinGameCard,.altGameCard{grid-column:span 1}.gameTwin{display:grid;grid-template-columns:190px 1fr;gap:16px;align-items:stretch}.gameTwin .twinArt{height:220px!important;border:3px solid #20242a!important}.gameTwin>div:last-child{padding:4px 0}.gameTwin strong{display:block;font-size:26px}.gameTwin em{display:block;margin:6px 0;color:var(--persona-accent);font:700 13px/1 "Press Start 2P",monospace;font-style:normal}.gameTwin b{display:block;font-size:10px;color:#696f73}.gameTwin p,.partyCard p,.enemyCard p,.questBoard p{font-size:13px;line-height:1.75}.manifestoGameCard{grid-row:span 2}.adviceGameCard{background:#101318;color:#f1eee7}.adviceGameCard .gamePanelHead{border-color:#323941}.adviceGameCard .gamePanelHead b{color:#fff}.questBoard{background:#101318;color:#eef1ec;grid-column:1/-1}.questBoard .gamePanelHead{border-color:#30363d}.questBoard .gamePanelHead b{color:#fff}.questButtons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.questButtons button{border:2px solid #3b434a;background:#171b20;color:#e7ebe8;padding:10px 12px;font-weight:900;cursor:pointer}.questButtons button.primary{background:var(--persona-accent);color:#111;border-color:var(--persona-accent)}.questButtons button:hover{transform:translate(-1px,-1px)}.gameResultFooter{border-radius:0!important;margin-top:10px!important;border:2px solid #2c3238!important;background:#0f1216!important;color:#899198!important}
+
+@media(max-height:790px) and (min-width:981px){.gameQuizShell{grid-template-rows:54px minmax(0,1fr) 50px;padding:8px}.gameHUDTop{grid-template-columns:170px minmax(190px,1fr) minmax(270px,.9fr) 60px;padding:6px 9px}.gameQuestionGrid{grid-template-columns:minmax(270px,.66fr) minmax(0,1.34fr)}.gameQuestionPane{padding:13px 16px 12px}.gameQuestion{font-size:clamp(25px,2.55vw,36px)!important;margin:12px 0 8px!important}.gameHint{margin-bottom:8px!important}.gameAnswers .answer{min-height:68px!important;padding:9px 11px!important}.gameScenePane{grid-template-rows:38px minmax(0,1fr) 62px}.gameResultHero{height:calc(100dvh - 58px)!important;grid-template-columns:390px minmax(0,1fr)!important}.gameDossier{padding:14px 17px!important}.resultTitle{font-size:32px!important}.gameAttrGrid .attr{min-height:60px!important}.gameQuickDims{display:none!important}}
+@media(max-width:980px){.gameQuiz{height:auto!important;min-height:calc(100dvh - 48px)!important;overflow:visible!important}.gameQuizShell{height:auto;display:block;padding:8px}.gameHUDTop{grid-template-columns:1fr auto;padding:9px}.gameBrand,.gameExit{display:block}.gameChapter{grid-column:1/-1;order:3}.gameProgressBlock{grid-column:1/-1}.gameQuestionGrid{grid-template-columns:1fr}.gameScenePane{height:360px;grid-template-rows:42px minmax(0,1fr) 68px}.gameQuestionPane{min-height:520px}.gameHUDBottom{margin-top:8px;grid-template-columns:1fr auto}.gameBottomStats{display:none}.gameQuestion{font-size:29px!important}.gameResultHero{height:auto!important;grid-template-columns:1fr!important}.gameCharacterCover{height:620px!important}.gameDossier{overflow:visible!important}.resultGameTabs{position:sticky;top:0;z-index:10}.archiveGrid,.relationGrid,.deepGrid{grid-template-columns:1fr}.manifestoGameCard{grid-row:auto}.questBoard{grid-column:auto}.gameTwin{grid-template-columns:160px 1fr}}
+@media(max-width:620px){.gameHUDTop{gap:7px}.gameBrand small{display:none}.gameChapter strong{font-size:15px}.gameQuestionPane{padding:14px 13px;min-height:0}.gameScenePane{height:300px}.gameQuestion{font-size:24px!important}.gameAnswers{grid-template-columns:1fr!important}.gameAnswers .answer{min-height:70px!important}.gameHintLine{display:none}.gameHUDBottom{grid-template-columns:1fr}.gameCharacterCover{height:520px!important}.gameMetaLine{grid-template-columns:1fr}.gameMetaLine span+span{border-left:0;border-top:2px solid rgba(17,20,24,.12)}.resultGameTabs button{grid-template-columns:30px 1fr;padding:10px}.resultGameTabs button small{display:none}.gameTwin{grid-template-columns:1fr}.gameTwin .twinArt{height:320px!important}.survivalGrid{grid-template-columns:1fr!important}}
+
 </style>
 </head>
 <body>
@@ -658,149 +683,97 @@ body{font-family:var(--px-font)!important;letter-spacing:.015em;background-image
       </div>
     </section>
 
-    <section id="quiz" class="quiz" aria-hidden="true">
+    <section id="quiz" class="quiz gameQuiz" aria-hidden="true">
       <div class="quizScene"><div class="quizGrid"></div></div>
       <div id="chapterFlash" class="chapterFlash"></div>
-      <div class="quizInner">
-        <div class="quizLayout">
-          <aside class="quizPanel">
-            <div class="quizPanelTop">
-              <small>QUESTION SIGNAL</small>
-              <div id="questionSignal" class="questionSignal">COURSEWORK</div>
-            </div>
-            <div class="quizPanelChapter"><small id="panelChapterNo">CHAPTER 01</small><b id="panelChapterTitle">默认设置</b><p id="panelChapterSub">先看你的日常启动方式。</p></div>
-            <div id="quizPreviewArt" class="quizPreviewArt"></div>
-            <div class="quizPanelCard">
-              <small>本题观察维度</small>
-              <div id="focusChips" class="focusChips"></div>
-            </div>
-            <div class="quizPanelCard">
-              <small>当前人格轮廓</small>
-              <div id="liveProfile" class="liveProfile">尚未形成足够样本，先按直觉作答。</div>
-            </div>
-            <div class="quizPanelCard">
-              <small>实时六维趋势</small>
-              <div id="quizMiniDims" class="quizMiniDims"><div class="mHint">答到 3 题以上后，这里会开始显示更稳定的轮廓趋势。</div></div>
-            </div>
-            <div class="quizPanelStats">
-              <div><span>已完成</span><b id="quizDoneCount">0 / 24</b></div>
-              <div><span>进度</span><b id="quizPercent">0%</b></div>
-            </div>
+      <div class="gameQuizShell">
+        <header class="gameHUDTop">
+          <div class="gameBrand"><small>CAMPUS//ARCHIVE</small><b id="chapterNo">CHAPTER 01</b></div>
+          <div class="gameChapter"><strong id="chapterTitle">默认设置</strong><span id="chapterSub">日常启动方式</span></div>
+          <div class="gameProgressBlock"><div class="gameProgressMeta"><b id="quizNum">01 / 24</b><span id="gameProgressPercent">04%</span></div><div class="gameProgressTrack"><i id="progressBar"></i></div><div id="chapterRail" class="chapterRail gameChapterRail"><span class="active"></span><span></span><span></span><span></span></div></div>
+          <button class="gameExit" onclick="exitQuiz()">EXIT</button>
+        </header>
+
+        <main class="gameQuestionGrid">
+          <aside class="gameScenePane">
+            <div class="gameSceneHeader"><span id="gameSceneNo">SCENE 01</span><b id="gameSceneTag">COURSEWORK</b></div>
+            <div id="gameSceneArt" class="gameSceneArt"></div>
+            <div class="gameSceneFooter"><div><small>CURRENT PROFILE</small><b id="hudProfile">WAITING...</b></div><div><small>QUESTION AXIS</small><b id="hudAxis">—</b></div></div>
           </aside>
-          <div class="quizMain">
-            <div class="quizTop"><div id="quizNum" class="quizNum">01 / 24</div><div class="progressTrack"><div id="progressBar" class="progressBar"></div></div><div class="quizTag">CAMPUS SCENARIO</div></div>
-            <div id="chapterRail" class="chapterRail"><span class="active"></span><span></span><span></span><span></span></div>
-            <div class="chapterStrip"><i id="chapterNo">CHAPTER 01</i><div><strong id="chapterTitle">默认设置</strong><p id="chapterSub">先看你的日常启动方式：任务、作息、周末和学习压力。</p></div></div>
-            <div id="questionStage" class="questionStage">
-              <div id="mainSceneBanner" class="mainSceneBanner"></div>
-              <div id="questionHUD" class="questionHUD">
-                <div><small>CURRENT PROFILE</small><b id="hudProfile">WAITING...</b></div>
-                <div><small>QUESTION AXIS</small><b id="hudAxis">—</b></div>
-                <div><small>SESSION STATUS</small><b id="hudStatus">00 / 24</b></div>
-              </div>
-              <div id="questionKicker" class="questionKicker">SCENARIO / COURSEWORK</div>
-              <div class="questionMeta"><span id="metaAnswered" class="qMetaChip">已答 0 题</span><span id="metaTag" class="qMetaChip">课程情境</span><span id="metaEnergy" class="qMetaChip">观察即时反应</span></div>
-              <h2 id="question" class="question"></h2>
-              <p id="questionHint" class="questionHint">没有标准答案。请选择你在现实校园里更可能做出的反应。</p>
-              <div id="answers" class="answers"></div>
-            </div>
-            <div class="quizBottom">
-              <div class="micro">选择后自动进入下一题 · 可随时返回修改 · 左侧会实时更新你的当前人格轮廓</div>
-              <div class="navBtns"><button id="prevBtn" class="navBtn" onclick="prevQuestion()">← 上一题</button><button class="navBtn" onclick="exitQuiz()">退出</button></div>
-            </div>
-          </div>
-        </div>
+
+          <section id="questionStage" class="gameQuestionPane">
+            <div class="gameQuestionHeader"><div><small id="questionKicker">SCENARIO / COURSEWORK</small><div class="gameMeta"><span id="metaAnswered">已答 0 题</span><span id="metaTag">课程情境</span><span id="metaEnergy">观察即时反应</span></div></div><div class="gameCounter"><small>SESSION</small><b id="hudStatus">00 / 24</b></div></div>
+            <h2 id="question" class="question gameQuestion"></h2>
+            <p id="questionHint" class="questionHint gameHint">没有标准答案。请选择你在现实校园里更可能做出的反应。</p>
+            <div id="answers" class="answers gameAnswers"></div>
+          </section>
+        </main>
+
+        <footer class="gameHUDBottom">
+          <div class="gameHintLine"><span class="pixelKey">A–D</span> 选择最像你的现实反应 <i>·</i> 选择后自动进入下一题</div>
+          <div class="gameBottomStats"><span>PROFILE <b id="bottomProfile">WAITING</b></span><span>AXIS <b id="bottomAxis">—</b></span></div>
+          <div class="navBtns"><button id="prevBtn" class="navBtn gamePrev" onclick="prevQuestion()">← PREV</button></div>
+        </footer>
       </div>
     </section>
 
-    <section id="result" class="result" aria-hidden="true">
-      <div class="resultHero">
-        <div class="cover">
+    <section id="result" class="result gameResult" aria-hidden="true">
+      <div class="resultHero gameResultHero">
+        <div class="cover gameCharacterCover">
           <div class="coverHead"><b>CAMPUS//ARCHIVE</b><span id="coverIssue">FILE / U01</span></div>
-          <div class="coverArt" id="coverArt"><div id="personaStamp" class="personaStamp">03:17</div><div id="resultSignature" class="resultSignature">VISUAL / <b>U01</b></div><div id="coverCode" class="coverCode">U01</div><div id="coverBadge" class="coverBadge">CLASS / SR</div><div id="personaSceneCaption" class="personaSceneCaption"></div><div id="coverIdentity" class="coverIdentity"><small>YOUR CAMPUS ARCHETYPE</small><strong id="coverName">DDL 战神</strong><span id="coverEn">DEADLINE AWAKENING TYPE</span></div></div>
+          <div class="coverArt" id="coverArt"><div id="personaStamp" class="personaStamp">03:17</div><div id="resultSignature" class="resultSignature">VISUAL / <b>U01</b></div><div id="coverCode" class="coverCode">U01</div><div id="coverBadge" class="coverBadge">CLASS / SR</div><div id="personaSceneCaption" class="personaSceneCaption"></div><div id="coverIdentity" class="coverIdentity"><small>CHARACTER FOUND</small><strong id="coverName">DDL 战神</strong><span id="coverEn">DEADLINE AWAKENING TYPE</span></div></div>
           <div class="coverFoot"><span>STUDENT BEHAVIOR<br>CLASSIFICATION SYSTEM</span><span><strong id="coverMatch">92.4%</strong><br>MODEL MATCH</span></div>
         </div>
-        <div class="dossier">
-          <div class="dossierKicker">YOUR CAMPUS PERSONALITY FILE</div>
-          <h2 id="resultTitle" class="resultTitle">DDL 战神</h2>
-          <div id="resultEnglish" class="resultEnglish">DEADLINE AWAKENING TYPE</div>
-          <div class="resultLine"></div>
+        <div class="dossier gameDossier">
+          <div class="dossierKicker">CHARACTER FOUND / CAMPUS SAVE FILE</div>
+          <div class="gameResultTitleRow"><div><h2 id="resultTitle" class="resultTitle">DDL 战神</h2><div id="resultEnglish" class="resultEnglish">DEADLINE AWAKENING TYPE</div></div><div class="gameMatchBox"><small>MATCH</small><b id="gameMatchValue">92.4%</b></div></div>
           <p id="resultTagline" class="resultTagline"></p>
-          <div id="quoteBlock" class="quoteBlock"></div>
-          <div class="attrGrid">
-            <div class="attr"><span>最常出现地点</span><strong id="attrPlace"></strong></div>
-            <div class="attr"><span>危险时间</span><strong id="attrTime"></strong></div>
-            <div class="attr"><span>隐藏技能</span><strong id="attrSkill"></strong></div>
-            <div class="attr"><span>档案评级</span><strong id="attrClass"></strong></div>
+          <div id="quoteBlock" class="quoteBlock gameQuote"></div>
+          <div class="attrGrid gameAttrGrid">
+            <div class="attr"><span>MAP</span><strong id="attrPlace"></strong></div>
+            <div class="attr"><span>DANGER TIME</span><strong id="attrTime"></strong></div>
+            <div class="attr"><span>SKILL</span><strong id="attrSkill"></strong></div>
+            <div class="attr"><span>CLASS</span><strong id="attrClass"></strong></div>
           </div>
-          <div class="confidencePanel">
-            <div><span>人格变体</span><b id="resultVariant">—</b></div>
-            <div><span>判定稳定度</span><b id="resultStability">—</b></div>
-            <div><span>档案编号</span><b id="resultFileId">—</b></div>
-          </div>
-          <div id="resultAura" class="resultAura"></div>
-          <div id="resultQuickDims" class="resultQuickDims"></div>
-          <div id="manifestoBlock" class="manifestoBlock"><small>PERSONAL MANIFESTO</small><p>—</p></div>
-          <div class="dossierActions">
-            <button class="btn primary" onclick="shareResult()"><span class="dot"></span>分享结果</button>
-            <button class="btn secondary" onclick="makePoster()">生成分享海报</button>
-            <button class="btn secondary" onclick="restart()">重新测试</button>
-          </div>
+          <div id="resultAura" class="resultAura gameAura"></div>
+          <div id="resultQuickDims" class="resultQuickDims gameQuickDims"></div>
+          <div class="gameMetaLine"><span>VARIANT <b id="resultVariant">—</b></span><span>STABILITY <b id="resultStability">—</b></span><span>FILE ID <b id="resultFileId">—</b></span></div>
+          <div class="dossierActions gameDossierActions"><button class="btn primary" onclick="shareResult()"><span class="dot"></span>分享结果</button><button class="btn secondary" onclick="makePoster()">生成海报</button><button class="btn secondary" onclick="restart()">重新测试</button></div><div class="gameSavePrompt"><small>SAVE COMPLETE</small><strong>人格档案已建立</strong><span>↓ 使用下方菜单查看 STATUS / PARTY / LOG</span></div>
         </div>
       </div>
 
-      <div class="resultBody">
-        <div class="paperCard">
-          <div class="sectionHead"><h3>六维校园行为图谱</h3><span>6D BEHAVIOR MAP</span></div>
-          <div class="radarWrap"><svg id="radar" viewBox="0 0 320 320" aria-label="六维人格雷达图"></svg><div id="dimList" class="dimList"></div></div>
-        </div>
-        <div class="darkCard">
-          <div class="sectionHead"><h3>系统判定</h3><span>ARCHIVE ANALYSIS</span></div>
-          <p id="analysisText" class="analysisText"></p>
-          <div id="bulletList" class="bulletList"></div>
-          <div class="compat">
-            <div class="compatBox"><small>最佳校园搭子</small><strong id="bestMate"></strong><p id="bestMateText"></p></div>
-            <div class="compatBox"><small>最容易互相折磨</small><strong id="friction"></strong><p id="frictionText"></p></div>
-          </div>
-        </div>
-        <div class="paperCard">
-          <div class="sectionHead"><h3>人格宣言与核心机制</h3><span>PERSONA DECODER</span></div>
-          <div id="personaBadges" class="personaBadges"></div>
-          <div class="manifestoCard"><b id="manifestoTitle">你的专属人格宣言</b><p id="manifestoText">—</p></div>
-          <div id="survivalGrid" class="survivalGrid">
-            <div><small>驱动内核</small><strong id="survivalDrive">—</strong><p id="survivalDriveText">—</p></div>
-            <div><small>高光场景</small><strong id="survivalGlow">—</strong><p id="survivalGlowText">—</p></div>
-            <div><small>注意盲区</small><strong id="survivalBlind">—</strong><p id="survivalBlindText">—</p></div>
-          </div>
-        </div>
-        <div class="darkCard">
-          <div class="sectionHead"><h3>专属校园建议</h3><span>SURVIVAL PLAYBOOK</span></div>
-          <div id="adviceList" class="adviceList"></div>
-          <div class="dailyLine"><small>TODAY'S LINE</small><p id="resultDailyLine">—</p></div>
-        </div>
+      <nav class="resultGameTabs" aria-label="结果档案分页">
+        <button class="active" data-tab="archive" onclick="showResultTab('archive')"><i>01</i><span>人格档案</span><small>STATUS</small></button>
+        <button data-tab="relations" onclick="showResultTab('relations')"><i>02</i><span>校园关系</span><small>PARTY</small></button>
+        <button data-tab="deep" onclick="showResultTab('deep')"><i>03</i><span>深度解析</span><small>LOG</small></button>
+      </nav>
 
-        <div class="paperCard">
-          <div class="sectionHead"><h3>你的相近人格</h3><span>NEAREST ARCHETYPES</span></div>
-          <p class="analysisText">人格不是单选标签。下面三个结果，是模型中与你最接近的其他“校园生存方式”。</p>
-          <div id="altList" class="altList"></div>
-        </div>
-        <div class="darkCard">
-          <div class="sectionHead"><h3>你的第二人格</h3><span>SECONDARY ARCHETYPE</span></div>
-          <div class="twinCard">
-            <div class="twinBadge"><small>SECONDARY / NEARBY PROFILE</small><div id="twinArt" class="twinArt"></div><div><strong id="twinName">—</strong><em id="twinSim">—</em></div></div>
-            <div class="twinCopy"><b id="twinEn">—</b><p id="twinText">—</p><button class="galleryBtn" onclick="openGallery()">查看全部 16 种人格图鉴</button></div>
+      <div class="resultGamePanels">
+        <section id="resultTabArchive" class="resultGamePanel active">
+          <div class="gamePanelGrid archiveGrid">
+            <div class="gamePanelCard statusCard"><div class="gamePanelHead"><span>STATUS / 6D</span><b>六维校园属性</b></div><div id="dimList" class="dimList rpgDimList"></div></div>
+            <div class="gamePanelCard analysisCard"><div class="gamePanelHead"><span>SYSTEM LOG</span><b>系统判定</b></div><p id="analysisText" class="analysisText"></p><div id="bulletList" class="bulletList gameBulletList"></div></div>
           </div>
-        </div>
-        <div class="viralCard">
-          <div class="viralCopy"><div class="viralKicker">FRIEND CHALLENGE / SHARE LOOP</div><h3>把你的结果丢给朋友，看看你们到底是不是一个物种。</h3><p>分享的是你的测试入口与挑战码，不会暴露你的完整答题记录。朋友完成后，可以直接对比主人格。</p><div id="viralCode" class="viralCode">CHALLENGE / —</div><div class="viralButtons"><button class="primary" onclick="shareChallenge()">分享给朋友</button><button onclick="makePoster()">生成爆款分享海报</button><button onclick="copyXhsCaption()">复制小红书文案</button><button onclick="copyChallenge()">复制挑战文案</button><button onclick="restartFromResult()">再测一次</button></div><div class="socialCaption"><b>V6：</b>分享海报会自动跟随主人格主题色，并突出人格名称、金句、第二人格和挑战码。</div></div>
-          <div class="viralSide"><div><small>HOW IT SPREADS</small><strong>一次测试，产生第二次测试。</strong><div id="matchupLine" class="matchupLine" style="display:none"></div><div class="miniSteps"><div><i>01</i><span>你生成结果与挑战码</span></div><div><i>02</i><span>朋友从分享链接进入</span></div><div><i>03</i><span>双方对比人格与六维差异</span></div></div></div><div class="posterHint">建议优先分享“结果海报 + 挑战链接”，比单独发网址更容易获得点击。</div></div>
-        </div>
-        <div class="darkCard">
-          <div class="sectionHead"><h3>档案说明</h3><span>READ BEFORE SHARING</span></div>
-          <p class="analysisText">这是一个娱乐与自我观察向的校园人格测试，不是临床心理测评。结果由你在 24 个情境中的行为选择，经 6 维向量匹配产生；同一个人处于不同阶段、不同压力下，结果也可能变化。</p>
-        </div>
+        </section>
+
+        <section id="resultTabRelations" class="resultGamePanel">
+          <div class="gamePanelGrid relationGrid">
+            <div class="gamePanelCard partyCard"><div class="gamePanelHead"><span>BEST PARTY</span><b>最佳校园搭子</b></div><strong id="bestMate" class="relationName"></strong><p id="bestMateText"></p></div>
+            <div class="gamePanelCard enemyCard"><div class="gamePanelHead"><span>FRICTION</span><b>最容易互相折磨</b></div><strong id="friction" class="relationName"></strong><p id="frictionText"></p></div>
+            <div class="gamePanelCard twinGameCard"><div class="gamePanelHead"><span>SECONDARY</span><b>你的第二人格</b></div><div class="gameTwin"><div id="twinArt" class="twinArt"></div><div><strong id="twinName">—</strong><em id="twinSim">—</em><b id="twinEn">—</b><p id="twinText">—</p></div></div></div>
+            <div class="gamePanelCard altGameCard"><div class="gamePanelHead"><span>NEAREST</span><b>相近人格</b></div><div id="altList" class="altList"></div><button class="galleryBtn" onclick="openGallery()">打开 16 种人格图鉴</button></div>
+          </div>
+        </section>
+
+        <section id="resultTabDeep" class="resultGamePanel">
+          <div class="gamePanelGrid deepGrid">
+            <div class="gamePanelCard manifestoGameCard"><div class="gamePanelHead"><span>PERSONA DECODER</span><b>人格宣言与核心机制</b></div><div id="personaBadges" class="personaBadges"></div><div class="manifestoCard"><b id="manifestoTitle">你的专属人格宣言</b><p id="manifestoText">—</p></div><div id="survivalGrid" class="survivalGrid"><div><small>驱动内核</small><strong id="survivalDrive">—</strong><p id="survivalDriveText">—</p></div><div><small>高光场景</small><strong id="survivalGlow">—</strong><p id="survivalGlowText">—</p></div><div><small>注意盲区</small><strong id="survivalBlind">—</strong><p id="survivalBlindText">—</p></div></div></div>
+            <div class="gamePanelCard adviceGameCard"><div class="gamePanelHead"><span>SURVIVAL PLAYBOOK</span><b>专属校园建议</b></div><div id="adviceList" class="adviceList"></div><div class="dailyLine"><small>TODAY'S LINE</small><p id="resultDailyLine">—</p></div></div>
+            <div class="gamePanelCard questBoard"><div class="gamePanelHead"><span>QUEST BOARD</span><b>好友挑战任务</b></div><p>把结果丢给朋友，完成第二次人格测试并对比你们的校园生存方式。</p><div id="viralCode" class="viralCode">CHALLENGE / —</div><div id="matchupLine" class="matchupLine" style="display:none"></div><div class="questButtons"><button class="primary" onclick="shareChallenge()">分享挑战</button><button onclick="makePoster()">生成海报</button><button onclick="copyXhsCaption()">复制小红书文案</button><button onclick="copyChallenge()">复制挑战码</button><button onclick="restartFromResult()">再测一次</button></div></div>
+          </div>
+        </section>
       </div>
-      <div class="resultFooter"><span><b>隐私：</b>答题和匹配逻辑在浏览器本地运行；上次结果只保存在当前设备的浏览器中。</span><span>© 2026 CAMPUS//ARCHIVE · V6.2 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
+      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.3 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
@@ -839,25 +812,23 @@ function currentProfileLabel(){
 }
 function renderMainScene(item,index){
  const picks=['U01','U08','U03','U07','U09','U05','U10','U14','U12','U15','U16','U04','U11','U06','U13','U02'];
- const code=picks[index%picks.length],a=ARCHETYPES.find(x=>x.code===code)||ARCHETYPES[0];
- const focus=focusDimsForQuestion(item).map(k=>DIM_NAMES[k]);
- const banner=document.getElementById('mainSceneBanner');
- if(banner)banner.innerHTML=`<div class="mainSceneVisual">${personaImage(a,true)}</div><div class="mainSceneCopy"><div><small>PIXEL SCENE / ${String(index+1).padStart(2,'0')}</small><strong>${tagLabel(item.tag)}</strong><p>本题主要观察：${focus.join(' × ')}。按现实里的第一反应作答。</p></div><div class="sceneIndex">${String(index+1).padStart(2,'0')}</div></div>`;
- const hp=document.getElementById('hudProfile');if(hp)hp.textContent=currentProfileLabel();
- const ha=document.getElementById('hudAxis');if(ha)ha.textContent=focus.join(' / ');
- const hs=document.getElementById('hudStatus');if(hs)hs.textContent=`${answers.filter(v=>v!==null).length} / ${QUESTIONS.length}`;
+ const code=picks[index%picks.length],a=ARCHETYPES.find(x=>x.code===code)||ARCHETYPES[0],focus=focusDimsForQuestion(item).map(k=>DIM_NAMES[k]);
+ const art=document.getElementById('gameSceneArt');if(art)art.innerHTML=personaImage(a,true);
+ const sn=document.getElementById('gameSceneNo');if(sn)sn.textContent='SCENE '+String(index+1).padStart(2,'0');const st=document.getElementById('gameSceneTag');if(st)st.textContent=tagLabel(item.tag).toUpperCase();
+ const profile=currentProfileLabel(),axis=focus.join(' / '),status=`${answers.filter(v=>v!==null).length} / ${QUESTIONS.length}`;
+ const hp=document.getElementById('hudProfile');if(hp)hp.textContent=profile;const ha=document.getElementById('hudAxis');if(ha)ha.textContent=axis;const hs=document.getElementById('hudStatus');if(hs)hs.textContent=status;const bp=document.getElementById('bottomProfile');if(bp)bp.textContent=profile;const ba=document.getElementById('bottomAxis');if(ba)ba.textContent=focus.map(x=>DIM_SHORT[x]).join('/');
 }
 function renderResultQuickDims(user){const box=document.getElementById('resultQuickDims');if(!box)return;box.innerHTML=DIM_KEYS.map((k,i)=>`<div class="quickDim"><span>${DIM_SHORT[k]}</span><i style="--v:${user[i]}%"></i><b>${user[i]}</b></div>`).join('');}
 
 
 const QUIZ_CHAPTERS=[
- {from:0,to:5,no:'01',title:'默认设置',sub:'先看你的日常启动方式：任务、作息、周末和学习压力。'},
- {from:6,to:11,no:'02',title:'关系与压力',sub:'进入群体环境后，你怎么处理临时安排、成绩、宿舍气氛与陌生关系。'},
- {from:12,to:17,no:'03',title:'自由时间',sub:'当没人替你规定答案时，你会把时间、兴趣和情绪放到哪里。'},
- {from:18,to:23,no:'04',title:'底层选择',sub:'最后六题更接近你的真实优先级：推进、边界、底线与重新开始。'}
+ {from:0,to:5,no:'01',title:'默认设置',sub:'日常启动方式',accent:'#b9ff3d',dark:'#0e1510',mid:'#19241a',paper:'#e9edd9'},
+ {from:6,to:11,no:'02',title:'关系与压力',sub:'人际、临时安排与群体压力',accent:'#ff668e',dark:'#160d15',mid:'#261522',paper:'#eee0e5'},
+ {from:12,to:17,no:'03',title:'自由时间',sub:'兴趣、空白时间与新鲜体验',accent:'#ffb54a',dark:'#171108',mid:'#2a1d0e',paper:'#f0e6d2'},
+ {from:18,to:23,no:'04',title:'底层选择',sub:'边界、底线与重新开始',accent:'#8a8cff',dark:'#0e0d19',mid:'#18172a',paper:'#e5e3f0'}
 ];
 function currentChapter(index=current){return QUIZ_CHAPTERS.find(c=>index>=c.from&&index<=c.to)||QUIZ_CHAPTERS[0];}
-function renderChapter(index=current){const c=currentChapter(index),ci=QUIZ_CHAPTERS.indexOf(c);const rail=document.getElementById('chapterRail');if(rail)rail.innerHTML=QUIZ_CHAPTERS.map((x,i)=>`<span class="${i<ci?'done':i===ci?'active':''}"></span>`).join('');const no=document.getElementById('chapterNo'),title=document.getElementById('chapterTitle'),sub=document.getElementById('chapterSub');if(no)no.textContent='CHAPTER '+c.no;if(title)title.textContent=c.title;if(sub)sub.textContent=c.sub;const pn=document.getElementById('panelChapterNo'),pt=document.getElementById('panelChapterTitle'),ps=document.getElementById('panelChapterSub');if(pn)pn.textContent='CHAPTER '+c.no;if(pt)pt.textContent=c.title;if(ps)ps.textContent=c.sub;}
+function renderChapter(index=current){const c=currentChapter(index),ci=QUIZ_CHAPTERS.indexOf(c);const rail=document.getElementById('chapterRail');if(rail)rail.innerHTML=QUIZ_CHAPTERS.map((x,i)=>`<span class="${i<ci?'done':i===ci?'active':''}"></span>`).join('');const no=document.getElementById('chapterNo'),title=document.getElementById('chapterTitle'),sub=document.getElementById('chapterSub');if(no)no.textContent='CHAPTER '+c.no;if(title)title.textContent=c.title;if(sub)sub.textContent=c.sub;const quiz=document.getElementById('quiz');if(quiz){quiz.style.setProperty('--chapter-accent',c.accent);quiz.style.setProperty('--chapter-dark',c.dark);quiz.style.setProperty('--chapter-mid',c.mid);quiz.style.setProperty('--chapter-paper',c.paper);quiz.style.setProperty('--chapter-grid',c.accent+'18');}}
 function flashChapterIfNeeded(index){if(![0,6,12,18].includes(index))return;const c=currentChapter(index),box=document.getElementById('chapterFlash');if(!box)return;box.innerHTML=`<div><small>CHAPTER ${c.no}</small><strong>${c.title}</strong><p>${c.sub}</p></div>`;box.classList.add('show');setTimeout(()=>box.classList.remove('show'),520);}
 
 const PERSONA_STAMPS={U01:'03:17',U02:'A+',U03:'SILENT',U04:'ZZZ',U05:'ONLINE',U06:'ROUTE',U07:'24H',U08:'08:00',U09:'CHILL',U10:'???',U11:'MAX',U12:'LAB',U13:'LOOP',U14:'GO',U15:'LEAD',U16:'RAIN'};
@@ -1082,37 +1053,20 @@ function exitQuiz(){resetPersonaTheme();clearTimeout(transitionTimer);document.g
 function prevQuestion(){clearTimeout(transitionTimer);if(current<=0)return;current--;saveProgress();renderQuestion();scrollQuizTop();}
 function scrollQuizTop(){if(innerWidth<700)window.scrollTo({top:0,behavior:'smooth'});}
 function renderQuestion(){
- const item=QUESTIONS[current];
- if(!item){showToast('题目数据异常');return;}
- let focus=[];
- try{focus=focusDimsForQuestion(item);}catch(e){console.error('focus',e);focus=['study','order'];}
- const done=answers.filter(v=>v!==null).length;
- const pct=Math.round((current+1)/QUESTIONS.length*100);
- // Core question content renders first. Decorative UI can fail without blocking the test.
- try{document.getElementById('quizNum').textContent=String(current+1).padStart(2,'0')+' / '+QUESTIONS.length;}catch(e){}
- try{document.getElementById('progressBar').style.width=pct+'%';}catch(e){}
- try{document.getElementById('quizDoneCount').textContent=done+' / '+QUESTIONS.length;document.getElementById('quizPercent').textContent=pct+'%';}catch(e){}
- try{document.getElementById('questionSignal').textContent=tagLabel(item.tag).toUpperCase();document.getElementById('questionKicker').textContent='SCENARIO / '+item.tag;}catch(e){}
- try{document.getElementById('metaAnswered').textContent='已答 '+done+' 题';document.getElementById('metaTag').textContent=tagLabel(item.tag);document.getElementById('metaEnergy').textContent='观察 '+focus.map(k=>DIM_NAMES[k]).join(' · ');}catch(e){}
- const q=document.getElementById('question');if(q)q.textContent=item.q;
- const hint=document.getElementById('questionHint');if(hint)hint.textContent=QUESTION_HINTS[item.tag]||'没有标准答案。请选择你在现实校园里更可能做出的反应。';
- const prev=document.getElementById('prevBtn');if(prev)prev.disabled=current===0;
+ const item=QUESTIONS[current];if(!item){showToast('题目数据异常');return;}
+ let focus=[];try{focus=focusDimsForQuestion(item);}catch(e){focus=['study','order'];}
+ const done=answers.filter(v=>v!==null).length,pct=Math.round((current+1)/QUESTIONS.length*100);
+ try{renderChapter(current);}catch(e){}try{flashChapterIfNeeded(current);}catch(e){}
+ const qn=document.getElementById('quizNum');if(qn)qn.textContent=String(current+1).padStart(2,'0')+' / '+QUESTIONS.length;const pp=document.getElementById('gameProgressPercent');if(pp)pp.textContent=String(pct).padStart(2,'0')+'%';const pb=document.getElementById('progressBar');if(pb)pb.style.width=pct+'%';
+ const kick=document.getElementById('questionKicker');if(kick)kick.textContent='SCENARIO / '+item.tag;const ma=document.getElementById('metaAnswered');if(ma)ma.textContent='已答 '+done+' 题';const mt=document.getElementById('metaTag');if(mt)mt.textContent=tagLabel(item.tag);const me=document.getElementById('metaEnergy');if(me)me.textContent='观察 '+focus.map(k=>DIM_NAMES[k]).join(' · ');
+ const q=document.getElementById('question');if(q)q.textContent=item.q;const hint=document.getElementById('questionHint');if(hint)hint.textContent=QUESTION_HINTS[item.tag]||'没有标准答案。请选择你在现实校园里更可能做出的反应。';const prev=document.getElementById('prevBtn');if(prev)prev.disabled=current===0;
  const box=document.getElementById('answers');if(box){box.innerHTML='';item.a.forEach((opt,i)=>{const b=document.createElement('button');b.className='answer'+(answers[current]===i?' selected':'');b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span><span class="answerText">${opt[0]}</span><span class="answerBadge">${focus.map(k=>DIM_SHORT[k]).join(' · ')}</span></span>`;b.onclick=()=>chooseAnswer(i);box.appendChild(b);});}
- // Non-essential visual layer: each call is isolated.
- try{setQuizAtmosphere(current,item);}catch(e){console.error('atmosphere',e)}
- try{renderChapter(current);}catch(e){console.error('chapter',e)}
- try{flashChapterIfNeeded(current);}catch(e){console.error('chapter flash',e)}
- try{const stage=document.getElementById('questionStage');if(stage){stage.classList.remove('quizFlash','quizPulse');void stage.offsetWidth;stage.classList.add('quizFlash','quizPulse');}}catch(e){}
- try{document.getElementById('focusChips').innerHTML=focus.map(k=>`<span>${DIM_NAMES[k]}</span>`).join('');}catch(e){}
- try{document.getElementById('liveProfile').textContent=liveProfileSummary();}catch(e){console.error('profile',e)}
- try{renderQuizMiniDims(partialVector());}catch(e){console.error('mini dims',e)}
- try{document.getElementById('quizPreviewArt').innerHTML=quizPreviewPixelArt(item,current);}catch(e){console.error('side preview',e)}
- try{renderMainScene(item,current);}catch(e){console.error('main scene',e)}
+ try{setQuizAtmosphere(current,item);}catch(e){}try{renderMainScene(item,current);}catch(e){}try{const stage=document.getElementById('questionStage');if(stage){stage.classList.remove('quizFlash');void stage.offsetWidth;stage.classList.add('quizFlash');}}catch(e){}
 }
 function setQuizAtmosphere(i,item){const hues=[72,205,18,42,285,155];const scene=document.querySelector('.quizScene');const focus=focusDimsForQuestion(item||QUESTIONS[i]);const map={study:210,social:18,deadline:72,order:260,explore:168,sensitivity:330};const h1=map[focus[0]]||hues[i%hues.length], h2=map[focus[1]]||hues[(i+2)%hues.length];if(scene)scene.style.background=`radial-gradient(520px 320px at ${20+(i*17)%70}% ${20+(i*23)%60}%,hsla(${h1},76%,56%,.12),transparent 60%),radial-gradient(340px 200px at ${60+(i*7)%25}% ${22+(i*11)%52}%,hsla(${h2},76%,60%,.12),transparent 60%),#14161a`; }
 function chooseAnswer(i){
- clearTimeout(transitionTimer);answers[current]=i;saveProgress();if(navigator.vibrate)navigator.vibrate(8);document.querySelectorAll('.answer').forEach((el,idx)=>el.classList.toggle('selected',idx===i));
- transitionTimer=setTimeout(()=>{if(current<QUESTIONS.length-1){current++;requestAnimationFrame(()=>{renderQuestion();scrollQuizTop();});}else{requestAnimationFrame(finishQuiz);}},260);
+ clearTimeout(transitionTimer);answers[current]=i;saveProgress();if(navigator.vibrate)navigator.vibrate(8);document.querySelectorAll('.answer').forEach((el,idx)=>{el.classList.toggle('selected',idx===i);el.disabled=true;});
+ transitionTimer=setTimeout(()=>{if(current<QUESTIONS.length-1){current++;requestAnimationFrame(()=>{renderQuestion();scrollQuizTop();});}else{requestAnimationFrame(finishQuiz);}},210);
 }
 function buildVector(){
  const raw=Array(6).fill(0), theoreticalMin=Array(6).fill(0), theoreticalMax=Array(6).fill(0);
@@ -1155,7 +1109,7 @@ function renderResult(state){
  document.getElementById('resultVariant').textContent=buildVariant(user);document.getElementById('resultStability').textContent=(state.stability||60)+'% · '+stabilityLabel(state.stability||60);document.getElementById('resultFileId').textContent=state.signature||makeSignature(user,best.code);
  document.getElementById('resultAura').innerHTML=dynamic.aura.map(x=>`<span>${x}</span>`).join('');
  renderResultQuickDims(user);
- document.getElementById('manifestoBlock').innerHTML='<small>PERSONAL MANIFESTO</small><p>'+dynamic.manifesto+'</p>';
+ const gm=document.getElementById('gameMatchValue');if(gm)gm.textContent=best.sim.toFixed(1)+'%';
  document.getElementById('personaBadges').innerHTML=dynamic.badges.map(x=>`<span>${x}</span>`).join('');
  document.getElementById('manifestoText').textContent=dynamic.manifesto;
  document.getElementById('survivalDrive').textContent=dynamic.driveTitle;document.getElementById('survivalDriveText').textContent=dynamic.driveText;
@@ -1169,8 +1123,9 @@ function renderResult(state){
  document.getElementById('bulletList').innerHTML=best.strengths.map((x,i)=>`<div class="bullet"><i>0${i+1}</i><span>${x}</span></div>`).join('')+`<div class="bullet"><i>!</i><span>${best.risk}</span></div>`;
  document.getElementById('bestMate').textContent=best.mate;document.getElementById('bestMateText').textContent=best.mateText;document.getElementById('friction').textContent=best.friction;document.getElementById('frictionText').textContent=best.frictionText;
  document.getElementById('coverArt').querySelectorAll('svg.personArt,img.personArt').forEach(x=>x.remove());document.getElementById('coverArt').insertAdjacentHTML('afterbegin',personaImage(best,false));const sm=PERSONA_SCENE_META[best.code]||[];document.getElementById('personaSceneCaption').innerHTML=sm.map(x=>`<span>${x}</span>`).join('');
- renderRadar(user);renderDims(user);renderAlts(ranked.slice(1,4));const vc=document.getElementById('viralCode');if(vc)vc.textContent='CHALLENGE / '+(state.signature||makeSignature(user,best.code));const ml=document.getElementById('matchupLine');if(ml){if(challengeSourceCode){const src=ARCHETYPES.find(a=>a.code===challengeSourceCode);ml.style.display='block';ml.textContent='好友结果：'+(src?src.name:challengeSourceCode)+'  →  你的结果：'+best.name+(challengeSourceCode===best.code?' · 同类识别成功':' · 你们不是同一个物种');}else ml.style.display='none';}window.scrollTo({top:0,behavior:'smooth'});
+ renderDims(user);renderAlts(ranked.slice(1,4));showResultTab('archive');const vc=document.getElementById('viralCode');if(vc)vc.textContent='CHALLENGE / '+(state.signature||makeSignature(user,best.code));const ml=document.getElementById('matchupLine');if(ml){if(challengeSourceCode){const src=ARCHETYPES.find(a=>a.code===challengeSourceCode);ml.style.display='block';ml.textContent='好友结果：'+(src?src.name:challengeSourceCode)+'  →  你的结果：'+best.name+(challengeSourceCode===best.code?' · 同类识别成功':' · 你们不是同一个物种');}else ml.style.display='none';}window.scrollTo({top:0,behavior:'smooth'});
 }
+function showResultTab(name){document.querySelectorAll('.resultGameTabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));document.querySelectorAll('.resultGamePanel').forEach(p=>p.classList.toggle('active',p.id==='resultTab'+name.charAt(0).toUpperCase()+name.slice(1)));if(innerWidth<700){const nav=document.querySelector('.resultGameTabs');if(nav)nav.scrollIntoView({behavior:'smooth',block:'start'});}}
 function buildPersonalSentence(user){const pairs=DIM_KEYS.map((k,i)=>[k,user[i]]).sort((a,b)=>b[1]-a[1]);const high=pairs.slice(0,2).map(x=>DIM_NAMES[x[0]]).join(' × ');const low=DIM_NAMES[pairs[pairs.length-1][0]];return `你的突出组合是「${high}」，相对最低的是「${low}」。这说明你的结果不是由单个标签决定，而是由几种校园行为倾向共同形成。`;}
 function renderDims(user){document.getElementById('dimList').innerHTML=DIM_KEYS.map((k,i)=>`<div class="dimRow"><label>${DIM_NAMES[k]}</label><div class="dimTrack"><div class="dimFill" style="width:${user[i]}%"></div></div><b>${user[i]}</b></div>`).join('');}
 function renderRadar(user){
@@ -1210,7 +1165,7 @@ async function makePoster(){
  const grad=ctx.createRadialGradient(880,110,10,880,110,560);grad.addColorStop(0,palette.glow);grad.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,1080,720);
  // top brand
  ctx.fillStyle=accent;roundRect(ctx,58,48,282,50,25,true);ctx.fillStyle='#121315';ctx.font='900 24px sans-serif';ctx.fillText('CAMPUS//ARCHIVE',80,82);
- ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V6',58,132);
+ ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V6.3',58,132);
  // full-bleed visual
  ctx.save();roundRectPath(ctx,58,166,964,660,32);ctx.clip();
  try{const img=await rasterImage(PERSONA_IMAGES[best.code]);const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height,bw=964,bh=660,scale=Math.max(bw/iw,bh/ih),sw=bw/scale,sh=bh/scale,sx=(iw-sw)/2,sy=(ih-sh)/2;ctx.imageSmoothingEnabled=false;ctx.drawImage(img,sx,sy,sw,sh,58,166,bw,bh);}catch(e){ctx.fillStyle='#181b20';ctx.fillRect(58,166,964,660)}
