@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111214">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
+<meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
+<meta name="campus-archive-build" content="5.4.0-story-share">
+<meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
+<meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
+<title>大学牲人格鉴定 · CAMPUS//ARCHIVE V5.4</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --ink:#121315;
+  --paper:#f1eee7;
+  --paper2:#e7e2d7;
+  --panel:#191b1e;
+  --panel2:#222529;
+  --line:rgba(18,19,21,.16);
+  --white:#fbfaf6;
+  --muted:#7a766e;
+  --acid:#c9ff3d;
+  --red:#ff5b4d;
+  --blue:#75b9ff;
+  --shadow:0 28px 90px rgba(0,0,0,.22);
+  --radius:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{
+  margin:0;min-height:100dvh;overflow-x:hidden;
+  color:var(--ink);background:
+    radial-gradient(900px 600px at -10% 20%,rgba(201,255,61,.08),transparent 58%),
+    radial-gradient(820px 520px at 110% 72%,rgba(117,185,255,.08),transparent 58%),
+    #101113;
+  font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+}
+button{font:inherit}
+button:focus-visible{outline:3px solid rgba(201,255,61,.65);outline-offset:3px}
+.hidden{display:none!important}
+.wrap{width:min(1180px,calc(100% - 28px));margin:0 auto;padding:14px 0 72px;position:relative}
+.topbar{height:58px;display:flex;align-items:center;justify-content:space-between;color:#e9e7e1;padding:0 2px}
+.brand{font:800 13px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em}
+.brand span{color:var(--acid)}
+.topmeta{font:600 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.13em;color:#777d82}
+
+/* splash */
+#splash{position:fixed;inset:0;z-index:1000;background:#0e0f11;display:grid;place-items:center;transition:opacity .5s ease,visibility .5s ease}
+#splash.out{opacity:0;visibility:hidden}
+.splashBox{text-align:center;color:#f4f0e7;position:relative;padding:34px}
+.scanDisc{width:164px;height:164px;margin:0 auto 30px;position:relative;border:1px solid #30343a;border-radius:50%;display:grid;place-items:center}
+.scanDisc:before,.scanDisc:after{content:"";position:absolute;border-radius:50%;inset:16px;border:1px dashed #3f444b;animation:spin 7s linear infinite}
+.scanDisc:after{inset:37px;border-style:solid;border-color:rgba(201,255,61,.36);animation-direction:reverse;animation-duration:4.5s}
+.scanLine{width:1px;height:74px;background:linear-gradient(transparent,var(--acid));transform-origin:50% 100%;position:absolute;top:8px;animation:spin 1.6s linear infinite}
+.scanCore{width:42px;height:42px;background:var(--acid);border-radius:2px;display:grid;place-items:center;color:#111;font:900 11px/1 ui-monospace,monospace;box-shadow:0 0 44px rgba(201,255,61,.16)}
+.splashBrand{font:900 27px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.09em}
+.splashBrand i{font-style:normal;color:var(--acid)}
+.splashSub{margin-top:11px;font:600 9px/1.5 ui-monospace,monospace;letter-spacing:.24em;color:#71767d}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* hero */
+.hero{background:var(--paper);border-radius:34px;overflow:hidden;box-shadow:var(--shadow);position:relative;min-height:680px;display:grid;grid-template-columns:1.04fr .96fr}
+.hero:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(18,19,21,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(18,19,21,.035) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(90deg,#000,transparent 75%)}
+.heroCopy{padding:64px 58px 54px;position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center}
+.eyebrow{font:800 11px/1 ui-monospace,monospace;letter-spacing:.18em;text-transform:uppercase;color:#737168;margin-bottom:24px}
+.eyebrow b{color:#111}
+.hero h1{margin:0;font-size:clamp(48px,6vw,82px);line-height:.96;letter-spacing:-.065em;font-weight:950;max-width:640px}
+.hero h1 em{font-style:normal;display:inline-block;background:var(--acid);padding:0 .08em .06em;transform:rotate(-1deg)}
+.heroDesc{margin:25px 0 0;max-width:610px;font-size:16px;line-height:1.9;color:#5f5c55;font-weight:520}
+.heroQuote{margin-top:22px;padding:14px 17px;border-left:4px solid #17181a;background:rgba(255,255,255,.45);max-width:610px;font:650 13px/1.8 ui-monospace,"PingFang SC",monospace;color:#303033}
+.heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.btn{border:0;border-radius:999px;padding:14px 20px;font-weight:850;cursor:pointer;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:#111;color:#f8f5ed;box-shadow:0 10px 24px rgba(0,0,0,.16)}
+.btn.primary .dot{width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 0 5px rgba(201,255,61,.12)}
+.btn.secondary{background:transparent;color:#18191a;border:1px solid rgba(18,19,21,.28)}
+.heroStats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:24px;max-width:610px}
+.heroStat{border:1px solid rgba(18,19,21,.13);padding:13px 14px;background:rgba(255,255,255,.32)}
+.heroStat strong{display:block;font:900 21px/1 ui-monospace,monospace;letter-spacing:-.06em}
+.heroStat span{display:block;margin-top:6px;font-size:10px;font-weight:800;letter-spacing:.06em;color:#767169}
+.heroVisual{position:relative;background:#17191c;color:#f7f4ed;min-height:680px;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:42px}
+.heroVisual:before{content:"CAMPUS ARCHIVE / CAMPUS ARCHIVE / CAMPUS ARCHIVE";position:absolute;left:-90px;top:54px;font:900 14px/1 ui-monospace,monospace;letter-spacing:.18em;color:rgba(255,255,255,.04);transform:rotate(90deg);transform-origin:left top;white-space:nowrap}
+.idCard{width:min(430px,100%);aspect-ratio:.76;border-radius:22px;background:#e9e5db;color:#121315;position:relative;padding:23px;box-shadow:0 34px 70px rgba(0,0,0,.34);transform:rotate(2.2deg);overflow:hidden}
+.idCard:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(18,19,21,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(18,19,21,.04) 1px,transparent 1px);background-size:18px 18px}
+.idHead{position:relative;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #161719;padding-bottom:13px;font:850 11px/1.4 ui-monospace,monospace;letter-spacing:.08em}
+.idHead b{font-size:14px}
+.idPhoto{position:relative;margin-top:18px;height:60%;background:#111317;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.idPhoto svg{width:100%;height:100%;display:block}
+.idLabel{position:absolute;left:17px;bottom:15px;background:var(--acid);padding:8px 10px;font:900 11px/1 ui-monospace,monospace;transform:rotate(-1deg)}
+.idBottom{position:relative;margin-top:14px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}
+.idName strong{display:block;font-size:28px;line-height:1;letter-spacing:-.06em}
+.idName span{display:block;margin-top:7px;color:#777168;font:750 9px/1.4 ui-monospace,monospace;letter-spacing:.1em}
+.barcode{width:82px;height:30px;background:repeating-linear-gradient(90deg,#111 0,#111 2px,transparent 2px,transparent 4px,#111 4px,#111 5px,transparent 5px,transparent 8px)}
+.heroSticker{position:absolute;right:18px;top:18px;border:1px solid #4c5157;padding:8px 10px;font:800 9px/1 ui-monospace,monospace;letter-spacing:.12em;color:#8d939a;transform:rotate(4deg)}
+
+/* quiz */
+.quiz{display:none;min-height:calc(100dvh - 76px);border-radius:32px;overflow:hidden;background:#eae6dc;box-shadow:var(--shadow);position:relative}
+.quiz.active{display:block}
+.quizScene{position:absolute;inset:0;pointer-events:none;opacity:.22;overflow:hidden}
+.quizScene:before{content:"";position:absolute;width:72vw;height:72vw;max-width:900px;max-height:900px;border-radius:50%;border:1px solid rgba(0,0,0,.2);right:-22vw;top:-30vw;box-shadow:0 0 0 80px rgba(0,0,0,.025),0 0 0 160px rgba(0,0,0,.018)}
+.quizGrid{position:absolute;inset:0;background-image:linear-gradient(rgba(18,19,21,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(18,19,21,.045) 1px,transparent 1px);background-size:24px 24px;mask-image:linear-gradient(#000,transparent 95%)}
+.quizInner{position:relative;z-index:1;min-height:calc(100dvh - 76px);display:grid;grid-template-rows:auto 1fr auto;padding:26px 30px 24px}
+.quizTop{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center}
+.quizNum{font:900 13px/1 ui-monospace,monospace;letter-spacing:.03em}
+.progressTrack{height:4px;background:rgba(18,19,21,.12);overflow:hidden}
+.progressBar{height:100%;background:#131416;width:4%;transition:width .35s cubic-bezier(.2,.8,.2,1)}
+.quizTag{font:800 9px/1 ui-monospace,monospace;letter-spacing:.14em;color:#77726a}
+.questionStage{width:min(900px,100%);margin:auto;padding:48px 0 34px}
+.questionKicker{font:850 10px/1 ui-monospace,monospace;letter-spacing:.18em;color:#777269;margin-bottom:17px}
+.question{font-size:clamp(30px,5vw,56px);line-height:1.1;letter-spacing:-.045em;margin:0 0 30px;font-weight:950;max-width:820px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.answer{border:1px solid rgba(18,19,21,.14);background:rgba(255,255,255,.54);min-height:92px;padding:17px 18px;display:grid;grid-template-columns:34px 1fr;align-items:center;gap:13px;text-align:left;cursor:pointer;border-radius:15px;transition:transform .15s,border-color .15s,background .15s,box-shadow .15s;color:#1c1d1f}
+.answer:hover{transform:translateY(-2px);border-color:#17181a;background:#f9f6ef;box-shadow:0 10px 26px rgba(0,0,0,.07)}
+.answer.selected{background:#151719;color:#f3f1eb;border-color:#151719}
+.answer.selected .letter{background:var(--acid);color:#111;border-color:var(--acid)}
+.letter{width:31px;height:31px;border:1px solid rgba(18,19,21,.25);display:grid;place-items:center;border-radius:50%;font:900 11px/1 ui-monospace,monospace}
+.answerText{font-size:14px;line-height:1.6;font-weight:760}
+.quizBottom{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid rgba(18,19,21,.12);padding-top:15px}
+.micro{font:700 9px/1.6 ui-monospace,monospace;letter-spacing:.08em;color:#777169}
+.navBtns{display:flex;gap:8px}
+.navBtn{border:1px solid rgba(18,19,21,.18);background:rgba(255,255,255,.48);color:#17181a;border-radius:999px;padding:10px 14px;font-size:12px;font-weight:850;cursor:pointer}
+.navBtn:disabled{opacity:.35;cursor:default}
+.quizFlash{animation:qIn .34s cubic-bezier(.2,.8,.2,1)}
+@keyframes qIn{from{opacity:.25;transform:translateY(9px)}to{opacity:1;transform:none}}
+
+/* result */
+.result{display:none}
+.result.active{display:block}
+.resultHero{display:grid;grid-template-columns:.91fr 1.09fr;border-radius:32px;overflow:hidden;box-shadow:var(--shadow);background:#e9e5db;min-height:690px}
+.cover{background:#141619;color:#f4f1ea;padding:28px;position:relative;display:flex;flex-direction:column;overflow:hidden}
+.cover:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:22px 22px}
+.coverHead{position:relative;display:flex;justify-content:space-between;align-items:center;font:800 10px/1 ui-monospace,monospace;letter-spacing:.12em;color:#959a9f}
+.coverHead b{color:var(--acid);font-size:12px}
+.coverArt{position:relative;flex:1;margin:22px 0 18px;border:1px solid #373b40;min-height:430px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0f1113}
+.coverArt svg{width:100%;height:100%;display:block;position:absolute;inset:0}
+.coverCode{position:absolute;left:17px;top:17px;font:900 76px/.86 ui-monospace,monospace;color:rgba(255,255,255,.06);letter-spacing:-.08em}
+.coverBadge{position:absolute;right:14px;top:14px;background:var(--acid);color:#111;padding:7px 9px;font:950 10px/1 ui-monospace,monospace;letter-spacing:.08em;transform:rotate(2deg)}
+.coverIdentity{position:absolute;left:18px;right:18px;bottom:18px;background:rgba(14,16,18,.86);border:1px solid rgba(255,255,255,.13);backdrop-filter:blur(10px);padding:15px}
+.coverIdentity small{display:block;font:800 9px/1 ui-monospace,monospace;letter-spacing:.15em;color:#8e959b}
+.coverIdentity strong{display:block;margin-top:7px;font-size:34px;line-height:1;letter-spacing:-.05em}
+.coverIdentity span{display:block;margin-top:9px;color:#c4c4bf;font:650 11px/1.5 ui-monospace,"PingFang SC",monospace}
+.coverFoot{position:relative;display:flex;justify-content:space-between;align-items:end;font:700 9px/1.5 ui-monospace,monospace;color:#7e848a}
+.coverFoot strong{font-size:20px;line-height:1;color:#f1eee8}
+.dossier{padding:48px 46px;background:#ebe7dd;position:relative}
+.dossier:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.8%,rgba(18,19,21,.025) 50%,transparent 50.2%);pointer-events:none}
+.dossierKicker{font:900 10px/1 ui-monospace,monospace;letter-spacing:.16em;color:#747067}
+.resultTitle{margin:13px 0 0;font-size:clamp(46px,6vw,78px);line-height:.92;letter-spacing:-.075em;font-weight:950}
+.resultEnglish{margin-top:12px;font:900 11px/1 ui-monospace,monospace;letter-spacing:.18em;color:#767168}
+.resultLine{height:2px;background:#17181a;margin:25px 0 20px;position:relative}
+.resultLine:after{content:"";position:absolute;right:0;top:-4px;width:10px;height:10px;background:var(--acid);border-radius:50%}
+.resultTagline{font-size:18px;line-height:1.85;font-weight:730;color:#363638;margin:0}
+.quoteBlock{margin-top:18px;background:#151719;color:#f3f0e9;padding:18px 20px;border-radius:14px;font:750 14px/1.8 ui-monospace,"PingFang SC",monospace}
+.quoteBlock b{color:var(--acid)}
+.attrGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:19px}
+.attr{border:1px solid rgba(18,19,21,.13);background:rgba(255,255,255,.38);padding:13px 14px;min-height:68px}
+.attr span{display:block;font:800 8px/1 ui-monospace,monospace;letter-spacing:.12em;color:#8a847a}
+.attr strong{display:block;margin-top:7px;font-size:14px;line-height:1.35}
+.dossierActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:21px}
+.resultBody{margin-top:14px;display:grid;grid-template-columns:1.02fr .98fr;gap:14px}
+.paperCard{background:#ebe7dd;border-radius:24px;padding:28px;box-shadow:0 18px 50px rgba(0,0,0,.12)}
+.darkCard{background:#181a1d;color:#efede7;border-radius:24px;padding:28px;box-shadow:0 18px 50px rgba(0,0,0,.14)}
+.sectionHead{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:20px}
+.sectionHead h3{margin:0;font-size:18px;letter-spacing:-.03em}
+.sectionHead span{font:800 9px/1 ui-monospace,monospace;letter-spacing:.12em;color:#88837a}
+.darkCard .sectionHead span{color:#71777d}
+.radarWrap{display:grid;grid-template-columns:minmax(220px,.8fr) 1fr;gap:20px;align-items:center}
+#radar{width:100%;max-width:330px;aspect-ratio:1;display:block;margin:auto}
+.dimList{display:grid;gap:9px}
+.dimRow{display:grid;grid-template-columns:78px 1fr 36px;gap:10px;align-items:center}
+.dimRow label{font-size:11px;font-weight:800;color:#585651}
+.dimTrack{height:7px;background:rgba(18,19,21,.10);overflow:hidden}
+.dimFill{height:100%;background:#17181a}
+.dimRow b{font:900 11px/1 ui-monospace,monospace;text-align:right}
+.analysisText{font-size:14px;line-height:1.95;color:#474643;margin:0}
+.darkCard .analysisText{color:#c7c6c1}
+.bulletList{display:grid;gap:9px;margin-top:17px}
+.bullet{border-top:1px solid rgba(255,255,255,.09);padding-top:10px;font-size:13px;line-height:1.65;color:#c5c4be;display:grid;grid-template-columns:18px 1fr;gap:8px}
+.bullet i{font-style:normal;color:var(--acid);font:900 11px/1.5 ui-monospace,monospace}
+.compat{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:19px}
+.compatBox{border:1px solid rgba(255,255,255,.10);padding:14px;background:rgba(255,255,255,.025)}
+.compatBox small{display:block;color:#777d82;font:800 8px/1 ui-monospace,monospace;letter-spacing:.12em}
+.compatBox strong{display:block;margin-top:7px;font-size:16px}
+.compatBox p{font-size:11px;line-height:1.65;color:#9ea0a0;margin:7px 0 0}
+.altList{display:grid;gap:8px;margin-top:16px}
+.alt{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border-top:1px solid rgba(18,19,21,.1);padding-top:10px}
+.alt .rank{font:900 10px/1 ui-monospace,monospace;color:#888179}.alt strong{font-size:13px}.alt b{font:900 11px/1 ui-monospace,monospace}
+.resultFooter{margin-top:14px;background:#101214;color:#7e8388;border-radius:20px;padding:18px 22px;display:flex;justify-content:space-between;gap:20px;align-items:center;font:650 10px/1.65 ui-monospace,"PingFang SC",monospace}
+.resultFooter b{color:#e9e6df}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,20px);z-index:1200;background:#111;color:#f0eee8;border:1px solid #363a3f;padding:11px 16px;border-radius:999px;font-size:12px;font-weight:780;opacity:0;pointer-events:none;transition:.25s;box-shadow:0 16px 36px rgba(0,0,0,.24)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:900px){
+ .hero{grid-template-columns:1fr;min-height:0}.heroVisual{min-height:520px}.heroCopy{padding:44px 36px 38px}.resultHero{grid-template-columns:1fr}.cover{min-height:720px}.resultBody{grid-template-columns:1fr}.dossier{padding:38px 30px}.radarWrap{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+ .wrap{width:100%;padding:0 0 48px}.topbar{height:54px;padding:0 15px}.topmeta{display:none}
+ .hero,.quiz,.resultHero{border-radius:0}.heroCopy{padding:34px 20px 31px}.hero h1{font-size:50px;line-height:.98}.heroDesc{font-size:14px;line-height:1.82}.heroQuote{font-size:12px}.heroActions .btn{flex:1 1 150px}.heroStats{grid-template-columns:repeat(3,1fr)}.heroStat{padding:11px 10px}.heroStat strong{font-size:18px}.heroVisual{min-height:500px;padding:28px 20px}.idCard{max-width:365px}
+ .quiz{min-height:calc(100dvh - 54px)}.quizInner{min-height:calc(100dvh - 54px);padding:18px 15px 17px}.quizTop{grid-template-columns:auto 1fr;gap:12px}.quizTag{display:none}.questionStage{padding:35px 0 22px}.question{font-size:34px;line-height:1.13;margin-bottom:22px}.answers{grid-template-columns:1fr;gap:8px}.answer{min-height:72px;padding:12px 13px;grid-template-columns:31px 1fr;gap:10px}.answerText{font-size:13px}.quizBottom{padding-top:12px}.micro{max-width:58%;font-size:8px}.navBtn{padding:9px 12px}
+ .cover{min-height:610px;padding:19px}.coverArt{min-height:430px;margin-top:18px}.coverIdentity strong{font-size:30px}.dossier{padding:30px 20px 28px}.resultTitle{font-size:56px}.resultTagline{font-size:15px}.quoteBlock{font-size:12px}.attrGrid{grid-template-columns:1fr 1fr}.attr{padding:11px;min-height:62px}.dossierActions .btn{flex:1 1 140px;padding:12px 14px;font-size:12px}
+ .resultBody{gap:10px;margin-top:10px}.paperCard,.darkCard{border-radius:0;padding:24px 20px}.radarWrap{grid-template-columns:1fr}.dimList{margin-top:8px}.compat{grid-template-columns:1fr}.resultFooter{border-radius:0;margin-top:10px;padding:17px 19px;align-items:flex-start;flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* V2 production additions */
+.progressResume{margin-top:14px;padding:12px 14px;border:1px dashed rgba(18,19,21,.22);border-radius:14px;font-size:12px;line-height:1.6;color:#66625c;background:rgba(255,255,255,.28)}
+.progressResume b{color:#181a1d}
+.modelStrip{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}.modelStrip span{font:800 10px/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.08em;padding:8px 10px;border:1px solid rgba(18,19,21,.14);background:rgba(255,255,255,.26)}
+.confidencePanel{margin-top:20px;display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid rgba(18,19,21,.13);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.22)}
+.confidencePanel>div{padding:14px 15px;border-right:1px solid rgba(18,19,21,.10)}.confidencePanel>div:last-child{border-right:0}.confidencePanel span{display:block;font-size:10px;color:#77726a;letter-spacing:.08em;margin-bottom:7px}.confidencePanel b{font-size:13px;line-height:1.35}
+.twinCard{display:grid;grid-template-columns:.75fr 1.25fr;gap:20px;align-items:stretch}.twinBadge{min-height:190px;border:1px solid rgba(255,255,255,.11);display:flex;flex-direction:column;justify-content:space-between;padding:22px;background:linear-gradient(145deg,rgba(201,255,61,.08),transparent 60%),#171a1d}.twinBadge small{font:800 10px/1 ui-monospace,monospace;color:#899098;letter-spacing:.12em}.twinBadge strong{font-size:34px;line-height:1.05}.twinBadge em{font-style:normal;color:var(--acid);font:900 20px/1 ui-monospace,monospace}.twinCopy{display:flex;flex-direction:column;justify-content:center}.twinCopy p{margin:10px 0 0;color:#b7bcc0;line-height:1.85;font-size:14px}
+.galleryBtn{margin-top:15px;background:transparent;border:1px solid #474c52;color:#d7dadd;border-radius:999px;padding:11px 16px;font-weight:800;cursor:pointer}
+.modal{position:fixed;inset:0;z-index:12000;display:none;background:rgba(7,8,10,.82);backdrop-filter:blur(10px);padding:22px;overflow:auto}.modal.show{display:block}.modalInner{max-width:1080px;margin:30px auto;background:#ece8df;color:#17181a;border-radius:28px;padding:24px;box-shadow:0 30px 100px rgba(0,0,0,.45)}.modalHead{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:18px}.modalHead h3{margin:0;font-size:28px}.modalClose{border:0;background:#17181a;color:#fff;width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:22px}.galleryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.galleryItem{padding:16px;background:#f8f6f0;border:1px solid rgba(18,19,21,.12);min-height:132px;display:flex;flex-direction:column;justify-content:space-between}.galleryItem small{font:800 9px/1 ui-monospace,monospace;color:#777}.galleryItem strong{font-size:19px;display:block;margin-top:8px}.galleryItem p{margin:7px 0 0;color:#77716a;font-size:11px;line-height:1.55}.galleryItem .gLevel{align-self:flex-end;color:#17181a;background:var(--acid);padding:5px 7px;font:900 9px/1 ui-monospace,monospace}
+.answer{touch-action:manipulation}.answer:active{transform:scale(.992)}
+.quizPulse{animation:qPulse .28s ease}@keyframes qPulse{from{opacity:.25;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(max-width:760px){.confidencePanel{grid-template-columns:1fr}.confidencePanel>div{border-right:0;border-bottom:1px solid rgba(18,19,21,.10)}.confidencePanel>div:last-child{border-bottom:0}.twinCard{grid-template-columns:1fr}.galleryGrid{grid-template-columns:repeat(2,1fr)}.modal{padding:0}.modalInner{border-radius:0;margin:0;min-height:100dvh;padding:20px}.galleryItem{min-height:120px}}
+
+
+/* V3 illustrated quiz + portraits */
+.quizLayout{display:grid;grid-template-columns:340px minmax(0,1fr);gap:0;min-height:calc(100dvh - 76px)}
+.quizPanel{background:linear-gradient(180deg,#14171b 0%,#101215 100%);color:#f3efe5;padding:24px 22px 20px;border-right:1px solid rgba(255,255,255,.08);display:grid;grid-template-rows:auto minmax(220px,290px) auto auto auto;gap:14px;position:relative;overflow:hidden}
+.quizPanel:before{content:"";position:absolute;inset:-10% -10% auto auto;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(201,255,61,.14),transparent 68%);filter:blur(8px)}
+.quizPanelTop small,.quizPanelCard small{display:block;font:800 9px/1 ui-monospace,monospace;letter-spacing:.16em;color:#8a9199;margin-bottom:9px}
+.questionSignal{display:inline-flex;align-items:center;gap:9px;padding:9px 12px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.035);font:850 11px/1 ui-monospace,monospace;letter-spacing:.08em}
+.questionSignal:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 0 6px rgba(201,255,61,.12)}
+.quizPreviewArt{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.1);border-radius:24px;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:240px;position:relative}
+.quizPreviewArt svg{width:100%;height:100%;display:block}
+.quizPanelCard{border:1px solid rgba(255,255,255,.10);border-radius:18px;background:rgba(255,255,255,.035);padding:14px 14px 13px;position:relative;z-index:1}
+.focusChips{display:flex;flex-wrap:wrap;gap:8px}.focusChips span{padding:8px 10px;border-radius:999px;background:rgba(201,255,61,.11);border:1px solid rgba(201,255,61,.18);font:800 10px/1 ui-monospace,monospace;color:#eff5dd;letter-spacing:.06em}
+.liveProfile{font-size:12px;line-height:1.75;color:#c9ced2;min-height:40px}
+.quizPanelStats{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1}.quizPanelStats>div{border:1px solid rgba(255,255,255,.10);padding:13px 14px;background:rgba(255,255,255,.03);border-radius:16px}.quizPanelStats span{display:block;font-size:10px;color:#858c93;letter-spacing:.08em}.quizPanelStats b{display:block;margin-top:6px;font:900 18px/1 ui-monospace,monospace;color:#f7f2e9}
+.quizMain{display:grid;grid-template-rows:auto 1fr auto;min-height:calc(100dvh - 76px);padding:26px 30px 24px;position:relative}
+.quizTop{margin-bottom:0}.questionMeta{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px}.qMetaChip{padding:8px 10px;border-radius:999px;background:rgba(18,19,21,.06);border:1px solid rgba(18,19,21,.08);font:800 10px/1 ui-monospace,monospace;color:#66625c}
+.questionHint{margin:0 0 28px;color:#6f6a62;font-size:13px;line-height:1.8;max-width:720px}
+.answer.selected{border-color:#17191c;background:#f7f5ee;box-shadow:0 10px 24px rgba(0,0,0,.06)}
+.answerBadge{display:block;margin-top:7px;font:800 9px/1 ui-monospace,monospace;color:#7b7771;letter-spacing:.1em}
+.coverArt .portraitFrame{position:absolute;inset:0}
+.galleryThumb{height:170px;border:1px solid rgba(18,19,21,.08);border-radius:18px;overflow:hidden;background:#16181b;margin-bottom:12px}.galleryThumb svg{width:100%;height:100%;display:block}
+.personMiniNote{font-size:11px;color:#7d776f;line-height:1.6;margin-top:6px}
+.galleryItem{padding:12px 12px 14px;border-radius:20px}
+.galleryBody{display:flex;flex-direction:column;justify-content:space-between;gap:8px}
+@media(max-width:900px){.quizLayout{grid-template-columns:1fr}.quizPanel{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;gap:12px;padding:18px;border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}.quizPanelTop{grid-column:1/-1}.quizPreviewArt{grid-column:1/-1;min-height:190px}.quizPanelStats{grid-column:1/-1}.quizMain{min-height:auto}}
+@media(max-width:620px){.quizPanel{padding:15px;grid-template-columns:1fr}.quizPreviewArt{min-height:170px}.quizPanelCard{padding:12px}.quizMain{padding:16px 15px 17px}.questionMeta{margin-bottom:14px}.questionHint{font-size:12px;margin-bottom:18px}.galleryThumb{height:138px}}
+
+
+/* V4 cinematic upgrade */
+.quizMiniDims{display:grid;gap:10px}
+.quizMiniDims .mRow{display:grid;grid-template-columns:44px 1fr 34px;align-items:center;gap:10px;font-size:11px;color:#d7dce0}
+.quizMiniDims .mTrack{height:8px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.quizMiniDims .mFill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--acid),rgba(255,255,255,.85))}
+.quizMiniDims .mRow b{font:800 10px/1 ui-monospace,monospace;color:#f3efe5}
+.quizMiniDims .mHint{font-size:12px;line-height:1.7;color:#9ca3ab}
+.resultAura,.personaBadges{display:flex;flex-wrap:wrap;gap:9px}
+.resultAura{margin-top:16px}
+.resultAura span,.personaBadges span{display:inline-flex;align-items:center;padding:8px 11px;border-radius:999px;font:800 10px/1 ui-monospace,monospace;letter-spacing:.08em;border:1px solid rgba(23,24,26,.12);background:rgba(23,24,26,.04);color:#53504b}
+.manifestoBlock{margin-top:14px;border:1px solid rgba(23,24,26,.08);background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.22));border-radius:18px;padding:16px 18px 15px}
+.manifestoBlock small{display:block;font:800 10px/1 ui-monospace,monospace;letter-spacing:.12em;color:#78726a;margin-bottom:10px}
+.manifestoBlock p{margin:0;color:#47433d;font-size:14px;line-height:1.85}
+.manifestoCard{margin-top:14px;border-radius:18px;background:linear-gradient(145deg,rgba(201,255,61,.14),rgba(255,255,255,.12));padding:16px 18px 18px;border:1px solid rgba(23,24,26,.08)}
+.manifestoCard b{display:block;font-size:18px;margin-bottom:8px}.manifestoCard p{margin:0;color:#575149;font-size:14px;line-height:1.85}
+.survivalGrid{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.survivalGrid>div{border:1px solid rgba(23,24,26,.08);border-radius:18px;padding:16px;background:#f8f5ee}
+.survivalGrid small{display:block;font:800 10px/1 ui-monospace,monospace;letter-spacing:.12em;color:#8d877d;margin-bottom:10px}
+.survivalGrid strong{display:block;font-size:18px;line-height:1.25;color:#1a1b1d;margin-bottom:8px}.survivalGrid p{margin:0;color:#68625a;line-height:1.78;font-size:13px}
+.adviceList{margin-top:14px;display:grid;gap:12px}
+.adviceItem{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:flex-start;padding:14px 15px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.adviceItem i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(201,255,61,.18);font:900 13px/1 ui-monospace,monospace;color:var(--acid);font-style:normal}
+.adviceItem div b{display:block;color:#f4efe6;font-size:14px;margin-bottom:5px}.adviceItem div p{margin:0;color:#b8bcc0;line-height:1.8;font-size:13px}
+.dailyLine{margin-top:14px;border-radius:16px;padding:15px 16px;background:rgba(201,255,61,.07);border:1px solid rgba(201,255,61,.12)}
+.dailyLine small{display:block;font:800 10px/1 ui-monospace,monospace;letter-spacing:.12em;color:#96a07e;margin-bottom:10px}.dailyLine p{margin:0;color:#eef1df;font-size:14px;line-height:1.82}
+.twinBadge{grid-template-rows:auto 1fr auto;display:grid}
+.twinArt{border:1px solid rgba(255,255,255,.10);border-radius:18px;overflow:hidden;min-height:170px;background:#121417;margin:14px 0}.twinArt svg{width:100%;height:100%;display:block}
+@media(max-width:920px){.survivalGrid{grid-template-columns:1fr}}
+@media(max-width:760px){.resultAura span,.personaBadges span{font-size:9px;padding:7px 10px}}
+
+
+/* V5.1 commercial layer */
+.commercialBar{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 0;align-items:center}.commercialPill{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;background:#17191c;color:#f2efe7;font:800 10px/1 ui-monospace,monospace;letter-spacing:.06em}.commercialPill b{color:var(--acid)}.commercialPill.light{background:rgba(255,255,255,.45);color:#403d38;border:1px solid rgba(18,19,21,.12)}
+.heroProof{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px;max-width:610px}.proofBox{padding:12px 13px;border:1px solid rgba(18,19,21,.11);background:rgba(255,255,255,.31);border-radius:14px}.proofBox small{display:block;font:800 9px/1 ui-monospace,monospace;color:#827d74;letter-spacing:.09em}.proofBox strong{display:block;margin-top:7px;font-size:13px;line-height:1.45}.personaTicker{margin-top:18px;display:flex;gap:8px;overflow:hidden;max-width:610px;mask-image:linear-gradient(90deg,#000 88%,transparent)}.personaTicker span{white-space:nowrap;padding:8px 10px;border:1px dashed rgba(18,19,21,.16);font:800 10px/1 ui-monospace,monospace;color:#6f6b63;background:rgba(255,255,255,.26)}
+.entitlementCard{margin-top:16px;max-width:610px;padding:13px 15px;border-radius:16px;border:1px solid rgba(18,19,21,.11);display:flex;justify-content:space-between;gap:14px;align-items:center;background:linear-gradient(90deg,rgba(201,255,61,.15),rgba(255,255,255,.28))}.entitlementCard small{display:block;font:800 9px/1 ui-monospace,monospace;color:#77726a;letter-spacing:.1em}.entitlementCard b{display:block;margin-top:6px;font-size:13px}.entitlementCard button{border:0;background:#17191c;color:#fff;border-radius:999px;padding:9px 12px;font:800 10px/1 ui-monospace,monospace;cursor:pointer}
+.accessModal{position:fixed;inset:0;z-index:18000;display:none;background:rgba(8,9,11,.86);backdrop-filter:blur(12px);padding:18px}.accessModal.show{display:grid;place-items:center}.accessBox{width:min(520px,100%);background:#efebe2;color:#161719;border-radius:28px;box-shadow:0 32px 100px rgba(0,0,0,.5);padding:25px;position:relative}.accessClose{position:absolute;right:18px;top:18px;border:0;width:38px;height:38px;border-radius:50%;background:#151719;color:#fff;font-size:20px;cursor:pointer}.accessKicker{font:800 10px/1 ui-monospace,monospace;letter-spacing:.14em;color:#7b766e}.accessBox h3{font-size:32px;line-height:1.05;letter-spacing:-.05em;margin:13px 0 9px}.accessBox>p{color:#67625a;font-size:13px;line-height:1.8;margin:0}.accessStatus{margin:18px 0;padding:14px 15px;border-radius:16px;background:#151719;color:#f2efe7;display:flex;justify-content:space-between;gap:10px;align-items:center}.accessStatus small{font:800 9px/1 ui-monospace,monospace;color:#8e949a}.accessStatus b{display:block;margin-top:7px}.licenseInput{width:100%;border:1px solid rgba(18,19,21,.18);background:#faf8f2;border-radius:14px;padding:14px 15px;font:800 13px/1.4 ui-monospace,monospace;outline:none;text-transform:uppercase}.accessActions{display:flex;gap:9px;margin-top:10px}.accessActions button{flex:1;border:0;border-radius:999px;padding:12px;font-weight:850;cursor:pointer}.accessActions .unlock{background:#151719;color:#fff}.accessActions .copyDevice{background:transparent;border:1px solid rgba(18,19,21,.18)}.accessNote{font-size:10px!important;color:#8a857d!important;margin-top:12px!important}.developerLink{display:inline-flex;margin-top:13px;color:#555;text-decoration:none;font:800 10px/1 ui-monospace,monospace;border-bottom:1px solid #777;padding-bottom:3px}
+.viralCard{grid-column:1/-1;border-radius:26px;background:linear-gradient(145deg,#131519,#1d2125);color:#f3efe8;padding:24px;display:grid;grid-template-columns:1fr .78fr;gap:18px;box-shadow:0 20px 50px rgba(0,0,0,.18);overflow:hidden;position:relative}.viralCard:before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;right:-90px;top:-110px;background:radial-gradient(circle,rgba(201,255,61,.18),transparent 68%)}.viralCopy,.viralSide{position:relative;z-index:1}.viralKicker{font:800 9px/1 ui-monospace,monospace;letter-spacing:.15em;color:#8c9399}.viralCard h3{font-size:32px;line-height:1.08;letter-spacing:-.045em;margin:12px 0 10px}.viralCard p{color:#b8bdc0;font-size:13px;line-height:1.85;margin:0}.viralCode{margin-top:16px;padding:13px 14px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035);border-radius:14px;font:900 14px/1 ui-monospace,monospace;color:var(--acid);letter-spacing:.08em}.viralButtons{display:grid;gap:9px;margin-top:16px}.viralButtons button{border-radius:999px;border:1px solid rgba(255,255,255,.14);padding:12px 14px;background:transparent;color:#f5f1e9;font-weight:850;cursor:pointer}.viralButtons button.primary{background:var(--acid);color:#111;border-color:var(--acid)}.viralSide{border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035);border-radius:20px;padding:18px;display:flex;flex-direction:column;justify-content:space-between}.viralSide small{font:800 9px/1 ui-monospace,monospace;color:#858d94;letter-spacing:.12em}.viralSide strong{display:block;font-size:20px;line-height:1.25;margin-top:10px}.viralSide .miniSteps{display:grid;gap:8px;margin-top:18px}.viralSide .miniSteps div{display:grid;grid-template-columns:24px 1fr;gap:9px;color:#b5b9bc;font-size:12px;line-height:1.55}.viralSide .miniSteps i{font-style:normal;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:rgba(201,255,61,.12);color:var(--acid);font:900 9px ui-monospace,monospace}
+.posterHint{margin-top:10px;font-size:10px;color:#878279;line-height:1.6}.footerDev{color:#9da1a4;text-decoration:none;border-bottom:1px solid #51565b;padding-bottom:2px}
+@media(max-width:760px){.heroProof{grid-template-columns:1fr}.entitlementCard{align-items:flex-start}.viralCard{grid-template-columns:1fr;padding:20px;border-radius:0}.accessModal{padding:0}.accessBox{border-radius:0;min-height:100dvh;padding:26px 20px}.personaTicker{mask-image:none;overflow-x:auto}.commercialBar{margin-top:12px}}
+
+
+.challengeBanner{display:none;margin-top:14px;max-width:610px;border-radius:16px;padding:13px 15px;background:#151719;color:#f3efe7;border:1px solid #34393e}.challengeBanner.show{display:block}.challengeBanner small{display:block;font:800 9px/1 ui-monospace,monospace;color:#8e959b;letter-spacing:.12em}.challengeBanner strong{display:block;margin-top:7px;font-size:14px}.challengeBanner b{color:var(--acid)}.matchupLine{margin-top:12px;padding:12px 13px;border-radius:14px;background:rgba(201,255,61,.08);border:1px solid rgba(201,255,61,.12);font-size:12px;line-height:1.7;color:#dfe6d0}
+
+
+/* V5.1 Pixel Cinema visual overhaul */
+:root{--cinema-black:#0b0d10;--cinema-paper:#ede9df}
+.cover{padding:0;background:var(--cinema-black);min-height:690px}
+.cover:before{display:none}
+.coverHead{position:absolute;z-index:6;left:22px;right:22px;top:20px;color:rgba(255,255,255,.72);text-shadow:0 2px 10px rgba(0,0,0,.55)}
+.coverHead b{color:#fff}
+.coverArt{margin:0;border:0;min-height:690px;background:#0d0f12;flex:1}
+.coverArt:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08) 40%,rgba(4,6,8,.92) 100%);pointer-events:none;z-index:2}
+.coverArt img.personArt{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;z-index:1;transform:translateZ(0)}
+.coverCode{z-index:4;left:22px;top:64px;font-size:68px;color:rgba(255,255,255,.12);text-shadow:0 2px 14px rgba(0,0,0,.4)}
+.coverBadge{z-index:5;top:68px;right:22px;background:rgba(10,12,15,.70);color:#fff;border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);transform:none;border-radius:999px;padding:8px 12px}
+.coverIdentity{z-index:5;left:22px;right:22px;bottom:76px;background:transparent;border:0;backdrop-filter:none;padding:0;text-shadow:0 3px 22px rgba(0,0,0,.75)}
+.coverIdentity small{color:rgba(255,255,255,.66)}
+.coverIdentity strong{font-size:42px;color:#fff;letter-spacing:-.055em}
+.coverIdentity span{color:rgba(255,255,255,.74)}
+.coverFoot{position:absolute;z-index:5;left:22px;right:22px;bottom:21px;color:rgba(255,255,255,.58);text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.coverFoot strong{color:#fff}
+.galleryThumb{height:auto;aspect-ratio:5/4;border:0;border-radius:14px;overflow:hidden;background:#111;margin-bottom:12px}
+.galleryThumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.galleryItem:hover .galleryThumb img{transform:scale(1.025)}
+.twinArt{aspect-ratio:5/4;min-height:0;border:0;border-radius:14px;background:#101216;overflow:hidden}
+.twinArt img{width:100%;height:100%;object-fit:cover;display:block}
+.personaSceneCaption{position:absolute;z-index:5;left:22px;bottom:154px;display:flex;gap:8px;flex-wrap:wrap;pointer-events:none}
+.personaSceneCaption span{padding:7px 10px;border-radius:999px;background:rgba(10,12,15,.58);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(10px);font:800 9px/1 ui-monospace,monospace;color:rgba(255,255,255,.82);letter-spacing:.08em}
+.galleryItem{transition:transform .25s ease,box-shadow .25s ease}.galleryItem:hover{transform:translateY(-3px)}
+@media(max-width:760px){.cover{min-height:560px}.coverArt{min-height:560px}.coverIdentity{bottom:72px}.coverIdentity strong{font-size:36px}.personaSceneCaption{bottom:144px}.coverCode{font-size:54px}}
+@media(prefers-reduced-motion:reduce){.galleryThumb img,.galleryItem{transition:none!important}}
+
+
+/* V5.3 visual polish */
+:root{
+  --persona-accent:#c9ff3d;
+  --persona-accent-soft:#eff8c6;
+  --persona-deep:#17191c;
+  --persona-paper:#f1eee7;
+  --persona-glow:rgba(201,255,61,.12);
+  --persona-glow-strong:rgba(201,255,61,.26);
+}
+body{
+  background:
+    radial-gradient(900px 600px at -10% 20%,var(--persona-glow),transparent 58%),
+    radial-gradient(820px 520px at 110% 72%,rgba(117,185,255,.08),transparent 58%),
+    #101113;
+  transition:background .35s ease;
+}
+.hero h1 em,.idLabel,.viralButtons button.primary,.galleryItem .gLevel,.quizMiniDims .mFill,.resultAura span,.personaBadges span{background:var(--persona-accent)!important}
+.btn.primary .dot,.questionSignal:before{background:var(--persona-accent)!important;box-shadow:0 0 0 5px color-mix(in srgb, var(--persona-accent) 20%, transparent)!important}
+.btn.primary{background:var(--persona-deep)!important}
+.personArt,.galleryThumb img,.coverArt img.personArt,.twinArt img.personArt,.idPreviewThumb img,.splashPreviewThumb img{image-rendering:pixelated;image-rendering:crisp-edges}
+.heroVisual{flex-direction:column;justify-content:center;gap:18px;background:
+ radial-gradient(460px 260px at 82% 10%,var(--persona-glow),transparent 60%),
+ linear-gradient(180deg,#17191c,#121417)}
+.heroPixelNote{width:min(520px,100%);color:#8f969d;font:700 11px/1.7 ui-monospace,monospace;letter-spacing:.04em;text-align:center}
+.heroPreviewRail{width:min(520px,100%);display:grid;grid-template-columns:repeat(4,1fr);gap:10px;position:relative;z-index:2}
+.idPreviewItem{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:8px;backdrop-filter:blur(8px);box-shadow:0 10px 24px rgba(0,0,0,.16)}
+.idPreviewThumb{aspect-ratio:.92;border-radius:12px;overflow:hidden;background:#0e1013;border:1px solid rgba(255,255,255,.08)}
+.idPreviewThumb img{width:100%;height:100%;display:block;object-fit:cover}
+.idPreviewItem b{display:block;margin-top:8px;color:#f3efe8;font-size:12px;line-height:1.2}
+.idPreviewItem span{display:block;margin-top:4px;color:#8f969d;font:700 9px/1.2 ui-monospace,monospace}
+.splashPreviewRail{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:min(300px,88vw);margin:18px auto 0}
+.splashPreviewThumb{aspect-ratio:1;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.09);background:#111315}
+.splashPreviewThumb img{width:100%;height:100%;object-fit:cover;display:block}
+.splashSub{margin-top:11px;font:600 9px/1.5 ui-monospace,monospace;letter-spacing:.24em;color:#71767d}
+.splashHint{margin-top:10px;color:#9aa1a7;font:700 9px/1.5 ui-monospace,monospace;letter-spacing:.12em}
+.resultHero,.paperCard,.darkCard,.viralCard{position:relative;overflow:hidden}
+.resultHero{background:linear-gradient(135deg,var(--persona-paper),#ece7dd)}
+.cover{background:
+ radial-gradient(320px 220px at 84% 8%,var(--persona-glow-strong),transparent 62%),
+ linear-gradient(180deg,#121417 0%,#0e1013 100%)}
+.coverHead b{color:#fff}
+.coverBadge{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15)}
+.coverCode{color:color-mix(in srgb, var(--persona-accent) 82%, white);text-shadow:0 0 26px color-mix(in srgb, var(--persona-accent) 26%, transparent)}
+.coverIdentity strong{text-shadow:0 6px 26px rgba(0,0,0,.34)}
+.paperCard::before,.darkCard::before,.viralCard::after,.dossier::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--persona-accent),transparent 75%);opacity:.95}
+.dossier::before{left:28px;right:28px;top:0;border-radius:999px;height:3px}
+.dossierActions .btn.secondary:hover,.galleryBtn:hover,.viralButtons button:hover{border-color:var(--persona-accent)!important;transform:translateY(-1px)}
+.resultAura span,.personaBadges span{color:#161719!important;border-color:transparent!important;background:color-mix(in srgb, var(--persona-accent) 86%, white) !important}
+.manifestoCard{background:linear-gradient(145deg,color-mix(in srgb, var(--persona-accent) 10%, white),rgba(255,255,255,.18))!important}
+.dailyLine{background:color-mix(in srgb, var(--persona-accent) 10%, rgba(255,255,255,.04))!important;border-color:color-mix(in srgb, var(--persona-accent) 22%, transparent)!important}
+.dailyLine small{color:color-mix(in srgb, var(--persona-accent) 32%, #96a07e)!important}
+.viralCard:before{background:radial-gradient(circle,color-mix(in srgb, var(--persona-accent) 30%, transparent),transparent 68%)!important}
+.viralCode{color:var(--persona-accent)!important}
+.viralSide .miniSteps i{background:color-mix(in srgb, var(--persona-accent) 16%, transparent)!important;color:var(--persona-accent)!important}
+.coverArt img.personArt,.twinArt img.personArt,.galleryThumb img{transform:translateZ(0)}
+.resultBody>*{content-visibility:auto;contain-intrinsic-size:720px}
+#coverArt,#twinArt,.galleryThumb,.idPreviewThumb,.splashPreviewThumb{background:#0d0f12}
+#coverArt::after,#twinArt::after,.galleryThumb::after,.idPreviewThumb::after,.splashPreviewThumb::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.18))}
+#twinArt,.galleryThumb,.idPreviewThumb,.splashPreviewThumb{position:relative}
+#hero.themeGlow{box-shadow:0 30px 100px rgba(0,0,0,.24)}
+@media(max-width:900px){.heroPreviewRail{grid-template-columns:repeat(2,1fr)}.heroPixelNote{font-size:10px}}
+@media(max-width:760px){.splashPreviewRail{width:min(250px,84vw)}.heroPreviewRail{width:100%}.idPreviewItem b{font-size:11px}}
+
+
+/* V5.4 story flow + social poster */
+.chapterRail{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:15px 0 0}
+.chapterRail span{height:5px;border-radius:999px;background:rgba(18,19,21,.10);transition:background .22s,transform .22s}
+.chapterRail span.active{background:var(--persona-accent);transform:scaleY(1.45)}
+.chapterRail span.done{background:#17191c}
+.chapterStrip{margin:18px 0 22px;padding:14px 16px;border-left:4px solid var(--persona-accent);background:rgba(255,255,255,.32);display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.chapterStrip i{font:900 12px/1 ui-monospace,monospace;font-style:normal;letter-spacing:.08em;color:#222}
+.chapterStrip strong{display:block;font-size:13px;line-height:1.2}.chapterStrip p{margin:5px 0 0;color:#777169;font-size:11px;line-height:1.55}
+.quizPanelChapter{padding:13px 14px;border-radius:16px;background:linear-gradient(145deg,color-mix(in srgb,var(--persona-accent) 10%,transparent),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.08)}
+.quizPanelChapter small{display:block;font:800 9px/1 ui-monospace,monospace;letter-spacing:.15em;color:#899098;margin-bottom:8px}.quizPanelChapter b{display:block;font-size:15px;line-height:1.25}.quizPanelChapter p{margin:7px 0 0;color:#a8afb5;font-size:11px;line-height:1.65}
+.chapterFlash{position:absolute;inset:0;z-index:15;pointer-events:none;display:grid;place-items:center;background:rgba(10,11,13,.86);color:#fff;opacity:0;visibility:hidden;transition:opacity .22s,visibility .22s}
+.chapterFlash.show{opacity:1;visibility:visible}.chapterFlash div{text-align:center}.chapterFlash small{display:block;font:900 10px/1 ui-monospace,monospace;letter-spacing:.2em;color:var(--persona-accent);margin-bottom:10px}.chapterFlash strong{display:block;font-size:clamp(28px,6vw,62px);letter-spacing:-.05em}.chapterFlash p{margin:10px 0 0;color:#aab0b5;font-size:12px}
+.resultSignature{position:absolute;z-index:4;right:18px;top:72px;color:#fff;font:900 12px/1 ui-monospace,monospace;letter-spacing:.12em;padding:10px 12px;background:rgba(0,0,0,.34);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(8px)}
+.resultSignature b{color:var(--persona-accent)}
+.coverArt img.personArt{object-position:var(--persona-object-position,center)}
+.coverArt:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(255,255,255,.025) 0 1px,transparent 1px 5px);mix-blend-mode:soft-light;opacity:.5}
+.personaStamp{position:absolute;z-index:3;left:22px;top:82px;font:950 clamp(44px,7vw,86px)/.9 ui-monospace,monospace;letter-spacing:-.07em;color:var(--persona-accent);opacity:.16;text-shadow:0 10px 36px rgba(0,0,0,.42);pointer-events:none}
+.galleryItem{transition:transform .16s ease,box-shadow .16s ease}.galleryItem:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.12)}
+.galleryThumb img{object-position:var(--thumb-pos,center)}
+.socialCaption{margin-top:14px;border:1px dashed rgba(255,255,255,.13);border-radius:14px;padding:12px 13px;color:#b9bec2;font-size:12px;line-height:1.7;background:rgba(255,255,255,.025)}
+.socialCaption b{color:#fff}
+.posterHint strong{color:var(--persona-accent)}
+@media(max-width:760px){.chapterStrip{grid-template-columns:1fr;gap:7px}.chapterStrip p{font-size:10px}.resultSignature{top:66px;right:12px;font-size:9px;padding:8px}.personaStamp{left:15px;top:78px;font-size:48px}}
+
+</style>
+</head>
+<body>
+<div id="splash" aria-hidden="true">
+  <div class="splashBox">
+    <div class="scanDisc"><div class="scanLine"></div><div class="scanCore">ID</div></div>
+    <div class="splashBrand">CAMPUS<i>//</i>ARCHIVE</div>
+    <div class="splashSub">STUDENT BEHAVIOR CLASSIFICATION SYSTEM</div>
+    <div class="splashHint">16 PERSONALITIES · PIXEL CINEMA VISUAL WORLD</div>
+    <div id="splashPreviewRail" class="splashPreviewRail"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">CAMPUS<span>//</span>ARCHIVE</div>
+    <div class="topmeta">24 SCENARIOS · 16 ARCHETYPES · 6D MODEL</div>
+  </div>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="heroCopy">
+        <div class="eyebrow"><b>2026 CAMPUS FILE</b> / UNOFFICIAL STUDENT ARCHIVE</div>
+        <h1>你上大学以后，<br>到底进化成了<em>什么？</em></h1>
+        <p class="heroDesc">24 道真实校园情境题，把你的选择转换成 6 维校园行为向量，再与 16 种典型“大学牲人格”进行匹配。不是 MBTI，也不判断好坏——只记录你在大学里最常用的生存方式。</p>
+        <div class="heroQuote">「别急着说自己正常。档案系统会替你确认。」</div>
+        <div class="commercialBar"><span class="commercialPill"><b>FREE × 1</b> 本设备首次免费</span><span class="commercialPill light">约 2 分钟完成</span><span class="commercialPill light">结果可直接生成海报</span></div>
+        <div class="personaTicker"><span>DDL 战神</span><span>绩点卷王</span><span>图书馆幽灵</span><span>抽象艺术家</span><span>六边形大学生</span><span>情绪天气预报员</span></div>
+        <div id="entitlementCard" class="entitlementCard"><div><small>ACCESS STATUS</small><b id="entitlementText">正在读取本设备访问状态…</b></div><button onclick="openAccessModal()">输入授权码</button></div>
+        <div id="challengeBanner" class="challengeBanner"><small>FRIEND CHALLENGE RECEIVED</small><strong>你收到了一份校园人格挑战 · 对方结果：<b id="challengeSourceName">未知人格</b></strong></div>
+        <div id="resumeProgress" class="progressResume" style="display:none"></div>
+        <div class="modelStrip"><span>LOCAL COMPUTE</span><span>NO LOGIN</span><span>6D CALIBRATED</span><span>SHAREABLE RESULT</span></div>
+        <div class="heroActions">
+          <button class="btn primary" onclick="startQuiz()"><span class="dot"></span>开始人格鉴定</button>
+          <button id="resumeBtn" class="btn secondary hidden" onclick="restoreLast()">查看上次档案</button>
+        </div>
+        <div class="heroStats">
+          <div class="heroStat"><strong>24</strong><span>校园情境</span></div>
+          <div class="heroStat"><strong>16</strong><span>人格原型</span></div>
+          <div class="heroStat"><strong>6D</strong><span>行为模型</span></div>
+        </div>
+        <div class="heroProof"><div class="proofBox"><small>结果结构</small><strong>主人格 + 第二人格 + 六维图谱</strong></div><div class="proofBox"><small>分享传播</small><strong>专属挑战码 + 1080×1440 海报</strong></div><div class="proofBox"><small>隐私方式</small><strong>默认本地计算，不要求登录</strong></div></div>
+      </div>
+      <div class="heroVisual">
+        <div class="heroSticker">STATUS / UNCLASSIFIED</div>
+        <div class="idCard">
+          <div class="idHead"><b>学生行为档案</b><span>CA-2026<br>NO.????</span></div>
+          <div class="idPhoto">
+            <svg viewBox="0 0 420 480" aria-hidden="true">
+              <rect width="420" height="480" fill="#111317"/>
+              <g stroke="#2f3439" fill="none"><path d="M0 80H420M0 160H420M0 240H420M0 320H420M0 400H420"/><path d="M70 0V480M140 0V480M210 0V480M280 0V480M350 0V480"/></g>
+              <circle cx="210" cy="176" r="72" fill="#e7e3d8"/>
+              <path d="M120 420c9-99 45-160 90-160s82 61 90 160" fill="#e7e3d8"/>
+              <path d="M116 131c37-87 147-80 182 0-31-20-61-27-90-22-31 5-59 12-92 22Z" fill="#aeb4b5"/>
+              <rect x="146" y="296" width="128" height="76" rx="8" fill="#c9ff3d" transform="rotate(-4 146 296)"/>
+              <path d="M165 318h90M165 338h67" stroke="#111317" stroke-width="8"/>
+              <circle cx="344" cy="80" r="36" fill="none" stroke="#c9ff3d" stroke-width="5"/>
+              <path d="M344 80V5.17M344 80l20 12" stroke="#c9ff3d" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+            <div class="idLabel">WAITING FOR CLASSIFICATION</div>
+          </div>
+          <div class="idBottom"><div class="idName"><strong>UNKNOWN</strong><span>STUDENT / CAMPUS PERSONALITY FILE</span></div><div class="barcode"></div></div>
+        </div>
+        <div id="heroPreviewRail" class="heroPreviewRail"></div>
+        <div class="heroPixelNote">16 张人格图将统一用于结果页、图鉴与分享海报。不同人格会自动切换不同主题色，让整体更像一套完整的像素世界观。</div>
+      </div>
+    </section>
+
+    <section id="quiz" class="quiz" aria-hidden="true">
+      <div class="quizScene"><div class="quizGrid"></div></div>
+      <div id="chapterFlash" class="chapterFlash"></div>
+      <div class="quizInner">
+        <div class="quizLayout">
+          <aside class="quizPanel">
+            <div class="quizPanelTop">
+              <small>QUESTION SIGNAL</small>
+              <div id="questionSignal" class="questionSignal">COURSEWORK</div>
+            </div>
+            <div class="quizPanelChapter"><small id="panelChapterNo">CHAPTER 01</small><b id="panelChapterTitle">默认设置</b><p id="panelChapterSub">先看你的日常启动方式。</p></div>
+            <div id="quizPreviewArt" class="quizPreviewArt"></div>
+            <div class="quizPanelCard">
+              <small>本题观察维度</small>
+              <div id="focusChips" class="focusChips"></div>
+            </div>
+            <div class="quizPanelCard">
+              <small>当前人格轮廓</small>
+              <div id="liveProfile" class="liveProfile">尚未形成足够样本，先按直觉作答。</div>
+            </div>
+            <div class="quizPanelCard">
+              <small>实时六维趋势</small>
+              <div id="quizMiniDims" class="quizMiniDims"><div class="mHint">答到 3 题以上后，这里会开始显示更稳定的轮廓趋势。</div></div>
+            </div>
+            <div class="quizPanelStats">
+              <div><span>已完成</span><b id="quizDoneCount">0 / 24</b></div>
+              <div><span>进度</span><b id="quizPercent">0%</b></div>
+            </div>
+          </aside>
+          <div class="quizMain">
+            <div class="quizTop"><div id="quizNum" class="quizNum">01 / 24</div><div class="progressTrack"><div id="progressBar" class="progressBar"></div></div><div class="quizTag">CAMPUS SCENARIO</div></div>
+            <div id="chapterRail" class="chapterRail"><span class="active"></span><span></span><span></span><span></span></div>
+            <div class="chapterStrip"><i id="chapterNo">CHAPTER 01</i><div><strong id="chapterTitle">默认设置</strong><p id="chapterSub">先看你的日常启动方式：任务、作息、周末和学习压力。</p></div></div>
+            <div id="questionStage" class="questionStage">
+              <div id="questionKicker" class="questionKicker">SCENARIO / COURSEWORK</div>
+              <div class="questionMeta"><span id="metaAnswered" class="qMetaChip">已答 0 题</span><span id="metaTag" class="qMetaChip">课程情境</span><span id="metaEnergy" class="qMetaChip">观察即时反应</span></div>
+              <h2 id="question" class="question"></h2>
+              <p id="questionHint" class="questionHint">没有标准答案。请选择你在现实校园里更可能做出的反应。</p>
+              <div id="answers" class="answers"></div>
+            </div>
+            <div class="quizBottom">
+              <div class="micro">选择后自动进入下一题 · 可随时返回修改 · 左侧会实时更新你的当前人格轮廓</div>
+              <div class="navBtns"><button id="prevBtn" class="navBtn" onclick="prevQuestion()">← 上一题</button><button class="navBtn" onclick="exitQuiz()">退出</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="result" class="result" aria-hidden="true">
+      <div class="resultHero">
+        <div class="cover">
+          <div class="coverHead"><b>CAMPUS//ARCHIVE</b><span id="coverIssue">FILE / U01</span></div>
+          <div class="coverArt" id="coverArt"><div id="personaStamp" class="personaStamp">03:17</div><div id="resultSignature" class="resultSignature">VISUAL / <b>U01</b></div><div id="coverCode" class="coverCode">U01</div><div id="coverBadge" class="coverBadge">CLASS / SR</div><div id="personaSceneCaption" class="personaSceneCaption"></div><div id="coverIdentity" class="coverIdentity"><small>YOUR CAMPUS ARCHETYPE</small><strong id="coverName">DDL 战神</strong><span id="coverEn">DEADLINE AWAKENING TYPE</span></div></div>
+          <div class="coverFoot"><span>STUDENT BEHAVIOR<br>CLASSIFICATION SYSTEM</span><span><strong id="coverMatch">92.4%</strong><br>MODEL MATCH</span></div>
+        </div>
+        <div class="dossier">
+          <div class="dossierKicker">YOUR CAMPUS PERSONALITY FILE</div>
+          <h2 id="resultTitle" class="resultTitle">DDL 战神</h2>
+          <div id="resultEnglish" class="resultEnglish">DEADLINE AWAKENING TYPE</div>
+          <div class="resultLine"></div>
+          <p id="resultTagline" class="resultTagline"></p>
+          <div id="quoteBlock" class="quoteBlock"></div>
+          <div class="attrGrid">
+            <div class="attr"><span>最常出现地点</span><strong id="attrPlace"></strong></div>
+            <div class="attr"><span>危险时间</span><strong id="attrTime"></strong></div>
+            <div class="attr"><span>隐藏技能</span><strong id="attrSkill"></strong></div>
+            <div class="attr"><span>档案评级</span><strong id="attrClass"></strong></div>
+          </div>
+          <div class="confidencePanel">
+            <div><span>人格变体</span><b id="resultVariant">—</b></div>
+            <div><span>判定稳定度</span><b id="resultStability">—</b></div>
+            <div><span>档案编号</span><b id="resultFileId">—</b></div>
+          </div>
+          <div id="resultAura" class="resultAura"></div>
+          <div id="manifestoBlock" class="manifestoBlock"><small>PERSONAL MANIFESTO</small><p>—</p></div>
+          <div class="dossierActions">
+            <button class="btn primary" onclick="shareResult()"><span class="dot"></span>分享结果</button>
+            <button class="btn secondary" onclick="makePoster()">生成分享海报</button>
+            <button class="btn secondary" onclick="restart()">重新测试</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="resultBody">
+        <div class="paperCard">
+          <div class="sectionHead"><h3>六维校园行为图谱</h3><span>6D BEHAVIOR MAP</span></div>
+          <div class="radarWrap"><svg id="radar" viewBox="0 0 320 320" aria-label="六维人格雷达图"></svg><div id="dimList" class="dimList"></div></div>
+        </div>
+        <div class="darkCard">
+          <div class="sectionHead"><h3>系统判定</h3><span>ARCHIVE ANALYSIS</span></div>
+          <p id="analysisText" class="analysisText"></p>
+          <div id="bulletList" class="bulletList"></div>
+          <div class="compat">
+            <div class="compatBox"><small>最佳校园搭子</small><strong id="bestMate"></strong><p id="bestMateText"></p></div>
+            <div class="compatBox"><small>最容易互相折磨</small><strong id="friction"></strong><p id="frictionText"></p></div>
+          </div>
+        </div>
+        <div class="paperCard">
+          <div class="sectionHead"><h3>人格宣言与核心机制</h3><span>PERSONA DECODER</span></div>
+          <div id="personaBadges" class="personaBadges"></div>
+          <div class="manifestoCard"><b id="manifestoTitle">你的专属人格宣言</b><p id="manifestoText">—</p></div>
+          <div id="survivalGrid" class="survivalGrid">
+            <div><small>驱动内核</small><strong id="survivalDrive">—</strong><p id="survivalDriveText">—</p></div>
+            <div><small>高光场景</small><strong id="survivalGlow">—</strong><p id="survivalGlowText">—</p></div>
+            <div><small>注意盲区</small><strong id="survivalBlind">—</strong><p id="survivalBlindText">—</p></div>
+          </div>
+        </div>
+        <div class="darkCard">
+          <div class="sectionHead"><h3>专属校园建议</h3><span>SURVIVAL PLAYBOOK</span></div>
+          <div id="adviceList" class="adviceList"></div>
+          <div class="dailyLine"><small>TODAY'S LINE</small><p id="resultDailyLine">—</p></div>
+        </div>
+
+        <div class="paperCard">
+          <div class="sectionHead"><h3>你的相近人格</h3><span>NEAREST ARCHETYPES</span></div>
+          <p class="analysisText">人格不是单选标签。下面三个结果，是模型中与你最接近的其他“校园生存方式”。</p>
+          <div id="altList" class="altList"></div>
+        </div>
+        <div class="darkCard">
+          <div class="sectionHead"><h3>你的第二人格</h3><span>SECONDARY ARCHETYPE</span></div>
+          <div class="twinCard">
+            <div class="twinBadge"><small>SECONDARY / NEARBY PROFILE</small><div id="twinArt" class="twinArt"></div><div><strong id="twinName">—</strong><em id="twinSim">—</em></div></div>
+            <div class="twinCopy"><b id="twinEn">—</b><p id="twinText">—</p><button class="galleryBtn" onclick="openGallery()">查看全部 16 种人格图鉴</button></div>
+          </div>
+        </div>
+        <div class="viralCard">
+          <div class="viralCopy"><div class="viralKicker">FRIEND CHALLENGE / SHARE LOOP</div><h3>把你的结果丢给朋友，看看你们到底是不是一个物种。</h3><p>分享的是你的测试入口与挑战码，不会暴露你的完整答题记录。朋友完成后，可以直接对比主人格。</p><div id="viralCode" class="viralCode">CHALLENGE / —</div><div class="viralButtons"><button class="primary" onclick="shareChallenge()">分享给朋友</button><button onclick="makePoster()">生成爆款分享海报</button><button onclick="copyXhsCaption()">复制小红书文案</button><button onclick="copyChallenge()">复制挑战文案</button><button onclick="restartFromResult()">再测一次</button></div><div class="socialCaption"><b>V5.4：</b>分享海报会自动跟随主人格主题色，并突出人格名称、金句、第二人格和挑战码。</div></div>
+          <div class="viralSide"><div><small>HOW IT SPREADS</small><strong>一次测试，产生第二次测试。</strong><div id="matchupLine" class="matchupLine" style="display:none"></div><div class="miniSteps"><div><i>01</i><span>你生成结果与挑战码</span></div><div><i>02</i><span>朋友从分享链接进入</span></div><div><i>03</i><span>双方对比人格与六维差异</span></div></div></div><div class="posterHint">建议优先分享“结果海报 + 挑战链接”，比单独发网址更容易获得点击。</div></div>
+        </div>
+        <div class="darkCard">
+          <div class="sectionHead"><h3>档案说明</h3><span>READ BEFORE SHARING</span></div>
+          <p class="analysisText">这是一个娱乐与自我观察向的校园人格测试，不是临床心理测评。结果由你在 24 个情境中的行为选择，经 6 维向量匹配产生；同一个人处于不同阶段、不同压力下，结果也可能变化。</p>
+        </div>
+      </div>
+      <div class="resultFooter"><span><b>隐私：</b>答题和匹配逻辑在浏览器本地运行；上次结果只保存在当前设备的浏览器中。</span><span>© 2026 CAMPUS//ARCHIVE · V5.4.0 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
+    </section>
+  </main>
+</div>
+<div id="galleryModal" class="modal" onclick="if(event.target===this)closeGallery()">
+  <div class="modalInner">
+    <div class="modalHead"><div><small style="font:800 10px ui-monospace,monospace;color:#74716c">CAMPUS ARCHETYPE INDEX / 16</small><h3>大学牲人格图鉴</h3></div><button class="modalClose" onclick="closeGallery()">×</button></div>
+    <div id="galleryGrid" class="galleryGrid"></div>
+  </div>
+</div>
+<div id="accessModal" class="accessModal" onclick="if(event.target===this)closeAccessModal()"><div class="accessBox"><button class="accessClose" onclick="closeAccessModal()">×</button><div class="accessKicker">CAMPUS//ARCHIVE ACCESS</div><h3>继续测试需要访问权限</h3><p>每台设备首次测试免费 1 次。免费次数用完后，可以输入授权码继续测试。</p><div class="accessStatus"><div><small>DEVICE STATUS</small><b id="accessStatusText">—</b></div><div><small>DEVICE ID</small><b id="accessDeviceId">—</b></div></div><input id="licenseInput" class="licenseInput" placeholder="输入授权码，例如 CA5-..." autocomplete="off"><div class="accessActions"><button class="unlock" onclick="redeemLicense()">验证授权码</button><button class="copyDevice" onclick="copyDeviceId()">复制设备 ID</button></div><p class="accessNote">当前 V5.1 为纯前端商业化原型。若正式收费，授权校验、订单、次数与兑换记录应迁移到服务器或云函数，避免前端代码被绕过。</p><a class="developerLink" href="developer.html">开发者入口 →</a></div></div>
+<div id="toast" class="toast">已复制</div>
+
+<script>
+const PERSONA_IMAGES={"U01":"assets/personas/U01.webp","U02":"assets/personas/U02.webp","U03":"assets/personas/U03.webp","U04":"assets/personas/U04.webp","U05":"assets/personas/U05.webp","U06":"assets/personas/U06.webp","U07":"assets/personas/U07.webp","U08":"assets/personas/U08.webp","U09":"assets/personas/U09.webp","U10":"assets/personas/U10.webp","U11":"assets/personas/U11.webp","U12":"assets/personas/U12.webp","U13":"assets/personas/U13.webp","U14":"assets/personas/U14.webp","U15":"assets/personas/U15.webp","U16":"assets/personas/U16.webp"};
+
+const QUIZ_CHAPTERS=[
+ {from:0,to:5,no:'01',title:'默认设置',sub:'先看你的日常启动方式：任务、作息、周末和学习压力。'},
+ {from:6,to:11,no:'02',title:'关系与压力',sub:'进入群体环境后，你怎么处理临时安排、成绩、宿舍气氛与陌生关系。'},
+ {from:12,to:17,no:'03',title:'自由时间',sub:'当没人替你规定答案时，你会把时间、兴趣和情绪放到哪里。'},
+ {from:18,to:23,no:'04',title:'底层选择',sub:'最后六题更接近你的真实优先级：推进、边界、底线与重新开始。'}
+];
+const PERSONA_STAMPS={U01:'03:17',U02:'A+',U03:'SILENT',U04:'ZZZ',U05:'ONLINE',U06:'ROUTE',U07:'24H',U08:'08:00',U09:'CHILL',U10:'???',U11:'MAX',U12:'LAB',U13:'LOOP',U14:'GO',U15:'LEAD',U16:'RAIN'};
+const PERSONA_CROPS={U01:'47% 45%',U02:'50% 43%',U03:'53% 44%',U04:'49% 46%',U05:'48% 44%',U06:'51% 45%',U07:'50% 43%',U08:'50% 45%',U09:'47% 47%',U10:'50% 45%',U11:'50% 46%',U12:'52% 45%',U13:'49% 46%',U14:'50% 46%',U15:'50% 44%',U16:'50% 46%'};
+function currentChapter(index=current){return QUIZ_CHAPTERS.find(c=>index>=c.from&&index<=c.to)||QUIZ_CHAPTERS[0];}
+function renderChapter(index=current){
+ const c=currentChapter(index),ci=QUIZ_CHAPTERS.indexOf(c);
+ const rail=document.getElementById('chapterRail'); if(rail) rail.innerHTML=QUIZ_CHAPTERS.map((x,i)=>`<span class="${i<ci?'done':i===ci?'active':''}"></span>`).join('');
+ const no=document.getElementById('chapterNo'),title=document.getElementById('chapterTitle'),sub=document.getElementById('chapterSub');
+ if(no)no.textContent='CHAPTER '+c.no;if(title)title.textContent=c.title;if(sub)sub.textContent=c.sub;
+ const pn=document.getElementById('panelChapterNo'),pt=document.getElementById('panelChapterTitle'),ps=document.getElementById('panelChapterSub');
+ if(pn)pn.textContent='CHAPTER '+c.no;if(pt)pt.textContent=c.title;if(ps)ps.textContent=c.sub;
+}
+function flashChapterIfNeeded(index){if(![0,6,12,18].includes(index))return;const c=currentChapter(index),box=document.getElementById('chapterFlash');if(!box)return;box.innerHTML=`<div><small>CHAPTER ${c.no}</small><strong>${c.title}</strong><p>${c.sub}</p></div>`;box.classList.add('show');setTimeout(()=>box.classList.remove('show'),520);}
+function personaSocialCaption(best,state){const code=state.signature||makeSignature(state.user,best.code);return `大学牲人格测试｜我测出「${best.name}」
+${best.quote}
+
+24 道校园情境题，结果居然有点准。
+挑战码：${code}
+#大学生 #人格测试 #校园生活 #大学牲人格`;}
+async function copyXhsCaption(){if(!lastState)return;const best=ARCHETYPES.find(a=>a.code===lastState.bestCode),text=personaSocialCaption(best,lastState);try{await navigator.clipboard.writeText(text);showToast('小红书分享文案已复制');}catch(e){showToast('复制失败，请长按选择文案');}}
+function applyPersonaVisualMeta(best){const pos=PERSONA_CROPS[best.code]||'center',cover=document.getElementById('coverArt');if(cover)cover.style.setProperty('--persona-object-position',pos);const stamp=document.getElementById('personaStamp');if(stamp)stamp.textContent=PERSONA_STAMPS[best.code]||best.code;const sig=document.getElementById('resultSignature');if(sig)sig.innerHTML=`VISUAL / <b>${best.code}</b>`;}
+
+
+const PERSONA_PALETTES={
+ U01:{accent:'#ff5a67',paper:'#f4e8e7',deep:'#1c1216',glow:'rgba(255,90,103,.16)'},
+ U02:{accent:'#f0c14b',paper:'#f3eddc',deep:'#1b1710',glow:'rgba(240,193,75,.16)'},
+ U03:{accent:'#6b8cff',paper:'#e8ebf4',deep:'#111726',glow:'rgba(107,140,255,.16)'},
+ U04:{accent:'#ff9ad7',paper:'#f6e8ef',deep:'#1f131a',glow:'rgba(255,154,215,.16)'},
+ U05:{accent:'#ff8a5c',paper:'#f6e6de',deep:'#21140f',glow:'rgba(255,138,92,.16)'},
+ U06:{accent:'#9ab0c9',paper:'#e8edf2',deep:'#13191f',glow:'rgba(154,176,201,.16)'},
+ U07:{accent:'#f59a32',paper:'#f5eadf',deep:'#21160f',glow:'rgba(245,154,50,.16)'},
+ U08:{accent:'#a2d2ff',paper:'#e8eff5',deep:'#111821',glow:'rgba(162,210,255,.16)'},
+ U09:{accent:'#7edb84',paper:'#eaf3e7',deep:'#101813',glow:'rgba(126,219,132,.16)'},
+ U10:{accent:'#ff5cc8',paper:'#f5e5f0',deep:'#20111c',glow:'rgba(255,92,200,.16)'},
+ U11:{accent:'#ff9f4a',paper:'#f5e8e0',deep:'#21160e',glow:'rgba(255,159,74,.16)'},
+ U12:{accent:'#76d7c4',paper:'#e4f1ee',deep:'#10201d',glow:'rgba(118,215,196,.16)'},
+ U13:{accent:'#d6c08b',paper:'#f2eadf',deep:'#1a1610',glow:'rgba(214,192,139,.16)'},
+ U14:{accent:'#ffb067',paper:'#f6e9dc',deep:'#21170f',glow:'rgba(255,176,103,.16)'},
+ U15:{accent:'#8ad17c',paper:'#eaf1e5',deep:'#141b12',glow:'rgba(138,209,124,.16)'},
+ U16:{accent:'#9b86ff',paper:'#ebe8f8',deep:'#151126',glow:'rgba(155,134,255,.16)'}
+};
+const DEFAULT_THEME={accent:'#c9ff3d',paper:'#f1eee7',deep:'#17191c',glow:'rgba(201,255,61,.12)'};
+function getPersonaPalette(code){return PERSONA_PALETTES[code]||DEFAULT_THEME;}
+function applyPersonaTheme(code){
+ const p=getPersonaPalette(code),root=document.documentElement;
+ root.style.setProperty('--acid',p.accent);
+ root.style.setProperty('--persona-accent',p.accent);
+ root.style.setProperty('--persona-accent-soft',p.paper);
+ root.style.setProperty('--persona-paper',p.paper);
+ root.style.setProperty('--persona-deep',p.deep);
+ root.style.setProperty('--persona-glow',p.glow);
+ root.style.setProperty('--persona-glow-strong',p.glow.replace('.16','.28'));
+ const meta=document.querySelector('meta[name="theme-color"]'); if(meta) meta.setAttribute('content',p.deep);
+ const hero=document.getElementById('hero'); if(hero) hero.classList.add('themeGlow');
+}
+function resetPersonaTheme(){applyPersonaTheme('');}
+function renderHeroPreview(){
+ const picks=['U01','U03','U10','U16'];
+ const build=(code)=>{const a=ARCHETYPES.find(x=>x.code===code)||{name:code,en:code};return `<div class="idPreviewItem"><div class="idPreviewThumb">${personaImage(a,true)}</div><b>${a.name}</b><span>${a.code} / ${a.en}</span></div>`;};
+ const rail=document.getElementById('heroPreviewRail'); if(rail) rail.innerHTML=picks.map(build).join('');
+ const splash=document.getElementById('splashPreviewRail'); if(splash) splash.innerHTML=picks.map(code=>`<div class="splashPreviewThumb">${personaImage(code,true)}</div>`).join('');
+}
+
+function personaImage(profile,compact=false){const code=typeof profile==='string'?profile:(profile?.code||'U01');const src=PERSONA_IMAGES[code]||PERSONA_IMAGES.U01;return `<img class="personArt" src="${src}" alt="" decoding="async" ${compact?'loading="lazy"':'fetchpriority="high"'}>`;}
+function rasterImage(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=src;});}
+const PERSONA_SCENE_META={"U01":["03:17","宿舍夜战","DEADLINE MODE"],"U02":["07:20","晨光自习","ACADEMIC CONTROL"],"U03":["21:46","深夜书架","SILENT FOCUS"],"U04":["14:32","床帘世界","LOW ENERGY"],"U05":["19:18","社团活动","SOCIAL FLOW"],"U06":["12:06","教学楼走廊","DEFAULT ROUTE"],"U07":["23:41","考前冲刺","OVERCLOCK"],"U08":["07:53","冬日早八","MORNING SURVIVAL"],"U09":["16:08","草坪树荫","CHILL MODE"],"U10":["22:17","宿舍创作","CHAOTIC CREATIVE"],"U11":["18:36","球场黄昏","BALANCED LIFE"],"U12":["00:28","深夜实验室","DEEP RESEARCH"],"U13":["12:18","食堂人流","DEFAULT LOOP"],"U14":["18:52","天台远行","OPEN WORLD"],"U15":["20:10","宿舍会议","TEAM COMMAND"],"U16":["22:44","雨夜窗边","HIGH SENSITIVITY"]};
+const DIM_KEYS=['study','social','deadline','order','explore','sensitivity'];
+const DIM_NAMES={study:'学业驱动',social:'社交能量',deadline:'截止激活',order:'生活秩序',explore:'开放探索',sensitivity:'情绪敏感'};
+const DIM_SHORT={study:'学业',social:'社交',deadline:'DDL',order:'秩序',explore:'探索',sensitivity:'感知'};
+const DIM_TONE={study:'目标推进',social:'人际连接',deadline:'压力应对',order:'秩序控制',explore:'新鲜体验',sensitivity:'情绪感知'};
+const QUESTION_HINTS={
+  COURSEWORK:'这题主要观察你面对明确任务时的启动方式与秩序感。',
+  'SLEEP MODE':'这题会测你的作息取舍、执行成本和自我管理方式。',
+  WEEKEND:'这题观察你的能量去向：探索、独处还是计划。',
+  EXAM:'这题主要看你对“未来压力”的预处理能力。',
+  LUNCH:'一个人吃饭并不代表社恐，它更反映你的社交能量偏好。',
+  PROJECT:'开放项目最容易暴露你是“稳妥型”还是“创造型”。',
+  MEETING:'临时安排会触发你的秩序需求与社交耐受度。',
+  GRADES:'这题关注你对“长期稳定拿分”的态度。',
+  DORM:'面对冷场，你会维持沉默、修复气氛，还是直接整活？',
+  '24 HOURS':'危机逼近时，你是规划抢救、焦虑开机还是直接超频？',
+  'NEW PEOPLE':'陌生场景下的行动门槛，很能体现社交与探索倾向。',
+  MESSAGE:'这题主要观察你的人际感知灵敏度。',
+  'FREE TIME':'空白时间会暴露你的真实默认设置。',
+  ELECTIVE:'当没有唯一正确答案时，你更优先什么？',
+  DINNER:'集体决策场景，很适合看出你的推动力。',
+  'DESK STATUS':'混乱来临时，你的外部空间会先失控还是先被整理？',
+  PREFERENCE:'这题指向你最理想的大学主线。',
+  MIDNIGHT:'深夜反思会放大你的情绪敏感与自我叙事方式。',
+  TEAMWORK:'小组停摆时，你是等待者、启动者还是分工者？',
+  'RED LINE':'你最不能接受的事，往往就是你最在意的控制区。',
+  'NOT IN EXAM':'当外部评价消失时，你还会不会继续投入？',
+  INVITATION:'陌生关系的邀约，会测试你的社交边界。',
+  'DAILY STATE':'这一题更接近你最近真实的底层运行状态。',
+  RESTART:'最后一题会揭示你最想重写的大学叙事。'
+};
+function focusDimsForQuestion(item){
+  const scores=DIM_KEYS.map((k,d)=>{
+    const vals=item.a.map(opt=>opt[1][d]);
+    const range=Math.max(...vals)-Math.min(...vals);
+    const force=Math.max(...vals.map(v=>Math.abs(v)));
+    return {k,score:range*2+force};
+  }).sort((a,b)=>b.score-a.score);
+  return scores.slice(0,2).map(x=>x.k);
+}
+function tagLabel(tag){
+  const m={COURSEWORK:'课程任务', 'SLEEP MODE':'作息决策', WEEKEND:'周末安排', EXAM:'考试压力', LUNCH:'食堂场景', PROJECT:'课程项目', MEETING:'临时通知', GRADES:'成绩策略', DORM:'宿舍气氛', '24 HOURS':'极限抢救', 'NEW PEOPLE':'陌生场合', MESSAGE:'消息感知', 'FREE TIME':'自由时间', ELECTIVE:'选修偏好', DINNER:'聚餐决策', 'DESK STATUS':'桌面状态', PREFERENCE:'理想大学', MIDNIGHT:'深夜想法', TEAMWORK:'小组推进', 'RED LINE':'底线触发', 'NOT IN EXAM':'不考内容', INVITATION:'社交邀约', 'DAILY STATE':'日常状态', RESTART:'如果重来'};
+  return m[tag]||tag;
+}
+function partialVector(){
+  const answeredIndices=[];answers.forEach((v,i)=>{if(v!==null)answeredIndices.push(i)});
+  if(!answeredIndices.length) return null;
+  const raw=Array(6).fill(0), mins=Array(6).fill(0), maxs=Array(6).fill(0);
+  answeredIndices.forEach(qi=>{
+    const q=QUESTIONS[qi];
+    for(let d=0;d<6;d++){
+      mins[d]+=Math.min(...q.a.map(o=>o[1][d]));
+      maxs[d]+=Math.max(...q.a.map(o=>o[1][d]));
+    }
+    q.a[answers[qi]][1].forEach((v,d)=>raw[d]+=v);
+  });
+  return raw.map((v,d)=>{
+    const span=(maxs[d]-mins[d])||1;
+    const pct=(v-mins[d])/span;
+    return Math.round(Math.max(8,Math.min(92,8+pct*84)));
+  });
+}
+function liveProfileSummary(){
+  const pv=partialVector();
+  if(!pv) return '尚未形成足够样本，先按直觉作答。';
+  const ranked=ARCHETYPES.map(a=>({...a,dist:modelDistance(pv,a.v)})).sort((a,b)=>a.dist-b.dist);
+  const best=ranked[0];
+  const highs=DIM_KEYS.map((k,i)=>({k,v:pv[i]})).sort((a,b)=>b.v-a.v).slice(0,2).map(x=>DIM_NAMES[x.k]).join(' × ');
+  return `当前最接近「${best.name}」的轮廓。你暂时最明显的倾向是 ${highs}。`;
+}
+function quizPreviewSVG(item, index){
+  const focus=focusDimsForQuestion(item);
+  const icon1=focus[0], icon2=focus[1];
+  const iconMap={study:'📚',social:'👥',deadline:'⏰',order:'🗂️',explore:'🧭',sensitivity:'💭'};
+  const colorMap={study:'#75b9ff',social:'#ff9c6f',deadline:'#c9ff3d',order:'#9e91ff',explore:'#53d0c0',sensitivity:'#ff7aa8'};
+  const c1=colorMap[icon1]||'#c9ff3d', c2=colorMap[icon2]||'#75b9ff';
+  return `<svg viewBox="0 0 620 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="qg${index}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171a1f"/><stop offset="1" stop-color="#0f1114"/></linearGradient></defs><rect width="620" height="360" fill="url(#qg${index})"/><circle cx="520" cy="70" r="92" fill="${c1}" opacity=".12"/><circle cx="85" cy="300" r="120" fill="${c2}" opacity=".14"/><g stroke="#2d3339" stroke-width="1" fill="none" opacity=".7"><path d="M0 70H620M0 140H620M0 210H620M0 280H620"/><path d="M103 0V360M206 0V360M309 0V360M412 0V360M515 0V360"/></g><rect x="64" y="48" width="210" height="42" rx="21" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.15)"/><text x="90" y="75" fill="#eff3e8" font-size="16" font-weight="800">SCENARIO / ${tagLabel(item.tag)}</text><circle cx="212" cy="206" r="58" fill="#ece7db"/><path d="M122 328c10-84 46-138 90-138s80 54 90 138" fill="#ece7db"/><path d="M154 177c24-52 89-62 120-8-40-12-77-11-120 8Z" fill="#9aa1a8"/><rect x="332" y="120" width="190" height="122" rx="22" fill="#121417" stroke="rgba(255,255,255,.12)"/><text x="356" y="172" fill="${c1}" font-size="54">${iconMap[icon1]||'●'}</text><text x="432" y="172" fill="#f4efe3" font-size="26" font-weight="700">${DIM_NAMES[icon1]}</text><text x="356" y="224" fill="${c2}" font-size="54">${iconMap[icon2]||'●'}</text><text x="432" y="224" fill="#f4efe3" font-size="26" font-weight="700">${DIM_NAMES[icon2]}</text><text x="64" y="315" fill="#8f969c" font-size="16">这题更可能影响：${DIM_TONE[icon1]} / ${DIM_TONE[icon2]}</text></svg>`;
+}
+
+
+const QUESTIONS=[
+ {tag:'COURSEWORK',q:'老师突然说：“这份作业下周交。” 你的第一反应？',a:[
+  ['今天先看一下要求，最好顺手开个头',[1,0,-2,2,0,0]],['记进日程，到安排的时间再做',[1,0,-1,2,0,0]],['下周？那还早。',[0,0,2,-2,0,0]],['等群里有人开始问“作业怎么做”再说',[0,1,2,-1,0,0]]]},
+ {tag:'SLEEP MODE',q:'明天早上 8 点有课，现在凌晨 1:30。你更可能？',a:[
+  ['马上睡，至少保住明天的状态',[1,0,-1,2,0,-1]],['再看十分钟，然后努力关手机',[0,0,0,0,0,1]],['已经默认明早会困，但课还是会去',[1,0,1,0,0,1]],['“反正都一点半了”，继续熬',[0,0,2,-2,0,0]]]},
+ {tag:'WEEKEND',q:'室友突然问：“周末出去玩吗？”',a:[
+  ['去，先告诉我去哪',[0,1,0,0,2,0]],['看情况，有意思就去',[0,0,0,0,1,0]],['不太想出门，宿舍挺好的',[0,-2,0,1,-2,0]],['我已经有自己的安排了',[1,-1,-1,2,0,0]]]},
+ {tag:'EXAM',q:'考试还有两周，你现在的状态更接近？',a:[
+  ['已经开始按章节复习',[2,0,-2,2,0,0]],['刚准备制定计划',[1,0,-1,2,0,0]],['不急，还有两周',[0,0,1,-1,0,0]],['等危机感自然出现',[0,0,2,-2,0,1]]]},
+ {tag:'LUNCH',q:'你一个人去食堂吃饭会觉得？',a:[
+  ['非常正常，一个人效率更高',[0,-1,0,1,0,-1]],['有一点无聊，但没关系',[0,0,0,0,0,1]],['更喜欢找人一起',[0,2,0,0,0,0]],['我甚至更喜欢一个人',[0,-2,0,1,0,0]]]},
+ {tag:'PROJECT',q:'老师布置一个完全开放的课程项目，你更容易？',a:[
+  ['先把要求拆开，做一份明确计划',[1,0,-1,2,0,0]],['找一个最稳妥、最容易落地的方案',[1,0,0,2,-1,0]],['想做一个别人没做过的东西',[0,0,0,-1,2,0]],['先放着，等真正有灵感再开始',[0,0,2,-2,1,0]]]},
+ {tag:'MEETING',q:'群里突然通知：“今晚临时开会。” 你的内心？',a:[
+  ['收到，安排一下就去',[0,0,0,2,0,-1]],['好烦，但该去还是去',[0,0,0,0,0,1]],['为什么不能明天说？计划全乱了',[0,-1,0,2,-1,2]],['有点想找理由不去',[0,-2,1,-1,0,1]]]},
+ {tag:'GRADES',q:'如果某门课平时分占 40%，你会？',a:[
+  ['每一次都认真拿，不能白丢',[2,0,-1,2,0,1]],['重要的拿，没必要每次都满',[1,0,0,1,0,0]],['差不多就行，别挂就行',[0,0,1,-1,0,-1]],['期末再想办法救回来',[0,0,2,-2,0,0]]]},
+ {tag:'DORM',q:'宿舍突然冷场，你通常？',a:[
+  ['无所谓，安静也挺好',[0,-1,0,0,0,-1]],['默默玩手机，等别人开口',[0,-1,0,0,0,1]],['随手找个话题把气氛拉回来',[0,2,0,0,1,1]],['开始整点抽象的，让所有人沉默',[0,2,1,-1,2,0]]]},
+ {tag:'24 HOURS',q:'距离考试 24 小时，你还有大量内容没复习。你会？',a:[
+  ['有计划地抢救，先抓高频重点',[2,0,1,2,0,0]],['开始极限记忆，能塞多少塞多少',[1,0,2,-1,0,1]],['先焦虑半小时，再强行开机',[1,0,2,-1,0,2]],['突然进入人生最高效率',[1,0,2,0,1,0]]]},
+ {tag:'NEW PEOPLE',q:'一个活动看起来挺有意思，但你一个人都不认识。',a:[
+  ['直接报名，到现场再说',[0,1,0,-1,2,0]],['拉一个朋友一起去',[0,2,0,0,1,0]],['会犹豫，但可能还是去',[0,0,0,0,1,1]],['算了，一个人去太麻烦',[0,-2,0,1,-1,1]]]},
+ {tag:'MESSAGE',q:'你发现朋友回消息明显比平时冷淡。',a:[
+  ['没感觉，可能只是忙',[0,0,0,0,0,-2]],['注意到了，但不会多想',[0,0,0,0,0,-1]],['会想是不是发生什么了',[0,1,0,0,0,2]],['开始复盘自己前面说过的话',[0,0,0,0,0,2]]]},
+ {tag:'FREE TIME',q:'突然获得一个完全没课的下午，你更可能？',a:[
+  ['学点东西，把欠的进度补掉',[2,0,-1,1,0,0]],['打游戏 / 追剧，彻底放空',[0,-1,1,-1,0,-1]],['睡一觉，先把电充满',[0,-1,0,0,-1,0]],['临时出去逛，看看有什么新东西',[0,1,0,-1,2,0]]]},
+ {tag:'ELECTIVE',q:'选修课你更倾向选哪一种？',a:[
+  ['好拿分的',[2,0,0,1,-1,0]],['真正感兴趣的',[1,0,0,0,2,0]],['时间最方便的',[0,0,0,2,0,0]],['朋友一起上的',[0,2,0,0,0,0]]]},
+ {tag:'DINNER',q:'宿舍准备聚餐，但一直决定不了吃什么。你通常？',a:[
+  ['看他们讨论，我都行',[0,-1,0,0,0,-1]],['“都行。” 真心都行',[0,0,0,-1,0,-1]],['提几个方案，让大家投票',[0,1,0,2,0,0]],['直接拍板一个，再问有没有人反对',[0,1,0,2,1,0]]]},
+ {tag:'DESK STATUS',q:'连续几天事情特别多，你的桌面通常？',a:[
+  ['依然整齐，乱了会影响效率',[1,0,0,2,0,1]],['稍微乱一点，但还能用',[0,0,0,1,0,0]],['开始失控，东西先堆着再说',[0,0,1,-1,0,0]],['已经形成新的生态系统',[0,0,1,-2,1,0]]]},
+ {tag:'IDEAL CAMPUS',q:'你更喜欢哪一种大学生活？',a:[
+  ['稳稳把该做的事情做好',[1,0,-1,2,-1,0]],['学很多真正有用、能深入的东西',[2,-1,-1,1,1,0]],['认识很多有趣的人',[0,2,0,0,1,0]],['尽可能体验以前没做过的事情',[0,1,0,-1,2,0]]]},
+ {tag:'MIDNIGHT',q:'晚上突然想到：“我大学是不是浪费了很多时间？”',a:[
+  ['基本不会想这些',[0,0,0,0,0,-2]],['偶尔想一下，很快过去',[0,0,0,0,0,-1]],['会认真反思，然后想想怎么改',[1,0,0,1,0,2]],['越想越清醒，开始复盘整个人生',[0,0,0,0,0,2]]]},
+ {tag:'GROUP WORK',q:'小组作业没人推进。你会？',a:[
+  ['再等一下，看看有没有人先说',[0,-1,1,-1,0,0]],['主动问一句现在到哪了',[0,1,0,1,0,0]],['自己先开始，把能做的做掉',[1,0,-1,1,0,0]],['直接分工、定时间、拉进度',[1,2,-1,2,0,0]]]},
+ {tag:'RED LINE',q:'你最不能接受哪一种大学状态？',a:[
+  ['挂科或明显失去学业控制',[2,0,0,1,0,1]],['每天都一样、什么新鲜事都没有',[0,0,0,-1,2,0]],['被迫参加没意义的社交',[0,-2,0,0,0,1]],['原本安排好的计划被连续打乱',[0,0,0,2,-1,2]]]},
+ {tag:'NOT IN EXAM',q:'如果老师说：“这部分考试不考。” 你会？',a:[
+  ['立刻跳过，效率优先',[1,0,0,1,-1,0]],['大概看看，知道是什么就行',[1,0,0,0,0,0]],['感兴趣的话还是会继续学',[2,0,-1,0,2,0]],['终于松了一口气，少背一点是一点',[0,0,1,-1,0,-1]]]},
+ {tag:'INVITATION',q:'一个认识不久的人邀请你一起吃饭。',a:[
+  ['去，多认识个人也挺好',[0,2,0,0,1,0]],['有时间就去，不特别抗拒',[0,1,0,0,0,0]],['看是谁、什么局再决定',[0,0,0,1,0,1]],['大概率拒绝，我更想自己待着',[0,-2,0,1,-1,0]]]},
+ {tag:'DAILY STATE',q:'下面哪句话最像你最近的大学状态？',a:[
+  ['“还有很多事情要做。”',[2,0,-1,2,0,1]],['“今天到底干了什么？”',[0,0,1,-1,0,1]],['“算了，明天再说。”',[0,0,2,-2,0,-1]],['“最近是不是有点累。”',[0,0,0,0,0,2]]]},
+ {tag:'RESTART',q:'如果大学突然可以重新开始一次，你最想改变什么？',a:[
+  ['更努力一点，把能抓住的机会抓住',[2,0,-1,1,0,1]],['更勇敢地认识别人',[0,2,0,0,1,1]],['多体验一些以前没做过的事情',[0,1,0,-1,2,0]],['其实这样也挺好，我不太想重写',[0,0,0,1,0,-1]]]},
+];
+
+const ARCHETYPES=[
+ {code:'U01',name:'DDL 战神',en:'DEADLINE AWAKENING TYPE',level:'SR',v:[55,50,95,25,70,45],place:'凌晨的宿舍桌前',time:'截止前 3 小时',skill:'极限生产力',tag:'平时像省电模式，倒计时一出现就自动进入完全体。',quote:'不是我喜欢拖延，是截止日期比较懂怎么激励我。',analysis:'你不是缺少执行能力，而是启动阈值偏高。常规时间里，你会把注意力分给更有即时反馈的事；压力一旦具体化，你的决策速度、信息筛选和输出效率会同时上升。',strengths:['高压环境下切换速度快','擅长压缩任务、抓最关键部分','临场补救能力和适应力强'],risk:'长期依赖危机感，会让睡眠、质量和情绪成本一起上升。',mate:'宿舍总指挥',mateText:'TA 负责提醒节点、拆任务，你负责最后阶段的爆发输出。',friction:'绩点卷王',frictionText:'对方提前两周做完，你可能两小时前才真正进入状态。',art:'deadline'},
+ {code:'U02',name:'绩点卷王',en:'ACADEMIC CONTROL TYPE',level:'SSR',v:[95,45,20,90,45,65],place:'第一排 / 自习室',time:'成绩公布前 10 分钟',skill:'稳定拿分',tag:'你不是单纯“爱学习”，你更擅长把目标拆成一套可控的得分系统。',quote:'别人问还有多少分及格，你在算这门课还能扣多少分。',analysis:'你的学业驱动和秩序感同时偏高。面对课程，你通常会主动管理平时分、复习节奏和风险，而不是等到最后再补救。你真正看重的，是“努力和结果之间存在稳定对应关系”。',strengths:['目标清晰，长期执行稳定','对规则、评分点和时间节点敏感','自我要求高，容易持续优化'],risk:'一旦把所有结果都等同于自我价值，容易陷入过度比较和长期紧绷。',mate:'六边形大学生',mateText:'TA 能提醒你，成绩之外还有生活；你能帮 TA 把目标落到细节。',friction:'佛系摆烂王',frictionText:'你在算绩点，TA 在算“能不能毕业”，目标函数完全不同。',art:'grades'},
+ {code:'U03',name:'图书馆幽灵',en:'SILENT DEEP WORK TYPE',level:'SR',v:[82,20,25,82,40,55],place:'固定自习座位',time:'闭馆广播响起前',skill:'长时间独处专注',tag:'你不一定高调地卷，但很擅长在自己的安静区域里持续推进。',quote:'你不是失踪了，只是刷新地点长期固定在图书馆。',analysis:'你偏好低干扰、高可控的环境。相比频繁社交和临时刺激，你更容易从稳定节奏、固定位置和连续专注中获得安全感与效率。',strengths:['深度工作时间长','节奏稳定，不容易被外界带跑','能够独立消化复杂内容'],risk:'太习惯单独处理问题时，可能错过团队反馈和更高效的资源。',mate:'学术苦行僧',mateText:'都能安静待很久，一个负责深入，一个负责稳定。',friction:'抽象艺术家',frictionText:'你需要安静，TA 可能把安静理解成“需要整点活”。',art:'library'},
+ {code:'U04',name:'宿舍冬眠者',en:'LOW-ENERGY COMFORT TYPE',level:'R',v:[35,18,70,32,20,45],place:'床帘里面',time:'任何需要下楼的时候',skill:'最低能耗生存',tag:'世界很大，但你的舒适区已经足够完善。',quote:'世界这么大，但你的床已经足够精彩。',analysis:'你对能量消耗非常敏感。没有必要的社交、无明确收益的外出和临时安排，都会被你自动判断为“可取消”。你并不一定懒，只是非常明确什么值得消耗电量。',strengths:['善于保护个人能量','不容易被无意义社交绑架','独处恢复速度快'],risk:'舒适区太稳定时，新的机会也可能被一起屏蔽。',mate:'DDL 战神',mateText:'你提供稳定据点，TA 在最后时刻制造奇迹。',friction:'校园冒险家',frictionText:'TA 的“出去看看”对你来说往往等于一场体力审判。',art:'dorm'},
+ {code:'U05',name:'社交外交官',en:'CAMPUS NETWORK TYPE',level:'SR',v:[55,95,45,55,82,58],place:'任何有人群的地方',time:'活动结束后的加微信环节',skill:'把陌生人变成联系人',tag:'别人遇到问题先搜攻略，你通常先说：“我问个人。”',quote:'你的校园资源不是存在网盘里，而是存在联系人里。',analysis:'你在人际互动中获得信息、机会和能量。新环境对你而言不是威胁，而是一张等待被连接起来的网络。你擅长快速建立关系，并让关系自然地转化为协作。',strengths:['建立弱连接速度快','善于调动人和资源','适应新环境能力强'],risk:'社交密度过高时，真正属于自己的独处和深度时间容易被挤掉。',mate:'宿舍总指挥',mateText:'一个懂人，一个懂组织，很容易把一群人带动起来。',friction:'图书馆幽灵',frictionText:'你觉得“多认识点人”，TA 可能觉得“先让我安静一会”。',art:'social'},
+ {code:'U06',name:'校园 NPC',en:'ROUTINE STABILITY TYPE',level:'R',v:[45,28,30,92,22,35],place:'每天固定路线上的固定地点',time:'课表规定的每一个整点',skill:'稳定刷新',tag:'你的大学生活拥有极强的路径依赖，像一套已经跑通的日常程序。',quote:'如果学校有小地图，你头顶应该一直有固定任务标记。',analysis:'你偏好可预测、低波动的生活。固定路线、固定吃饭时间、固定上课节奏会明显降低你的心理成本。你可能不追求每天都“有故事”，但很少真正失控。',strengths:['生活规律、稳定性强','不容易被短期情绪打乱','适合长期重复型任务'],risk:'过度稳定会把“没出问题”误当成“正在成长”。',mate:'早八幸存者',mateText:'双方都能在规律里活下去，甚至能互相叫醒。',friction:'校园冒险家',frictionText:'TA 想改路线，你只想按原地图继续跑。',art:'npc'},
+ {code:'U07',name:'考前觉醒者',en:'EXAM-WEEK OVERCLOCK TYPE',level:'SR',v:[70,38,92,35,45,62],place:'考试周自习室',time:'考前 24 小时',skill:'短期记忆超频',tag:'一个学期真正属于你的，可能只有考试周。',quote:'平时的大脑在省电，考试周的大脑才拿到管理员权限。',analysis:'你的学业目标并不低，但日常驱动力容易被“离考试还远”削弱。真正临近考核后，你会迅速进入高度聚焦状态，形成典型的阶段性超频。',strengths:['考试前聚焦能力强','能快速筛选高频知识','短期冲刺韧性高'],risk:'冲刺可以救一次成绩，但很难替代长期理解和睡眠。',mate:'图书馆幽灵',mateText:'TA 的固定节奏可以帮你把“考试周模式”提前一点启动。',friction:'学术苦行僧',frictionText:'TA 在研究原理，你在判断“这题到底考不考”。',art:'exam'},
+ {code:'U08',name:'早八幸存者',en:'MORNING SURVIVAL TYPE',level:'R',v:[62,45,60,70,35,72],place:'早八教室最后几排',time:'07:58',skill:'半清醒状态行动',tag:'肉体准时抵达教室，灵魂预计第二节课到站。',quote:'没有真正喜欢早八的人，只有成功活过早八的人。',analysis:'你通常有一定责任感和秩序感，所以即使状态不好也会把该到的地方到齐。但你的情绪与身体感受同样明显——“做得到”和“很舒服”是两回事。',strengths:['责任感强，关键节点能到位','疲惫状态仍能维持基本执行','对环境和身体状态感知敏锐'],risk:'长期靠硬撑完成日程，容易把疲惫误认为正常状态。',mate:'校园 NPC',mateText:'TA 的规律能让早八变成流程，而不是每天重新打一次仗。',friction:'宿舍冬眠者',frictionText:'一个已经在去教室，一个还在思考“这节课能不能请假”。',art:'morning'},
+ {code:'U09',name:'佛系摆烂王',en:'EMOTIONAL COST CONTROL TYPE',level:'R',v:[28,45,55,35,45,18],place:'哪里都行',time:'别人开始焦虑的时候',skill:'稳定心态',tag:'世界可能乱成一团，但你的精神状态经常比周围人更稳定。',quote:'能解决就解决，解决不了就先吃饭。',analysis:'你的最大特点不是“什么都不做”，而是不愿意为低价值目标支付过高情绪成本。你对输赢、排名和外界评价的敏感度较低，因此拥有很强的心理缓冲区。',strengths:['情绪恢复快','不容易被比较和焦虑推着走','能够在混乱中保持松弛'],risk:'松弛和放弃之间的界线很细，长期目标仍需要主动管理。',mate:'情绪天气预报员',mateText:'你负责让 TA 别想太多，TA 负责提醒你有些事确实值得认真。',friction:'绩点卷王',frictionText:'对方在优化 1 分，你可能在思考“这 1 分真的重要吗”。',art:'chill'},
+ {code:'U10',name:'抽象艺术家',en:'CHAOTIC CREATIVE TYPE',level:'SSR',v:[38,78,68,20,95,48],place:'宿舍群 / 食堂 / 任何能整活的地方',time:'大家都很正常的时候',skill:'制造不可预测事件',tag:'正常不是你的追求，让别人短暂失去语言能力才是。',quote:'你的校园生活不是日常，是一个长期更新的行为艺术项目。',analysis:'你拥有很高的开放探索与社交表达欲，同时对规则和固定形式的依赖较低。你更愿意通过新鲜、反常规甚至荒诞的方式创造存在感和乐趣。',strengths:['创意密度高、反应快','擅长活跃群体气氛','对新玩法、新梗、新形式敏感'],risk:'当“有意思”压过“有边界”，别人可能需要替你收拾现场。',mate:'社交外交官',mateText:'你负责制造节目效果，TA 负责保证节目效果之后关系还能继续。',friction:'图书馆幽灵',frictionText:'TA 追求低噪音，你的存在本身可能就是高噪音。',art:'chaos'},
+ {code:'U11',name:'六边形大学生',en:'BALANCED CAMPUS TYPE',level:'SSR',v:[82,82,40,82,80,52],place:'教室 / 球场 / 社团 / 图书馆随机切换',time:'别人问“你怎么还有时间”的时候',skill:'多线程生活管理',tag:'没有明显短板，所以你的存在本身就容易对身边人构成轻微压力。',quote:'学习、社交、生活都在线，像是拿到了别人没找到的时间管理插件。',analysis:'你的各维度相对均衡，而且学习、社交、秩序和探索都处于较高水平。真正稀缺的不是单项能力，而是你能在多个目标之间切换而不让某一端长期崩溃。',strengths:['多领域切换能力强','兼顾长期目标与生活体验','团队协作和个人执行都较稳定'],risk:'“什么都能做”也会带来隐性负荷，别把所有机会都当成必须接住。',mate:'绩点卷王',mateText:'TA 帮你把学业进一步做稳，你提醒 TA 别把生活只剩成绩。',friction:'人机大学生',frictionText:'你总想多开一个支线，TA 更喜欢按默认主线运行。',art:'hex'},
+ {code:'U12',name:'学术苦行僧',en:'DEEP ACADEMIC TYPE',level:'SSR',v:[88,22,18,74,80,45],place:'自习室最安静的角落',time:'老师说“这不考”的时候',skill:'把问题追到原理层',tag:'别人学习为了考试，你有时候真的会对知识本身上头。',quote:'“这题不考”并不能自动让你对它失去兴趣。',analysis:'你的学业驱动力不仅来自成绩，也来自“把事情真正弄明白”的需要。高秩序感让你能长期积累，高探索感又让你不满足于只记结论。',strengths:['概念理解深','能长期投入复杂问题','自我学习和框架搭建能力强'],risk:'深度很有价值，但也要防止在非关键问题上无限下钻。',mate:'图书馆幽灵',mateText:'TA 给你稳定环境，你能把稳定时间变成真正的深度。',friction:'考前觉醒者',frictionText:'你问“为什么”，TA 更关心“会不会考”。',art:'research'},
+ {code:'U13',name:'人机大学生',en:'DEFAULT LOOP TYPE',level:'R',v:[42,25,55,78,15,28],place:'教室—食堂—宿舍三点一线',time:'每天差不多同一时间',skill:'低波动循环运行',tag:'大学没有亏待你，你只是逐渐活成了默认设置。',quote:'上课、吃饭、回宿舍、睡觉。Repeat。',analysis:'你的生活秩序相对稳定，但开放探索和社交需求偏低。相比主动寻找新刺激，你更习惯把已经跑通的日常继续运行，这能节省大量决策成本。',strengths:['日常稳定、风险低','不容易被外界节奏裹挟','对固定任务有持续性'],risk:'当每天都差不多时，时间会过得很快，回头却不一定留下足够多的记忆节点。',mate:'校园 NPC',mateText:'一个负责稳定路线，一个负责稳定循环，几乎不会互相打扰。',friction:'六边形大学生',frictionText:'TA 总在开新支线，你可能只想把当前循环稳定跑完。',art:'loop'},
+ {code:'U14',name:'校园冒险家',en:'OPEN-WORLD EXPLORER TYPE',level:'SR',v:[45,78,35,28,98,45],place:'学校地图之外',time:'有人说“要不要去试试”的时候',skill:'把大学玩成开放世界',tag:'四年大学对别人是一段时间，对你更像一张开放世界地图。',quote:'没做过？那就更值得去一次。',analysis:'你对新鲜体验的需求很高，陌生环境和新活动通常不会首先触发退缩，而是触发好奇。你愿意用体验换信息，再在行动中决定什么值得留下。',strengths:['开放性和适应力高','容易积累多样经历','面对陌生情境行动门槛低'],risk:'体验太多也会稀释长期投入，需要留出真正沉淀的主线。',mate:'社交外交官',mateText:'你负责探索新地图，TA 负责迅速连接地图上的人。',friction:'宿舍冬眠者',frictionText:'你说“出去走走”，TA 已经开始计算返回宿舍的最短路径。',art:'explore'},
+ {code:'U15',name:'宿舍总指挥',en:'MICRO-ORGANIZATION TYPE',level:'SR',v:[65,88,38,92,60,48],place:'群聊置顶 / 宿舍门口',time:'所有人都说“都行”的时候',skill:'把“随便”变成具体方案',tag:'一个宿舍可以没有正式负责人，但很难完全没有一个你这样的人。',quote:'七点楼下集合，我订好了。还有谁不行现在说。',analysis:'你的社交能量和组织秩序同时偏高。与其让事情一直悬着，你更愿意推动决策、分配任务和确定时间，把模糊状态变成可执行状态。',strengths:['组织和协调效率高','能主动承担决策成本','团队里的推进力稳定'],risk:'经常替所有人做决定，会让你承担过多隐形责任，也可能显得控制感偏强。',mate:'社交外交官',mateText:'你负责定结构，TA 负责处理关系，团队通常会运转得很快。',friction:'佛系摆烂王',frictionText:'你在催确认，TA 的答案可能永远是“都行”。',art:'leader'},
+ {code:'U16',name:'情绪天气预报员',en:'HIGH-SENSITIVITY TYPE',level:'SR',v:[58,55,45,50,55,98],place:'聊天框输入中…',time:'别人只回一个“哦”的时候',skill:'捕捉气氛变化',tag:'你不仅能感觉到气氛，还经常能感觉到气氛是什么时候开始不对的。',quote:'“他为什么只回一个哦？”——你的大脑已经开始建立多个解释模型。',analysis:'你的情绪敏感和人际感知明显偏高。很多别人会忽略的语气、停顿、反常和氛围变化，你都能迅速捕捉到。这让你很会理解人，也更容易过度解释。',strengths:['共情和观察力强','能发现细微的人际变化','对自己和他人的情绪较诚实'],risk:'高感知并不等于每个信号都需要解释，有时“没事”真的只是没事。',mate:'佛系摆烂王',mateText:'TA 能帮你降低过度解释，你能帮 TA 看到真正需要在意的信号。',friction:'早八幸存者',frictionText:'你在感受语气，TA 早上可能连完整句子都还没加载出来。',art:'weather'}
+];
+
+
+const COMMERCIAL={freeTests:1,secret:'CA5-COMMERCIAL-2026-09',keyFree:'ca5_free_used',keyLicense:'ca5_license_state',keyDevice:'ca5_device_id',keyDev:'ca5_dev_mode'};
+let currentEntitlement=null,pendingQuizStart=false,challengeSourceCode=null,challengeSourceSig=null;
+function fnv1a(str){let h=2166136261;for(const ch of str){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return (h>>>0).toString(36).toUpperCase().padStart(7,'0');}
+function getDeviceId(){let id=localStorage.getItem(COMMERCIAL.keyDevice);if(!id){id='D-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).slice(2,7).toUpperCase();localStorage.setItem(COMMERCIAL.keyDevice,id);}return id;}
+function readLicense(){try{const s=JSON.parse(localStorage.getItem(COMMERCIAL.keyLicense)||'null');if(!s)return null;if(s.expiresAt&&Date.now()>s.expiresAt){localStorage.removeItem(COMMERCIAL.keyLicense);return null;}if(Number.isFinite(s.credits)&&s.credits<=0){localStorage.removeItem(COMMERCIAL.keyLicense);return null;}return s;}catch(e){return null;}}
+function getAccessInfo(){const freeUsed=Number(localStorage.getItem(COMMERCIAL.keyFree)||0),lic=readLicense(),dev=localStorage.getItem(COMMERCIAL.keyDev)==='1';return {freeLeft:Math.max(0,COMMERCIAL.freeTests-freeUsed),lic,dev};}
+function entitlementLabel(){const a=getAccessInfo();if(a.dev)return '开发者模式 · 不限次数';if(a.lic){const exp=a.lic.expiresAt?new Date(a.lic.expiresAt).toLocaleDateString():'长期';const cr=a.lic.credits===999?'不限':a.lic.credits;return `授权已激活 · 剩余 ${cr} 次 · 有效至 ${exp}`;}return a.freeLeft>0?`首次免费次数剩余 ${a.freeLeft} 次`:'免费次数已用完 · 输入授权码继续';}
+function updateEntitlementUI(){const text=entitlementLabel();const el=document.getElementById('entitlementText');if(el)el.textContent=text;const s=document.getElementById('accessStatusText');if(s)s.textContent=text;const d=document.getElementById('accessDeviceId');if(d)d.textContent=getDeviceId();}
+function resolveEntitlement(){const a=getAccessInfo();if(a.dev)return 'dev';if(a.freeLeft>0)return 'free';if(a.lic)return 'license';return null;}
+function consumeEntitlement(){if(currentEntitlement==='free'){localStorage.setItem(COMMERCIAL.keyFree,String(Number(localStorage.getItem(COMMERCIAL.keyFree)||0)+1));}else if(currentEntitlement==='license'){const s=readLicense();if(s&&s.credits!==999){s.credits=Math.max(0,s.credits-1);localStorage.setItem(COMMERCIAL.keyLicense,JSON.stringify(s));}}currentEntitlement=null;updateEntitlementUI();}
+function openAccessModal(){updateEntitlementUI();document.getElementById('accessModal').classList.add('show');document.body.style.overflow='hidden';}
+function closeAccessModal(){pendingQuizStart=false;document.getElementById('accessModal').classList.remove('show');document.body.style.overflow='';}
+function copyDeviceId(){const id=getDeviceId();navigator.clipboard?.writeText(id);showToast('设备 ID 已复制');}
+function parseLicense(code){const c=(code||'').trim().toUpperCase();const parts=c.split('-');if(parts.length!==6||parts[0]!=='CA5')return null;const tier=parts[1],expiry=parts[2],nonce=parts[3],batch=parts[4],sig=parts[5];const payload=[tier,expiry,nonce,batch].join('-');if(fnv1a(payload+'|'+COMMERCIAL.secret)!==sig)return null;let credits=0;if(tier==='T1')credits=1;else if(tier==='T3')credits=3;else if(tier==='T10')credits=10;else if(tier==='VIP')credits=999;else return null;let expiresAt=null;if(expiry!=='LIFE'){if(!/^\d{8}$/.test(expiry))return null;const y=+expiry.slice(0,4),m=+expiry.slice(4,6)-1,d=+expiry.slice(6,8);expiresAt=new Date(y,m,d,23,59,59).getTime();if(Date.now()>expiresAt)return null;}return {code:c,tier,credits,expiresAt,activatedAt:Date.now()};}
+function redeemLicense(){const input=document.getElementById('licenseInput');const lic=parseLicense(input.value);if(!lic){showToast('授权码无效或已过期');return;}const shouldStart=pendingQuizStart;localStorage.setItem(COMMERCIAL.keyLicense,JSON.stringify(lic));updateEntitlementUI();pendingQuizStart=false;document.getElementById('accessModal').classList.remove('show');document.body.style.overflow='';showToast('授权已激活');if(shouldStart)setTimeout(()=>startQuiz(),140);}
+const DIM_GUIDE={
+ study:{title:'学业掌控',drive:'你会天然关注“事情有没有推进、结果能不能落地”。',glow:'一旦确定目标，你会进入稳定推进模式。',blind:'别把每一次结果波动都解释成对自我的否定。',tips:[['主线优先','给这周只保留 1 条真正重要的主线。'],['拆解任务','把大任务拆成 25 分钟可完成的小单位。'],['允许波动','偶尔发挥失常，不代表整个系统失控。']]},
+ social:{title:'人际连接',drive:'你会优先感受关系是否顺畅、气氛是否在线。',glow:'你很擅长把人和信息快速连接起来。',blind:'别让高密度社交挤掉真正属于自己的时间。',tips:[['社交限额','热闹之后记得给自己留恢复时间。'],['保留深聊','比起加很多人，留下几个真连接更有价值。'],['把帮助外显','你的人际天赋，适合转化成合作力。']]},
+ deadline:{title:'压力启动',drive:'当时间压力变得具体时，你的大脑会明显提速。',glow:'你擅长在紧急场景里抓重点、压缩任务、快速交付。',blind:'别长期把“最后一刻”当成唯一启动开关。',tips:[['制造假DDL','把大任务切成多个提前截止点。'],['先做粗版','先交出 60 分版本，再慢慢精修。'],['保底睡眠','熬夜换来的效率，经常会被第二天透支掉。']]},
+ order:{title:'秩序控制',drive:'可预测、可安排、可管理，会让你更安心。',glow:'你能把模糊的事情变成可执行的流程。',blind:'计划很强，但别让计划感变成被打乱时的情绪负担。',tips:[['预留缓冲','日程表里主动留出空白区。'],['先排优先级','不是所有任务都值得同等认真。'],['接受变更','允许 20% 的随机性，会让系统更稳定。']]},
+ explore:{title:'新鲜体验',drive:'你会被未知感、变化感和新尝试吸引。',glow:'你适应新环境很快，也容易活出有记忆点的大学体验。',blind:'别让“到处都想试试”稀释你真正想沉淀的主线。',tips:[['主线+支线','每学期至少保留一条持续投入的主线。'],['体验归档','把做过的新尝试记录下来，形成个人地图。'],['节奏回收','兴奋过后记得回到长期积累上。']]},
+ sensitivity:{title:'情绪感知',drive:'你会比多数人更快捕捉氛围、语气和细节变化。',glow:'你的共情力强，也更能理解别人没说出来的部分。',blind:'高感知不等于每个信号都必须解释。',tips:[['延迟解读','先确认事实，再解释情绪。'],['设置缓冲','不在疲惫时做关系判断。'],['把感受说清','与其猜，不如温和地表达你的感受。']]}
+};
+function rankDims(user){return DIM_KEYS.map((k,i)=>({k,v:user[i]})).sort((a,b)=>b.v-a.v);}
+function buildDynamicProfile(profile,user){
+ const ranked=rankDims(user), top1=ranked[0].k, top2=ranked[1].k, low=ranked[ranked.length-1].k;
+ const g1=DIM_GUIDE[top1], g2=DIM_GUIDE[top2], gl=DIM_GUIDE[low];
+ return {
+  aura:[profile.level, profile.code, DIM_NAMES[top1], DIM_NAMES[top2], '校园人格档案'],
+  badges:[g1.title, g2.title, '低位：'+DIM_NAMES[low], profile.place],
+  manifesto:`你是「${profile.name}」型大学生。${profile.tag} 你的底层推进方式更接近“${g1.title} + ${g2.title}”的双引擎：${g1.drive}${g2.drive}`,
+  driveTitle:g1.title, driveText:g1.drive+' '+(profile.analysis||''),
+  glowTitle:g2.title, glowText:g2.glow+' '+(profile.strengths&&profile.strengths[0]?`你尤其容易在「${profile.place}」这类场景把优势放大。`:''),
+  blindTitle:gl.title, blindText:gl.blind+' '+(profile.risk||''),
+  tips:[g1.tips[0], g2.tips[1], gl.tips[2]],
+  dailyLine:`把今天最重要的一件事，放在最符合你天性的时段去做：如果你偏 ${DIM_NAMES[top1]}，就顺着这股势能完成一件真正推进主线的事情。`
+ };
+}
+function renderQuizMiniDims(pv){
+ const box=document.getElementById('quizMiniDims'); if(!box) return;
+ if(!pv){box.innerHTML='<div class="mHint">答到 3 题以上后，这里会开始显示更稳定的轮廓趋势。</div>';return;}
+ box.innerHTML=DIM_KEYS.map((k,i)=>`<div class="mRow"><span>${DIM_SHORT[k]}</span><div class="mTrack"><div class="mFill" style="width:${pv[i]}%"></div></div><b>${pv[i]}</b></div>`).join('');
+}
+
+let current=0, answers=Array(QUESTIONS.length).fill(null), transitionTimer=null, lastState=null;
+
+function startQuiz(){
+ currentEntitlement=resolveEntitlement();if(!currentEntitlement){pendingQuizStart=true;openAccessModal();return;}
+ resetPersonaTheme();
+ clearTimeout(transitionTimer);current=0;answers=Array(QUESTIONS.length).fill(null);localStorage.removeItem('campus_archive_progress_v4');localStorage.removeItem('campus_archive_progress_v2');
+ document.getElementById('hero').classList.add('hidden');document.getElementById('result').classList.remove('active');document.getElementById('result').setAttribute('aria-hidden','true');
+ const quiz=document.getElementById('quiz');quiz.classList.add('active');quiz.setAttribute('aria-hidden','false');renderQuestion();window.scrollTo({top:0,behavior:'smooth'});
+}
+function exitQuiz(){resetPersonaTheme();clearTimeout(transitionTimer);document.getElementById('quiz').classList.remove('active');document.getElementById('quiz').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
+function prevQuestion(){clearTimeout(transitionTimer);if(current<=0)return;current--;saveProgress();renderQuestion();scrollQuizTop();}
+function scrollQuizTop(){if(innerWidth<700)window.scrollTo({top:0,behavior:'smooth'});}
+function renderQuestion(){
+ const item=QUESTIONS[current];
+ setQuizAtmosphere(current,item);
+ renderChapter(current);
+ flashChapterIfNeeded(current);
+ const stage=document.getElementById('questionStage');stage.classList.remove('quizFlash','quizPulse');void stage.offsetWidth;stage.classList.add('quizFlash','quizPulse');
+ const done=answers.filter(v=>v!==null).length;
+ const pct=Math.round((current+1)/QUESTIONS.length*100);
+ document.getElementById('quizNum').textContent=String(current+1).padStart(2,'0')+' / '+QUESTIONS.length;
+ document.getElementById('progressBar').style.width=pct+'%';
+ document.getElementById('quizDoneCount').textContent=done+' / '+QUESTIONS.length;
+ document.getElementById('quizPercent').textContent=pct+'%';
+ document.getElementById('questionSignal').textContent=tagLabel(item.tag).toUpperCase();
+ document.getElementById('questionKicker').textContent='SCENARIO / '+item.tag;
+ document.getElementById('metaAnswered').textContent='已答 '+done+' 题';
+ document.getElementById('metaTag').textContent=tagLabel(item.tag);
+ const focus=focusDimsForQuestion(item);
+ document.getElementById('metaEnergy').textContent='观察 '+focus.map(k=>DIM_NAMES[k]).join(' · ');
+ document.getElementById('question').textContent=item.q;
+ document.getElementById('questionHint').textContent=QUESTION_HINTS[item.tag]||'没有标准答案。请选择你在现实校园里更可能做出的反应。';
+ document.getElementById('prevBtn').disabled=current===0;
+ document.getElementById('focusChips').innerHTML=focus.map(k=>`<span>${DIM_NAMES[k]}</span>`).join('');
+ document.getElementById('liveProfile').textContent=liveProfileSummary();
+ renderQuizMiniDims(partialVector());
+ document.getElementById('quizPreviewArt').innerHTML=quizPreviewSVG(item,current);
+ const box=document.getElementById('answers');box.innerHTML='';
+ item.a.forEach((opt,i)=>{const b=document.createElement('button');b.className='answer'+(answers[current]===i?' selected':'');b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span><span class="answerText">${opt[0]}</span><span class="answerBadge">${focus.map(k=>DIM_SHORT[k]).join(' · ')}</span></span>`;b.onclick=()=>chooseAnswer(i);box.appendChild(b);});
+}
+function setQuizAtmosphere(i,item){const hues=[72,205,18,42,285,155];const scene=document.querySelector('.quizScene');const focus=focusDimsForQuestion(item||QUESTIONS[i]);const map={study:210,social:18,deadline:72,order:260,explore:168,sensitivity:330};const h1=map[focus[0]]||hues[i%hues.length], h2=map[focus[1]]||hues[(i+2)%hues.length];if(scene)scene.style.background=`radial-gradient(520px 320px at ${20+(i*17)%70}% ${20+(i*23)%60}%,hsla(${h1},76%,56%,.12),transparent 60%),radial-gradient(340px 200px at ${60+(i*7)%25}% ${22+(i*11)%52}%,hsla(${h2},76%,60%,.12),transparent 60%),#14161a`; }
+function chooseAnswer(i){
+ clearTimeout(transitionTimer);answers[current]=i;saveProgress();if(navigator.vibrate)navigator.vibrate(8);document.querySelectorAll('.answer').forEach((el,idx)=>el.classList.toggle('selected',idx===i));
+ transitionTimer=setTimeout(()=>{if(current<QUESTIONS.length-1){current++;requestAnimationFrame(()=>{renderQuestion();scrollQuizTop();});}else{requestAnimationFrame(finishQuiz);}},260);
+}
+function buildVector(){
+ const raw=Array(6).fill(0), theoreticalMin=Array(6).fill(0), theoreticalMax=Array(6).fill(0);
+ QUESTIONS.forEach((q,qi)=>{
+   for(let d=0;d<6;d++){
+     theoreticalMin[d]+=Math.min(...q.a.map(o=>o[1][d]));
+     theoreticalMax[d]+=Math.max(...q.a.map(o=>o[1][d]));
+   }
+   const idx=answers[qi]??0;
+   q.a[idx][1].forEach((v,d)=>raw[d]+=v);
+ });
+ return raw.map((v,d)=>{
+   const span=(theoreticalMax[d]-theoreticalMin[d])||1;
+   const pct=(v-theoreticalMin[d])/span;
+   return Math.round(Math.max(8,Math.min(92,8+pct*84)));
+ });
+}
+function modelDistance(user,proto){const weights=[1.08,.98,1.05,1.0,.96,1.02];let sum=0,ws=0;for(let i=0;i<6;i++){sum+=((user[i]-proto[i])**2)*weights[i];ws+=weights[i];}return Math.sqrt(sum/ws);}
+function similarity(user,proto){const dist=modelDistance(user,proto);return Math.max(56,Math.min(98.2,98.2-dist*.72));}
+function finishQuiz(){
+ if(answers.some(x=>x===null)){showToast('还有题目未完成');return;}
+ const user=buildVector();
+ const ranked=ARCHETYPES.map(a=>({...a,sim:similarity(user,a.v),dist:modelDistance(user,a.v)})).sort((a,b)=>a.dist-b.dist);
+ const best=ranked[0],second=ranked[1],gap=Math.max(0,second.dist-best.dist);
+ const stability=Math.round(Math.max(54,Math.min(96,58+gap*4.2)));
+ const signature=makeSignature(user,best.code);
+ lastState={version:2,user,bestCode:best.code,rankedCodes:ranked.map(x=>x.code),sims:ranked.map(x=>x.sim),distances:ranked.map(x=>x.dist),stability,signature,answers:[...answers],savedAt:Date.now()};
+ localStorage.setItem('campus_archive_last_v4',JSON.stringify(lastState));localStorage.removeItem('campus_archive_progress_v4');localStorage.removeItem('campus_archive_progress_v2');if(!currentEntitlement)currentEntitlement=resolveEntitlement();consumeEntitlement();document.getElementById('resumeBtn').classList.remove('hidden');updateResumeUI();renderResult(lastState);
+}
+function stateToRanked(state){return state.rankedCodes.map((code,i)=>({...ARCHETYPES.find(a=>a.code===code),sim:state.sims[i],dist:state.distances?state.distances[i]:null}));}
+function renderResult(state){
+ lastState=state;const ranked=stateToRanked(state),best=ranked[0],user=state.user,dynamic=buildDynamicProfile(best,user);
+ applyPersonaTheme(best.code);
+ applyPersonaVisualMeta(best);
+ document.getElementById('quiz').classList.remove('active');document.getElementById('quiz').setAttribute('aria-hidden','true');document.getElementById('hero').classList.add('hidden');
+ const res=document.getElementById('result');res.classList.add('active');res.setAttribute('aria-hidden','false');
+ document.getElementById('coverIssue').textContent='FILE / '+best.code;document.getElementById('coverCode').textContent=best.code;document.getElementById('coverBadge').textContent='CLASS / '+best.level;document.getElementById('coverName').textContent=best.name;document.getElementById('coverEn').textContent=best.en;document.getElementById('coverMatch').textContent=best.sim.toFixed(1)+'%';
+ document.getElementById('resultTitle').textContent=best.name;document.getElementById('resultEnglish').textContent=best.en;document.getElementById('resultTagline').textContent=best.tag;document.getElementById('quoteBlock').innerHTML='<b>档案摘录：</b> '+best.quote;
+ document.getElementById('attrPlace').textContent=best.place;document.getElementById('attrTime').textContent=best.time;document.getElementById('attrSkill').textContent=best.skill;document.getElementById('attrClass').textContent=best.level+' · '+best.code;
+ document.getElementById('resultVariant').textContent=buildVariant(user);document.getElementById('resultStability').textContent=(state.stability||60)+'% · '+stabilityLabel(state.stability||60);document.getElementById('resultFileId').textContent=state.signature||makeSignature(user,best.code);
+ document.getElementById('resultAura').innerHTML=dynamic.aura.map(x=>`<span>${x}</span>`).join('');
+ document.getElementById('manifestoBlock').innerHTML='<small>PERSONAL MANIFESTO</small><p>'+dynamic.manifesto+'</p>';
+ document.getElementById('personaBadges').innerHTML=dynamic.badges.map(x=>`<span>${x}</span>`).join('');
+ document.getElementById('manifestoText').textContent=dynamic.manifesto;
+ document.getElementById('survivalDrive').textContent=dynamic.driveTitle;document.getElementById('survivalDriveText').textContent=dynamic.driveText;
+ document.getElementById('survivalGlow').textContent=dynamic.glowTitle;document.getElementById('survivalGlowText').textContent=dynamic.glowText;
+ document.getElementById('survivalBlind').textContent=dynamic.blindTitle;document.getElementById('survivalBlindText').textContent=dynamic.blindText;
+ document.getElementById('adviceList').innerHTML=dynamic.tips.map((x,i)=>`<div class="adviceItem"><i>0${i+1}</i><div><b>${x[0]}</b><p>${x[1]}</p></div></div>`).join('');
+ document.getElementById('resultDailyLine').textContent=dynamic.dailyLine;
+ const twin=ranked[1];document.getElementById('twinName').textContent=twin.name;document.getElementById('twinSim').textContent=twin.sim.toFixed(1)+'%';document.getElementById('twinEn').textContent=twin.en;document.getElementById('twinText').textContent='当你的状态、压力或社交环境发生变化时，你最容易向「'+twin.name+'」偏移。它不是“第二答案”，而是与你当前行为结构最接近的旁支人格。';document.getElementById('twinArt').innerHTML=personaImage(twin,true);
+
+ document.getElementById('analysisText').textContent=best.analysis+' '+buildPersonalSentence(user);
+ document.getElementById('bulletList').innerHTML=best.strengths.map((x,i)=>`<div class="bullet"><i>0${i+1}</i><span>${x}</span></div>`).join('')+`<div class="bullet"><i>!</i><span>${best.risk}</span></div>`;
+ document.getElementById('bestMate').textContent=best.mate;document.getElementById('bestMateText').textContent=best.mateText;document.getElementById('friction').textContent=best.friction;document.getElementById('frictionText').textContent=best.frictionText;
+ document.getElementById('coverArt').querySelectorAll('svg.personArt,img.personArt').forEach(x=>x.remove());document.getElementById('coverArt').insertAdjacentHTML('afterbegin',personaImage(best,false));const sm=PERSONA_SCENE_META[best.code]||[];document.getElementById('personaSceneCaption').innerHTML=sm.map(x=>`<span>${x}</span>`).join('');
+ renderRadar(user);renderDims(user);renderAlts(ranked.slice(1,4));const vc=document.getElementById('viralCode');if(vc)vc.textContent='CHALLENGE / '+(state.signature||makeSignature(user,best.code));const ml=document.getElementById('matchupLine');if(ml){if(challengeSourceCode){const src=ARCHETYPES.find(a=>a.code===challengeSourceCode);ml.style.display='block';ml.textContent='好友结果：'+(src?src.name:challengeSourceCode)+'  →  你的结果：'+best.name+(challengeSourceCode===best.code?' · 同类识别成功':' · 你们不是同一个物种');}else ml.style.display='none';}window.scrollTo({top:0,behavior:'smooth'});
+}
+function buildPersonalSentence(user){const pairs=DIM_KEYS.map((k,i)=>[k,user[i]]).sort((a,b)=>b[1]-a[1]);const high=pairs.slice(0,2).map(x=>DIM_NAMES[x[0]]).join(' × ');const low=DIM_NAMES[pairs[pairs.length-1][0]];return `你的突出组合是「${high}」，相对最低的是「${low}」。这说明你的结果不是由单个标签决定，而是由几种校园行为倾向共同形成。`;}
+function renderDims(user){document.getElementById('dimList').innerHTML=DIM_KEYS.map((k,i)=>`<div class="dimRow"><label>${DIM_NAMES[k]}</label><div class="dimTrack"><div class="dimFill" style="width:${user[i]}%"></div></div><b>${user[i]}</b></div>`).join('');}
+function renderRadar(user){
+ const svg=document.getElementById('radar'),cx=160,cy=160,R=112;const pts=(vals)=>vals.map((v,i)=>{const a=-Math.PI/2+i*Math.PI*2/6;const r=R*(v/100);return `${cx+Math.cos(a)*r},${cy+Math.sin(a)*r}`}).join(' ');
+ let h='<rect width="320" height="320" fill="none"/>';for(const f of [.25,.5,.75,1]){h+=`<polygon points="${pts(Array(6).fill(f*100))}" fill="none" stroke="rgba(18,19,21,.12)" stroke-width="1"/>`;}
+ for(let i=0;i<6;i++){const a=-Math.PI/2+i*Math.PI*2/6;const x=cx+Math.cos(a)*R,y=cy+Math.sin(a)*R;const lx=cx+Math.cos(a)*(R+28),ly=cy+Math.sin(a)*(R+28);h+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(18,19,21,.11)"/>`;h+=`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="800" fill="#55524d">${DIM_SHORT[DIM_KEYS[i]]}</text>`;}
+ h+=`<polygon points="${pts(user)}" fill="rgba(201,255,61,.28)" stroke="#17181a" stroke-width="3"/>`;user.forEach((v,i)=>{const a=-Math.PI/2+i*Math.PI*2/6,r=R*v/100,x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r;h+=`<circle cx="${x}" cy="${y}" r="4" fill="#17181a"/>`;});svg.innerHTML=h;
+}
+function renderAlts(items){document.getElementById('altList').innerHTML=items.map((x,i)=>`<div class="alt"><span class="rank">#0${i+2}</span><strong>${x.name}<br><small style="font:700 8px ui-monospace,monospace;color:#888">${x.en}</small></strong><b>${x.sim.toFixed(1)}%</b></div>`).join('');}
+function restoreLast(){try{const raw=localStorage.getItem('campus_archive_last_v4')||localStorage.getItem('campus_archive_last_v2');if(!raw)return showToast('当前设备没有保存过结果');const state=JSON.parse(raw);if(!state||!state.bestCode)throw new Error('bad');answers=state.answers||Array(QUESTIONS.length).fill(null);renderResult(state);}catch(e){showToast('上次档案已失效，请重新测试');}}
+function restart(){resetPersonaTheme();if(location.hash)history.replaceState(null,'',location.pathname+location.search);document.getElementById('result').classList.remove('active');document.getElementById('result').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
+async function shareResult(){if(!lastState)return;const best=ARCHETYPES.find(a=>a.code===lastState.bestCode);const shareUrl=makeResultUrl(lastState);const text=`我的大学牲人格是「${best.name}」｜${best.quote}\n24 道校园情境题，测测你是什么大学生。`;const data={title:'大学牲人格鉴定 · '+best.name,text,url:shareUrl};try{if(navigator.share){await navigator.share(data);return;}if(navigator.clipboard){await navigator.clipboard.writeText(text+'\n'+shareUrl);showToast('结果链接已复制');return;}}catch(e){}showToast('分享未完成');}
+
+function makeChallengeUrl(state){const best=ARCHETYPES.find(a=>a.code===state.bestCode);const sig=state.signature||makeSignature(state.user,best.code);if(!location.protocol.startsWith('http'))return location.href;return location.origin+location.pathname+'#c='+encodeURIComponent(sig)+'&p='+best.code;}
+function challengeText(){if(!lastState)return '';const best=ARCHETYPES.find(a=>a.code===lastState.bestCode);const code=lastState.signature||makeSignature(lastState.user,best.code);return `我测出来是「${best.name}」。挑战码：${code}\n你也测一下，看我们是不是一个物种。`;}
+async function shareChallenge(){if(!lastState)return;const text=challengeText(),url=makeChallengeUrl(lastState);try{if(navigator.share){await navigator.share({title:'大学牲人格挑战',text,url});return;}await navigator.clipboard?.writeText(text+'\n'+url);showToast('挑战文案与链接已复制');}catch(e){showToast('分享未完成');}}
+function copyChallenge(){const text=challengeText()+'\n'+makeChallengeUrl(lastState);navigator.clipboard?.writeText(text);showToast('挑战文案已复制');}
+function restartFromResult(){restart();setTimeout(()=>startQuiz(),120);}
+function loadChallengeInvite(){const h=location.hash.replace(/^#/,'');if(!h.startsWith('c='))return false;const p=new URLSearchParams(h);challengeSourceSig=p.get('c')||null;challengeSourceCode=p.get('p')||null;const a=ARCHETYPES.find(x=>x.code===challengeSourceCode);const banner=document.getElementById('challengeBanner');const name=document.getElementById('challengeSourceName');if(banner){banner.classList.add('show');if(name)name.textContent=a?a.name:(challengeSourceCode||'未知人格');}return true;}
+function makeSignature(user,code){const base=code+'-'+user.map(x=>String(x).padStart(2,'0')).join('');let h=2166136261;for(const ch of base){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return 'CA26-'+code+'-'+(h>>>0).toString(36).toUpperCase().padStart(7,'0');}
+function buildVariant(user){const sorted=DIM_KEYS.map((k,i)=>({k,v:user[i]})).sort((a,b)=>b.v-a.v),hi=sorted[0],lo=sorted[sorted.length-1];const highMap={study:'目标驱动',social:'关系驱动',deadline:'压力驱动',order:'秩序驱动',explore:'探索驱动',sensitivity:'感知驱动'};const lowMap={study:'低绩点执念',social:'低社交耗能',deadline:'提前启动',order:'自由节奏',explore:'稳定偏好',sensitivity:'高钝感'};return `${highMap[hi.k]} × ${lowMap[lo.k]}`;}
+function stabilityLabel(v){return v>=86?'高稳定':v>=72?'较稳定':v>=60?'混合型':'边界型';}
+function makeResultUrl(state){if(!location.protocol.startsWith('http'))return location.href;return location.origin+location.pathname+'#r='+state.bestCode+'&d='+state.user.join('.')+'&s='+(state.stability||60);}
+function loadSharedResult(){const h=location.hash.replace(/^#/,'');if(!h.startsWith('r='))return false;const p=new URLSearchParams(h),d=(p.get('d')||'').split('.').map(Number),st=Number(p.get('s')||60);if(d.length!==6||d.some(x=>!Number.isFinite(x)))return false;const ranked=ARCHETYPES.map(a=>({...a,sim:similarity(d,a.v),dist:modelDistance(d,a.v)})).sort((a,b)=>a.dist-b.dist);const best=ranked[0],state={version:2,user:d,bestCode:best.code,rankedCodes:ranked.map(x=>x.code),sims:ranked.map(x=>x.sim),distances:ranked.map(x=>x.dist),stability:Math.max(54,Math.min(96,Math.round(st))),signature:makeSignature(d,best.code),answers:Array(QUESTIONS.length).fill(null),shared:true};renderResult(state);return true;}
+function openGallery(){document.getElementById('galleryGrid').innerHTML=ARCHETYPES.map(a=>`<div class="galleryItem"><div class="galleryThumb">${personaImage(a,true)}</div><div class="galleryBody"><div><small>${a.code} / ${a.en}</small><strong>${a.name}</strong><p>${a.tag}</p><div class="personMiniNote">最常出现地点：${a.place}</div></div><span class="gLevel">${a.level}</span></div></div>`).join('');document.getElementById('galleryModal').classList.add('show');document.body.style.overflow='hidden';}
+function closeGallery(){document.getElementById('galleryModal').classList.remove('show');document.body.style.overflow='';}
+function saveProgress(){localStorage.setItem('campus_archive_progress_v4',JSON.stringify({answers,current,savedAt:Date.now()}));updateResumeUI();}
+function updateResumeUI(){const box=document.getElementById('resumeProgress'),raw=localStorage.getItem('campus_archive_progress_v4')||localStorage.getItem('campus_archive_progress_v2');if(raw){try{const p=JSON.parse(raw),done=(p.answers||[]).filter(x=>x!==null).length;if(done>0&&done<QUESTIONS.length){box.style.display='block';box.innerHTML=`<b>检测到未完成档案：</b> 已回答 ${done} / ${QUESTIONS.length} 题。<button onclick="resumeProgressQuiz()" style="margin-left:6px;border:0;background:#17181a;color:#fff;padding:6px 9px;font-weight:800;cursor:pointer">继续</button>`;return;}}catch(e){}}box.style.display='none';}
+function resumeProgressQuiz(){try{const p=JSON.parse(localStorage.getItem('campus_archive_progress_v4')||localStorage.getItem('campus_archive_progress_v2'));answers=(p.answers||Array(QUESTIONS.length).fill(null)).slice(0,QUESTIONS.length);while(answers.length<QUESTIONS.length)answers.push(null);current=Math.max(0,Math.min(QUESTIONS.length-1,p.current||0));document.getElementById('hero').classList.add('hidden');document.getElementById('result').classList.remove('active');const q=document.getElementById('quiz');q.classList.add('active');q.setAttribute('aria-hidden','false');renderQuestion();scrollQuizTop();}catch(e){startQuiz();}}
+
+async function makePoster(){
+ if(!lastState)return;
+ const best=ARCHETYPES.find(a=>a.code===lastState.bestCode),user=lastState.user,palette=getPersonaPalette(lastState.bestCode);
+ const ranked=stateToRanked(lastState),twin=ranked[1],dynamic=buildDynamicProfile(best,user),code=lastState.signature||makeSignature(user,best.code);
+ const c=document.createElement('canvas');c.width=1080;c.height=1440;const ctx=c.getContext('2d');
+ const accent=palette.accent;ctx.fillStyle=palette.deep;ctx.fillRect(0,0,1080,1440);
+ const grad=ctx.createRadialGradient(880,110,10,880,110,560);grad.addColorStop(0,palette.glow);grad.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,1080,720);
+ // top brand
+ ctx.fillStyle=accent;roundRect(ctx,58,48,282,50,25,true);ctx.fillStyle='#121315';ctx.font='900 24px sans-serif';ctx.fillText('CAMPUS//ARCHIVE',80,82);
+ ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V5.4',58,132);
+ // full-bleed visual
+ ctx.save();roundRectPath(ctx,58,166,964,660,32);ctx.clip();
+ try{const img=await rasterImage(PERSONA_IMAGES[best.code]);const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height,bw=964,bh=660,scale=Math.max(bw/iw,bh/ih),sw=bw/scale,sh=bh/scale,sx=(iw-sw)/2,sy=(ih-sh)/2;ctx.drawImage(img,sx,sy,sw,sh,58,166,bw,bh);}catch(e){ctx.fillStyle='#181b20';ctx.fillRect(58,166,964,660)}
+ const g=ctx.createLinearGradient(0,430,0,826);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.84)');ctx.fillStyle=g;ctx.fillRect(58,166,964,660);ctx.restore();
+ // stamp and title
+ ctx.fillStyle=accent;ctx.globalAlpha=.28;ctx.font='950 106px monospace';ctx.fillText(PERSONA_STAMPS[best.code]||best.code,86,286);ctx.globalAlpha=1;
+ ctx.fillStyle='#fff';ctx.font='950 72px sans-serif';wrapCanvasText(ctx,best.name,88,676,860,78);
+ ctx.fillStyle='#d7d9da';ctx.font='800 19px monospace';ctx.fillText(best.en,90,752);
+ ctx.fillStyle=accent;ctx.font='900 17px monospace';ctx.fillText(`${best.code} · ${best.level} · MATCH ${(lastState.sims?.[0]||90).toFixed(1)}%`,90,790);
+ // paper statement card
+ ctx.fillStyle=palette.paper;roundRect(ctx,58,858,964,324,30,true);
+ ctx.fillStyle='#17181a';ctx.font='900 28px sans-serif';ctx.fillText('你的大学牲人格档案',92,910);
+ ctx.fillStyle='#5e5a54';ctx.font='650 25px sans-serif';wrapCanvasText(ctx,'“'+best.quote+'”',92,962,870,39);
+ const tags=dynamic.badges.slice(0,3);let tx=92;ctx.font='800 16px sans-serif';tags.forEach(t=>{const w=Math.min(260,ctx.measureText(t).width+34);ctx.fillStyle=accent;roundRect(ctx,tx,1080,w,38,19,true);ctx.fillStyle='#161719';ctx.fillText(t,tx+17,1106);tx+=w+10;});
+ ctx.fillStyle='#68635c';ctx.font='700 16px sans-serif';ctx.fillText(`第二人格：${twin.name} · ${twin.sim.toFixed(1)}%`,92,1150);
+ // challenge footer
+ ctx.fillStyle='#f6f2e9';roundRect(ctx,58,1210,964,166,30,true);ctx.fillStyle='#17181a';ctx.font='950 36px sans-serif';ctx.fillText('你是什么大学牲？',90,1265);ctx.fillStyle='#6c675f';ctx.font='650 18px sans-serif';ctx.fillText('把这张图丢给朋友，让 TA 也测一次。',90,1302);
+ ctx.fillStyle=palette.deep;roundRect(ctx,90,1320,510,38,19,true);ctx.fillStyle=accent;ctx.font='900 15px monospace';ctx.fillText('CHALLENGE / '+code,108,1346);
+ ctx.fillStyle='#8d877f';ctx.font='700 14px monospace';ctx.fillText('24 SCENARIOS · 16 ARCHETYPES · 6D MODEL',650,1346);
+ c.toBlob(async blob=>{if(!blob)return;const file=new File([blob],`campus-${best.code}-v5_4.png`,{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'大学牲人格鉴定 · '+best.name,text:challengeText()});return;}}catch(e){}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`大学牲人格_${best.code}_${best.name}_V5.4.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);showToast('V5.4 分享海报已生成');},'image/png');
+}
+function roundRectPath(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath();}
+function roundRect(ctx,x,y,w,h,r,fill=false,stroke=false,strokeColor=null){roundRectPath(ctx,x,y,w,h,r);if(fill)ctx.fill();if(stroke){if(strokeColor)ctx.strokeStyle=strokeColor;ctx.stroke();}}
+function svgImage(svg){return new Promise((resolve,reject)=>{const blob=new Blob([svg],{type:'image/svg+xml'}),url=URL.createObjectURL(blob),img=new Image();img.onload=()=>{URL.revokeObjectURL(url);resolve(img)};img.onerror=e=>{URL.revokeObjectURL(url);reject(e)};img.src=url;});}
+function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){const chars=[...text];let line='';let yy=y;for(const ch of chars){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){ctx.fillText(line,x,yy);line=ch;yy+=lineHeight;}else line=test;}if(line)ctx.fillText(line,x,yy);return yy;}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._timer);t._timer=setTimeout(()=>t.classList.remove('show'),1700);}
+
+function sceneSVG(profile,compact=false){
+ const art=typeof profile==='string'?profile:(profile.art||'deadline');
+ const name=typeof profile==='string'?'':(profile.name||'');
+ const code=typeof profile==='string'?'':(profile.code||'');
+ const palette={deadline:['#c9ff3d','#e4ffd0','#68707a'],grades:['#75b9ff','#e4f1ff','#63707d'],library:['#53d0c0','#dbfffa','#5d676f'],dorm:['#ffb46d','#fff1df','#6d737c'],social:['#ff8d6b','#ffe7e0','#727883'],npc:['#9e91ff','#ebe8ff','#69707b'],exam:['#ffd665','#fff7cf','#737987'],morning:['#f3f55f','#fffcd7','#7b8087'],chill:['#70d7ff','#e0f7ff','#6b727c'],chaos:['#ff77a9','#ffe4f0','#72727f'],hex:['#c9ff3d','#f6ffe1','#69707b'],research:['#7cc9ff','#e4f4ff','#6b737c'],loop:['#8eb0ff','#ebf0ff','#69707d'],explore:['#5ce0c4','#dcfff8','#69717a'],leader:['#ffb374','#fff0de','#727780'],weather:['#ff8dc4','#ffe3f1','#71737d']};
+ const [accent,light,muted]=palette[art]||palette.deadline;
+ const looks={deadline:{hair:'messy',top:'#59606c',eye:'focus',prop:'laptop',extra:'clock'},grades:{hair:'neat',top:'#55657b',eye:'sharp',prop:'notes',extra:'score'},library:{hair:'long',top:'#405c58',eye:'calm',prop:'books',extra:'shelf'},dorm:{hair:'soft',top:'#826d63',eye:'sleepy',prop:'pillow',extra:'curtain'},social:{hair:'wave',top:'#6b4e58',eye:'bright',prop:'phone',extra:'network'},npc:{hair:'short',top:'#58616d',eye:'flat',prop:'route',extra:'map'},exam:{hair:'spiky',top:'#7a6a4e',eye:'wide',prop:'paper',extra:'stack'},morning:{hair:'bed',top:'#606b75',eye:'sleepy',prop:'coffee',extra:'sun'},chill:{hair:'soft',top:'#53707a',eye:'calm',prop:'tea',extra:'wave'},chaos:{hair:'wild',top:'#7a4e67',eye:'mischief',prop:'stickers',extra:'spark'},hex:{hair:'polish',top:'#59606d',eye:'bright',prop:'badge',extra:'hex'},research:{hair:'bun',top:'#49626c',eye:'sharp',prop:'formula',extra:'chart'},loop:{hair:'short',top:'#5d6372',eye:'flat',prop:'bag',extra:'loop'},explore:{hair:'cap',top:'#4f6d63',eye:'bright',prop:'map',extra:'arrow'},leader:{hair:'clean',top:'#6f5d53',eye:'steady',prop:'clipboard',extra:'check'},weather:{hair:'long',top:'#705064',eye:'soft',prop:'umbrella',extra:'cloud'}};
+ const look=looks[art]||looks.deadline;
+ const bgMap={clock:`<circle cx="492" cy="128" r="78" fill="none" stroke="${accent}" stroke-width="8" opacity=".95"/><path d="M492 128V82M492 128l38 24" stroke="${accent}" stroke-width="8" stroke-linecap="round"/>`,score:`<rect x="355" y="84" width="166" height="118" rx="18" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.16)"/><text x="438" y="160" text-anchor="middle" fill="${accent}" font-size="68" font-weight="900">95</text>`,shelf:`<rect x="360" y="72" width="28" height="206" rx="3" fill="#2d3237"/><rect x="410" y="72" width="28" height="206" rx="3" fill="#314048"/><rect x="460" y="72" width="28" height="206" rx="3" fill="#2f3a3e"/><rect x="510" y="72" width="28" height="206" rx="3" fill="#3d444b"/><path d="M330 278H548" stroke="${accent}" stroke-width="6"/>`,curtain:`<path d="M110 60v230M490 60v230" stroke="${accent}" stroke-width="5" stroke-dasharray="12 12" opacity=".9"/><rect x="360" y="92" width="160" height="110" rx="22" fill="rgba(255,255,255,.05)"/>`,network:`<circle cx="388" cy="94" r="23" fill="none" stroke="${accent}" stroke-width="4"/><path d="M388 94L462 186" stroke="${accent}" stroke-width="3" opacity=".9"/><circle cx="520" cy="110" r="23" fill="none" stroke="${accent}" stroke-width="4"/><path d="M520 110L462 186" stroke="${accent}" stroke-width="3" opacity=".9"/><circle cx="370" cy="245" r="23" fill="none" stroke="${accent}" stroke-width="4"/><path d="M370 245L462 186" stroke="${accent}" stroke-width="3" opacity=".9"/><circle cx="520" cy="240" r="23" fill="none" stroke="${accent}" stroke-width="4"/><path d="M520 240L462 186" stroke="${accent}" stroke-width="3" opacity=".9"/>`,map:`<path d="M360 98h154v170H360z" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="4"/><path d="M382 220c54-88 80-62 110-118" fill="none" stroke="${accent}" stroke-width="9" stroke-dasharray="16 14"/><circle cx="382" cy="220" r="12" fill="${accent}"/>`,stack:`<rect x="362" y="88" width="118" height="164" rx="14" fill="rgba(255,255,255,.08)" transform="rotate(-4 420 170)"/><rect x="382" y="88" width="118" height="164" rx="14" fill="rgba(255,255,255,.13)"/><rect x="402" y="88" width="118" height="164" rx="14" fill="rgba(255,255,255,.18)" transform="rotate(4 420 170)"/>`,sun:`<circle cx="493" cy="117" r="67" fill="${accent}" opacity=".94"/>`,wave:`<path d="M340 126c62 42 98-36 151 8s46 92 18 122-83 28-169 91" fill="none" stroke="${accent}" stroke-width="8"/>`,spark:`<circle cx="486" cy="126" r="72" fill="none" stroke="${accent}" stroke-width="7"/><path d="M446 126h80M486 86v80" stroke="${accent}" stroke-width="7"/>`,hex:`<polygon points="465,68 545,115 545,205 465,252 385,205 385,115" fill="none" stroke="${accent}" stroke-width="7"/>`,chart:`<path d="M354 208l60-72 42 40 70-92" fill="none" stroke="${accent}" stroke-width="8"/><rect x="350" y="88" width="165" height="154" rx="20" fill="rgba(255,255,255,.05)"/>`,loop:`<path d="M404 112c-56 34-56 129 0 164M504 276c56-35 56-130 0-164" fill="none" stroke="${accent}" stroke-width="10"/>`,arrow:`<path d="M366 260L518 86" stroke="${accent}" stroke-width="8" stroke-dasharray="18 14"/><path d="M518 86l-22 80 70-27z" fill="${accent}"/>`,check:`<rect x="350" y="84" width="170" height="122" rx="18" fill="rgba(255,255,255,.07)"/><path d="M408 145l26 26 58-62" fill="none" stroke="${accent}" stroke-width="12"/>`,cloud:`<path d="M362 143c22-42 83-44 106-5 29-30 85-15 98 31 31-10 58 20 58 51H362c-18-40-11-63 0-77Z" fill="none" stroke="${accent}" stroke-width="6"/>`};
+ const hairMap={messy:`<path d="M212 205c28-79 145-79 173 0-27-16-54-24-84-21-34 2-57 10-89 21Z" fill="${muted}"/><path d="M214 192l16-34 24 22 27-31 26 30 24-22 18 36" fill="${muted}" opacity=".95"/>`,neat:`<path d="M220 204c28-58 136-59 160 1-24-16-51-22-81-21-27 1-49 8-79 20Z" fill="${muted}"/>`,long:`<path d="M217 197c30-69 135-70 166 2-26-20-53-26-82-24-28 2-53 9-84 22Z" fill="${muted}"/><path d="M198 222c4 126 6 182 18 220h34c-10-63-12-137-7-188Zm205 0c-4 126-6 182-18 220h-34c10-63 12-137 7-188Z" fill="${muted}" opacity=".95"/>`,soft:`<path d="M218 204c18-60 124-71 166-1-28-17-56-23-87-22-27 1-51 7-79 23Z" fill="${muted}"/>`,wave:`<path d="M212 202c30-74 131-74 170 0-25-20-55-28-88-24-32 4-53 10-82 24Z" fill="${muted}"/><path d="M222 211c15 18 36 28 62 30 28 2 53-7 76-25" fill="none" stroke="${light}" opacity=".25" stroke-width="8"/>`,short:`<path d="M223 199c24-54 127-57 154 0-20-10-43-15-77-15-33 0-56 5-77 15Z" fill="${muted}"/>`,spiky:`<path d="M212 205l18-42 18 23 22-34 24 32 24-30 20 34 18-22 18 40c-55-25-109-27-162-1Z" fill="${muted}"/>`,bed:`<path d="M211 203c32-60 124-64 170-3-18 1-34-2-49-8-12-5-21-15-33-15-11 0-16 6-28 10-18 6-35 10-60 16Z" fill="${muted}"/>`,wild:`<path d="M205 204l18-52 33 18 28-29 18 33 28-18 27 28 20-18 15 40c-47-25-131-29-187-2Z" fill="${muted}"/>`,polish:`<path d="M219 201c26-62 132-64 164 1-28-16-54-18-83-18s-54 4-81 17Z" fill="${muted}"/>`,bun:`<circle cx="299" cy="137" r="28" fill="${muted}"/><path d="M222 201c24-54 130-61 156 1-22-12-41-18-78-18s-60 6-78 17Z" fill="${muted}"/>`,cap:`<path d="M208 187c26-27 78-48 144-26 18 6 36 15 48 28-44-8-75-11-106-10-31 0-57 2-86 8Z" fill="${accent}"/><rect x="202" y="179" width="198" height="26" rx="13" fill="${muted}"/>`,clean:`<path d="M220 200c23-50 128-56 157 0-31-12-54-16-78-16-27 0-49 5-79 16Z" fill="${muted}"/>`};
+ const hair=hairMap[look.hair]||hairMap.neat;
+ const eyes=look.eye==='sleepy'?`<path d="M270 243h-18M348 243h-18" stroke="#202327" stroke-width="5" stroke-linecap="round"/>`:look.eye==='flat'?`<path d="M270 242h-16M346 242h-16" stroke="#202327" stroke-width="4" stroke-linecap="round"/><circle cx="309" cy="268" r="3" fill="#202327"/>`:look.eye==='mischief'?`<circle cx="276" cy="242" r="4" fill="#202327"/><circle cx="338" cy="242" r="4" fill="#202327"/><path d="M287 273c15 16 35 16 50 0" fill="none" stroke="#202327" stroke-width="4"/>`:look.eye==='soft'?`<circle cx="276" cy="243" r="4" fill="#202327" opacity=".8"/><circle cx="338" cy="243" r="4" fill="#202327" opacity=".8"/><path d="M290 274c12 8 26 8 38 0" fill="none" stroke="#202327" stroke-width="4"/>`:`<circle cx="276" cy="243" r="4" fill="#202327"/><circle cx="338" cy="243" r="4" fill="#202327"/><path d="M292 270c10 6 20 6 30 0" fill="none" stroke="#202327" stroke-width="4"/>`;
+ const propMap={laptop:`<rect x="108" y="445" width="230" height="112" rx="14" fill="#101216" stroke="rgba(255,255,255,.12)"/><rect x="131" y="467" width="184" height="62" rx="10" fill="#1e2328"/><path d="M145 574h170" stroke="${accent}" stroke-width="8" stroke-linecap="round"/>`,notes:`<rect x="87" y="462" width="146" height="160" rx="16" fill="${light}"/><path d="M115 506h87M115 536h101M115 566h76" stroke="#1a1c1f" stroke-width="9" stroke-linecap="round"/><text x="192" y="612" fill="${accent}" font-size="54" font-weight="900">A+</text>`,books:`<rect x="88" y="506" width="150" height="28" rx="8" fill="#2e4040"/><rect x="99" y="545" width="160" height="28" rx="8" fill="#405856"/><rect x="110" y="584" width="165" height="28" rx="8" fill="${accent}"/>`,pillow:`<rect x="82" y="492" width="194" height="120" rx="34" fill="${light}"/><path d="M114 531c0-19 16-34 34-34h60c18 0 34 15 34 34v40c0 19-16 34-34 34h-60c-18 0-34-15-34-34Z" fill="#fff" opacity=".36"/>`,phone:`<rect x="112" y="458" width="96" height="170" rx="18" fill="#0f1114" stroke="rgba(255,255,255,.1)"/><rect x="126" y="484" width="67" height="18" rx="9" fill="${accent}"/><rect x="126" y="513" width="48" height="18" rx="9" fill="#fff" opacity=".7"/><rect x="126" y="542" width="61" height="18" rx="9" fill="#fff" opacity=".5"/>`,route:`<rect x="90" y="468" width="180" height="150" rx="18" fill="#14181c" stroke="rgba(255,255,255,.12)"/><path d="M120 586c40-72 54-67 88-108" fill="none" stroke="${accent}" stroke-width="10" stroke-dasharray="14 10"/><circle cx="120" cy="586" r="12" fill="${accent}"/><circle cx="208" cy="478" r="12" fill="${light}"/>`,paper:`<rect x="85" y="455" width="125" height="170" rx="14" transform="rotate(-5 145 540)" fill="rgba(255,255,255,.6)"/><rect x="101" y="455" width="125" height="170" rx="14" fill="rgba(255,255,255,.6)"/><rect x="117" y="455" width="125" height="170" rx="14" transform="rotate(5 145 540)" fill="${light}"/><path d="M120 507h60M120 541h78M120 575h58" stroke="#202327" stroke-width="10"/>`,coffee:`<rect x="106" y="480" width="90" height="130" rx="18" fill="${accent}"/><path d="M196 512h18c16 0 28 12 28 28v22c0 15-12 28-28 28h-18" fill="none" stroke="${accent}" stroke-width="10"/><path d="M129 464c0-24 25-24 25-48M164 464c0-24 25-24 25-48" stroke="#f0f4e1" stroke-width="6" stroke-linecap="round"/>`,tea:`<path d="M102 540h118v45c0 18-14 32-32 32h-54c-18 0-32-14-32-32Z" fill="${light}"/><path d="M220 552h18c20 0 33 13 33 29 0 16-13 30-33 30h-18" fill="none" stroke="${light}" stroke-width="10"/>`,stickers:`<rect x="110" y="500" width="56" height="56" rx="10" fill="${light}"/><text x="138" y="539" text-anchor="middle" fill="#1a1c1f" font-size="28" font-weight="900">?</text><rect x="190" y="455" width="56" height="56" rx="10" fill="${light}"/><text x="218" y="494" text-anchor="middle" fill="#1a1c1f" font-size="28" font-weight="900">!</text><rect x="215" y="548" width="56" height="56" rx="10" fill="${light}"/><text x="243" y="587" text-anchor="middle" fill="#1a1c1f" font-size="28" font-weight="900">★</text>`,badge:`<polygon points="162,456 226,493 226,567 162,604 98,567 98,493" fill="${accent}"/><circle cx="162" cy="530" r="27" fill="#111315"/><path d="M151 531l10 10 20-23" fill="none" stroke="${accent}" stroke-width="8"/>`,formula:`<rect x="84" y="463" width="210" height="150" rx="18" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.1)"/><text x="105" y="518" fill="${accent}" font-size="28" font-family="serif">f(x)=∑(wᵢxᵢ)</text><text x="106" y="562" fill="${light}" font-size="24" font-family="serif">∂L/∂x → 0</text>`,bag:`<rect x="104" y="472" width="118" height="145" rx="18" fill="#20252b"/><path d="M134 474c0-30 16-48 30-48h0c14 0 30 18 30 48" fill="none" stroke="#5c6471" stroke-width="10"/>`,mapProp:`<rect x="86" y="462" width="206" height="152" rx="14" fill="${light}"/><path d="M115 597V476l48 24 53-22 49 20v118l-49-20-53 22-48-21Z" fill="none" stroke="#1a1d20" stroke-width="7"/>`,clipboard:`<rect x="88" y="458" width="192" height="166" rx="18" fill="${light}"/><rect x="145" y="438" width="74" height="35" rx="10" fill="#d5d0c3"/><path d="M120 516h110M120 552h95M120 589h80" stroke="#1a1d20" stroke-width="10"/><path d="M214 544l14 14 28-31" fill="none" stroke="${accent}" stroke-width="9"/>`,umbrella:`<path d="M172 474c52 0 95 40 101 94H71c6-54 49-94 101-94Z" fill="${accent}"/><path d="M172 474v162c0 23-14 36-30 36-15 0-28-12-28-27" fill="none" stroke="${light}" stroke-width="10" stroke-linecap="round"/>`};
+ const prop=propMap[look.prop==='map'?'mapProp':look.prop]||'';
+ const compactLabel=compact?`<rect x="22" y="22" width="104" height="28" rx="14" fill="rgba(255,255,255,.08)"/><text x="74" y="41" text-anchor="middle" fill="#f2efe7" font-size="12" font-weight="800">${code}</text>`:`<rect x="28" y="28" width="144" height="34" rx="17" fill="rgba(255,255,255,.08)"/><text x="100" y="50" text-anchor="middle" fill="#f2efe7" font-size="13" font-weight="800">${code} / ${name}</text>`;
+ return `<svg class="personArt portraitFrame" viewBox="0 0 600 760" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g-${art}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1d2126"/><stop offset="1" stop-color="#0f1114"/></linearGradient><pattern id="grid-${art}" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#343942" stroke-width="1"/></pattern></defs><rect width="600" height="760" fill="url(#g-${art})"/><rect width="600" height="760" fill="url(#grid-${art})" opacity=".62"/><circle cx="488" cy="90" r="120" fill="${accent}" opacity=".10"/><circle cx="98" cy="680" r="126" fill="${light}" opacity=".07"/>${compactLabel}${bgMap[look.extra]||''}<circle cx="300" cy="236" r="84" fill="#ece7db"/>${hair}<path d="M188 708c10-174 60-286 112-286 54 0 102 112 112 286" fill="#ece7db"/><path d="M188 708c36-92 78-140 112-140 34 0 76 48 112 140" fill="${look.top}" opacity=".98"/><path d="M262 335c18 28 58 28 76 0v55c-10 14-22 21-38 21-16 0-28-7-38-21Z" fill="#dfd8ca"/>${eyes}<path d="M290 288c10 8 20 8 30 0" fill="none" stroke="#202327" stroke-width="4" opacity=".7"/>${prop}<rect x="0" y="712" width="600" height="48" fill="rgba(255,255,255,.02)"/>${!compact?`<text x="36" y="737" fill="${accent}" font-size="15" font-weight="800">${name}</text><text x="36" y="756" fill="#87909a" font-size="12">${(typeof profile==='object'&&profile.en)||''}</text>`:''}</svg>`;
+}
+
+
+function preloadPersonaAssets(){const all=Object.values(PERSONA_IMAGES),first=all.slice(0,4),rest=all.slice(4);first.forEach(src=>{const i=new Image();i.decoding='async';i.src=src;});const run=()=>{let idx=0;const batch=()=>{for(let n=0;n<3&&idx<rest.length;n++,idx++){const i=new Image();i.decoding='async';i.loading='lazy';i.src=rest[idx];}if(idx<rest.length)setTimeout(batch,120);};batch();};if('requestIdleCallback' in window)requestIdleCallback(run,{timeout:1800});else setTimeout(run,900);}
+
+window.addEventListener('DOMContentLoaded',()=>{resetPersonaTheme();renderHeroPreview();setTimeout(()=>document.getElementById('splash').classList.add('out'),850);updateEntitlementUI();updateResumeUI();preloadPersonaAssets();if(localStorage.getItem('campus_archive_last_v4')||localStorage.getItem('campus_archive_last_v2'))document.getElementById('resumeBtn').classList.remove('hidden');loadChallengeInvite();const shared=loadSharedResult();if(!shared&&'serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGallery();if(document.getElementById('quiz').classList.contains('active')&&e.key==='ArrowLeft')prevQuestion();});});
+</script>
+</body>
+</html>
