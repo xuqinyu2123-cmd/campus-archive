@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
 <meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
-<meta name="campus-archive-build" content="6.8.6-mobile-dev-entry">
+<meta name="campus-archive-build" content="6.9.0-mobile-dev-entry">
 <meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
 <meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
 <title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.8</title>
@@ -1030,7 +1030,7 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
 }
 
 
-/* V6.8.6 mobile developer entry */
+/* V6.9.0 mobile developer entry */
 .mobileDevPanel{
   position:fixed;inset:0;z-index:3000;background:rgba(5,7,9,.82);
   display:grid;place-items:center;padding:18px;overflow:auto;
@@ -1209,7 +1209,7 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
           </div>
         </section>
       </div>
-      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.8.6 · <a class="footerDev" href="?dev=1">DEV CONSOLE</a></span></div>
+      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.9.0 · <a class="footerDev" href="?dev=1">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
@@ -1680,30 +1680,43 @@ function chooseAnswer(i){
  clearTimeout(transitionTimer);answers[current]=i;saveProgress();if(navigator.vibrate)navigator.vibrate(8);document.querySelectorAll('.answer').forEach((el,idx)=>{el.classList.toggle('selected',idx===i);el.disabled=true;});
  transitionTimer=setTimeout(()=>{if(current<QUESTIONS.length-1){current++;requestAnimationFrame(()=>{renderQuestion();if(innerWidth<=980)mobileFocusQuestion();else scrollQuizTop();});}else{requestAnimationFrame(finishQuiz);}},210);
 }
+// V6.9 CORE: dimension calibration based on the current 24-question option distribution.
+// Uniform option selection is centered at 50 on every dimension, avoiding the legacy
+// min/max normalization bias (especially the study dimension).
+const SCORE_CALIBRATION={
+ mean:[10,1.75,3.5,6.25,5.25,4.75],
+ sd:[2.8284271247,4.1457809879,3.7080992435,5.6513272777,3.6314597616,3.7996710384],
+ scale:18,
+ floor:8,
+ ceil:92
+};
 function buildVector(){
- const raw=Array(6).fill(0), theoreticalMin=Array(6).fill(0), theoreticalMax=Array(6).fill(0);
+ const raw=Array(6).fill(0);
  QUESTIONS.forEach((q,qi)=>{
-   for(let d=0;d<6;d++){
-     theoreticalMin[d]+=Math.min(...q.a.map(o=>o[1][d]));
-     theoreticalMax[d]+=Math.max(...q.a.map(o=>o[1][d]));
-   }
    const idx=answers[qi]??0;
    q.a[idx][1].forEach((v,d)=>raw[d]+=v);
  });
  return raw.map((v,d)=>{
-   const span=(theoreticalMax[d]-theoreticalMin[d])||1;
-   const pct=(v-theoreticalMin[d])/span;
-   return Math.round(Math.max(8,Math.min(92,8+pct*84)));
+   const z=(v-SCORE_CALIBRATION.mean[d])/(SCORE_CALIBRATION.sd[d]||1);
+   return Math.round(Math.max(SCORE_CALIBRATION.floor,Math.min(SCORE_CALIBRATION.ceil,50+z*SCORE_CALIBRATION.scale)));
  });
 }
 function modelDistance(user,proto){const weights=[1.08,.98,1.05,1.0,.96,1.02];let sum=0,ws=0;for(let i=0;i<6;i++){sum+=((user[i]-proto[i])**2)*weights[i];ws+=weights[i];}return Math.sqrt(sum/ws);}
-function similarity(user,proto){const dist=modelDistance(user,proto);return Math.max(56,Math.min(98.2,98.2-dist*.72));}
+// “契合度” is a display score, not a statistical probability.
+// V6.9 removes the artificial 56% floor and compresses extreme distances smoothly.
+function similarity(user,proto){
+ const dist=modelDistance(user,proto);
+ return Math.max(32,Math.min(98.5,100/(1+Math.pow(dist/72,1.7))));
+}
 function finishQuiz(){
  if(answers.some(x=>x===null)){showToast('还有题目未完成');return;}
  const user=buildVector();
  const ranked=ARCHETYPES.map(a=>({...a,sim:similarity(user,a.v),dist:modelDistance(user,a.v)})).sort((a,b)=>a.dist-b.dist);
- const best=ranked[0],second=ranked[1],gap=Math.max(0,second.dist-best.dist);
- const stability=Math.round(Math.max(54,Math.min(96,58+gap*4.2)));
+ const best=ranked[0],second=ranked[1];
+ const gap=Math.max(0,second.dist-best.dist);
+ const relativeGap=gap/Math.max(second.dist,1);
+ // Keep the existing state field for backward compatibility, but redefine it as result clarity.
+ const stability=Math.round(Math.max(38,Math.min(96,46+relativeGap*180)));
  const signature=makeSignature(user,best.code);
  lastState={version:2,user,bestCode:best.code,rankedCodes:ranked.map(x=>x.code),sims:ranked.map(x=>x.sim),distances:ranked.map(x=>x.dist),stability,signature,answers:[...answers],savedAt:Date.now()};
  SAFE_STORAGE.setItem('campus_archive_last_v4',JSON.stringify(lastState));SAFE_STORAGE.removeItem('campus_archive_progress_v4');SAFE_STORAGE.removeItem('campus_archive_progress_v2');if(!currentEntitlement)currentEntitlement=resolveEntitlement();consumeEntitlement();document.getElementById('resumeBtn').classList.remove('hidden');updateResumeUI();renderResult(lastState);
@@ -1778,7 +1791,7 @@ function restartFromResult(){restart();setTimeout(()=>startQuiz(),120);}
 function loadChallengeInvite(){const h=location.hash.replace(/^#/,'');if(!h.startsWith('c='))return false;const p=new URLSearchParams(h);challengeSourceSig=p.get('c')||null;challengeSourceCode=p.get('p')||null;const a=ARCHETYPES.find(x=>x.code===challengeSourceCode);const banner=document.getElementById('challengeBanner');const name=document.getElementById('challengeSourceName');if(banner){banner.classList.add('show');if(name)name.textContent=a?a.name:(challengeSourceCode||'未知人格');}return true;}
 function makeSignature(user,code){const base=code+'-'+user.map(x=>String(x).padStart(2,'0')).join('');let h=2166136261;for(const ch of base){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return 'CA26-'+code+'-'+(h>>>0).toString(36).toUpperCase().padStart(7,'0');}
 function buildVariant(user){const sorted=DIM_KEYS.map((k,i)=>({k,v:user[i]})).sort((a,b)=>b.v-a.v),hi=sorted[0],lo=sorted[sorted.length-1];const highMap={study:'目标驱动',social:'关系驱动',deadline:'压力驱动',order:'秩序驱动',explore:'探索驱动',sensitivity:'感知驱动'};const lowMap={study:'低绩点执念',social:'低社交耗能',deadline:'提前启动',order:'自由节奏',explore:'稳定偏好',sensitivity:'高钝感'};return `${highMap[hi.k]} × ${lowMap[lo.k]}`;}
-function stabilityLabel(v){return v>=86?'高稳定':v>=72?'较稳定':v>=60?'混合型':'边界型';}
+function stabilityLabel(v){return v>=86?'人格清晰':v>=72?'倾向明确':v>=58?'双重倾向':'边界混合';}
 function makeResultUrl(state){if(!location.protocol.startsWith('http'))return location.href;return location.origin+location.pathname+'#r='+state.bestCode+'&d='+state.user.join('.')+'&s='+(state.stability||60);}
 function loadSharedResult(){const h=location.hash.replace(/^#/,'');if(!h.startsWith('r='))return false;const p=new URLSearchParams(h),d=(p.get('d')||'').split('.').map(Number),st=Number(p.get('s')||60);if(d.length!==6||d.some(x=>!Number.isFinite(x)))return false;const ranked=ARCHETYPES.map(a=>({...a,sim:similarity(d,a.v),dist:modelDistance(d,a.v)})).sort((a,b)=>a.dist-b.dist);const best=ranked[0],state={version:2,user:d,bestCode:best.code,rankedCodes:ranked.map(x=>x.code),sims:ranked.map(x=>x.sim),distances:ranked.map(x=>x.dist),stability:Math.max(54,Math.min(96,Math.round(st))),signature:makeSignature(d,best.code),answers:Array(QUESTIONS.length).fill(null),shared:true};renderResult(state);return true;}
 function openGallery(){document.getElementById('galleryGrid').innerHTML=ARCHETYPES.map(a=>`<div class="galleryItem"><div class="galleryThumb">${personaImage(a,true)}</div><div class="galleryBody"><div><small>${a.code} / ${a.en}</small><strong>${a.name}</strong><p>${a.tag}</p><div class="personMiniNote">最常出现地点：${a.place}</div></div><span class="gLevel">${a.level}</span></div></div>`).join('');document.getElementById('galleryModal').classList.add('show');document.body.style.overflow='hidden';}
