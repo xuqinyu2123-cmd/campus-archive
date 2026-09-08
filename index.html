@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
 <meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
-<meta name="campus-archive-build" content="6.8.4-view-switch-fix">
+<meta name="campus-archive-build" content="6.8.5-mobile-images-scroll">
 <meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
 <meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
 <title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.8</title>
@@ -975,6 +975,60 @@ html[data-mobile="1"] .answer,html[data-mobile="1"] .btn,html[data-mobile="1"] .
 #result.active{display:block!important}
 #result:not(.active){display:none!important}
 
+
+/* =========================================================
+   V6.8.5 MOBILE IMAGE + RESULT SCROLL FIX
+   ========================================================= */
+.storySceneFrame{background:#0a0d11!important}
+.storySceneFallback{
+  position:absolute!important;inset:0!important;display:grid!important;place-items:center!important;
+  z-index:0!important;color:#75808a!important;background:linear-gradient(135deg,#10151b,#0a0d11)!important;
+  font:400 7px/1.5 var(--px-mono)!important;text-align:center!important;
+}
+.storySceneImage{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  object-fit:cover!important;display:block!important;z-index:1!important;
+  opacity:0!important;transition:opacity .1s steps(2,end)!important;
+  image-rendering:pixelated!important;image-rendering:crisp-edges!important;
+}
+.storySceneImage.loaded{opacity:1!important}
+.storySceneHUD{z-index:2!important}
+
+html.result-open,body.result-open{
+  height:auto!important;min-height:100%!important;max-height:none!important;
+  overflow-y:auto!important;overflow-x:hidden!important;
+  overscroll-behavior-y:auto!important;
+  touch-action:pan-y!important;
+  position:static!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflow:visible!important}
+#result.active{
+  display:block!important;height:auto!important;min-height:100dvh!important;max-height:none!important;
+  overflow:visible!important;touch-action:pan-y!important;
+}
+#result.active *{touch-action:pan-y!important}
+#result.active button,#result.active a{touch-action:manipulation!important}
+#result.active .gameResultHero{height:auto!important;max-height:none!important}
+#result.active .resultGamePanels,#result.active .resultGamePanel{height:auto!important;max-height:none!important;overflow:visible!important}
+
+@media(max-width:980px){
+  #result.active .gameResultHero{display:grid!important;grid-template-columns:1fr!important}
+  #result.active .gameCharacterCover{height:auto!important;min-height:0!important;padding:8px!important}
+  #result.active .gameCharacterCover #coverArt{
+    position:relative!important;inset:auto!important;width:100%!important;
+    height:auto!important;min-height:0!important;max-height:none!important;
+    aspect-ratio:4/5!important;overflow:hidden!important;
+  }
+  #result.active .gameDossier{overflow:visible!important;height:auto!important;max-height:none!important}
+  #result.active .resultGameTabs{position:sticky!important;top:0!important;z-index:80!important}
+}
+@media(max-width:430px){
+  #result.active .gameCharacterCover #coverArt{max-height:none!important}
+  #result.active .gameDossier{padding:13px 12px 15px!important}
+  #result.active .resultGameTabs{overflow-x:auto!important;-webkit-overflow-scrolling:touch!important}
+}
+
 </style>
 </head>
 <body>
@@ -1130,7 +1184,7 @@ html[data-mobile="1"] .answer,html[data-mobile="1"] .btn,html[data-mobile="1"] .
           </div>
         </section>
       </div>
-      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.8.4 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
+      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.8.5 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
@@ -1169,22 +1223,54 @@ function currentProfileLabel(){
 }
 let sceneRequestToken=0;
 const sceneCache=new Map();
-function preloadQuestionScenes(...nums){nums.filter(n=>n>=1&&n<=QUESTIONS.length).forEach(n=>{if(sceneCache.has(n))return;const src=QUESTION_SCENE_EMBED[n]||QUESTION_SCENE_IMAGES[n];if(!src)return;const img=new Image();img.decoding='async';img.src=src;img.onload=()=>sceneCache.set(n,img);});}
-function buildSceneMarkup(n,meta,src){return `<div class="storySceneFrame"><img class="storySceneImage loaded" src="${src}" alt="校园情境像素场景 ${n}" decoding="async"><div class="storySceneHUD"><span>${meta.time}</span><span>${meta.loc}</span><span>SCENE ${String(n).padStart(2,'0')}</span></div></div>`;}
+
+function assetUrl(src){
+ try{return new URL(src,document.baseURI).href;}catch(e){return src;}
+}
+function retryVisual(img){
+ if(!img || img.dataset.retryDone==='1') return;
+ img.dataset.retryDone='1';
+ const original=img.dataset.srcOriginal||img.getAttribute('src')||'';
+ if(!original) return;
+ setTimeout(()=>{
+   try{
+     const u=new URL(original,document.baseURI);
+     u.searchParams.set('r','1');
+     img.src=u.href;
+   }catch(e){img.src=original;}
+ },700);
+}
+function preloadQuestionScenes(...nums){
+ const mobile=document.documentElement.dataset.mobile==='1';
+ const list=nums.filter(n=>n>=1&&n<=QUESTIONS.length).slice(0,mobile?1:3);
+ list.forEach(n=>{
+   if(sceneCache.has(n))return;
+   const src=QUESTION_SCENE_EMBED[n]||QUESTION_SCENE_IMAGES[n];
+   if(!src)return;
+   const img=new Image();
+   img.decoding='async';
+   img.fetchPriority='low';
+   img.onload=()=>sceneCache.set(n,img);
+   img.src=assetUrl(src);
+ });
+}
+function buildSceneMarkup(n,meta,src){
+ const resolved=assetUrl(src);
+ return `<div class="storySceneFrame">
+   <div class="storySceneFallback">SCENE ${String(n).padStart(2,'0')} / IMAGE LOADING</div>
+   <img class="storySceneImage" src="${resolved}" data-src-original="${resolved}" alt="校园情境像素场景 ${n}" decoding="async" loading="eager" fetchpriority="high"
+      onload="this.classList.add('loaded');const f=this.parentElement.querySelector('.storySceneFallback');if(f)f.remove()"
+      onerror="retryVisual(this)">
+   <div class="storySceneHUD"><span>${meta.time}</span><span>${meta.loc}</span><span>SCENE ${String(n).padStart(2,'0')}</span></div>
+ </div>`;
+}
 function renderMainScene(item,index){
  const n=index+1,meta=QUESTION_SCENE_META[n]||{tag:item.tag,time:'LIVE',loc:'校园场景',title:tagLabel(item.tag)};
  const focusKeys=focusDimsForQuestion(item),focus=focusKeys.map(k=>DIM_NAMES[k]),focusShort=focusKeys.map(k=>DIM_SHORT[k]);
  const art=document.getElementById('gameSceneArt'),src=(QUESTION_SCENE_EMBED[n]||QUESTION_SCENE_IMAGES[n]);
- const token=++sceneRequestToken;
- if(art){
-   const old=art.querySelector('.storySceneFrame');
-   if(!old)art.innerHTML=`<div class="storySceneFrame"><div class="storySceneFallback">SCENE ${String(n).padStart(2,'0')} / LOADING</div></div>`;
-   let badge=art.querySelector('.storySceneLoading');if(!badge){badge=document.createElement('div');badge.className='storySceneLoading';art.appendChild(badge);}badge.textContent='LOADING '+String(n).padStart(2,'0');
-   const cached=sceneCache.get(n);
-   const commit=()=>{if(token!==sceneRequestToken)return;art.innerHTML=buildSceneMarkup(n,meta,src);};
-   if(cached&&cached.complete){commit();}else{const img=new Image();img.decoding='async';img.onload=()=>{sceneCache.set(n,img);commit();};img.onerror=()=>{if(token!==sceneRequestToken)return;if(badge)badge.textContent='VISUAL OFFLINE · QUESTION CONTINUES';};img.src=src;}
- }
- preloadQuestionScenes(n+1,n+2,n+3,n+4);
+ ++sceneRequestToken;
+ if(art) art.innerHTML=buildSceneMarkup(n,meta,src);
+ preloadQuestionScenes(n+1,n+2);
  const sn=document.getElementById('gameSceneNo');if(sn)sn.textContent='SCENE '+String(n).padStart(2,'0');
  const st=document.getElementById('gameSceneTag');if(st)st.textContent=meta.tag;
  const status=`${answers.filter(v=>v!==null).length} / ${QUESTIONS.length}`;
@@ -1194,6 +1280,7 @@ function renderMainScene(item,index){
  const bp=document.getElementById('bottomProfile');if(bp)bp.textContent=currentChapter(index).title;
  const ba=document.getElementById('bottomAxis');if(ba)ba.textContent=focusShort.join('/');
 }
+
 function renderResultQuickDims(user){const box=document.getElementById('resultQuickDims');if(!box)return;box.innerHTML=DIM_KEYS.map((k,i)=>`<div class="quickDim"><span>${DIM_SHORT[k]}</span><i style="--v:${user[i]}%"></i><b>${user[i]}</b></div>`).join('');}
 
 
@@ -1219,7 +1306,14 @@ function applyPersonaTheme(code){const p=getPersonaPalette(code),root=document.d
 function resetPersonaTheme(){applyPersonaTheme('');}
 function hideSplashNow(){const s=document.getElementById('splash');if(!s)return;s.classList.add('out');setTimeout(()=>{s.style.display='none';},520);}
 
-function personaImage(profile,compact=false){const code=typeof profile==='string'?profile:(profile?.code||'U01');const src=PERSONA_IMAGES[code]||PERSONA_IMAGES.U01;return `<img class="personArt" src="${src}" alt="${code}" decoding="sync" loading="eager" fetchpriority="high" onerror="this.parentElement&&this.parentElement.classList.add('imageFailed')">`; }
+function personaImage(profile,compact=false){
+ const code=typeof profile==='string'?profile:(profile?.code||'U01');
+ const src=assetUrl(PERSONA_IMAGES[code]||PERSONA_IMAGES.U01);
+ const loading=compact?'lazy':'eager',priority=compact?'low':'high';
+ return `<img class="personArt" src="${src}" data-src-original="${src}" alt="${code}" decoding="async" loading="${loading}" fetchpriority="${priority}"
+   onload="this.classList.add('loaded')"
+   onerror="this.parentElement&&this.parentElement.classList.add('imageFailed');retryVisual(this)">`;
+}
 function rasterImage(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=src;});}
 const PERSONA_SCENE_META={"U01":["03:17","宿舍夜战","DEADLINE MODE"],"U02":["07:20","晨光自习","ACADEMIC CONTROL"],"U03":["21:46","深夜书架","SILENT FOCUS"],"U04":["14:32","床帘世界","LOW ENERGY"],"U05":["19:18","社团活动","SOCIAL FLOW"],"U06":["12:06","教学楼走廊","DEFAULT ROUTE"],"U07":["23:41","考前冲刺","OVERCLOCK"],"U08":["07:53","冬日早八","MORNING SURVIVAL"],"U09":["16:08","草坪树荫","CHILL MODE"],"U10":["22:17","宿舍创作","CHAOTIC CREATIVE"],"U11":["18:36","球场黄昏","BALANCED LIFE"],"U12":["00:28","深夜实验室","DEEP RESEARCH"],"U13":["12:18","食堂人流","DEFAULT LOOP"],"U14":["18:52","天台远行","OPEN WORLD"],"U15":["20:10","宿舍会议","TEAM COMMAND"],"U16":["22:44","雨夜窗边","HIGH SENSITIVITY"]};
 const DIM_KEYS=['study','social','deadline','order','explore','sensitivity'];
@@ -1474,6 +1568,11 @@ function forceQuizScreenFallback(){
  }
 }
 function startQuiz(){
+ document.documentElement.classList.remove('result-open');
+ document.body.classList.remove('result-open');
+ document.documentElement.style.overflowY='';
+ document.body.style.overflowY='';
+ document.body.style.position='';
  if(__quizStarting)return false;
  __quizStarting=true;
  let entitlement=null;
@@ -1512,7 +1611,13 @@ function startQuiz(){
  });
  return false;
 }
-function exitQuiz(){resetPersonaTheme();clearTimeout(transitionTimer);document.getElementById('quiz').classList.remove('active');document.getElementById('quiz').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');document.getElementById('hero').setAttribute('aria-hidden','false');window.scrollTo({top:0,behavior:'smooth'});}
+function exitQuiz(){
+ document.documentElement.classList.remove('result-open');
+ document.body.classList.remove('result-open');
+ document.documentElement.style.overflowY='';
+ document.body.style.overflowY='';
+ document.body.style.position='';
+ resetPersonaTheme();clearTimeout(transitionTimer);document.getElementById('quiz').classList.remove('active');document.getElementById('quiz').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');document.getElementById('hero').setAttribute('aria-hidden','false');window.scrollTo({top:0,behavior:'smooth'});}
 function prevQuestion(){clearTimeout(transitionTimer);if(current<=0)return;current--;saveProgress();renderQuestion();if(innerWidth<=980)mobileFocusQuestion();else scrollQuizTop();}
 function scrollQuizTop(){if(innerWidth<700)window.scrollTo({top:0,behavior:'smooth'});}
 function renderQuestion(){
@@ -1564,7 +1669,13 @@ function finishQuiz(){
 }
 function stateToRanked(state){return state.rankedCodes.map((code,i)=>({...ARCHETYPES.find(a=>a.code===code),sim:state.sims[i],dist:state.distances?state.distances[i]:null}));}
 function renderResult(state){
- lastState=state;const ranked=stateToRanked(state),best=ranked[0],user=state.user,dynamic=buildDynamicProfile(best,user);
+ lastState=state;
+ document.documentElement.classList.add('result-open');
+ document.body.classList.add('result-open');
+ document.documentElement.style.overflowY='auto';
+ document.body.style.overflowY='auto';
+ document.body.style.overflowX='hidden';
+ document.body.style.position='static';const ranked=stateToRanked(state),best=ranked[0],user=state.user,dynamic=buildDynamicProfile(best,user);
  applyPersonaTheme(best.code);
  applyPersonaVisualMeta(best);
  document.getElementById('quiz').classList.remove('active');document.getElementById('quiz').setAttribute('aria-hidden','true');document.getElementById('hero').classList.add('hidden');
@@ -1591,7 +1702,14 @@ function renderResult(state){
  document.getElementById('coverArt').querySelectorAll('svg.personArt,img.personArt').forEach(x=>x.remove());document.getElementById('coverArt').insertAdjacentHTML('afterbegin',personaImage(best,false));const sm=PERSONA_SCENE_META[best.code]||[];document.getElementById('personaSceneCaption').innerHTML=sm.map(x=>`<span>${x}</span>`).join('');
  renderDims(user);renderAlts(ranked.slice(1,4));showResultTab('archive');const vc=document.getElementById('viralCode');if(vc)vc.textContent='CHALLENGE / '+(state.signature||makeSignature(user,best.code));const ml=document.getElementById('matchupLine');if(ml){if(challengeSourceCode){const src=ARCHETYPES.find(a=>a.code===challengeSourceCode);ml.style.display='block';ml.textContent='好友结果：'+(src?src.name:challengeSourceCode)+'  →  你的结果：'+best.name+(challengeSourceCode===best.code?' · 同类识别成功':' · 你们不是同一个物种');}else ml.style.display='none';}window.scrollTo({top:0,behavior:'smooth'});
 }
-function showResultTab(name){document.querySelectorAll('.resultGameTabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));document.querySelectorAll('.resultGamePanel').forEach(p=>p.classList.toggle('active',p.id==='resultTab'+name.charAt(0).toUpperCase()+name.slice(1)));const nav=document.querySelector('.resultGameTabs');if(nav&&innerWidth<980)nav.scrollIntoView({behavior:'smooth',block:'start'});}
+function showResultTab(name){
+ document.querySelectorAll('.resultGameTabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));
+ document.querySelectorAll('.resultGamePanel').forEach(p=>p.classList.toggle('active',p.id==='resultTab'+name.charAt(0).toUpperCase()+name.slice(1)));
+ const nav=document.querySelector('.resultGameTabs');
+ if(nav&&innerWidth<980){
+   requestAnimationFrame(()=>{try{window.scrollTo(0,Math.max(0,nav.getBoundingClientRect().top+window.scrollY-2));}catch(e){}});
+ }
+}
 function buildPersonalSentence(user){const pairs=DIM_KEYS.map((k,i)=>[k,user[i]]).sort((a,b)=>b[1]-a[1]);const high=pairs.slice(0,2).map(x=>DIM_NAMES[x[0]]).join(' × ');const low=DIM_NAMES[pairs[pairs.length-1][0]];return `你的突出组合是「${high}」，相对最低的是「${low}」。这说明你的结果不是由单个标签决定，而是由几种校园行为倾向共同形成。`;}
 function renderDims(user){document.getElementById('dimList').innerHTML=DIM_KEYS.map((k,i)=>`<div class="dimRow"><label>${DIM_NAMES[k]}</label><div class="dimTrack"><div class="dimFill" style="width:${user[i]}%"></div></div><b>${user[i]}</b></div>`).join('');}
 function renderRadar(user){
@@ -1602,7 +1720,13 @@ function renderRadar(user){
 }
 function renderAlts(items){document.getElementById('altList').innerHTML=items.map((x,i)=>`<div class="alt"><span class="rank">#0${i+2}</span><strong>${x.name}<br><small style="font:700 8px ui-monospace,monospace;color:#888">${x.en}</small></strong><b>${x.sim.toFixed(1)}%</b></div>`).join('');}
 function restoreLast(){try{const raw=SAFE_STORAGE.getItem('campus_archive_last_v4')||SAFE_STORAGE.getItem('campus_archive_last_v2');if(!raw)return showToast('当前设备没有保存过结果');const state=JSON.parse(raw);if(!state||!state.bestCode)throw new Error('bad');answers=state.answers||Array(QUESTIONS.length).fill(null);renderResult(state);}catch(e){showToast('上次档案已失效，请重新测试');}}
-function restart(){resetPersonaTheme();if(location.hash)history.replaceState(null,'',location.pathname+location.search);document.getElementById('result').classList.remove('active');document.getElementById('result').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');document.getElementById('hero').setAttribute('aria-hidden','false');window.scrollTo({top:0,behavior:'smooth'});}
+function restart(){
+ document.documentElement.classList.remove('result-open');
+ document.body.classList.remove('result-open');
+ document.documentElement.style.overflowY='';
+ document.body.style.overflowY='';
+ document.body.style.position='';
+ resetPersonaTheme();if(location.hash)history.replaceState(null,'',location.pathname+location.search);document.getElementById('result').classList.remove('active');document.getElementById('result').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');document.getElementById('hero').setAttribute('aria-hidden','false');window.scrollTo({top:0,behavior:'smooth'});}
 async function shareResult(){if(!lastState)return;const best=ARCHETYPES.find(a=>a.code===lastState.bestCode);const shareUrl=makeResultUrl(lastState);const text=`我的大学牲人格是「${best.name}」｜${best.quote}\n24 道校园情境题，测测你是什么大学生。`;const data={title:'大学牲人格鉴定 · '+best.name,text,url:shareUrl};try{if(navigator.share){await navigator.share(data);return;}if(navigator.clipboard){await navigator.clipboard.writeText(text+'\n'+shareUrl);showToast('结果链接已复制');return;}}catch(e){}showToast('分享未完成');}
 
 function makeChallengeUrl(state){const best=ARCHETYPES.find(a=>a.code===state.bestCode);const sig=state.signature||makeSignature(state.user,best.code);if(!location.protocol.startsWith('http'))return location.href;return location.origin+location.pathname+'#c='+encodeURIComponent(sig)+'&p='+best.code;}
@@ -1678,8 +1802,15 @@ function sceneSVG(profile,compact=false){
 }
 
 
-function preloadPersonaAssets(){const all=Object.values(PERSONA_IMAGES),first=all.slice(0,4),rest=all.slice(4);first.forEach(src=>{const i=new Image();i.decoding='async';i.src=src;});const run=()=>{let idx=0;const batch=()=>{for(let n=0;n<3&&idx<rest.length;n++,idx++){const i=new Image();i.decoding='async';i.loading='lazy';i.src=rest[idx];}if(idx<rest.length)setTimeout(batch,120);};batch();};if('requestIdleCallback' in window)requestIdleCallback(run,{timeout:1800});else setTimeout(run,900);}
-
+function preloadPersonaAssets(){
+ const mobile=document.documentElement.dataset.mobile==='1';
+ if(mobile)return;
+ const all=Object.values(PERSONA_IMAGES);
+ all.slice(0,4).forEach(src=>{const i=new Image();i.decoding='async';i.fetchPriority='low';i.src=assetUrl(src);});
+ const rest=all.slice(4);
+ const run=()=>{let idx=0;const batch=()=>{for(let n=0;n<2&&idx<rest.length;n++,idx++){const i=new Image();i.decoding='async';i.fetchPriority='low';i.src=assetUrl(rest[idx]);}if(idx<rest.length)setTimeout(batch,180);};batch();};
+ if('requestIdleCallback' in window)requestIdleCallback(run,{timeout:2600});else setTimeout(run,1800);
+}
 
 function applyPixelViewportTuning(){
  const root=document.documentElement;
@@ -1690,7 +1821,13 @@ window.addEventListener('resize',()=>requestAnimationFrame(applyPixelViewportTun
 
 function copyCurrentLink(){const u=location.href;try{navigator.clipboard.writeText(u).then(()=>showToast('链接已复制，请到系统浏览器打开')).catch(()=>fallbackCopy(u));}catch(e){fallbackCopy(u);}function fallbackCopy(t){const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast('链接已复制，请到系统浏览器打开');}catch(e){showToast('请复制地址栏链接到浏览器打开');}ta.remove();}}
 
-window.addEventListener('DOMContentLoaded',()=>{try{const ua=navigator.userAgent||'';if(/MicroMessenger|QQ\//i.test(ua)){const n=document.getElementById('inAppNotice');if(n)n.hidden=false;}}catch(e){}
+window.addEventListener('DOMContentLoaded',()=>{
+ try{
+   if(document.documentElement.dataset.mobile==='1'||document.documentElement.dataset.inapp==='1'){
+     const s=document.getElementById('splash');if(s){s.classList.add('out');s.style.display='none';}
+   }
+ }catch(e){}
+ try{const ua=navigator.userAgent||'';if(/MicroMessenger|QQ\//i.test(ua)){const n=document.getElementById('inAppNotice');if(n)n.hidden=false;}}catch(e){}
  try{
    const startBtn=document.getElementById('primaryStartBtn');
    if(startBtn){
