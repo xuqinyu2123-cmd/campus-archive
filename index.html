@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
 <meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
-<meta name="campus-archive-build" content="6.8.2-pixel-restore">
+<meta name="campus-archive-build" content="6.8.3-mobile-start-fix">
 <meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
 <meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
 <title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.8</title>
@@ -905,6 +905,65 @@ html[data-mobile="1"] .answer,html[data-mobile="1"] .btn,html[data-mobile="1"] .
   .gameSavePrompt{margin-top:10px!important}
 }
 
+
+/* =========================================================
+   V6.8.3 MOBILE START + VIDEO POLISH
+   ========================================================= */
+.heroActions{position:relative!important;z-index:40!important}
+#primaryStartBtn{
+  position:relative!important;
+  z-index:50!important;
+  pointer-events:auto!important;
+  touch-action:auto!important;
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  -webkit-user-select:none!important;
+  user-select:none!important;
+}
+#primaryStartBtn.starting{opacity:.88!important;transform:none!important}
+#primaryStartBtn.starting .dot{animation:startPulse .55s steps(2,end) infinite}
+@keyframes startPulse{50%{opacity:.25}}
+@media(max-width:620px){
+  .inAppNotice{
+    position:relative!important;
+    top:auto!important;
+    width:100%!important;
+    grid-template-columns:1fr auto auto!important;
+    gap:6px!important;
+    padding:7px 9px!important;
+    font-size:8px!important;
+    line-height:1.35!important;
+    box-shadow:none!important;
+    border-left:0!important;
+    border-right:0!important;
+  }
+  .inAppNotice b{display:none!important}
+  .inAppNotice span{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .inAppNotice button{width:26px!important;height:26px!important;font-size:8px!important}
+  .heroActions{margin-top:14px!important;margin-bottom:12px!important}
+  #primaryStartBtn{min-height:52px!important;font-size:13px!important}
+}
+@media(min-width:981px) and (min-height:820px){
+  .gameQuestionPane{padding:38px 24px 20px!important}
+  .gameQuestion{font-size:clamp(30px,2.35vw,38px)!important;margin:16px 0 10px!important}
+  .gameAnswers{
+    grid-template-rows:repeat(2,minmax(98px,1fr))!important;
+    max-height:250px!important;
+    gap:12px!important;
+    margin-top:16px!important;
+  }
+  .gameAnswers .answer{min-height:98px!important;padding:14px 15px!important}
+  .gameAnswers .answerText{font-size:14px!important;line-height:1.5!important}
+}
+@media(min-width:981px) and (max-height:819px){
+  .gameQuestionPane{padding:24px 20px 14px!important}
+  .gameQuestion{font-size:clamp(27px,2.2vw,34px)!important;margin:12px 0 8px!important}
+  .gameHint{margin-bottom:8px!important}
+  .gameAnswers{gap:10px!important;margin-top:10px!important}
+  .gameAnswers .answer{min-height:78px!important;padding:11px 13px!important}
+  .gameAnswers .answerText{font-size:13.5px!important;line-height:1.45!important}
+}
+
 </style>
 </head>
 <body>
@@ -940,7 +999,7 @@ html[data-mobile="1"] .answer,html[data-mobile="1"] .btn,html[data-mobile="1"] .
         <div id="resumeProgress" class="progressResume" style="display:none"></div>
         <div class="modelStrip"><span>LOCAL COMPUTE</span><span>NO LOGIN</span><span>6D CALIBRATED</span><span>SHAREABLE RESULT</span></div>
         <div class="heroActions">
-          <button class="btn primary" onclick="startQuiz()"><span class="dot"></span>开始人格鉴定</button>
+          <button id="primaryStartBtn" type="button" class="btn primary" ontouchend="return startQuizCompat(event)" onclick="return startQuizCompat(event)"><span class="dot"></span><span class="startLabel">开始人格鉴定</span></button>
           <button id="resumeBtn" class="btn secondary hidden" onclick="restoreLast()">查看上次档案</button>
         </div>
         <div class="heroStats">
@@ -1060,7 +1119,7 @@ html[data-mobile="1"] .answer,html[data-mobile="1"] .btn,html[data-mobile="1"] .
           </div>
         </section>
       </div>
-      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.8.2 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
+      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.8.3 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
@@ -1302,21 +1361,45 @@ const ARCHETYPES=[
 ];
 
 
+
+/* V6.8.3: storage compatibility for WeChat/QQ/embedded WebViews */
+const __RAM_STORAGE__=Object.create(null);
+const SAFE_STORAGE={
+ getItem(key){
+   try{
+     if(window.localStorage){
+       const v=window.localStorage.getItem(key);
+       if(v!==null)return v;
+     }
+   }catch(e){}
+   return Object.prototype.hasOwnProperty.call(__RAM_STORAGE__,key)?__RAM_STORAGE__[key]:null;
+ },
+ setItem(key,value){
+   const v=String(value);
+   __RAM_STORAGE__[key]=v;
+   try{if(window.localStorage)window.localStorage.setItem(key,v);}catch(e){}
+ },
+ removeItem(key){
+   delete __RAM_STORAGE__[key];
+   try{if(window.localStorage)window.localStorage.removeItem(key);}catch(e){}
+ }
+};
+
 const COMMERCIAL={freeTests:1,secret:'CA5-COMMERCIAL-2026-09',keyFree:'ca5_free_used',keyLicense:'ca5_license_state',keyDevice:'ca5_device_id',keyDev:'ca5_dev_mode'};
 let currentEntitlement=null,pendingQuizStart=false,challengeSourceCode=null,challengeSourceSig=null;
 function fnv1a(str){let h=2166136261;for(const ch of str){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return (h>>>0).toString(36).toUpperCase().padStart(7,'0');}
-function getDeviceId(){let id=localStorage.getItem(COMMERCIAL.keyDevice);if(!id){id='D-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).slice(2,7).toUpperCase();localStorage.setItem(COMMERCIAL.keyDevice,id);}return id;}
-function readLicense(){try{const s=JSON.parse(localStorage.getItem(COMMERCIAL.keyLicense)||'null');if(!s)return null;if(s.expiresAt&&Date.now()>s.expiresAt){localStorage.removeItem(COMMERCIAL.keyLicense);return null;}if(Number.isFinite(s.credits)&&s.credits<=0){localStorage.removeItem(COMMERCIAL.keyLicense);return null;}return s;}catch(e){return null;}}
-function getAccessInfo(){const freeUsed=Number(localStorage.getItem(COMMERCIAL.keyFree)||0),lic=readLicense(),dev=localStorage.getItem(COMMERCIAL.keyDev)==='1';return {freeLeft:Math.max(0,COMMERCIAL.freeTests-freeUsed),lic,dev};}
+function getDeviceId(){let id=SAFE_STORAGE.getItem(COMMERCIAL.keyDevice);if(!id){id='D-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).slice(2,7).toUpperCase();SAFE_STORAGE.setItem(COMMERCIAL.keyDevice,id);}return id;}
+function readLicense(){try{const s=JSON.parse(SAFE_STORAGE.getItem(COMMERCIAL.keyLicense)||'null');if(!s)return null;if(s.expiresAt&&Date.now()>s.expiresAt){SAFE_STORAGE.removeItem(COMMERCIAL.keyLicense);return null;}if(Number.isFinite(s.credits)&&s.credits<=0){SAFE_STORAGE.removeItem(COMMERCIAL.keyLicense);return null;}return s;}catch(e){return null;}}
+function getAccessInfo(){const freeUsed=Number(SAFE_STORAGE.getItem(COMMERCIAL.keyFree)||0),lic=readLicense(),dev=SAFE_STORAGE.getItem(COMMERCIAL.keyDev)==='1';return {freeLeft:Math.max(0,COMMERCIAL.freeTests-freeUsed),lic,dev};}
 function entitlementLabel(){const a=getAccessInfo();if(a.dev)return '开发者模式 · 不限次数';if(a.lic){const exp=a.lic.expiresAt?new Date(a.lic.expiresAt).toLocaleDateString():'长期';const cr=a.lic.credits===999?'不限':a.lic.credits;return `授权已激活 · 剩余 ${cr} 次 · 有效至 ${exp}`;}return a.freeLeft>0?`首次免费次数剩余 ${a.freeLeft} 次`:'免费次数已用完 · 输入授权码继续';}
 function updateEntitlementUI(){const text=entitlementLabel();const el=document.getElementById('entitlementText');if(el)el.textContent=text;const s=document.getElementById('accessStatusText');if(s)s.textContent=text;const d=document.getElementById('accessDeviceId');if(d)d.textContent=getDeviceId();}
 function resolveEntitlement(){const a=getAccessInfo();if(a.dev)return 'dev';if(a.freeLeft>0)return 'free';if(a.lic)return 'license';return null;}
-function consumeEntitlement(){if(currentEntitlement==='free'){localStorage.setItem(COMMERCIAL.keyFree,String(Number(localStorage.getItem(COMMERCIAL.keyFree)||0)+1));}else if(currentEntitlement==='license'){const s=readLicense();if(s&&s.credits!==999){s.credits=Math.max(0,s.credits-1);localStorage.setItem(COMMERCIAL.keyLicense,JSON.stringify(s));}}currentEntitlement=null;updateEntitlementUI();}
+function consumeEntitlement(){if(currentEntitlement==='free'){SAFE_STORAGE.setItem(COMMERCIAL.keyFree,String(Number(SAFE_STORAGE.getItem(COMMERCIAL.keyFree)||0)+1));}else if(currentEntitlement==='license'){const s=readLicense();if(s&&s.credits!==999){s.credits=Math.max(0,s.credits-1);SAFE_STORAGE.setItem(COMMERCIAL.keyLicense,JSON.stringify(s));}}currentEntitlement=null;updateEntitlementUI();}
 function openAccessModal(){updateEntitlementUI();document.getElementById('accessModal').classList.add('show');document.body.style.overflow='hidden';}
 function closeAccessModal(){pendingQuizStart=false;document.getElementById('accessModal').classList.remove('show');document.body.style.overflow='';}
 function copyDeviceId(){const id=getDeviceId();navigator.clipboard?.writeText(id);showToast('设备 ID 已复制');}
 function parseLicense(code){const c=(code||'').trim().toUpperCase();const parts=c.split('-');if(parts.length!==6||parts[0]!=='CA5')return null;const tier=parts[1],expiry=parts[2],nonce=parts[3],batch=parts[4],sig=parts[5];const payload=[tier,expiry,nonce,batch].join('-');if(fnv1a(payload+'|'+COMMERCIAL.secret)!==sig)return null;let credits=0;if(tier==='T1')credits=1;else if(tier==='T3')credits=3;else if(tier==='T10')credits=10;else if(tier==='VIP')credits=999;else return null;let expiresAt=null;if(expiry!=='LIFE'){if(!/^\d{8}$/.test(expiry))return null;const y=+expiry.slice(0,4),m=+expiry.slice(4,6)-1,d=+expiry.slice(6,8);expiresAt=new Date(y,m,d,23,59,59).getTime();if(Date.now()>expiresAt)return null;}return {code:c,tier,credits,expiresAt,activatedAt:Date.now()};}
-function redeemLicense(){const input=document.getElementById('licenseInput');const lic=parseLicense(input.value);if(!lic){showToast('授权码无效或已过期');return;}const shouldStart=pendingQuizStart;localStorage.setItem(COMMERCIAL.keyLicense,JSON.stringify(lic));updateEntitlementUI();pendingQuizStart=false;document.getElementById('accessModal').classList.remove('show');document.body.style.overflow='';showToast('授权已激活');if(shouldStart)setTimeout(()=>startQuiz(),140);}
+function redeemLicense(){const input=document.getElementById('licenseInput');const lic=parseLicense(input.value);if(!lic){showToast('授权码无效或已过期');return;}const shouldStart=pendingQuizStart;SAFE_STORAGE.setItem(COMMERCIAL.keyLicense,JSON.stringify(lic));updateEntitlementUI();pendingQuizStart=false;document.getElementById('accessModal').classList.remove('show');document.body.style.overflow='';showToast('授权已激活');if(shouldStart)setTimeout(()=>startQuiz(),140);}
 const DIM_GUIDE={
  study:{title:'学业掌控',drive:'你会天然关注“事情有没有推进、结果能不能落地”。',glow:'一旦确定目标，你会进入稳定推进模式。',blind:'别把每一次结果波动都解释成对自我的否定。',tips:[['主线优先','给这周只保留 1 条真正重要的主线。'],['拆解任务','把大任务拆成 25 分钟可完成的小单位。'],['允许波动','偶尔发挥失常，不代表整个系统失控。']]},
  social:{title:'人际连接',drive:'你会优先感受关系是否顺畅、气氛是否在线。',glow:'你很擅长把人和信息快速连接起来。',blind:'别让高密度社交挤掉真正属于自己的时间。',tips:[['社交限额','热闹之后记得给自己留恢复时间。'],['保留深聊','比起加很多人，留下几个真连接更有价值。'],['把帮助外显','你的人际天赋，适合转化成合作力。']]},
@@ -1348,12 +1431,75 @@ function renderQuizMiniDims(pv){
 
 let current=0, answers=Array(QUESTIONS.length).fill(null), transitionTimer=null, lastState=null;
 
+let __startGuardAt=0,__quizStarting=false;
+function setStartBusy(on){
+ const b=document.getElementById('primaryStartBtn');
+ if(!b)return;
+ b.classList.toggle('starting',!!on);
+ b.setAttribute('aria-busy',on?'true':'false');
+ const l=b.querySelector('.startLabel');
+ if(l)l.textContent=on?'正在载入题目…':'开始人格鉴定';
+}
+function startQuizCompat(ev){
+ try{if(ev&&ev.preventDefault)ev.preventDefault();}catch(e){}
+ const now=Date.now();
+ if(now-__startGuardAt<420)return false;
+ __startGuardAt=now;
+ setStartBusy(true);
+ setTimeout(()=>{try{startQuiz();}catch(err){console.error('startQuiz fatal',err);forceQuizScreenFallback();}},0);
+ return false;
+}
+function forceQuizScreenFallback(){
+ try{
+   const hero=document.getElementById('hero'),result=document.getElementById('result'),quiz=document.getElementById('quiz');
+   if(hero)hero.classList.add('hidden');
+   if(result){result.classList.remove('active');result.setAttribute('aria-hidden','true');}
+   if(quiz){quiz.classList.add('active');quiz.setAttribute('aria-hidden','false');}
+   try{renderQuestion();}catch(e){console.error('fallback render',e);}
+   try{window.scrollTo(0,0);}catch(e){}
+ }finally{
+   __quizStarting=false;
+   setTimeout(()=>setStartBusy(false),280);
+ }
+}
 function startQuiz(){
- currentEntitlement=resolveEntitlement();if(!currentEntitlement){pendingQuizStart=true;openAccessModal();return;}
- resetPersonaTheme();
- clearTimeout(transitionTimer);current=0;answers=Array(QUESTIONS.length).fill(null);localStorage.removeItem('campus_archive_progress_v4');localStorage.removeItem('campus_archive_progress_v2');
- document.getElementById('hero').classList.add('hidden');document.getElementById('result').classList.remove('active');document.getElementById('result').setAttribute('aria-hidden','true');
- const quiz=document.getElementById('quiz');quiz.classList.add('active');quiz.setAttribute('aria-hidden','false');renderQuestion();window.scrollTo({top:0,behavior:'smooth'});
+ if(__quizStarting)return false;
+ __quizStarting=true;
+ let entitlement=null;
+ try{entitlement=resolveEntitlement();}catch(e){console.warn('entitlement storage fallback',e);entitlement='free';}
+ currentEntitlement=entitlement||null;
+ if(!currentEntitlement){
+   __quizStarting=false;
+   setStartBusy(false);
+   pendingQuizStart=true;
+   try{openAccessModal();}catch(e){console.error('access modal',e);}
+   return false;
+ }
+
+ /* UI transition first: non-essential storage/render work must never make the button look dead. */
+ const hero=document.getElementById('hero'),result=document.getElementById('result'),quiz=document.getElementById('quiz');
+ if(hero)hero.classList.add('hidden');
+ if(result){result.classList.remove('active');result.setAttribute('aria-hidden','true');}
+ if(quiz){quiz.classList.add('active');quiz.setAttribute('aria-hidden','false');}
+
+ try{resetPersonaTheme();}catch(e){console.warn('theme start',e);}
+ try{clearTimeout(transitionTimer);}catch(e){}
+ current=0;
+ answers=Array(QUESTIONS.length).fill(null);
+ try{SAFE_STORAGE.removeItem('campus_archive_progress_v4');SAFE_STORAGE.removeItem('campus_archive_progress_v2');}catch(e){}
+
+ try{
+   renderQuestion();
+ }catch(e){
+   console.error('question start render',e);
+   setTimeout(()=>{try{renderQuestion();}catch(err){console.error('question retry',err);showToast('题目加载异常，请刷新后重试');}},80);
+ }
+ try{window.scrollTo(0,0);}catch(e){}
+ requestAnimationFrame(()=>{
+   __quizStarting=false;
+   setTimeout(()=>setStartBusy(false),160);
+ });
+ return false;
 }
 function exitQuiz(){resetPersonaTheme();clearTimeout(transitionTimer);document.getElementById('quiz').classList.remove('active');document.getElementById('quiz').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
 function prevQuestion(){clearTimeout(transitionTimer);if(current<=0)return;current--;saveProgress();renderQuestion();if(innerWidth<=980)mobileFocusQuestion();else scrollQuizTop();}
@@ -1403,7 +1549,7 @@ function finishQuiz(){
  const stability=Math.round(Math.max(54,Math.min(96,58+gap*4.2)));
  const signature=makeSignature(user,best.code);
  lastState={version:2,user,bestCode:best.code,rankedCodes:ranked.map(x=>x.code),sims:ranked.map(x=>x.sim),distances:ranked.map(x=>x.dist),stability,signature,answers:[...answers],savedAt:Date.now()};
- localStorage.setItem('campus_archive_last_v4',JSON.stringify(lastState));localStorage.removeItem('campus_archive_progress_v4');localStorage.removeItem('campus_archive_progress_v2');if(!currentEntitlement)currentEntitlement=resolveEntitlement();consumeEntitlement();document.getElementById('resumeBtn').classList.remove('hidden');updateResumeUI();renderResult(lastState);
+ SAFE_STORAGE.setItem('campus_archive_last_v4',JSON.stringify(lastState));SAFE_STORAGE.removeItem('campus_archive_progress_v4');SAFE_STORAGE.removeItem('campus_archive_progress_v2');if(!currentEntitlement)currentEntitlement=resolveEntitlement();consumeEntitlement();document.getElementById('resumeBtn').classList.remove('hidden');updateResumeUI();renderResult(lastState);
 }
 function stateToRanked(state){return state.rankedCodes.map((code,i)=>({...ARCHETYPES.find(a=>a.code===code),sim:state.sims[i],dist:state.distances?state.distances[i]:null}));}
 function renderResult(state){
@@ -1444,7 +1590,7 @@ function renderRadar(user){
  h+=`<polygon points="${pts(user)}" fill="rgba(201,255,61,.28)" stroke="#17181a" stroke-width="3"/>`;user.forEach((v,i)=>{const a=-Math.PI/2+i*Math.PI*2/6,r=R*v/100,x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r;h+=`<circle cx="${x}" cy="${y}" r="4" fill="#17181a"/>`;});svg.innerHTML=h;
 }
 function renderAlts(items){document.getElementById('altList').innerHTML=items.map((x,i)=>`<div class="alt"><span class="rank">#0${i+2}</span><strong>${x.name}<br><small style="font:700 8px ui-monospace,monospace;color:#888">${x.en}</small></strong><b>${x.sim.toFixed(1)}%</b></div>`).join('');}
-function restoreLast(){try{const raw=localStorage.getItem('campus_archive_last_v4')||localStorage.getItem('campus_archive_last_v2');if(!raw)return showToast('当前设备没有保存过结果');const state=JSON.parse(raw);if(!state||!state.bestCode)throw new Error('bad');answers=state.answers||Array(QUESTIONS.length).fill(null);renderResult(state);}catch(e){showToast('上次档案已失效，请重新测试');}}
+function restoreLast(){try{const raw=SAFE_STORAGE.getItem('campus_archive_last_v4')||SAFE_STORAGE.getItem('campus_archive_last_v2');if(!raw)return showToast('当前设备没有保存过结果');const state=JSON.parse(raw);if(!state||!state.bestCode)throw new Error('bad');answers=state.answers||Array(QUESTIONS.length).fill(null);renderResult(state);}catch(e){showToast('上次档案已失效，请重新测试');}}
 function restart(){resetPersonaTheme();if(location.hash)history.replaceState(null,'',location.pathname+location.search);document.getElementById('result').classList.remove('active');document.getElementById('result').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
 async function shareResult(){if(!lastState)return;const best=ARCHETYPES.find(a=>a.code===lastState.bestCode);const shareUrl=makeResultUrl(lastState);const text=`我的大学牲人格是「${best.name}」｜${best.quote}\n24 道校园情境题，测测你是什么大学生。`;const data={title:'大学牲人格鉴定 · '+best.name,text,url:shareUrl};try{if(navigator.share){await navigator.share(data);return;}if(navigator.clipboard){await navigator.clipboard.writeText(text+'\n'+shareUrl);showToast('结果链接已复制');return;}}catch(e){}showToast('分享未完成');}
 
@@ -1461,9 +1607,9 @@ function makeResultUrl(state){if(!location.protocol.startsWith('http'))return lo
 function loadSharedResult(){const h=location.hash.replace(/^#/,'');if(!h.startsWith('r='))return false;const p=new URLSearchParams(h),d=(p.get('d')||'').split('.').map(Number),st=Number(p.get('s')||60);if(d.length!==6||d.some(x=>!Number.isFinite(x)))return false;const ranked=ARCHETYPES.map(a=>({...a,sim:similarity(d,a.v),dist:modelDistance(d,a.v)})).sort((a,b)=>a.dist-b.dist);const best=ranked[0],state={version:2,user:d,bestCode:best.code,rankedCodes:ranked.map(x=>x.code),sims:ranked.map(x=>x.sim),distances:ranked.map(x=>x.dist),stability:Math.max(54,Math.min(96,Math.round(st))),signature:makeSignature(d,best.code),answers:Array(QUESTIONS.length).fill(null),shared:true};renderResult(state);return true;}
 function openGallery(){document.getElementById('galleryGrid').innerHTML=ARCHETYPES.map(a=>`<div class="galleryItem"><div class="galleryThumb">${personaImage(a,true)}</div><div class="galleryBody"><div><small>${a.code} / ${a.en}</small><strong>${a.name}</strong><p>${a.tag}</p><div class="personMiniNote">最常出现地点：${a.place}</div></div><span class="gLevel">${a.level}</span></div></div>`).join('');document.getElementById('galleryModal').classList.add('show');document.body.style.overflow='hidden';}
 function closeGallery(){document.getElementById('galleryModal').classList.remove('show');document.body.style.overflow='';}
-function saveProgress(){localStorage.setItem('campus_archive_progress_v4',JSON.stringify({answers,current,savedAt:Date.now()}));updateResumeUI();}
-function updateResumeUI(){const box=document.getElementById('resumeProgress'),raw=localStorage.getItem('campus_archive_progress_v4')||localStorage.getItem('campus_archive_progress_v2');if(raw){try{const p=JSON.parse(raw),done=(p.answers||[]).filter(x=>x!==null).length;if(done>0&&done<QUESTIONS.length){box.style.display='block';box.innerHTML=`<b>检测到未完成档案：</b> 已回答 ${done} / ${QUESTIONS.length} 题。<button onclick="resumeProgressQuiz()" style="margin-left:6px;border:0;background:#17181a;color:#fff;padding:6px 9px;font-weight:800;cursor:pointer">继续</button>`;return;}}catch(e){}}box.style.display='none';}
-function resumeProgressQuiz(){try{const p=JSON.parse(localStorage.getItem('campus_archive_progress_v4')||localStorage.getItem('campus_archive_progress_v2'));answers=(p.answers||Array(QUESTIONS.length).fill(null)).slice(0,QUESTIONS.length);while(answers.length<QUESTIONS.length)answers.push(null);current=Math.max(0,Math.min(QUESTIONS.length-1,p.current||0));document.getElementById('hero').classList.add('hidden');document.getElementById('result').classList.remove('active');const q=document.getElementById('quiz');q.classList.add('active');q.setAttribute('aria-hidden','false');renderQuestion();scrollQuizTop();}catch(e){startQuiz();}}
+function saveProgress(){SAFE_STORAGE.setItem('campus_archive_progress_v4',JSON.stringify({answers,current,savedAt:Date.now()}));updateResumeUI();}
+function updateResumeUI(){const box=document.getElementById('resumeProgress'),raw=SAFE_STORAGE.getItem('campus_archive_progress_v4')||SAFE_STORAGE.getItem('campus_archive_progress_v2');if(raw){try{const p=JSON.parse(raw),done=(p.answers||[]).filter(x=>x!==null).length;if(done>0&&done<QUESTIONS.length){box.style.display='block';box.innerHTML=`<b>检测到未完成档案：</b> 已回答 ${done} / ${QUESTIONS.length} 题。<button onclick="resumeProgressQuiz()" style="margin-left:6px;border:0;background:#17181a;color:#fff;padding:6px 9px;font-weight:800;cursor:pointer">继续</button>`;return;}}catch(e){}}box.style.display='none';}
+function resumeProgressQuiz(){try{const p=JSON.parse(SAFE_STORAGE.getItem('campus_archive_progress_v4')||SAFE_STORAGE.getItem('campus_archive_progress_v2'));answers=(p.answers||Array(QUESTIONS.length).fill(null)).slice(0,QUESTIONS.length);while(answers.length<QUESTIONS.length)answers.push(null);current=Math.max(0,Math.min(QUESTIONS.length-1,p.current||0));document.getElementById('hero').classList.add('hidden');document.getElementById('result').classList.remove('active');const q=document.getElementById('quiz');q.classList.add('active');q.setAttribute('aria-hidden','false');renderQuestion();scrollQuizTop();}catch(e){startQuiz();}}
 
 async function makePoster(){
  if(!lastState)return;
@@ -1534,13 +1680,21 @@ window.addEventListener('resize',()=>requestAnimationFrame(applyPixelViewportTun
 function copyCurrentLink(){const u=location.href;try{navigator.clipboard.writeText(u).then(()=>showToast('链接已复制，请到系统浏览器打开')).catch(()=>fallbackCopy(u));}catch(e){fallbackCopy(u);}function fallbackCopy(t){const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast('链接已复制，请到系统浏览器打开');}catch(e){showToast('请复制地址栏链接到浏览器打开');}ta.remove();}}
 
 window.addEventListener('DOMContentLoaded',()=>{try{const ua=navigator.userAgent||'';if(/MicroMessenger|QQ\//i.test(ua)){const n=document.getElementById('inAppNotice');if(n)n.hidden=false;}}catch(e){}
+ try{
+   const startBtn=document.getElementById('primaryStartBtn');
+   if(startBtn){
+     const touchFallback=function(e){startQuizCompat(e);};
+     startBtn.addEventListener('touchend',touchFallback,false);
+   }
+ }catch(e){console.error('start button bind',e);}
+
  setTimeout(hideSplashNow,420);
  try{applyPixelViewportTuning();}catch(e){console.error('viewport boot',e)}
  try{resetPersonaTheme();}catch(e){console.error('theme boot',e)}
  try{renderHeroPreview();}catch(e){console.error('preview boot',e)}
  try{updateEntitlementUI();updateResumeUI();}catch(e){console.error('entitlement boot',e)}
  try{preloadPersonaAssets();}catch(e){console.error('preload boot',e)}
- try{if(localStorage.getItem('campus_archive_last_v4')||localStorage.getItem('campus_archive_last_v2'))document.getElementById('resumeBtn').classList.remove('hidden');}catch(e){}
+ try{if(SAFE_STORAGE.getItem('campus_archive_last_v4')||SAFE_STORAGE.getItem('campus_archive_last_v2'))document.getElementById('resumeBtn').classList.remove('hidden');}catch(e){}
  try{loadChallengeInvite();const shared=loadSharedResult();if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister())).catch(()=>{});}}catch(e){console.error('share boot',e)}
  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGallery();if(document.getElementById('quiz')?.classList.contains('active')&&e.key==='ArrowLeft')prevQuestion();});
 });
