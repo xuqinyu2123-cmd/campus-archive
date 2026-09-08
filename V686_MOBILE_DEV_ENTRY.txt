@@ -1,0 +1,12 @@
+CAMPUS//ARCHIVE V6.8.6 MOBILE DEV ENTRY
+
+手机开发者入口不再依赖 developer.html。
+正式测试地址后加 ?dev=1 即可打开开发者面板：
+https://xuqinyu2123-cmd.github.io/campus-archive/?dev=1
+
+面板功能：
+- 切换开发者不限次数
+- 重置本设备测试状态
+- 状态保存在当前浏览器 localStorage/安全存储包装中
+
+测试题、人格、算法、图片、画质、像素视觉均未改变。

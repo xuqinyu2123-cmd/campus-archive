@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
 <meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
-<meta name="campus-archive-build" content="6.8.5-mobile-images-scroll">
+<meta name="campus-archive-build" content="6.8.6-mobile-dev-entry">
 <meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
 <meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
 <title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.8</title>
@@ -1029,6 +1029,31 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
   #result.active .resultGameTabs{overflow-x:auto!important;-webkit-overflow-scrolling:touch!important}
 }
 
+
+/* V6.8.6 mobile developer entry */
+.mobileDevPanel{
+  position:fixed;inset:0;z-index:3000;background:rgba(5,7,9,.82);
+  display:grid;place-items:center;padding:18px;overflow:auto;
+}
+.mobileDevPanel[hidden]{display:none!important}
+.mobileDevBox{
+  width:min(430px,100%);background:#111418;color:#f4f1e9;border:2px solid #343b43;
+  box-shadow:0 24px 70px rgba(0,0,0,.45);padding:16px;
+  font-family:var(--px-font);
+}
+.mobileDevHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:1px solid #2b3036;padding-bottom:12px}
+.mobileDevHead small{display:block;font:700 8px/1 var(--px-mono);color:#89929b;letter-spacing:.12em}
+.mobileDevHead strong{display:block;margin-top:7px;font-size:20px;font-weight:400}
+.mobileDevHead button{width:34px;height:34px;border:1px solid #444b53;background:#191d22;color:#fff;font-size:20px}
+.mobileDevState{display:flex;justify-content:space-between;gap:10px;padding:15px 0 10px;font-size:13px}
+.mobileDevState b{color:var(--acid)}
+.mobileDevPrimary,.mobileDevSecondary{
+  width:100%;min-height:48px;border:0;margin-top:9px;font:700 12px/1.3 var(--px-font);
+}
+.mobileDevPrimary{background:var(--acid);color:#111}
+.mobileDevSecondary{background:#252a30;color:#fff;border:1px solid #404750}
+.mobileDevBox p{font-size:10px;line-height:1.7;color:#9aa1a7;margin:13px 0 0}
+
 </style>
 </head>
 <body>
@@ -1184,7 +1209,7 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
           </div>
         </section>
       </div>
-      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.8.5 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
+      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.8.6 · <a class="footerDev" href="?dev=1">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
@@ -1194,8 +1219,24 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
     <div id="galleryGrid" class="galleryGrid"></div>
   </div>
 </div>
-<div id="accessModal" class="accessModal" onclick="if(event.target===this)closeAccessModal()"><div class="accessBox"><button class="accessClose" onclick="closeAccessModal()">×</button><div class="accessKicker">CAMPUS//ARCHIVE ACCESS</div><h3>继续测试需要访问权限</h3><p>每台设备首次测试免费 1 次。免费次数用完后，可以输入授权码继续测试。</p><div class="accessStatus"><div><small>DEVICE STATUS</small><b id="accessStatusText">—</b></div><div><small>DEVICE ID</small><b id="accessDeviceId">—</b></div></div><input id="licenseInput" class="licenseInput" placeholder="输入授权码，例如 CA5-..." autocomplete="off"><div class="accessActions"><button class="unlock" onclick="redeemLicense()">验证授权码</button><button class="copyDevice" onclick="copyDeviceId()">复制设备 ID</button></div><p class="accessNote">当前版本为纯前端商业化原型。若正式收费，授权校验、订单、次数与兑换记录应迁移到服务器或云函数，避免前端代码被绕过。</p><a class="developerLink" href="developer.html">开发者入口 →</a></div></div>
+<div id="accessModal" class="accessModal" onclick="if(event.target===this)closeAccessModal()"><div class="accessBox"><button class="accessClose" onclick="closeAccessModal()">×</button><div class="accessKicker">CAMPUS//ARCHIVE ACCESS</div><h3>继续测试需要访问权限</h3><p>每台设备首次测试免费 1 次。免费次数用完后，可以输入授权码继续测试。</p><div class="accessStatus"><div><small>DEVICE STATUS</small><b id="accessStatusText">—</b></div><div><small>DEVICE ID</small><b id="accessDeviceId">—</b></div></div><input id="licenseInput" class="licenseInput" placeholder="输入授权码，例如 CA5-..." autocomplete="off"><div class="accessActions"><button class="unlock" onclick="redeemLicense()">验证授权码</button><button class="copyDevice" onclick="copyDeviceId()">复制设备 ID</button></div><p class="accessNote">当前版本为纯前端商业化原型。若正式收费，授权校验、订单、次数与兑换记录应迁移到服务器或云函数，避免前端代码被绕过。</p><a class="developerLink" href="?dev=1">开发者入口 →</a></div></div>
 <div id="toast" class="toast">已复制</div>
+
+<div id="mobileDevPanel" class="mobileDevPanel" hidden>
+  <div class="mobileDevBox">
+    <div class="mobileDevHead">
+      <div><small>DEV ACCESS</small><strong>手机开发者入口</strong></div>
+      <button type="button" onclick="closeMobileDev()">×</button>
+    </div>
+    <div class="mobileDevState">
+      <span>开发者模式</span><b id="mobileDevState">—</b>
+    </div>
+    <button type="button" class="mobileDevPrimary" onclick="toggleMobileDev()">切换开发者不限次数</button>
+    <button type="button" class="mobileDevSecondary" onclick="resetMobileTestState()">重置本设备测试状态</button>
+    <p>此入口直接运行在正式测试页，不依赖 developer.html。开发者状态只保存在当前浏览器。</p>
+  </div>
+</div>
+
 
 <script>
 const PERSONA_IMAGES={"U01":"assets/personas/U01.webp","U02":"assets/personas/U02.webp","U03":"assets/personas/U03.webp","U04":"assets/personas/U04.webp","U05":"assets/personas/U05.webp","U06":"assets/personas/U06.webp","U07":"assets/personas/U07.webp","U08":"assets/personas/U08.webp","U09":"assets/personas/U09.webp","U10":"assets/personas/U10.webp","U11":"assets/personas/U11.webp","U12":"assets/personas/U12.webp","U13":"assets/personas/U13.webp","U14":"assets/personas/U14.webp","U15":"assets/personas/U15.webp","U16":"assets/personas/U16.webp"};
@@ -1812,6 +1853,35 @@ function preloadPersonaAssets(){
  if('requestIdleCallback' in window)requestIdleCallback(run,{timeout:2600});else setTimeout(run,1800);
 }
 
+
+function refreshMobileDev(){
+ const el=document.getElementById('mobileDevState');
+ if(el)el.textContent=SAFE_STORAGE.getItem(COMMERCIAL.keyDev)==='1'?'已开启':'关闭';
+}
+function openMobileDev(){
+ const p=document.getElementById('mobileDevPanel');
+ if(p){p.hidden=false;refreshMobileDev();}
+}
+function closeMobileDev(){
+ const p=document.getElementById('mobileDevPanel');
+ if(p)p.hidden=true;
+}
+function toggleMobileDev(){
+ const next=SAFE_STORAGE.getItem(COMMERCIAL.keyDev)==='1'?'0':'1';
+ SAFE_STORAGE.setItem(COMMERCIAL.keyDev,next);
+ refreshMobileDev();
+ try{showToast(next==='1'?'开发者模式已开启':'开发者模式已关闭');}catch(e){}
+}
+function resetMobileTestState(){
+ SAFE_STORAGE.removeItem(COMMERCIAL.keyFree);
+ SAFE_STORAGE.removeItem(COMMERCIAL.keyLicense);
+ SAFE_STORAGE.removeItem('campus_archive_progress_v4');
+ SAFE_STORAGE.removeItem('campus_archive_progress_v2');
+ SAFE_STORAGE.removeItem('campus_archive_last_v4');
+ try{showToast('本设备测试状态已重置');}catch(e){}
+ refreshMobileDev();
+}
+
 function applyPixelViewportTuning(){
  const root=document.documentElement;
  root.style.setProperty('--viewport-h',window.innerHeight+'px');
@@ -1821,7 +1891,7 @@ window.addEventListener('resize',()=>requestAnimationFrame(applyPixelViewportTun
 
 function copyCurrentLink(){const u=location.href;try{navigator.clipboard.writeText(u).then(()=>showToast('链接已复制，请到系统浏览器打开')).catch(()=>fallbackCopy(u));}catch(e){fallbackCopy(u);}function fallbackCopy(t){const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast('链接已复制，请到系统浏览器打开');}catch(e){showToast('请复制地址栏链接到浏览器打开');}ta.remove();}}
 
-window.addEventListener('DOMContentLoaded',()=>{
+window.addEventListener('DOMContentLoaded',()=>{try{const q=new URLSearchParams(location.search);if(q.get('dev')==='1')setTimeout(openMobileDev,80);}catch(e){}
  try{
    if(document.documentElement.dataset.mobile==='1'||document.documentElement.dataset.inapp==='1'){
      const s=document.getElementById('splash');if(s){s.classList.add('out');s.style.display='none';}
