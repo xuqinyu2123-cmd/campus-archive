@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
 <meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
-<meta name="campus-archive-build" content="6.8.3-mobile-start-fix">
+<meta name="campus-archive-build" content="6.8.4-view-switch-fix">
 <meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
 <meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
 <title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.8</title>
@@ -964,6 +964,17 @@ html[data-mobile="1"] .answer,html[data-mobile="1"] .btn,html[data-mobile="1"] .
   .gameAnswers .answerText{font-size:13.5px!important;line-height:1.45!important}
 }
 
+
+/* =========================================================
+   V6.8.4 — deterministic view switching
+   Root cause: mobile .hero{display:flex!important} overrode .hidden.
+   ========================================================= */
+#hero.hidden{display:none!important}
+#quiz.active{display:block!important}
+#quiz:not(.active){display:none!important}
+#result.active{display:block!important}
+#result:not(.active){display:none!important}
+
 </style>
 </head>
 <body>
@@ -1119,7 +1130,7 @@ html[data-mobile="1"] .answer,html[data-mobile="1"] .btn,html[data-mobile="1"] .
           </div>
         </section>
       </div>
-      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.8.3 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
+      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.8.4 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
@@ -1478,7 +1489,7 @@ function startQuiz(){
 
  /* UI transition first: non-essential storage/render work must never make the button look dead. */
  const hero=document.getElementById('hero'),result=document.getElementById('result'),quiz=document.getElementById('quiz');
- if(hero)hero.classList.add('hidden');
+ if(hero){hero.classList.add('hidden');hero.setAttribute('aria-hidden','true');}
  if(result){result.classList.remove('active');result.setAttribute('aria-hidden','true');}
  if(quiz){quiz.classList.add('active');quiz.setAttribute('aria-hidden','false');}
 
@@ -1501,7 +1512,7 @@ function startQuiz(){
  });
  return false;
 }
-function exitQuiz(){resetPersonaTheme();clearTimeout(transitionTimer);document.getElementById('quiz').classList.remove('active');document.getElementById('quiz').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
+function exitQuiz(){resetPersonaTheme();clearTimeout(transitionTimer);document.getElementById('quiz').classList.remove('active');document.getElementById('quiz').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');document.getElementById('hero').setAttribute('aria-hidden','false');window.scrollTo({top:0,behavior:'smooth'});}
 function prevQuestion(){clearTimeout(transitionTimer);if(current<=0)return;current--;saveProgress();renderQuestion();if(innerWidth<=980)mobileFocusQuestion();else scrollQuizTop();}
 function scrollQuizTop(){if(innerWidth<700)window.scrollTo({top:0,behavior:'smooth'});}
 function renderQuestion(){
@@ -1591,7 +1602,7 @@ function renderRadar(user){
 }
 function renderAlts(items){document.getElementById('altList').innerHTML=items.map((x,i)=>`<div class="alt"><span class="rank">#0${i+2}</span><strong>${x.name}<br><small style="font:700 8px ui-monospace,monospace;color:#888">${x.en}</small></strong><b>${x.sim.toFixed(1)}%</b></div>`).join('');}
 function restoreLast(){try{const raw=SAFE_STORAGE.getItem('campus_archive_last_v4')||SAFE_STORAGE.getItem('campus_archive_last_v2');if(!raw)return showToast('当前设备没有保存过结果');const state=JSON.parse(raw);if(!state||!state.bestCode)throw new Error('bad');answers=state.answers||Array(QUESTIONS.length).fill(null);renderResult(state);}catch(e){showToast('上次档案已失效，请重新测试');}}
-function restart(){resetPersonaTheme();if(location.hash)history.replaceState(null,'',location.pathname+location.search);document.getElementById('result').classList.remove('active');document.getElementById('result').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
+function restart(){resetPersonaTheme();if(location.hash)history.replaceState(null,'',location.pathname+location.search);document.getElementById('result').classList.remove('active');document.getElementById('result').setAttribute('aria-hidden','true');document.getElementById('hero').classList.remove('hidden');document.getElementById('hero').setAttribute('aria-hidden','false');window.scrollTo({top:0,behavior:'smooth'});}
 async function shareResult(){if(!lastState)return;const best=ARCHETYPES.find(a=>a.code===lastState.bestCode);const shareUrl=makeResultUrl(lastState);const text=`我的大学牲人格是「${best.name}」｜${best.quote}\n24 道校园情境题，测测你是什么大学生。`;const data={title:'大学牲人格鉴定 · '+best.name,text,url:shareUrl};try{if(navigator.share){await navigator.share(data);return;}if(navigator.clipboard){await navigator.clipboard.writeText(text+'\n'+shareUrl);showToast('结果链接已复制');return;}}catch(e){}showToast('分享未完成');}
 
 function makeChallengeUrl(state){const best=ARCHETYPES.find(a=>a.code===state.bestCode);const sig=state.signature||makeSignature(state.user,best.code);if(!location.protocol.startsWith('http'))return location.href;return location.origin+location.pathname+'#c='+encodeURIComponent(sig)+'&p='+best.code;}

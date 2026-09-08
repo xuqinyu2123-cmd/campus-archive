@@ -1,0 +1,29 @@
+CAMPUS//ARCHIVE V6.8.4 VIEW SWITCH FIX
+
+本次已定位到“手机点击开始后仍停留在首页”的明确根因：
+
+移动端 CSS 后面存在：
+.hero { display:flex!important; }
+
+而通用隐藏规则是：
+.hidden { display:none!important; }
+
+两条规则优先级相同，但移动端 .hero 规则出现在后面，因此覆盖了 .hidden。
+结果就是：点击事件和 startQuiz() 实际已经执行，按钮也会显示“正在载入题目…”，quiz 也被激活，
+但首页 hero 没有真正隐藏，仍然挡在答题页上方，所以看起来像“点了没反应”。
+
+V6.8.4 修复：
+#hero.hidden { display:none!important; }
+并对 quiz/result 的 active / inactive 状态增加确定性显示规则。
+
+未改变：
+- 24 道题
+- 16 种人格
+- 6 维模型
+- 评分算法
+- 结果文案
+- 像素视觉
+- 16 张人格图
+- 24 张场景图
+- 图片分辨率与编码质量
+- GitHub Pages 部署方式
