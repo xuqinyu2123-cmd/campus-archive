@@ -9,12 +9,24 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
 <meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
-<meta name="campus-archive-build" content="6.8.1-lossless-mobile-load">
+<meta name="campus-archive-build" content="6.8.2-pixel-restore">
 <meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
 <meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
 <title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.8</title>
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/fusion-pixel-12px-proportional-sc@5.3.0/index.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/fusion-pixel-12px-monospaced-sc@5.3.0/index.css" media="print" onload="this.media='all'">
+<noscript>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/fusion-pixel-12px-proportional-sc@5.3.0/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/fusion-pixel-12px-monospaced-sc@5.3.0/index.css">
+</noscript>
+
 <script>
 try{const u=navigator.userAgent||'';document.documentElement.dataset.mobile=/Android|iPhone|iPad|Mobile/i.test(u)?'1':'0';document.documentElement.dataset.inapp=/MicroMessenger|QQ\//i.test(u)?'1':'0';}catch(e){}
 </script>
@@ -784,13 +796,13 @@ html,body{max-width:100%;overflow-x:hidden}.app,.wrap,main,.result,.gameResult,.
 @media(max-width:430px){.gameCharacterCover #coverArt{max-height:68svh!important}.gameQuestion{font-size:22px!important}.gameAnswers .answer{min-height:66px!important}.resultTitle{font-size:30px!important}.gameMatchBox{min-width:78px}.gamePanelHead b{font-size:14px!important}.relationName{font-size:24px!important}}
 
 
-/* V6.8 MOBILE RELEASE: no third-party fonts, no service-worker dependency */
+/* V6.8.2 PIXEL RESTORE: original pixel typography, loaded non-blocking */
 :root{
- --px-font:ui-monospace,"SFMono-Regular","Cascadia Mono","Microsoft YaHei UI","Microsoft YaHei",monospace!important;
- --px-mono:ui-monospace,"SFMono-Regular","Cascadia Mono","Microsoft YaHei UI","Microsoft YaHei",monospace!important;
+ --px-font:"Fusion Pixel 12px Proportional SC","DotGothic16","ZCOOL QingKe HuangYou","Microsoft YaHei",monospace!important;
+ --px-mono:"Fusion Pixel 12px Monospaced SC","Press Start 2P","DotGothic16","Microsoft YaHei",monospace!important;
 }
-html,body{font-family:var(--px-font)!important}
-*{-webkit-font-smoothing:none;text-rendering:optimizeSpeed}
+html,body,button,input,select,textarea{font-family:var(--px-font)!important}
+*{-webkit-font-smoothing:none;text-rendering:geometricPrecision}
 /* initial mobile render is intentionally light */
 html[data-mobile="1"] #splashPreviewRail{display:none!important}
 html[data-mobile="1"] .pixelCoverTicker{display:none!important}
@@ -838,6 +850,59 @@ html[data-mobile="1"] .answer,html[data-mobile="1"] .btn,html[data-mobile="1"] .
  .gameSceneArt{aspect-ratio:16/8.4!important}.gameSceneHeader{font-size:6px!important}
  .gameQuestion{font-size:21px!important}.gameAnswers .answer{min-height:60px!important}
  .gameCharacterCover #coverArt{max-height:62svh!important}.resultGameTabs{grid-template-columns:repeat(3,minmax(96px,1fr))!important}.resultGameTabs button{min-width:96px!important;padding:8px 6px!important}
+}
+
+
+/* =========================================================
+   V6.8.2 VIDEO POLISH — visual only, images/data untouched
+   ========================================================= */
+.brand,.topmeta,.gameBrand,.gameChapter,.gameProgressBlock,.gameExit,
+.gameSceneHeader,.gameSceneFooter,.gameQuestionHeader,.gameMeta,.gameCounter,
+.gameHUDBottom,.resultGameTabs,.gamePanelHead,.gameSavePrompt,.dossierKicker,
+.resultEnglish,.gameMatchBox,.answerBadge,.qMetaChip,.galleryBtn,.btn,.navBtn{
+  font-family:var(--px-mono)!important;
+}
+.hero h1,.gameQuestion,.resultTitle,.coverIdentity strong,.relationName,
+.secondaryTitleRow strong,.gamePanelHead b,.manifestoCard b,.attr strong{
+  font-family:var(--px-font)!important;
+  font-weight:400!important;
+}
+.gameQuestionPane,.gameDossier,.gamePanelCard,.answer,.resultGameTabs button{
+  background-image:
+    linear-gradient(rgba(20,22,25,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(20,22,25,.025) 1px,transparent 1px);
+  background-size:8px 8px;
+}
+.gameResultHero{height:auto!important;min-height:0!important;align-items:stretch!important}
+.gameDossier{display:flex!important;flex-direction:column!important;overflow:visible!important;min-height:0!important}
+.gameDossierActions{margin-top:12px!important}
+.gameSavePrompt{margin-top:12px!important}
+.altGameCard{min-height:0!important}
+.altList{margin-bottom:10px!important}
+@media(min-width:981px){
+  .gameQuestionGrid{grid-template-columns:320px minmax(0,1fr)!important}
+  .gameQuestionPane{
+    justify-content:flex-start!important;
+    padding:clamp(58px,8vh,92px) 24px 18px!important;
+  }
+  .gameQuestion{font-size:clamp(28px,2.3vw,38px)!important;line-height:1.18!important;margin:12px 0 10px!important}
+  .gameHint{font-size:11px!important;margin-bottom:12px!important}
+  .gameAnswers{gap:10px!important}
+  .gameAnswers .answer{min-height:72px!important;padding:11px 13px!important}
+  .gameAnswers .answerText{font-size:13px!important;line-height:1.5!important}
+  .gameResultHero{grid-template-columns:minmax(360px,430px) minmax(0,1fr)!important}
+  .gameCharacterCover{height:auto!important;min-height:0!important}
+  .gameCharacterCover #coverArt{aspect-ratio:4/5!important;height:auto!important;min-height:0!important}
+  .gameDossier{padding:20px 22px!important}
+  .gameSavePrompt{margin-top:auto!important}
+  .relationGrid{align-items:start!important}
+  .altGameCard{align-self:start!important}
+}
+@media(max-width:760px){
+  .gameQuestion{font-size:21px!important;line-height:1.22!important}
+  .gameAnswers .answerText{font-size:12px!important}
+  .gameDossier{overflow:visible!important}
+  .gameSavePrompt{margin-top:10px!important}
 }
 
 </style>
@@ -957,9 +1022,9 @@ html[data-mobile="1"] .answer,html[data-mobile="1"] .btn,html[data-mobile="1"] .
             <div class="attr"><span>SKILL</span><strong id="attrSkill"></strong></div>
             <div class="attr"><span>CLASS</span><strong id="attrClass"></strong></div>
           </div>
-          </div>
           <div id="resultAura" class="resultAura gameAura"></div>
-          <div class="dossierActions gameDossierActions"><button class="btn primary" onclick="shareResult()"><span class="dot"></span>分享结果</button><button class="btn secondary" onclick="makePoster()">生成海报</button><button class="btn secondary" onclick="restart()">重新测试</button></div><div class="gameSavePrompt"><small>SAVE COMPLETE</small><strong>人格档案已建立</strong><span>↓ 使用下方菜单查看 STATUS / PARTY / LOG</span></div>
+          <div class="dossierActions gameDossierActions"><button class="btn primary" onclick="shareResult()"><span class="dot"></span>分享结果</button><button class="btn secondary" onclick="makePoster()">生成海报</button><button class="btn secondary" onclick="restart()">重新测试</button></div>
+          <div class="gameSavePrompt"><small>SAVE COMPLETE</small><strong>人格档案已建立</strong><span>↓ 使用下方菜单查看 STATUS / PARTY / LOG</span></div>
         </div>
       </div>
 
@@ -995,7 +1060,7 @@ html[data-mobile="1"] .answer,html[data-mobile="1"] .btn,html[data-mobile="1"] .
           </div>
         </section>
       </div>
-      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.8 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
+      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.8.2 · <a class="footerDev" href="developer.html">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
