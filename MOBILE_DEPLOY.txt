@@ -1,0 +1,3 @@
+V6.8 MOBILE RELEASE
+建议正式手机入口：自定义域名 + Cloudflare Pages / Tencent EdgeOne Pages。
+GitHub Pages 可继续作为开发预览，但微信在访问 github.io 前可能显示平台自己的安全中转页；该页不由本站代码控制。
