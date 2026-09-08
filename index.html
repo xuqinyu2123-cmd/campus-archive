@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
 <meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
-<meta name="campus-archive-build" content="6.9.2-mobile-release-ux">
+<meta name="campus-archive-build" content="6.9.3-release-polish">
 <meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
 <meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
-<title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.9.2</title>
+<title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.9.3</title>
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1030,7 +1030,7 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
 }
 
 
-/* V6.9.2 mobile developer entry */
+/* V6.9.3 mobile developer entry */
 .mobileDevPanel{
   position:fixed;inset:0;z-index:3000;background:rgba(5,7,9,.82);
   display:grid;place-items:center;padding:18px;overflow:auto;
@@ -1150,6 +1150,115 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
   #result .relationCharacterCard{grid-template-columns:82px minmax(0,1fr)!important;gap:10px!important}
   #result .relationAvatar{width:82px!important}
 }
+
+
+/* =========================================================
+   V6.9.3 RELEASE POLISH — compact result hierarchy, lighter
+   chapter transitions and faster first visual paint.
+   Scoring model remains V6.9.1 / V6.9.2 unchanged.
+   ========================================================= */
+.chapterFlash{
+  background:transparent!important;
+  place-items:start center!important;
+  padding:64px 14px 0!important;
+  transition:opacity .12s linear,visibility .12s linear!important;
+}
+.chapterFlash>div{
+  width:auto!important;max-width:min(520px,calc(100% - 28px))!important;
+  padding:9px 14px!important;border-width:2px!important;
+  box-shadow:5px 5px 0 rgba(0,0,0,.28)!important;
+  background:rgba(9,11,14,.96)!important;
+}
+.chapterFlash small{margin:0 0 4px!important;font-size:7px!important}
+.chapterFlash strong{font-size:18px!important;line-height:1.12!important;letter-spacing:-.02em!important}
+.chapterFlash p{margin:4px 0 0!important;font-size:9px!important;line-height:1.35!important}
+
+@media(min-width:981px){
+  /* Desktop quiz: preserve game character while removing redundant telemetry. */
+  #quiz .gameSceneFooter{grid-template-columns:1fr!important}
+  #quiz .gameSceneFooter>div:last-child{display:none!important}
+  #quiz .gameQuestionHeader .gameMeta span:last-child{display:none!important}
+  #quiz .gameBottomStats{display:none!important}
+  #quiz .gameHUDBottom{grid-template-columns:minmax(0,1fr) auto!important}
+  #quiz .gameHintLine{max-width:none!important}
+
+  /* Desktop result: content height is driven by the cover instead of a fixed viewport block. */
+  #result .gameResultHero{height:auto!important;min-height:0!important;grid-template-columns:minmax(360px,430px) minmax(0,1fr)!important}
+  #result .gameCharacterCover{height:auto!important;min-height:0!important}
+  #result .gameCharacterCover #coverArt{height:auto!important;min-height:0!important;aspect-ratio:4/5!important}
+  #result .gameDossier{height:auto!important;min-height:0!important;overflow:visible!important;padding:17px 19px!important}
+  #result .gameSavePrompt{
+    margin-top:10px!important;width:fit-content!important;max-width:100%!important;
+    display:grid!important;grid-template-columns:auto auto minmax(160px,1fr)!important;
+    align-items:center!important;gap:10px!important;padding:8px 10px!important;
+    border-width:2px!important;background:rgba(255,255,255,.24)!important;
+  }
+  #result .gameSavePrompt small,#result .gameSavePrompt strong,#result .gameSavePrompt span{margin:0!important}
+  #result .gameSavePrompt small{font-size:6px!important}
+  #result .gameSavePrompt strong{font-size:13px!important;white-space:nowrap!important}
+  #result .gameSavePrompt span{font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif!important;font-size:10px!important;line-height:1.4!important;letter-spacing:0!important}
+  #result .resultGameTabs{margin-top:9px!important}
+  #result .resultGamePanels{margin-top:8px!important}
+}
+
+@media(max-width:980px){
+  /* Mobile result cover is visual-first; identity is stated once in the dossier below. */
+  #result .gameCharacterCover{padding:6px!important}
+  #result .gameCharacterCover #coverArt{aspect-ratio:4/3!important;max-height:390px!important;min-height:0!important}
+  #result .coverIdentity,#result .coverFoot{display:none!important}
+  #result .coverCode{font-size:42px!important;opacity:.82!important}
+  #result .coverBadge{font-size:7px!important;padding:5px 6px!important}
+  #result .personaStamp{font-size:10px!important;padding:5px 7px!important}
+  #result .resultSignature{font-size:6px!important;padding:5px 6px!important}
+  #result .personaSceneCaption{left:8px!important;right:8px!important;bottom:8px!important;gap:4px!important}
+  #result .personaSceneCaption span{font-size:6px!important;padding:4px 5px!important}
+  #result .gameDossier{padding:12px 11px 13px!important;gap:6px!important}
+  #result .dossierKicker{display:none!important}
+  #result .gameResultTitleRow{margin-bottom:4px!important}
+  #result .resultTitle{margin-bottom:3px!important}
+  #result .resultTagline{margin:6px 0!important;line-height:1.55!important}
+  #result .gameQuote{margin:6px 0!important;padding:10px 11px!important}
+  #result .resultHeroMiniAttrs{margin-top:6px!important}
+  #result .gameDossierActions{margin-top:8px!important}
+  #result .gameSavePrompt{display:none!important}
+  #result .resultGameTabs{margin-top:7px!important}
+
+  /* Secondary persona becomes supporting information rather than a second hero image. */
+  #result .gameTwin{display:grid!important;grid-template-columns:104px minmax(0,1fr)!important;gap:11px!important;align-items:start!important}
+  #result .gameTwin .twinArt{width:104px!important;max-width:104px!important;height:104px!important;aspect-ratio:1/1!important;margin:0!important}
+  #result .secondaryCopy{padding:0!important;justify-content:flex-start!important}
+  #result .secondaryTitleRow{align-items:baseline!important;gap:7px!important}
+  #result .secondaryTitleRow strong{font-size:21px!important;line-height:1.08!important}
+  #result .secondaryTitleRow em{font-size:9px!important;margin:0!important}
+  #result .secondaryEn{font-size:7px!important;margin-top:3px!important;line-height:1.35!important}
+  #result .secondaryCopy p{font-size:11.5px!important;line-height:1.58!important;margin-top:7px!important}
+  #result .altGameCard{margin-top:0!important}
+
+  /* Dense lower cards: keep all content, reduce ornamental vertical cost. */
+  #result .gamePanelHead{padding-bottom:8px!important;margin-bottom:9px!important}
+  #result .manifestoCard,#result .dailyLine{padding:10px!important}
+  #result .survivalGrid{gap:7px!important}
+  #result .survivalGrid>div{padding:10px!important}
+  #result .adviceList{gap:7px!important}
+  #result .adviceItem{padding:9px!important}
+  #result .questButtons{gap:6px!important}
+  #result .questButtons button{padding:9px 10px!important;font-size:11px!important}
+  #result .gameResultFooter{margin-top:7px!important;padding:10px!important}
+
+  .chapterFlash{padding-top:50px!important}
+  .chapterFlash>div{max-width:calc(100% - 20px)!important;padding:8px 11px!important}
+  .chapterFlash strong{font-size:16px!important}
+  .chapterFlash p{display:none!important}
+}
+
+@media(max-width:430px){
+  #result .gameCharacterCover #coverArt{aspect-ratio:4/3!important;max-height:320px!important}
+  #result .gameTwin{grid-template-columns:92px minmax(0,1fr)!important;gap:9px!important}
+  #result .gameTwin .twinArt{width:92px!important;max-width:92px!important;height:92px!important}
+  #result .secondaryTitleRow strong{font-size:19px!important}
+  #result .secondaryCopy p{font-size:11px!important}
+}
+
 </style>
 </head>
 <body>
@@ -1305,7 +1414,7 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
           </div>
         </section>
       </div>
-      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.9.2 · <a class="footerDev" href="?dev=1">DEV CONSOLE</a></span></div>
+      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.9.3 · <a class="footerDev" href="?dev=1">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
@@ -1347,9 +1456,15 @@ const QUESTION_SCENE_EMBED={};
 function quizPreviewPixelArt(item,index){const n=index+1,src=QUESTION_SCENE_EMBED[n]||QUESTION_SCENE_IMAGES[n];return `<img src="${src}" alt="SCENE ${String(n).padStart(2,'0')}" decoding="async">`;}
 function renderHeroPreview(){
  try{
-  const slots=[['heroCoverMain','U11'],['heroCoverA','U01'],['heroCoverB','U10'],['heroCoverC','U16']];
-  slots.forEach(([id,code])=>{const el=document.getElementById(id);if(!el)return;el.innerHTML=personaImage(code,true)+(id==='heroCoverMain'?'<div class="heroCoverOverlay"><small>YOUR TYPE IS HIDDEN</small><strong>校园人格档案</strong><span>完成 24 道情境后解锁你的主档案</span></div>':'');if(id!=='heroCoverMain')el.dataset.code=code;});
-  const rail=document.getElementById('splashPreviewRail');if(rail)rail.innerHTML=['U01','U03','U10','U16'].map(code=>`<div class="splashPreviewThumb">${personaImage(code,true)}</div>`).join('');
+  const main=document.getElementById('heroCoverMain');
+  if(main)main.innerHTML=personaImage('U11',false)+'<div class="heroCoverOverlay"><small>YOUR TYPE IS HIDDEN</small><strong>校园人格档案</strong><span>完成 24 道情境后解锁你的主档案</span></div>';
+  const loadDecorative=()=>{
+   [['heroCoverA','U01'],['heroCoverB','U10'],['heroCoverC','U16']].forEach(([id,code])=>{const el=document.getElementById(id);if(!el)return;el.innerHTML=personaImage(code,true);el.dataset.code=code;});
+   if(document.documentElement.dataset.mobile!=='1'){
+    const rail=document.getElementById('splashPreviewRail');if(rail)rail.innerHTML=['U01','U03','U10','U16'].map(code=>`<div class="splashPreviewThumb">${personaImage(code,true)}</div>`).join('');
+   }
+  };
+  if('requestIdleCallback' in window)requestIdleCallback(loadDecorative,{timeout:1100});else setTimeout(loadDecorative,650);
  }catch(e){console.error('cover preview',e);}
 }
 
@@ -1429,7 +1544,7 @@ const QUIZ_CHAPTERS=[
 ];
 function currentChapter(index=current){return QUIZ_CHAPTERS.find(c=>index>=c.from&&index<=c.to)||QUIZ_CHAPTERS[0];}
 function renderChapter(index=current){const c=currentChapter(index),ci=QUIZ_CHAPTERS.indexOf(c);const rail=document.getElementById('chapterRail');if(rail)rail.innerHTML=QUIZ_CHAPTERS.map((x,i)=>`<span class="${i<ci?'done':i===ci?'active':''}"></span>`).join('');const no=document.getElementById('chapterNo'),title=document.getElementById('chapterTitle'),sub=document.getElementById('chapterSub');if(no)no.textContent='CHAPTER '+c.no;if(title)title.textContent=c.title;if(sub)sub.textContent=c.sub;const quiz=document.getElementById('quiz');if(quiz){quiz.dataset.chapter=c.no;quiz.style.setProperty('--chapter-accent',c.accent);quiz.style.setProperty('--chapter-dark',c.dark);quiz.style.setProperty('--chapter-mid',c.mid);quiz.style.setProperty('--chapter-paper',c.paper);quiz.style.setProperty('--chapter-grid',c.accent+'18');}}
-function flashChapterIfNeeded(index){if(![0,6,12,18].includes(index))return;const c=currentChapter(index),box=document.getElementById('chapterFlash');if(!box)return;box.innerHTML=`<div><small>CHAPTER ${c.no}</small><strong>${c.title}</strong><p>${c.sub}</p></div>`;box.classList.add('show');setTimeout(()=>box.classList.remove('show'),520);}
+function flashChapterIfNeeded(index){if(![6,12,18].includes(index))return;const c=currentChapter(index),box=document.getElementById('chapterFlash');if(!box)return;box.innerHTML=`<div><small>CHAPTER ${c.no}</small><strong>${c.title}</strong><p>${c.sub}</p></div>`;box.classList.add('show');setTimeout(()=>box.classList.remove('show'),280);}
 
 const PERSONA_STAMPS={U01:'03:17',U02:'A+',U03:'SILENT',U04:'ZZZ',U05:'ONLINE',U06:'ROUTE',U07:'24H',U08:'08:00',U09:'CHILL',U10:'???',U11:'MAX',U12:'LAB',U13:'LOOP',U14:'GO',U15:'LEAD',U16:'RAIN'};
 const PERSONA_CROPS={U01:'47% 45%',U02:'50% 43%',U03:'53% 44%',U04:'49% 46%',U05:'48% 44%',U06:'51% 45%',U07:'50% 43%',U08:'50% 45%',U09:'47% 47%',U10:'50% 45%',U11:'50% 46%',U12:'52% 45%',U13:'49% 46%',U14:'50% 46%',U15:'50% 44%',U16:'50% 46%'};
@@ -2029,7 +2144,7 @@ async function makePoster(){
  const grad=ctx.createRadialGradient(880,110,10,880,110,560);grad.addColorStop(0,palette.glow);grad.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,1080,720);
  // top brand
  ctx.fillStyle=accent;roundRect(ctx,58,48,282,50,25,true);ctx.fillStyle='#121315';ctx.font='900 24px sans-serif';ctx.fillText('CAMPUS//ARCHIVE',80,82);
- ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V6.9.2',58,132);
+ ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V6.9.3',58,132);
  // full-bleed visual
  ctx.save();roundRectPath(ctx,58,166,964,660,32);ctx.clip();
  try{const img=await rasterImage(PERSONA_IMAGES[best.code]);const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height,bw=964,bh=660,scale=Math.max(bw/iw,bh/ih),sw=bw/scale,sh=bh/scale,sx=(iw-sw)/2,sy=(ih-sh)/2;ctx.imageSmoothingEnabled=false;ctx.drawImage(img,sx,sy,sw,sh,58,166,bw,bh);}catch(e){ctx.fillStyle='#181b20';ctx.fillRect(58,166,964,660)}
@@ -2049,7 +2164,7 @@ async function makePoster(){
  ctx.fillStyle='#f6f2e9';roundRect(ctx,58,1210,964,166,30,true);ctx.fillStyle='#17181a';ctx.font='950 36px sans-serif';ctx.fillText('你是什么大学牲？',90,1265);ctx.fillStyle='#6c675f';ctx.font='650 18px sans-serif';ctx.fillText('把这张图丢给朋友，让 TA 也测一次。',90,1302);
  ctx.fillStyle=palette.deep;roundRect(ctx,90,1320,510,38,19,true);ctx.fillStyle=accent;ctx.font='900 15px monospace';ctx.fillText('CHALLENGE / '+code,108,1346);
  ctx.fillStyle='#8d877f';ctx.font='700 14px monospace';ctx.fillText('24 SCENARIOS · 16 ARCHETYPES · 6D MODEL',650,1346);
- c.toBlob(async blob=>{if(!blob)return;const file=new File([blob],`campus-${best.code}-v6_9_2.png`,{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'大学牲人格鉴定 · '+best.name,text:challengeText()});return;}}catch(e){}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`大学牲人格_${best.code}_${best.name}_V6.9.2.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);showToast('V6.9.2 分享海报已生成');},'image/png');
+ c.toBlob(async blob=>{if(!blob)return;const file=new File([blob],`campus-${best.code}-v6_9_3.png`,{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'大学牲人格鉴定 · '+best.name,text:challengeText()});return;}}catch(e){}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`大学牲人格_${best.code}_${best.name}_V6.9.3.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);showToast('V6.9.3 分享海报已生成');},'image/png');
 }
 function roundRectPath(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath();}
 function roundRect(ctx,x,y,w,h,r,fill=false,stroke=false,strokeColor=null){roundRectPath(ctx,x,y,w,h,r);if(fill)ctx.fill();if(stroke){if(strokeColor)ctx.strokeStyle=strokeColor;ctx.stroke();}}
