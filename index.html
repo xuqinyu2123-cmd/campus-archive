@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
 <meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
-<meta name="campus-archive-build" content="6.9.1-question-model">
+<meta name="campus-archive-build" content="6.9.2-mobile-release-ux">
 <meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
 <meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
-<title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.9.1</title>
+<title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.9.2</title>
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1030,7 +1030,7 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
 }
 
 
-/* V6.9.1 mobile developer entry */
+/* V6.9.2 mobile developer entry */
 .mobileDevPanel{
   position:fixed;inset:0;z-index:3000;background:rgba(5,7,9,.82);
   display:grid;place-items:center;padding:18px;overflow:auto;
@@ -1054,6 +1054,102 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
 .mobileDevSecondary{background:#252a30;color:#fff;border:1px solid #404750}
 .mobileDevBox p{font-size:10px;line-height:1.7;color:#9aa1a7;margin:13px 0 0}
 
+
+
+/* =========================================================
+   V6.9.2 MOBILE RELEASE UX — product hierarchy, blind quiz,
+   readable result copy. Scoring model remains V6.9.1.
+   ========================================================= */
+.answerBadge{display:none!important}
+.releaseShareBtn{min-width:180px!important}
+.releasePosterBtn{font-weight:800!important}
+.analysisText,.gameBulletList .bullet,.relationCharacterCard p,.secondaryCopy p,
+.manifestoCard p,.survivalGrid p,.adviceList p,.dailyLine p,.questBoard p,
+.personMiniNote,.compatBox p{
+  font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif!important;
+  letter-spacing:0!important;
+  text-rendering:optimizeLegibility!important;
+}
+.analysisText{font-size:13px!important;line-height:1.82!important}
+.relationCharacterCard p,.secondaryCopy p,.manifestoCard p,.survivalGrid p,.adviceList p,.dailyLine p,.questBoard p{line-height:1.72!important}
+.archiveMetaCard .gameMetaLine b{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;overflow-wrap:anywhere!important}
+
+@media(min-width:981px){
+  /* recorded desktop flow: keep the game composition compact on 2K/4K displays */
+  #quiz .gameQuizShell{max-width:1500px!important;width:100%!important;margin-inline:auto!important}
+  #quiz .gameQuestionGrid{grid-template-columns:minmax(340px,390px) minmax(0,1fr)!important}
+  #quiz .gameQuestionHeader,#quiz .gameQuestion,#quiz .gameHint,#quiz .gameAnswers{width:min(940px,100%)!important;margin-left:auto!important;margin-right:auto!important}
+  #quiz .gameQuestionPane{padding-left:clamp(24px,3vw,46px)!important;padding-right:clamp(24px,3vw,46px)!important}
+  #quiz .gameAnswers .answerText{font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif!important;font-size:13.5px!important;line-height:1.48!important;font-weight:700!important}
+  #quiz .gameHint{font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif!important;letter-spacing:0!important}
+}
+
+@media(max-width:980px){
+  /* one clear progress signal: current question in the top bar; completed count is hidden on phone */
+  #quiz .gameHUDTop{grid-template-columns:minmax(0,1fr) minmax(148px,.9fr) 48px!important;gap:8px!important;padding:7px 8px!important}
+  #quiz .gameBrand{display:none!important}
+  #quiz .gameChapter{min-width:0!important}
+  #quiz .gameChapter strong{font-size:13px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  #quiz .gameChapter span{display:none!important}
+  #quiz .gameProgressBlock{grid-template-rows:auto 7px 4px!important;gap:4px!important}
+  #quiz .gameProgressMeta b{font-size:8px!important}
+  #quiz .gameProgressMeta span{font-size:7px!important}
+  #quiz .gameProgressTrack{height:7px!important}
+  #quiz .gameExit{width:48px!important;height:34px!important;padding:0!important;font-size:7px!important}
+
+  /* mobile quiz = scene -> question -> choices. Remove diagnostic HUD clutter. */
+  #quiz .gameQuestionGrid{gap:0!important}
+  #quiz .gameScenePane{grid-template-rows:31px auto!important;border-bottom:0!important;box-shadow:none!important}
+  #quiz .gameSceneHeader{height:31px!important;padding:7px 9px!important;font-size:7px!important}
+  #quiz .gameSceneArt{aspect-ratio:16/7.2!important}
+  #quiz .gameSceneFooter{display:none!important}
+  #quiz .gameQuestionPane{border-top:0!important;box-shadow:none!important;padding:12px 11px 11px!important}
+  #quiz .gameQuestionHeader{margin:0 0 5px!important}
+  #quiz .gameQuestionHeader .gameMeta,#quiz .gameCounter{display:none!important}
+  #quiz .questionKicker{font-size:7px!important;opacity:.72!important}
+  #quiz .gameQuestion{font-size:clamp(21px,5.7vw,25px)!important;line-height:1.24!important;margin:7px 0 7px!important}
+  #quiz .gameHint{font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif!important;font-size:11px!important;line-height:1.55!important;margin:0 0 9px!important;color:#7d817d!important}
+  #quiz .gameAnswers{gap:7px!important;margin-top:0!important}
+  #quiz .gameAnswers .answer{grid-template-columns:32px minmax(0,1fr)!important;min-height:61px!important;padding:9px 10px!important;gap:10px!important}
+  #quiz .gameAnswers .answerText{font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif!important;font-size:13px!important;line-height:1.48!important;font-weight:700!important}
+  #quiz .gameAnswers .letter{width:30px!important;height:30px!important}
+  #quiz .gameHUDBottom{display:block!important;padding:6px 8px max(7px,env(safe-area-inset-bottom))!important;box-shadow:none!important}
+  #quiz .gameHintLine,#quiz .gameBottomStats{display:none!important}
+  #quiz .navBtns{width:100%!important}
+  #quiz .gamePrev{width:100%!important;min-height:38px!important;padding:8px 12px!important;font-size:8px!important}
+
+  /* result: stronger CTA hierarchy and readable cards */
+  #result .gameDossierActions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+  #result .gameDossierActions .releaseShareBtn{grid-column:1/-1!important;width:100%!important;min-height:50px!important;font-size:13px!important}
+  #result .gameDossierActions .releasePosterBtn,#result .gameDossierActions .releaseRestartBtn{width:100%!important;min-height:44px!important;font-size:11px!important;padding:10px!important}
+  #result .gameSavePrompt{padding:11px 12px!important;margin-top:10px!important}
+  #result .gameSavePrompt strong{font-size:15px!important;line-height:1.35!important}
+  #result .gameSavePrompt span{font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif!important;font-size:10px!important;line-height:1.5!important;letter-spacing:0!important}
+  #result .resultGameTabs button{min-height:48px!important}
+  #result .resultGameTabs button span{font-size:10px!important}
+  #result .gamePanelCard{padding:13px!important}
+  #result .gamePanelCard p{font-size:12px!important}
+  #result .archiveMetaCard .gameMetaLine{grid-template-columns:1fr!important}
+  #result .archiveMetaCard .gameMetaLine span{padding:8px 9px!important}
+  #result .archiveMetaCard .gameMetaLine b{font-size:10px!important;line-height:1.45!important;margin-top:4px!important}
+  #result .relationCharacterCard p,#result .secondaryCopy p,#result .manifestoCard p,#result .survivalGrid p,#result .adviceList p,#result .dailyLine p,#result .questBoard p{font-size:12.5px!important}
+}
+
+@media(max-width:430px){
+  #quiz .gameSceneArt{aspect-ratio:16/7.5!important}
+  #quiz .gameQuestion{font-size:21px!important}
+  #quiz .gameAnswers .answer{min-height:60px!important}
+  #result .gameDossier{padding:13px 12px 14px!important}
+  #result .resultTitle{font-size:31px!important}
+  #result .gameMatchBox{min-width:76px!important;padding:8px!important}
+  #result .gameMatchBox b{font-size:14px!important}
+  #result .resultHeroMiniAttrs{gap:6px!important}
+  #result .resultHeroMiniAttrs .attr{padding:10px!important}
+  #result .resultGameTabs{grid-template-columns:repeat(3,minmax(0,1fr))!important;overflow:hidden!important}
+  #result .resultGameTabs button{min-width:0!important;padding:8px 4px!important}
+  #result .relationCharacterCard{grid-template-columns:82px minmax(0,1fr)!important;gap:10px!important}
+  #result .relationAvatar{width:82px!important}
+}
 </style>
 </head>
 <body>
@@ -1073,7 +1169,7 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
     <div class="topmeta">24 SCENARIOS · 16 ARCHETYPES · 6D MODEL</div>
   </div>
 
-  <div id="inAppNotice" class="inAppNotice" hidden><b>内置浏览器提示</b><span>若你已经进入本页但加载异常，优先点右上角“在浏览器打开”。GitHub 的微信安全中转页发生在本站加载之前，网页代码无法跳过该页面。</span><button onclick="copyCurrentLink()" title="复制链接">复制</button><button onclick="this.parentElement.hidden=true">×</button></div>
+  <div id="inAppNotice" class="inAppNotice" hidden><b>测试环境提示</b><span>微信若出现 401 或打开异常，请复制完整链接到系统浏览器。EdgeOne 预览链接含临时鉴权参数，正式域名上线后将不依赖此预览鉴权。</span><button onclick="copyCurrentLink()" title="复制完整链接">复制</button><button onclick="this.parentElement.hidden=true">×</button></div>
 
   <main>
     <section id="hero" class="hero">
@@ -1127,7 +1223,7 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
         <header class="gameHUDTop">
           <div class="gameBrand"><small>CAMPUS//ARCHIVE</small><b id="chapterNo">CHAPTER 01</b></div>
           <div class="gameChapter"><strong id="chapterTitle">默认设置</strong><span id="chapterSub">日常启动方式</span></div>
-          <div class="gameProgressBlock"><div class="gameProgressMeta"><b id="quizNum">01 / 24</b><span id="gameProgressPercent">04%</span></div><div class="gameProgressTrack"><i id="progressBar"></i></div><div id="chapterRail" class="chapterRail gameChapterRail"><span class="active"></span><span></span><span></span><span></span></div></div>
+          <div class="gameProgressBlock"><div class="gameProgressMeta"><b id="quizNum">Q01 / 24</b><span id="gameProgressPercent">04%</span></div><div class="gameProgressTrack"><i id="progressBar"></i></div><div id="chapterRail" class="chapterRail gameChapterRail"><span class="active"></span><span></span><span></span><span></span></div></div>
           <button class="gameExit" onclick="exitQuiz()">EXIT</button>
         </header>
 
@@ -1135,11 +1231,11 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
           <aside class="gameScenePane">
             <div class="gameSceneHeader"><span id="gameSceneNo">SCENE 01</span><b id="gameSceneTag">COURSEWORK</b></div>
             <div id="gameSceneArt" class="gameSceneArt"></div>
-            <div class="gameSceneFooter"><div><small>SCENE INFO</small><b id="hudProfile">CAMPUS MOMENT</b></div><div><small>OBSERVE</small><b id="hudAxis">—</b></div></div>
+            <div class="gameSceneFooter"><div><small>SCENE INFO</small><b id="hudProfile">CAMPUS MOMENT</b></div><div><small>MODE</small><b id="hudAxis">BLIND TEST</b></div></div>
           </aside>
 
           <section id="questionStage" class="gameQuestionPane">
-            <div class="gameQuestionHeader"><div><small id="questionKicker">SCENARIO / COURSEWORK</small><div class="gameMeta"><span id="metaAnswered">已答 0 题</span><span id="metaTag">课程情境</span><span id="metaEnergy">观察即时反应</span></div></div><div class="gameCounter"><small>SESSION</small><b id="hudStatus">00 / 24</b></div></div>
+            <div class="gameQuestionHeader"><div><small id="questionKicker">SCENARIO / COURSEWORK</small><div class="gameMeta"><span id="metaAnswered">已答 0 题</span><span id="metaTag">课程情境</span><span id="metaEnergy">观察即时反应</span></div></div><div class="gameCounter"><small>COMPLETED</small><b id="hudStatus">00 / 24</b></div></div>
             <h2 id="question" class="question gameQuestion"></h2>
             <p id="questionHint" class="questionHint gameHint">没有标准答案。请选择你在现实校园里更可能做出的反应。</p>
             <div id="answers" class="answers gameAnswers"></div>
@@ -1148,7 +1244,7 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
 
         <footer class="gameHUDBottom">
           <div class="gameHintLine"><span class="pixelKey">A–D</span> 选择最像你的现实反应 <i>·</i> 选择后自动进入下一题</div>
-          <div class="gameBottomStats"><span>CHAPTER <b id="bottomProfile">01</b></span><span>AXIS <b id="bottomAxis">—</b></span></div>
+          <div class="gameBottomStats"><span>CHAPTER <b id="bottomProfile">01</b></span><span>MODE <b id="bottomAxis">BLIND</b></span></div>
           <div class="navBtns"><button id="prevBtn" class="navBtn gamePrev" onclick="prevQuestion()">← PREV</button></div>
         </footer>
       </div>
@@ -1172,8 +1268,8 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
             <div class="attr"><span>CLASS</span><strong id="attrClass"></strong></div>
           </div>
           <div id="resultAura" class="resultAura gameAura"></div>
-          <div class="dossierActions gameDossierActions"><button class="btn primary" onclick="shareResult()"><span class="dot"></span>分享结果</button><button class="btn secondary" onclick="makePoster()">生成海报</button><button class="btn secondary" onclick="restart()">重新测试</button></div>
-          <div class="gameSavePrompt"><small>SAVE COMPLETE</small><strong>人格档案已建立</strong><span>↓ 使用下方菜单查看 STATUS / PARTY / LOG</span></div>
+          <div class="dossierActions gameDossierActions"><button class="btn primary releaseShareBtn" onclick="shareResult()"><span class="dot"></span>分享给朋友</button><button class="btn secondary releasePosterBtn" onclick="makePoster()">生成我的人格卡片</button><button class="btn secondary releaseRestartBtn" onclick="restart()">重测</button></div>
+          <div class="gameSavePrompt"><small>SAVE COMPLETE</small><strong>先分享人格卡，再看完整档案</strong><span>↓ 下方继续查看六维 / 校园关系 / 深度解析</span></div>
         </div>
       </div>
 
@@ -1205,11 +1301,11 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
           <div class="gamePanelGrid deepGrid">
             <div class="gamePanelCard manifestoGameCard"><div class="gamePanelHead"><span>PERSONA DECODER</span><b>人格宣言与核心机制</b></div><div id="personaBadges" class="personaBadges"></div><div class="manifestoCard"><b id="manifestoTitle">你的专属人格宣言</b><p id="manifestoText">—</p></div><div id="survivalGrid" class="survivalGrid"><div><small>驱动内核</small><strong id="survivalDrive">—</strong><p id="survivalDriveText">—</p></div><div><small>高光场景</small><strong id="survivalGlow">—</strong><p id="survivalGlowText">—</p></div><div><small>注意盲区</small><strong id="survivalBlind">—</strong><p id="survivalBlindText">—</p></div></div></div>
             <div class="gamePanelCard adviceGameCard"><div class="gamePanelHead"><span>SURVIVAL PLAYBOOK</span><b>专属校园建议</b></div><div id="adviceList" class="adviceList"></div><div class="dailyLine"><small>TODAY'S LINE</small><p id="resultDailyLine">—</p></div></div>
-            <div class="gamePanelCard questBoard"><div class="gamePanelHead"><span>QUEST BOARD</span><b>好友挑战任务</b></div><p>把结果丢给朋友，完成第二次人格测试并对比你们的校园生存方式。</p><div id="viralCode" class="viralCode">CHALLENGE / —</div><div id="matchupLine" class="matchupLine" style="display:none"></div><div class="questButtons"><button class="primary" onclick="shareChallenge()">分享挑战</button><button onclick="makePoster()">生成海报</button><button onclick="copyXhsCaption()">复制小红书文案</button><button onclick="copyChallenge()">复制挑战码</button><button onclick="restartFromResult()">再测一次</button></div></div>
+            <div class="gamePanelCard questBoard"><div class="gamePanelHead"><span>QUEST BOARD</span><b>好友挑战任务</b></div><p>把结果丢给朋友，完成第二次人格测试并对比你们的校园生存方式。</p><div id="viralCode" class="viralCode">CHALLENGE / —</div><div id="matchupLine" class="matchupLine" style="display:none"></div><div class="questButtons"><button class="primary" onclick="shareChallenge()">分享给朋友</button><button onclick="makePoster()">生成海报</button><button onclick="copyXhsCaption()">复制小红书文案</button><button onclick="copyChallenge()">复制挑战码</button><button onclick="restartFromResult()">再测一次</button></div></div>
           </div>
         </section>
       </div>
-      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.9.1 · <a class="footerDev" href="?dev=1">DEV CONSOLE</a></span></div>
+      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.9.2 · <a class="footerDev" href="?dev=1">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
@@ -1307,19 +1403,19 @@ function buildSceneMarkup(n,meta,src){
 }
 function renderMainScene(item,index){
  const n=index+1,meta=QUESTION_SCENE_META[n]||{tag:item.tag,time:'LIVE',loc:'校园场景',title:tagLabel(item.tag)};
- const focusKeys=focusDimsForQuestion(item),focus=focusKeys.map(k=>DIM_NAMES[k]),focusShort=focusKeys.map(k=>DIM_SHORT[k]);
+ // V6.9.2: scoring dimensions stay internal during the quiz to reduce response priming.
  const art=document.getElementById('gameSceneArt'),src=(QUESTION_SCENE_EMBED[n]||QUESTION_SCENE_IMAGES[n]);
  ++sceneRequestToken;
  if(art) art.innerHTML=buildSceneMarkup(n,meta,src);
  preloadQuestionScenes(n+1,n+2);
  const sn=document.getElementById('gameSceneNo');if(sn)sn.textContent='SCENE '+String(n).padStart(2,'0');
  const st=document.getElementById('gameSceneTag');if(st)st.textContent=meta.tag;
- const status=`${answers.filter(v=>v!==null).length} / ${QUESTIONS.length}`;
+ const done=answers.filter(v=>v!==null).length,status=`${String(done).padStart(2,'0')} / ${QUESTIONS.length}`;
  const hp=document.getElementById('hudProfile');if(hp)hp.textContent=meta.time+' · '+meta.loc;
- const ha=document.getElementById('hudAxis');if(ha)ha.textContent=focus.join(' / ');
+ const ha=document.getElementById('hudAxis');if(ha)ha.textContent='BLIND TEST';
  const hs=document.getElementById('hudStatus');if(hs)hs.textContent=status;
  const bp=document.getElementById('bottomProfile');if(bp)bp.textContent=currentChapter(index).title;
- const ba=document.getElementById('bottomAxis');if(ba)ba.textContent=focusShort.join('/');
+ const ba=document.getElementById('bottomAxis');if(ba)ba.textContent='BLIND';
 }
 
 function renderResultQuickDims(user){const box=document.getElementById('resultQuickDims');if(!box)return;box.innerHTML=DIM_KEYS.map((k,i)=>`<div class="quickDim"><span>${DIM_SHORT[k]}</span><i style="--v:${user[i]}%"></i><b>${user[i]}</b></div>`).join('');}
@@ -1769,13 +1865,28 @@ function prevQuestion(){clearTimeout(transitionTimer);if(current<=0)return;curre
 function scrollQuizTop(){if(innerWidth<700)window.scrollTo({top:0,behavior:'smooth'});}
 function renderQuestion(){
  const item=QUESTIONS[current];if(!item){showToast('题目数据异常');return;}
- let focus=[];try{focus=focusDimsForQuestion(item);}catch(e){focus=['study','order'];}
  const done=answers.filter(v=>v!==null).length,pct=Math.round((current+1)/QUESTIONS.length*100);
  try{renderChapter(current);}catch(e){}try{flashChapterIfNeeded(current);}catch(e){}
- const qn=document.getElementById('quizNum');if(qn)qn.textContent=String(current+1).padStart(2,'0')+' / '+QUESTIONS.length;const pp=document.getElementById('gameProgressPercent');if(pp)pp.textContent=String(pct).padStart(2,'0')+'%';const pb=document.getElementById('progressBar');if(pb)pb.style.width=pct+'%';
- const kick=document.getElementById('questionKicker');if(kick)kick.textContent='SCENARIO / '+item.tag;const ma=document.getElementById('metaAnswered');if(ma)ma.textContent='已答 '+done+' 题';const mt=document.getElementById('metaTag');if(mt)mt.textContent=tagLabel(item.tag);const me=document.getElementById('metaEnergy');if(me)me.textContent='观察 '+focus.map(k=>DIM_NAMES[k]).join(' · ');
- const q=document.getElementById('question');if(q)q.textContent=item.q;const hint=document.getElementById('questionHint');if(hint)hint.textContent=QUESTION_HINTS[item.tag]||'没有标准答案。请选择你在现实校园里更可能做出的反应。';const prev=document.getElementById('prevBtn');if(prev)prev.disabled=current===0;
- const box=document.getElementById('answers');if(box){box.innerHTML='';item.a.forEach((opt,i)=>{const b=document.createElement('button');b.className='answer'+(answers[current]===i?' selected':'');b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span><span class="answerText">${opt[0]}</span><span class="answerBadge">${focus.map(k=>DIM_SHORT[k]).join(' · ')}</span></span>`;b.onclick=()=>chooseAnswer(i);box.appendChild(b);});}
+ const qn=document.getElementById('quizNum');if(qn)qn.textContent='Q'+String(current+1).padStart(2,'0')+' / '+QUESTIONS.length;
+ const pp=document.getElementById('gameProgressPercent');if(pp)pp.textContent=String(pct).padStart(2,'0')+'%';
+ const pb=document.getElementById('progressBar');if(pb)pb.style.width=pct+'%';
+ const kick=document.getElementById('questionKicker');if(kick)kick.textContent='SCENARIO / '+item.tag;
+ const ma=document.getElementById('metaAnswered');if(ma)ma.textContent='完成 '+done+' 题';
+ const mt=document.getElementById('metaTag');if(mt)mt.textContent=tagLabel(item.tag);
+ const me=document.getElementById('metaEnergy');if(me)me.textContent='BLIND MODE · FIRST INSTINCT';
+ const q=document.getElementById('question');if(q)q.textContent=item.q;
+ const hint=document.getElementById('questionHint');if(hint)hint.textContent='别选“应该怎么做”，选你在现实里最可能做出的第一反应。';
+ const prev=document.getElementById('prevBtn');if(prev)prev.disabled=current===0;
+ const box=document.getElementById('answers');if(box){
+   box.innerHTML='';
+   item.a.forEach((opt,i)=>{
+     const b=document.createElement('button');
+     b.className='answer'+(answers[current]===i?' selected':'');
+     b.setAttribute('aria-label',String.fromCharCode(65+i)+'：'+opt[0]);
+     b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span class="answerText">${opt[0]}</span>`;
+     b.onclick=()=>chooseAnswer(i);box.appendChild(b);
+   });
+ }
  try{setQuizAtmosphere(current,item);}catch(e){}try{renderMainScene(item,current);}catch(e){}try{const stage=document.getElementById('questionStage');if(stage){stage.classList.remove('quizFlash');void stage.offsetWidth;stage.classList.add('quizFlash');}}catch(e){}
 }
 function setQuizAtmosphere(i,item){const hues=[72,205,18,42,285,155];const scene=document.querySelector('.quizScene');const focus=focusDimsForQuestion(item||QUESTIONS[i]);const map={study:210,social:18,deadline:72,order:260,explore:168,sensitivity:330};const h1=map[focus[0]]||hues[i%hues.length], h2=map[focus[1]]||hues[(i+2)%hues.length];if(scene)scene.style.background=`radial-gradient(520px 320px at ${20+(i*17)%70}% ${20+(i*23)%60}%,hsla(${h1},76%,56%,.12),transparent 60%),radial-gradient(340px 200px at ${60+(i*7)%25}% ${22+(i*11)%52}%,hsla(${h2},76%,60%,.12),transparent 60%),#14161a`; }
@@ -1786,7 +1897,7 @@ function chooseAnswer(i){
  clearTimeout(transitionTimer);answers[current]=i;saveProgress();if(navigator.vibrate)navigator.vibrate(8);document.querySelectorAll('.answer').forEach((el,idx)=>{el.classList.toggle('selected',idx===i);el.disabled=true;});
  transitionTimer=setTimeout(()=>{if(current<QUESTIONS.length-1){current++;requestAnimationFrame(()=>{renderQuestion();if(innerWidth<=980)mobileFocusQuestion();else scrollQuizTop();});}else{requestAnimationFrame(finishQuiz);}},210);
 }
-// V6.9.1 QUESTION MODEL: each answer loads at most two dimensions.
+// V6.9.2 RELEASE UX (algorithm unchanged from V6.9.1): each answer loads at most two dimensions.
 // Calibration is derived from the live question bank so future edits cannot leave stale constants.
 const SCORE_CALIBRATION=questionCalibration(QUESTIONS.map((_,i)=>i));
 const MODEL_WEIGHTS=[1.08,.98,1.05,1.0,.96,1.02];
@@ -1918,7 +2029,7 @@ async function makePoster(){
  const grad=ctx.createRadialGradient(880,110,10,880,110,560);grad.addColorStop(0,palette.glow);grad.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,1080,720);
  // top brand
  ctx.fillStyle=accent;roundRect(ctx,58,48,282,50,25,true);ctx.fillStyle='#121315';ctx.font='900 24px sans-serif';ctx.fillText('CAMPUS//ARCHIVE',80,82);
- ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V6.9.1',58,132);
+ ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V6.9.2',58,132);
  // full-bleed visual
  ctx.save();roundRectPath(ctx,58,166,964,660,32);ctx.clip();
  try{const img=await rasterImage(PERSONA_IMAGES[best.code]);const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height,bw=964,bh=660,scale=Math.max(bw/iw,bh/ih),sw=bw/scale,sh=bh/scale,sx=(iw-sw)/2,sy=(ih-sh)/2;ctx.imageSmoothingEnabled=false;ctx.drawImage(img,sx,sy,sw,sh,58,166,bw,bh);}catch(e){ctx.fillStyle='#181b20';ctx.fillRect(58,166,964,660)}
@@ -1938,7 +2049,7 @@ async function makePoster(){
  ctx.fillStyle='#f6f2e9';roundRect(ctx,58,1210,964,166,30,true);ctx.fillStyle='#17181a';ctx.font='950 36px sans-serif';ctx.fillText('你是什么大学牲？',90,1265);ctx.fillStyle='#6c675f';ctx.font='650 18px sans-serif';ctx.fillText('把这张图丢给朋友，让 TA 也测一次。',90,1302);
  ctx.fillStyle=palette.deep;roundRect(ctx,90,1320,510,38,19,true);ctx.fillStyle=accent;ctx.font='900 15px monospace';ctx.fillText('CHALLENGE / '+code,108,1346);
  ctx.fillStyle='#8d877f';ctx.font='700 14px monospace';ctx.fillText('24 SCENARIOS · 16 ARCHETYPES · 6D MODEL',650,1346);
- c.toBlob(async blob=>{if(!blob)return;const file=new File([blob],`campus-${best.code}-v6_9_1.png`,{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'大学牲人格鉴定 · '+best.name,text:challengeText()});return;}}catch(e){}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`大学牲人格_${best.code}_${best.name}_V6.9.1.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);showToast('V6.9.1 分享海报已生成');},'image/png');
+ c.toBlob(async blob=>{if(!blob)return;const file=new File([blob],`campus-${best.code}-v6_9_2.png`,{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'大学牲人格鉴定 · '+best.name,text:challengeText()});return;}}catch(e){}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`大学牲人格_${best.code}_${best.name}_V6.9.2.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);showToast('V6.9.2 分享海报已生成');},'image/png');
 }
 function roundRectPath(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath();}
 function roundRect(ctx,x,y,w,h,r,fill=false,stroke=false,strokeColor=null){roundRectPath(ctx,x,y,w,h,r);if(fill)ctx.fill();if(stroke){if(strokeColor)ctx.strokeStyle=strokeColor;ctx.stroke();}}
@@ -2019,7 +2130,7 @@ window.addEventListener('DOMContentLoaded',()=>{try{const q=new URLSearchParams(
      const s=document.getElementById('splash');if(s){s.classList.add('out');s.style.display='none';}
    }
  }catch(e){}
- try{const ua=navigator.userAgent||'';if(/MicroMessenger|QQ\//i.test(ua)){const n=document.getElementById('inAppNotice');if(n)n.hidden=false;}}catch(e){}
+ try{const ua=navigator.userAgent||'';if(/MicroMessenger|QQ\//i.test(ua)){const n=document.getElementById('inAppNotice');if(n){const isPreview=/\.edgeone\.(cool|ai)$/i.test(location.hostname);const span=n.querySelector('span');if(span&&isPreview)span.textContent='当前是 EdgeOne 临时预览地址。微信若出现 401，请复制完整链接到系统浏览器；正式自定义域名上线后将不依赖此预览鉴权。';n.hidden=false;}}}catch(e){}
  try{
    const startBtn=document.getElementById('primaryStartBtn');
    if(startBtn){
