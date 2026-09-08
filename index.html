@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="大学牲人格鉴定">
 <meta name="description" content="24 道真实校园情境题，鉴定你的大学精神状态。16 种大学牲人格，6 维校园行为模型。支持好友挑战、分享海报与授权访问。">
-<meta name="campus-archive-build" content="6.9.0-mobile-dev-entry">
+<meta name="campus-archive-build" content="6.9.1-question-model">
 <meta property="og:title" content="大学牲人格鉴定 · CAMPUS//ARCHIVE">
 <meta property="og:description" content="24 道校园情境，测出你的大学精神状态。16 种人格 · 6D 行为模型。">
-<title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.8</title>
+<title>大学牲人格鉴定 · CAMPUS//ARCHIVE V6.9.1</title>
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1030,7 +1030,7 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
 }
 
 
-/* V6.9.0 mobile developer entry */
+/* V6.9.1 mobile developer entry */
 .mobileDevPanel{
   position:fixed;inset:0;z-index:3000;background:rgba(5,7,9,.82);
   display:grid;place-items:center;padding:18px;overflow:auto;
@@ -1209,7 +1209,7 @@ body.result-open .wrap{height:auto!important;min-height:100dvh!important;overflo
           </div>
         </section>
       </div>
-      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.9.0 · <a class="footerDev" href="?dev=1">DEV CONSOLE</a></span></div>
+      <div class="resultFooter gameResultFooter"><span><b>NOTE：</b>娱乐与自我观察向测试，不是临床心理测评。</span><span>© 2026 CAMPUS//ARCHIVE · V6.9.1 · <a class="footerDev" href="?dev=1">DEV CONSOLE</a></span></div>
     </section>
   </main>
 </div>
@@ -1243,8 +1243,8 @@ const PERSONA_IMAGES={"U01":"assets/personas/U01.webp","U02":"assets/personas/U0
 
 
 
-const QUESTION_SCENE_META={"1":{"tag":"COURSEWORK","time":"21:40","loc":"宿舍书桌","title":"课程任务"},"2":{"tag":"SLEEP MODE","time":"07:05","loc":"清晨寝室","title":"起床警报"},"3":{"tag":"WEEKEND","time":"14:20","loc":"校园草坪","title":"周末空档"},"4":{"tag":"EXAM","time":"23:18","loc":"自习室","title":"考试倒计时"},"5":{"tag":"LUNCH","time":"12:10","loc":"食堂","title":"午饭时刻"},"6":{"tag":"PROJECT","time":"17:30","loc":"项目教室","title":"课程项目"},"7":{"tag":"MEETING","time":"18:45","loc":"活动室","title":"临时集合"},"8":{"tag":"GROUP WORK","time":"20:05","loc":"小组讨论室","title":"团队协作"},"9":{"tag":"INVITATION","time":"19:24","loc":"社团广场","title":"活动邀约"},"10":{"tag":"MESSAGE","time":"22:16","loc":"宿舍窗边","title":"聊天信号"},"11":{"tag":"DESK STATUS","time":"16:02","loc":"个人书桌","title":"桌面状态"},"12":{"tag":"FREE TIME","time":"15:40","loc":"树荫长椅","title":"自由时间"},"13":{"tag":"ELECTIVE","time":"10:25","loc":"选课系统","title":"选修选择"},"14":{"tag":"NOT IN EXAM","time":"20:44","loc":"图书馆","title":"不考也看"},"15":{"tag":"DAILY STATE","time":"11:50","loc":"教学楼走廊","title":"日常循环"},"16":{"tag":"MIDNIGHT","time":"01:36","loc":"深夜宿舍","title":"午夜模式"},"17":{"tag":"24 HOURS","time":"00:00","loc":"一天时间轴","title":"24小时"},"18":{"tag":"NEW PEOPLE","time":"18:10","loc":"社团招新","title":"第一次见面"},"19":{"tag":"IDEAL CAMPUS","time":"18:32","loc":"校园主路","title":"理想校园"},"20":{"tag":"RED LINE","time":"21:12","loc":"宿舍门口","title":"边界测试"},"21":{"tag":"RESTART","time":"06:42","loc":"校园正门","title":"重新开始"},"22":{"tag":"DINNER","time":"18:55","loc":"食堂晚餐","title":"晚饭之后"},"23":{"tag":"DORM","time":"22:40","loc":"寝室","title":"宿舍现场"},"24":{"tag":"GRADES","time":"13:05","loc":"成绩查询页","title":"分数公布"}};
-const QUESTION_SCENE_IMAGES={"1":"assets/scenes/Q01.webp","2":"assets/scenes/Q02.webp","3":"assets/scenes/Q03.webp","4":"assets/scenes/Q04.webp","5":"assets/scenes/Q05.webp","6":"assets/scenes/Q06.webp","7":"assets/scenes/Q07.webp","8":"assets/scenes/Q08.webp","9":"assets/scenes/Q09.webp","10":"assets/scenes/Q10.webp","11":"assets/scenes/Q11.webp","12":"assets/scenes/Q12.webp","13":"assets/scenes/Q13.webp","14":"assets/scenes/Q14.webp","15":"assets/scenes/Q15.webp","16":"assets/scenes/Q16.webp","17":"assets/scenes/Q17.webp","18":"assets/scenes/Q18.webp","19":"assets/scenes/Q19.webp","20":"assets/scenes/Q20.webp","21":"assets/scenes/Q21.webp","22":"assets/scenes/Q22.webp","23":"assets/scenes/Q23.webp","24":"assets/scenes/Q24.webp"};
+const QUESTION_SCENE_META={"1":{"tag":"COURSEWORK","time":"21:40","loc":"宿舍书桌","title":"课程任务"},"2":{"tag":"SLEEP MODE","time":"07:05","loc":"清晨寝室","title":"起床警报"},"3":{"tag":"WEEKEND","time":"14:20","loc":"校园草坪","title":"周末空档"},"4":{"tag":"EXAM","time":"23:18","loc":"自习室","title":"考试倒计时"},"5":{"tag":"LUNCH","time":"12:10","loc":"食堂","title":"午饭时刻"},"6":{"tag":"PROJECT","time":"17:30","loc":"项目教室","title":"课程项目"},"7":{"tag":"MEETING","time":"18:45","loc":"活动室","title":"临时集合"},"8":{"tag":"GRADES","time":"13:05","loc":"成绩查询页","title":"分数公布"},"9":{"tag":"DORM","time":"22:40","loc":"寝室","title":"宿舍现场"},"10":{"tag":"24 HOURS","time":"00:00","loc":"一天时间轴","title":"24小时"},"11":{"tag":"NEW PEOPLE","time":"18:10","loc":"社团招新","title":"第一次见面"},"12":{"tag":"MESSAGE","time":"22:16","loc":"宿舍窗边","title":"聊天信号"},"13":{"tag":"FREE TIME","time":"15:40","loc":"树荫长椅","title":"自由时间"},"14":{"tag":"ELECTIVE","time":"10:25","loc":"选课系统","title":"选修选择"},"15":{"tag":"DINNER","time":"18:55","loc":"食堂晚餐","title":"晚饭之后"},"16":{"tag":"DESK STATUS","time":"16:02","loc":"个人书桌","title":"桌面状态"},"17":{"tag":"IDEAL CAMPUS","time":"18:32","loc":"校园主路","title":"理想校园"},"18":{"tag":"MIDNIGHT","time":"01:36","loc":"深夜宿舍","title":"午夜模式"},"19":{"tag":"GROUP WORK","time":"20:05","loc":"小组讨论室","title":"团队协作"},"20":{"tag":"RED LINE","time":"21:12","loc":"宿舍门口","title":"边界测试"},"21":{"tag":"NOT IN EXAM","time":"20:44","loc":"图书馆","title":"不考也看"},"22":{"tag":"INVITATION","time":"19:24","loc":"社团广场","title":"活动邀约"},"23":{"tag":"DAILY STATE","time":"11:50","loc":"教学楼走廊","title":"日常循环"},"24":{"tag":"RESTART","time":"06:42","loc":"校园正门","title":"重新开始"}};
+const QUESTION_SCENE_IMAGES={"1":"assets/scenes/Q01.webp","2":"assets/scenes/Q02.webp","3":"assets/scenes/Q03.webp","4":"assets/scenes/Q04.webp","5":"assets/scenes/Q05.webp","6":"assets/scenes/Q06.webp","7":"assets/scenes/Q07.webp","8":"assets/scenes/Q24.webp","9":"assets/scenes/Q23.webp","10":"assets/scenes/Q17.webp","11":"assets/scenes/Q18.webp","12":"assets/scenes/Q10.webp","13":"assets/scenes/Q12.webp","14":"assets/scenes/Q13.webp","15":"assets/scenes/Q22.webp","16":"assets/scenes/Q11.webp","17":"assets/scenes/Q19.webp","18":"assets/scenes/Q16.webp","19":"assets/scenes/Q08.webp","20":"assets/scenes/Q20.webp","21":"assets/scenes/Q14.webp","22":"assets/scenes/Q09.webp","23":"assets/scenes/Q15.webp","24":"assets/scenes/Q21.webp"};
 const QUESTION_SCENE_EMBED={};
 
 
@@ -1378,9 +1378,9 @@ const QUESTION_HINTS={
   ELECTIVE:'当没有唯一正确答案时，你更优先什么？',
   DINNER:'集体决策场景，很适合看出你的推动力。',
   'DESK STATUS':'混乱来临时，你的外部空间会先失控还是先被整理？',
-  PREFERENCE:'这题指向你最理想的大学主线。',
+  'IDEAL CAMPUS':'这题指向你最理想的大学主线。',
   MIDNIGHT:'深夜反思会放大你的情绪敏感与自我叙事方式。',
-  TEAMWORK:'小组停摆时，你是等待者、启动者还是分工者？',
+  'GROUP WORK':'小组停摆时，你是等待者、启动者还是分工者？',
   'RED LINE':'你最不能接受的事，往往就是你最在意的控制区。',
   'NOT IN EXAM':'当外部评价消失时，你还会不会继续投入？',
   INVITATION:'陌生关系的邀约，会测试你的社交边界。',
@@ -1397,26 +1397,36 @@ function focusDimsForQuestion(item){
   return scores.slice(0,2).map(x=>x.k);
 }
 function tagLabel(tag){
-  const m={COURSEWORK:'课程任务', 'SLEEP MODE':'作息决策', WEEKEND:'周末安排', EXAM:'考试压力', LUNCH:'食堂场景', PROJECT:'课程项目', MEETING:'临时通知', GRADES:'成绩策略', DORM:'宿舍气氛', '24 HOURS':'极限抢救', 'NEW PEOPLE':'陌生场合', MESSAGE:'消息感知', 'FREE TIME':'自由时间', ELECTIVE:'选修偏好', DINNER:'聚餐决策', 'DESK STATUS':'桌面状态', PREFERENCE:'理想大学', MIDNIGHT:'深夜想法', TEAMWORK:'小组推进', 'RED LINE':'底线触发', 'NOT IN EXAM':'不考内容', INVITATION:'社交邀约', 'DAILY STATE':'日常状态', RESTART:'如果重来'};
+  const m={COURSEWORK:'课程任务', 'SLEEP MODE':'作息决策', WEEKEND:'周末安排', EXAM:'考试压力', LUNCH:'食堂场景', PROJECT:'课程项目', MEETING:'临时通知', GRADES:'成绩策略', DORM:'宿舍气氛', '24 HOURS':'极限抢救', 'NEW PEOPLE':'陌生场合', MESSAGE:'消息感知', 'FREE TIME':'自由时间', ELECTIVE:'选修偏好', DINNER:'聚餐决策', 'DESK STATUS':'桌面状态', 'IDEAL CAMPUS':'理想大学', MIDNIGHT:'深夜想法', 'GROUP WORK':'小组推进', 'RED LINE':'底线触发', 'NOT IN EXAM':'不考内容', INVITATION:'社交邀约', 'DAILY STATE':'日常状态', RESTART:'如果重来'};
   return m[tag]||tag;
+}
+function questionCalibration(indices){
+  const mean=Array(6).fill(0),variance=Array(6).fill(0);
+  indices.forEach(qi=>{
+    const q=QUESTIONS[qi];
+    for(let d=0;d<6;d++){
+      const vals=q.a.map(o=>o[1][d]);
+      const m=vals.reduce((s,v)=>s+v,0)/vals.length;
+      mean[d]+=m;
+      variance[d]+=vals.reduce((s,v)=>s+(v-m)*(v-m),0)/vals.length;
+    }
+  });
+  return {mean,sd:variance.map(v=>Math.sqrt(Math.max(v,.0001)))};
+}
+function calibrateRawVector(raw,calibration,confidence=1){
+  return raw.map((v,d)=>{
+    const z=(v-calibration.mean[d])/(calibration.sd[d]||1);
+    return Math.round(Math.max(8,Math.min(92,50+z*18*confidence)));
+  });
 }
 function partialVector(){
   const answeredIndices=[];answers.forEach((v,i)=>{if(v!==null)answeredIndices.push(i)});
-  if(!answeredIndices.length) return null;
-  const raw=Array(6).fill(0), mins=Array(6).fill(0), maxs=Array(6).fill(0);
-  answeredIndices.forEach(qi=>{
-    const q=QUESTIONS[qi];
-    for(let d=0;d<6;d++){
-      mins[d]+=Math.min(...q.a.map(o=>o[1][d]));
-      maxs[d]+=Math.max(...q.a.map(o=>o[1][d]));
-    }
-    q.a[answers[qi]][1].forEach((v,d)=>raw[d]+=v);
-  });
-  return raw.map((v,d)=>{
-    const span=(maxs[d]-mins[d])||1;
-    const pct=(v-mins[d])/span;
-    return Math.round(Math.max(8,Math.min(92,8+pct*84)));
-  });
+  if(answeredIndices.length<3) return null;
+  const raw=Array(6).fill(0);
+  answeredIndices.forEach(qi=>QUESTIONS[qi].a[answers[qi]][1].forEach((v,d)=>raw[d]+=v));
+  const calibration=questionCalibration(answeredIndices);
+  const confidence=Math.min(1,Math.sqrt(answeredIndices.length/12));
+  return calibrateRawVector(raw,calibration,confidence);
 }
 function liveProfileSummary(){
   const pv=partialVector();
@@ -1437,54 +1447,150 @@ function quizPreviewSVG(item, index){
 
 
 const QUESTIONS=[
- {tag:'COURSEWORK',q:'老师突然说：“这份作业下周交。” 你的第一反应？',a:[
-  ['今天先看一下要求，最好顺手开个头',[1,0,-2,2,0,0]],['记进日程，到安排的时间再做',[1,0,-1,2,0,0]],['下周？那还早。',[0,0,2,-2,0,0]],['等群里有人开始问“作业怎么做”再说',[0,1,2,-1,0,0]]]},
- {tag:'SLEEP MODE',q:'明天早上 8 点有课，现在凌晨 1:30。你更可能？',a:[
-  ['马上睡，至少保住明天的状态',[1,0,-1,2,0,-1]],['再看十分钟，然后努力关手机',[0,0,0,0,0,1]],['已经默认明早会困，但课还是会去',[1,0,1,0,0,1]],['“反正都一点半了”，继续熬',[0,0,2,-2,0,0]]]},
- {tag:'WEEKEND',q:'室友突然问：“周末出去玩吗？”',a:[
-  ['去，先告诉我去哪',[0,1,0,0,2,0]],['看情况，有意思就去',[0,0,0,0,1,0]],['不太想出门，宿舍挺好的',[0,-2,0,1,-2,0]],['我已经有自己的安排了',[1,-1,-1,2,0,0]]]},
- {tag:'EXAM',q:'考试还有两周，你现在的状态更接近？',a:[
-  ['已经开始按章节复习',[2,0,-2,2,0,0]],['刚准备制定计划',[1,0,-1,2,0,0]],['不急，还有两周',[0,0,1,-1,0,0]],['等危机感自然出现',[0,0,2,-2,0,1]]]},
- {tag:'LUNCH',q:'你一个人去食堂吃饭会觉得？',a:[
-  ['非常正常，一个人效率更高',[0,-1,0,1,0,-1]],['有一点无聊，但没关系',[0,0,0,0,0,1]],['更喜欢找人一起',[0,2,0,0,0,0]],['我甚至更喜欢一个人',[0,-2,0,1,0,0]]]},
- {tag:'PROJECT',q:'老师布置一个完全开放的课程项目，你更容易？',a:[
-  ['先把要求拆开，做一份明确计划',[1,0,-1,2,0,0]],['找一个最稳妥、最容易落地的方案',[1,0,0,2,-1,0]],['想做一个别人没做过的东西',[0,0,0,-1,2,0]],['先放着，等真正有灵感再开始',[0,0,2,-2,1,0]]]},
- {tag:'MEETING',q:'群里突然通知：“今晚临时开会。” 你的内心？',a:[
-  ['收到，安排一下就去',[0,0,0,2,0,-1]],['好烦，但该去还是去',[0,0,0,0,0,1]],['为什么不能明天说？计划全乱了',[0,-1,0,2,-1,2]],['有点想找理由不去',[0,-2,1,-1,0,1]]]},
- {tag:'GRADES',q:'如果某门课平时分占 40%，你会？',a:[
-  ['每一次都认真拿，不能白丢',[2,0,-1,2,0,1]],['重要的拿，没必要每次都满',[1,0,0,1,0,0]],['差不多就行，别挂就行',[0,0,1,-1,0,-1]],['期末再想办法救回来',[0,0,2,-2,0,0]]]},
- {tag:'DORM',q:'宿舍突然冷场，你通常？',a:[
-  ['无所谓，安静也挺好',[0,-1,0,0,0,-1]],['默默玩手机，等别人开口',[0,-1,0,0,0,1]],['随手找个话题把气氛拉回来',[0,2,0,0,1,1]],['开始整点抽象的，让所有人沉默',[0,2,1,-1,2,0]]]},
- {tag:'24 HOURS',q:'距离考试 24 小时，你还有大量内容没复习。你会？',a:[
-  ['有计划地抢救，先抓高频重点',[2,0,1,2,0,0]],['开始极限记忆，能塞多少塞多少',[1,0,2,-1,0,1]],['先焦虑半小时，再强行开机',[1,0,2,-1,0,2]],['突然进入人生最高效率',[1,0,2,0,1,0]]]},
- {tag:'NEW PEOPLE',q:'一个活动看起来挺有意思，但你一个人都不认识。',a:[
-  ['直接报名，到现场再说',[0,1,0,-1,2,0]],['拉一个朋友一起去',[0,2,0,0,1,0]],['会犹豫，但可能还是去',[0,0,0,0,1,1]],['算了，一个人去太麻烦',[0,-2,0,1,-1,1]]]},
- {tag:'MESSAGE',q:'你发现朋友回消息明显比平时冷淡。',a:[
-  ['没感觉，可能只是忙',[0,0,0,0,0,-2]],['注意到了，但不会多想',[0,0,0,0,0,-1]],['会想是不是发生什么了',[0,1,0,0,0,2]],['开始复盘自己前面说过的话',[0,0,0,0,0,2]]]},
- {tag:'FREE TIME',q:'突然获得一个完全没课的下午，你更可能？',a:[
-  ['学点东西，把欠的进度补掉',[2,0,-1,1,0,0]],['打游戏 / 追剧，彻底放空',[0,-1,1,-1,0,-1]],['睡一觉，先把电充满',[0,-1,0,0,-1,0]],['临时出去逛，看看有什么新东西',[0,1,0,-1,2,0]]]},
- {tag:'ELECTIVE',q:'选修课你更倾向选哪一种？',a:[
-  ['好拿分的',[2,0,0,1,-1,0]],['真正感兴趣的',[1,0,0,0,2,0]],['时间最方便的',[0,0,0,2,0,0]],['朋友一起上的',[0,2,0,0,0,0]]]},
- {tag:'DINNER',q:'宿舍准备聚餐，但一直决定不了吃什么。你通常？',a:[
-  ['看他们讨论，我都行',[0,-1,0,0,0,-1]],['“都行。” 真心都行',[0,0,0,-1,0,-1]],['提几个方案，让大家投票',[0,1,0,2,0,0]],['直接拍板一个，再问有没有人反对',[0,1,0,2,1,0]]]},
- {tag:'DESK STATUS',q:'连续几天事情特别多，你的桌面通常？',a:[
-  ['依然整齐，乱了会影响效率',[1,0,0,2,0,1]],['稍微乱一点，但还能用',[0,0,0,1,0,0]],['开始失控，东西先堆着再说',[0,0,1,-1,0,0]],['已经形成新的生态系统',[0,0,1,-2,1,0]]]},
- {tag:'IDEAL CAMPUS',q:'你更喜欢哪一种大学生活？',a:[
-  ['稳稳把该做的事情做好',[1,0,-1,2,-1,0]],['学很多真正有用、能深入的东西',[2,-1,-1,1,1,0]],['认识很多有趣的人',[0,2,0,0,1,0]],['尽可能体验以前没做过的事情',[0,1,0,-1,2,0]]]},
- {tag:'MIDNIGHT',q:'晚上突然想到：“我大学是不是浪费了很多时间？”',a:[
-  ['基本不会想这些',[0,0,0,0,0,-2]],['偶尔想一下，很快过去',[0,0,0,0,0,-1]],['会认真反思，然后想想怎么改',[1,0,0,1,0,2]],['越想越清醒，开始复盘整个人生',[0,0,0,0,0,2]]]},
- {tag:'GROUP WORK',q:'小组作业没人推进。你会？',a:[
-  ['再等一下，看看有没有人先说',[0,-1,1,-1,0,0]],['主动问一句现在到哪了',[0,1,0,1,0,0]],['自己先开始，把能做的做掉',[1,0,-1,1,0,0]],['直接分工、定时间、拉进度',[1,2,-1,2,0,0]]]},
- {tag:'RED LINE',q:'你最不能接受哪一种大学状态？',a:[
-  ['挂科或明显失去学业控制',[2,0,0,1,0,1]],['每天都一样、什么新鲜事都没有',[0,0,0,-1,2,0]],['被迫参加没意义的社交',[0,-2,0,0,0,1]],['原本安排好的计划被连续打乱',[0,0,0,2,-1,2]]]},
- {tag:'NOT IN EXAM',q:'如果老师说：“这部分考试不考。” 你会？',a:[
-  ['立刻跳过，效率优先',[1,0,0,1,-1,0]],['大概看看，知道是什么就行',[1,0,0,0,0,0]],['感兴趣的话还是会继续学',[2,0,-1,0,2,0]],['终于松了一口气，少背一点是一点',[0,0,1,-1,0,-1]]]},
- {tag:'INVITATION',q:'一个认识不久的人邀请你一起吃饭。',a:[
-  ['去，多认识个人也挺好',[0,2,0,0,1,0]],['有时间就去，不特别抗拒',[0,1,0,0,0,0]],['看是谁、什么局再决定',[0,0,0,1,0,1]],['大概率拒绝，我更想自己待着',[0,-2,0,1,-1,0]]]},
- {tag:'DAILY STATE',q:'下面哪句话最像你最近的大学状态？',a:[
-  ['“还有很多事情要做。”',[2,0,-1,2,0,1]],['“今天到底干了什么？”',[0,0,1,-1,0,1]],['“算了，明天再说。”',[0,0,2,-2,0,-1]],['“最近是不是有点累。”',[0,0,0,0,0,2]]]},
- {tag:'RESTART',q:'如果大学突然可以重新开始一次，你最想改变什么？',a:[
-  ['更努力一点，把能抓住的机会抓住',[2,0,-1,1,0,1]],['更勇敢地认识别人',[0,2,0,0,1,1]],['多体验一些以前没做过的事情',[0,1,0,-1,2,0]],['其实这样也挺好，我不太想重写',[0,0,0,1,0,-1]]]},
+ {tag:"COURSEWORK",q:"老师突然说：“这份作业下周交。” 你的第一反应？",a:[
+  ["今天先看一下要求，最好顺手开个头",[0,0,-2,1,0,0]],
+  ["记进日程，到安排的时间再做",[0,0,-1,2,0,0]],
+  ["下周？那还早。",[0,0,1,-1,0,0]],
+  ["等群里有人开始问“作业怎么做”再说",[0,0,2,-1,0,0]]
+ ]},
+ {tag:"SLEEP MODE",q:"明天早上 8 点有课，现在凌晨 1:30。你更可能？",a:[
+  ["马上睡，至少保住明天的状态",[0,0,-1,2,0,0]],
+  ["再看十分钟，然后努力关手机",[0,0,0,1,0,0]],
+  ["已经默认明早会困，但课还是会去",[0,0,1,0,0,0]],
+  ["“反正都一点半了”，继续熬",[0,0,2,-2,0,0]]
+ ]},
+ {tag:"WEEKEND",q:"室友突然问：“周末出去玩吗？”",a:[
+  ["去，先告诉我去哪",[0,1,0,0,2,0]],
+  ["看情况，有意思就去",[0,0,0,0,1,0]],
+  ["不太想出门，宿舍挺好的",[0,-2,0,0,-2,0]],
+  ["我已经有自己的安排了",[0,-1,0,2,0,0]]
+ ]},
+ {tag:"EXAM",q:"考试还有两周，你现在的状态更接近？",a:[
+  ["已经开始按章节复习",[2,0,-2,0,0,0]],
+  ["刚准备制定计划",[1,0,-1,0,0,0]],
+  ["不急，还有两周",[0,0,1,0,0,0]],
+  ["等危机感自然出现",[0,0,2,0,0,1]]
+ ]},
+ {tag:"LUNCH",q:"你一个人去食堂吃饭会觉得？",a:[
+  ["非常正常，一个人效率更高",[0,-1,0,0,0,-1]],
+  ["有一点无聊，但没关系",[0,0,0,0,0,1]],
+  ["更喜欢找人一起",[0,2,0,0,0,0]],
+  ["我甚至更喜欢一个人",[0,-2,0,1,0,0]]
+ ]},
+ {tag:"PROJECT",q:"老师布置一个完全开放的课程项目，你更容易？",a:[
+  ["先把要求拆开，做一份明确计划",[0,0,0,2,0,0]],
+  ["找一个最稳妥、最容易落地的方案",[0,0,0,2,-1,0]],
+  ["想做一个别人没做过的东西",[0,0,0,-1,2,0]],
+  ["先放着，等真正有灵感再开始",[0,0,2,0,1,0]]
+ ]},
+ {tag:"MEETING",q:"群里突然通知：“今晚临时开会。” 你的内心？",a:[
+  ["收到，安排一下就去",[0,0,0,1,0,0]],
+  ["好烦，但该去还是去",[0,0,0,0,0,1]],
+  ["为什么不能明天说？计划全乱了",[0,-1,0,2,0,0]],
+  ["有点想找理由不去",[0,-2,0,-1,0,0]]
+ ]},
+ {tag:"GRADES",q:"如果某门课平时分占 40%，你会？",a:[
+  ["每一次都认真拿，不能白丢",[2,0,-1,0,0,0]],
+  ["重要的拿，没必要每次都满",[1,0,0,0,0,0]],
+  ["差不多就行，别挂就行",[-1,0,1,0,0,0]],
+  ["期末再想办法救回来",[-1,0,2,0,0,0]]
+ ]},
+ {tag:"DORM",q:"宿舍突然冷场，你通常？",a:[
+  ["无所谓，安静也挺好",[0,-1,0,0,0,-1]],
+  ["默默玩手机，等别人开口",[0,-1,0,0,0,1]],
+  ["随手找个话题把气氛拉回来",[0,2,0,0,1,0]],
+  ["开始整点抽象的，让所有人沉默",[0,2,0,0,2,0]]
+ ]},
+ {tag:"24 HOURS",q:"距离考试 24 小时，你还有大量内容没复习。你会？",a:[
+  ["有计划地抢救，先抓高频重点",[0,0,1,2,0,0]],
+  ["开始极限记忆，能塞多少塞多少",[0,0,2,0,0,1]],
+  ["先焦虑半小时，再强行开机",[0,0,2,0,0,2]],
+  ["突然进入人生最高效率",[0,0,2,0,0,0]]
+ ]},
+ {tag:"NEW PEOPLE",q:"一个活动看起来挺有意思，但你一个人都不认识。",a:[
+  ["直接报名，到现场再说",[0,1,0,0,2,0]],
+  ["拉一个朋友一起去",[0,2,0,0,1,0]],
+  ["会犹豫，但可能还是去",[0,0,0,0,1,1]],
+  ["算了，一个人去太麻烦",[0,-2,0,0,-1,0]]
+ ]},
+ {tag:"MESSAGE",q:"你发现朋友回消息明显比平时冷淡。",a:[
+  ["没感觉，可能只是忙",[0,0,0,0,0,-2]],
+  ["注意到了，但不会多想",[0,0,0,0,0,-1]],
+  ["会想是不是发生什么了",[0,1,0,0,0,2]],
+  ["开始复盘自己前面说过的话",[0,0,0,0,0,2]]
+ ]},
+ {tag:"FREE TIME",q:"突然获得一个完全没课的下午，你更可能？",a:[
+  ["学点东西，把欠的进度补掉",[2,0,-1,0,0,0]],
+  ["打游戏 / 追剧，彻底放空",[-1,0,1,0,0,0]],
+  ["睡一觉，先把电充满",[-1,0,0,0,-1,0]],
+  ["临时出去逛，看看有什么新东西",[0,1,0,0,2,0]]
+ ]},
+ {tag:"ELECTIVE",q:"选修课你更倾向选哪一种？",a:[
+  ["好拿分的",[2,0,0,0,-1,0]],
+  ["真正感兴趣的",[1,0,0,0,2,0]],
+  ["时间最方便的",[0,0,0,2,-1,0]],
+  ["朋友一起上的",[0,2,0,0,0,0]]
+ ]},
+ {tag:"DINNER",q:"宿舍准备聚餐，但一直决定不了吃什么。你通常？",a:[
+  ["看他们讨论，我都行",[0,-1,0,0,0,-1]],
+  ["“都行。” 真心都行",[0,0,0,-1,0,0]],
+  ["提几个方案，让大家投票",[0,1,0,2,0,0]],
+  ["直接拍板一个，再问有没有人反对",[0,1,0,2,0,0]]
+ ]},
+ {tag:"DESK STATUS",q:"连续几天事情特别多，你的桌面通常？",a:[
+  ["依然整齐，乱了会影响效率",[0,0,0,2,0,0]],
+  ["稍微乱一点，但还能用",[0,0,0,1,0,0]],
+  ["开始失控，东西先堆着再说",[0,0,1,-1,0,0]],
+  ["已经形成新的生态系统",[0,0,1,-2,0,0]]
+ ]},
+ {tag:"IDEAL CAMPUS",q:"你更喜欢哪一种大学生活？",a:[
+  ["稳稳把该做的事情做好",[1,0,0,2,0,0]],
+  ["学很多真正有用、能深入的东西",[2,0,0,0,1,0]],
+  ["认识很多有趣的人",[0,2,0,0,1,0]],
+  ["尽可能体验以前没做过的事情",[0,1,0,0,2,0]]
+ ]},
+ {tag:"MIDNIGHT",q:"晚上突然想到：“我大学是不是浪费了很多时间？”",a:[
+  ["基本不会想这些",[0,0,0,0,0,-2]],
+  ["偶尔想一下，很快过去",[0,0,0,0,0,-1]],
+  ["会认真反思，然后想想怎么改",[1,0,0,0,0,2]],
+  ["越想越清醒，开始复盘整个人生",[0,0,0,0,0,2]]
+ ]},
+ {tag:"GROUP WORK",q:"小组作业没人推进。你会？",a:[
+  ["再等一下，看看有没有人先说",[0,-1,1,0,0,0]],
+  ["主动问一句现在到哪了",[0,1,0,1,0,0]],
+  ["自己先开始，把能做的做掉",[1,0,0,1,0,0]],
+  ["直接分工、定时间、拉进度",[0,2,0,2,0,0]]
+ ]},
+ {tag:"RED LINE",q:"你最不能接受哪一种大学状态？",a:[
+  ["挂科或明显失去学业控制",[2,0,0,0,0,1]],
+  ["每天都一样、什么新鲜事都没有",[0,0,0,-1,2,0]],
+  ["被迫参加没意义的社交",[0,-2,0,0,0,1]],
+  ["原本安排好的计划被连续打乱",[0,0,0,2,0,2]]
+ ]},
+ {tag:"NOT IN EXAM",q:"如果老师说：“这部分考试不考。” 你会？",a:[
+  ["立刻跳过，效率优先",[1,0,0,0,-1,0]],
+  ["大概看看，知道是什么就行",[1,0,0,0,0,0]],
+  ["感兴趣的话还是会继续学",[2,0,0,0,2,0]],
+  ["终于松了一口气，少背一点是一点",[-1,0,1,0,0,0]]
+ ]},
+ {tag:"INVITATION",q:"一个认识不久的人邀请你一起吃饭。",a:[
+  ["去，多认识个人也挺好",[0,2,0,0,1,0]],
+  ["有时间就去，不特别抗拒",[0,1,0,0,0,0]],
+  ["看是谁、什么局再决定",[0,0,0,1,0,1]],
+  ["大概率拒绝，我更想自己待着",[0,-2,0,0,-1,0]]
+ ]},
+ {tag:"DAILY STATE",q:"下面哪句话最像你最近的大学状态？",a:[
+  ["“还有很多事情要做。”",[2,0,0,1,0,0]],
+  ["“今天到底干了什么？”",[0,0,1,0,0,1]],
+  ["“算了，明天再说。”",[0,0,2,-2,0,0]],
+  ["“最近是不是有点累。”",[0,0,0,0,0,2]]
+ ]},
+ {tag:"RESTART",q:"如果大学突然可以重新开始一次，你最想改变什么？",a:[
+  ["更努力一点，把能抓住的机会抓住",[2,0,0,1,0,0]],
+  ["更勇敢地认识别人",[0,2,0,0,1,0]],
+  ["多体验一些以前没做过的事情",[0,1,0,0,2,0]],
+  ["其实这样也挺好，我不太想重写",[0,0,0,1,0,-1]]
+ ]}
 ];
 
 const ARCHETYPES=[
@@ -1680,33 +1786,36 @@ function chooseAnswer(i){
  clearTimeout(transitionTimer);answers[current]=i;saveProgress();if(navigator.vibrate)navigator.vibrate(8);document.querySelectorAll('.answer').forEach((el,idx)=>{el.classList.toggle('selected',idx===i);el.disabled=true;});
  transitionTimer=setTimeout(()=>{if(current<QUESTIONS.length-1){current++;requestAnimationFrame(()=>{renderQuestion();if(innerWidth<=980)mobileFocusQuestion();else scrollQuizTop();});}else{requestAnimationFrame(finishQuiz);}},210);
 }
-// V6.9 CORE: dimension calibration based on the current 24-question option distribution.
-// Uniform option selection is centered at 50 on every dimension, avoiding the legacy
-// min/max normalization bias (especially the study dimension).
-const SCORE_CALIBRATION={
- mean:[10,1.75,3.5,6.25,5.25,4.75],
- sd:[2.8284271247,4.1457809879,3.7080992435,5.6513272777,3.6314597616,3.7996710384],
- scale:18,
- floor:8,
- ceil:92
-};
+// V6.9.1 QUESTION MODEL: each answer loads at most two dimensions.
+// Calibration is derived from the live question bank so future edits cannot leave stale constants.
+const SCORE_CALIBRATION=questionCalibration(QUESTIONS.map((_,i)=>i));
+const MODEL_WEIGHTS=[1.08,.98,1.05,1.0,.96,1.02];
+const PROTOTYPE_SHRINK=.80;
+const PATTERN_BLEND=.55;
 function buildVector(){
  const raw=Array(6).fill(0);
- QUESTIONS.forEach((q,qi)=>{
-   const idx=answers[qi]??0;
-   q.a[idx][1].forEach((v,d)=>raw[d]+=v);
- });
- return raw.map((v,d)=>{
-   const z=(v-SCORE_CALIBRATION.mean[d])/(SCORE_CALIBRATION.sd[d]||1);
-   return Math.round(Math.max(SCORE_CALIBRATION.floor,Math.min(SCORE_CALIBRATION.ceil,50+z*SCORE_CALIBRATION.scale)));
- });
+ QUESTIONS.forEach((q,qi)=>q.a[answers[qi]??0][1].forEach((v,d)=>raw[d]+=v));
+ return calibrateRawVector(raw,SCORE_CALIBRATION,1);
 }
-function modelDistance(user,proto){const weights=[1.08,.98,1.05,1.0,.96,1.02];let sum=0,ws=0;for(let i=0;i<6;i++){sum+=((user[i]-proto[i])**2)*weights[i];ws+=weights[i];}return Math.sqrt(sum/ws);}
-// “契合度” is a display score, not a statistical probability.
-// V6.9 removes the artificial 56% floor and compresses extreme distances smoothly.
+function prototypeTarget(proto){return proto.map(v=>50+(v-50)*PROTOTYPE_SHRINK);}
+function modelDistance(user,proto){
+ const target=prototypeTarget(proto);
+ let absSum=0,weightSum=0,dot=0,userNormSq=0,protoNormSq=0;
+ for(let i=0;i<6;i++){
+   const w=MODEL_WEIGHTS[i],du=user[i]-target[i],uc=user[i]-50,pc=target[i]-50;
+   absSum+=du*du*w;weightSum+=w;dot+=uc*pc*w;userNormSq+=uc*uc*w;protoNormSq+=pc*pc*w;
+ }
+ const absolute=Math.sqrt(absSum/weightSum);
+ const userNorm=Math.sqrt(userNormSq),protoNorm=Math.sqrt(protoNormSq);
+ const cosine=(userNorm>1e-6&&protoNorm>1e-6)?Math.max(-1,Math.min(1,dot/(userNorm*protoNorm))):0;
+ const patternDistance=(1-cosine)*35;
+ const patternStrength=Math.max(0,Math.min(1,userNorm/25));
+ const blend=PATTERN_BLEND*patternStrength;
+ return absolute*(1-blend)+patternDistance*blend;
+}
 function similarity(user,proto){
  const dist=modelDistance(user,proto);
- return Math.max(32,Math.min(98.5,100/(1+Math.pow(dist/72,1.7))));
+ return Math.max(42,Math.min(98.5,42+56/(1+Math.pow(dist/14,1.65))));
 }
 function finishQuiz(){
  if(answers.some(x=>x===null)){showToast('还有题目未完成');return;}
@@ -1715,10 +1824,10 @@ function finishQuiz(){
  const best=ranked[0],second=ranked[1];
  const gap=Math.max(0,second.dist-best.dist);
  const relativeGap=gap/Math.max(second.dist,1);
- // Keep the existing state field for backward compatibility, but redefine it as result clarity.
- const stability=Math.round(Math.max(38,Math.min(96,46+relativeGap*180)));
+ // stability 字段继续兼容旧存档，界面含义为“人格清晰度”。
+ const stability=Math.round(Math.max(40,Math.min(96,44+relativeGap*135)));
  const signature=makeSignature(user,best.code);
- lastState={version:2,user,bestCode:best.code,rankedCodes:ranked.map(x=>x.code),sims:ranked.map(x=>x.sim),distances:ranked.map(x=>x.dist),stability,signature,answers:[...answers],savedAt:Date.now()};
+ lastState={version:3,user,bestCode:best.code,rankedCodes:ranked.map(x=>x.code),sims:ranked.map(x=>x.sim),distances:ranked.map(x=>x.dist),stability,signature,answers:[...answers],savedAt:Date.now()};
  SAFE_STORAGE.setItem('campus_archive_last_v4',JSON.stringify(lastState));SAFE_STORAGE.removeItem('campus_archive_progress_v4');SAFE_STORAGE.removeItem('campus_archive_progress_v2');if(!currentEntitlement)currentEntitlement=resolveEntitlement();consumeEntitlement();document.getElementById('resumeBtn').classList.remove('hidden');updateResumeUI();renderResult(lastState);
 }
 function stateToRanked(state){return state.rankedCodes.map((code,i)=>({...ARCHETYPES.find(a=>a.code===code),sim:state.sims[i],dist:state.distances?state.distances[i]:null}));}
@@ -1793,7 +1902,7 @@ function makeSignature(user,code){const base=code+'-'+user.map(x=>String(x).padS
 function buildVariant(user){const sorted=DIM_KEYS.map((k,i)=>({k,v:user[i]})).sort((a,b)=>b.v-a.v),hi=sorted[0],lo=sorted[sorted.length-1];const highMap={study:'目标驱动',social:'关系驱动',deadline:'压力驱动',order:'秩序驱动',explore:'探索驱动',sensitivity:'感知驱动'};const lowMap={study:'低绩点执念',social:'低社交耗能',deadline:'提前启动',order:'自由节奏',explore:'稳定偏好',sensitivity:'高钝感'};return `${highMap[hi.k]} × ${lowMap[lo.k]}`;}
 function stabilityLabel(v){return v>=86?'人格清晰':v>=72?'倾向明确':v>=58?'双重倾向':'边界混合';}
 function makeResultUrl(state){if(!location.protocol.startsWith('http'))return location.href;return location.origin+location.pathname+'#r='+state.bestCode+'&d='+state.user.join('.')+'&s='+(state.stability||60);}
-function loadSharedResult(){const h=location.hash.replace(/^#/,'');if(!h.startsWith('r='))return false;const p=new URLSearchParams(h),d=(p.get('d')||'').split('.').map(Number),st=Number(p.get('s')||60);if(d.length!==6||d.some(x=>!Number.isFinite(x)))return false;const ranked=ARCHETYPES.map(a=>({...a,sim:similarity(d,a.v),dist:modelDistance(d,a.v)})).sort((a,b)=>a.dist-b.dist);const best=ranked[0],state={version:2,user:d,bestCode:best.code,rankedCodes:ranked.map(x=>x.code),sims:ranked.map(x=>x.sim),distances:ranked.map(x=>x.dist),stability:Math.max(54,Math.min(96,Math.round(st))),signature:makeSignature(d,best.code),answers:Array(QUESTIONS.length).fill(null),shared:true};renderResult(state);return true;}
+function loadSharedResult(){const h=location.hash.replace(/^#/,'');if(!h.startsWith('r='))return false;const p=new URLSearchParams(h),d=(p.get('d')||'').split('.').map(Number),st=Number(p.get('s')||60);if(d.length!==6||d.some(x=>!Number.isFinite(x)))return false;const ranked=ARCHETYPES.map(a=>({...a,sim:similarity(d,a.v),dist:modelDistance(d,a.v)})).sort((a,b)=>a.dist-b.dist);const best=ranked[0],state={version:3,user:d,bestCode:best.code,rankedCodes:ranked.map(x=>x.code),sims:ranked.map(x=>x.sim),distances:ranked.map(x=>x.dist),stability:Math.max(40,Math.min(96,Math.round(st))),signature:makeSignature(d,best.code),answers:Array(QUESTIONS.length).fill(null),shared:true};renderResult(state);return true;}
 function openGallery(){document.getElementById('galleryGrid').innerHTML=ARCHETYPES.map(a=>`<div class="galleryItem"><div class="galleryThumb">${personaImage(a,true)}</div><div class="galleryBody"><div><small>${a.code} / ${a.en}</small><strong>${a.name}</strong><p>${a.tag}</p><div class="personMiniNote">最常出现地点：${a.place}</div></div><span class="gLevel">${a.level}</span></div></div>`).join('');document.getElementById('galleryModal').classList.add('show');document.body.style.overflow='hidden';}
 function closeGallery(){document.getElementById('galleryModal').classList.remove('show');document.body.style.overflow='';}
 function saveProgress(){SAFE_STORAGE.setItem('campus_archive_progress_v4',JSON.stringify({answers,current,savedAt:Date.now()}));updateResumeUI();}
@@ -1809,7 +1918,7 @@ async function makePoster(){
  const grad=ctx.createRadialGradient(880,110,10,880,110,560);grad.addColorStop(0,palette.glow);grad.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,1080,720);
  // top brand
  ctx.fillStyle=accent;roundRect(ctx,58,48,282,50,25,true);ctx.fillStyle='#121315';ctx.font='900 24px sans-serif';ctx.fillText('CAMPUS//ARCHIVE',80,82);
- ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V6.8',58,132);
+ ctx.fillStyle='#8e959b';ctx.font='700 15px monospace';ctx.fillText('STUDENT PERSONALITY FILE · V6.9.1',58,132);
  // full-bleed visual
  ctx.save();roundRectPath(ctx,58,166,964,660,32);ctx.clip();
  try{const img=await rasterImage(PERSONA_IMAGES[best.code]);const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height,bw=964,bh=660,scale=Math.max(bw/iw,bh/ih),sw=bw/scale,sh=bh/scale,sx=(iw-sw)/2,sy=(ih-sh)/2;ctx.imageSmoothingEnabled=false;ctx.drawImage(img,sx,sy,sw,sh,58,166,bw,bh);}catch(e){ctx.fillStyle='#181b20';ctx.fillRect(58,166,964,660)}
@@ -1829,7 +1938,7 @@ async function makePoster(){
  ctx.fillStyle='#f6f2e9';roundRect(ctx,58,1210,964,166,30,true);ctx.fillStyle='#17181a';ctx.font='950 36px sans-serif';ctx.fillText('你是什么大学牲？',90,1265);ctx.fillStyle='#6c675f';ctx.font='650 18px sans-serif';ctx.fillText('把这张图丢给朋友，让 TA 也测一次。',90,1302);
  ctx.fillStyle=palette.deep;roundRect(ctx,90,1320,510,38,19,true);ctx.fillStyle=accent;ctx.font='900 15px monospace';ctx.fillText('CHALLENGE / '+code,108,1346);
  ctx.fillStyle='#8d877f';ctx.font='700 14px monospace';ctx.fillText('24 SCENARIOS · 16 ARCHETYPES · 6D MODEL',650,1346);
- c.toBlob(async blob=>{if(!blob)return;const file=new File([blob],`campus-${best.code}-v6_6.png`,{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'大学牲人格鉴定 · '+best.name,text:challengeText()});return;}}catch(e){}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`大学牲人格_${best.code}_${best.name}_V6.8.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);showToast('V6.8 分享海报已生成');},'image/png');
+ c.toBlob(async blob=>{if(!blob)return;const file=new File([blob],`campus-${best.code}-v6_9_1.png`,{type:'image/png'});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'大学牲人格鉴定 · '+best.name,text:challengeText()});return;}}catch(e){}const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`大学牲人格_${best.code}_${best.name}_V6.9.1.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);showToast('V6.9.1 分享海报已生成');},'image/png');
 }
 function roundRectPath(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath();}
 function roundRect(ctx,x,y,w,h,r,fill=false,stroke=false,strokeColor=null){roundRectPath(ctx,x,y,w,h,r);if(fill)ctx.fill();if(stroke){if(strokeColor)ctx.strokeStyle=strokeColor;ctx.stroke();}}
